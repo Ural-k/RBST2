@@ -1,19 +1,24 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class GaugeDirector : MonoBehaviour
+public class CircularGauge : MonoBehaviour
 {
-    private Image Gauge;
+    [SerializeField] private Image Gauge;
 
-    private float FillAmount = 1;
+    [SerializeField, Range(0f, 1f)] private float FillAmount = 1f;
 
+    void Start()
+    {
+        Gauge.gameObject.SetActive(true);
+    }
     void Update()
     {
-        FillAmount = Mathf.PingPong(Time.time * 0.2f, 1f);
+        FillAmount = Mathf.PingPong(Time.time * 1, 1);
 
-        if(Gauge != null)
+        if (Gauge != null)
         {
             Gauge.fillAmount = FillAmount;
+            Gauge.fillAmount = 1;
         }
     }
 
