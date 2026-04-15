@@ -1,9 +1,9 @@
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] PlayerBaseStatus status_;
     CharacterController character_controller_;
     InputAction input_move_;
 
@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     public void PlayerMove()
     {
         Vector2 move_value = input_move_.ReadValue<Vector2>();
-        move_value *= 5 * Time.deltaTime;
+        move_value *= status_.move_speed_ * Time.deltaTime;
         character_controller_.Move(move_value);
     }
 
