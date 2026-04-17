@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CricleAOEControll : MonoBehaviour
+public class AOEControll : MonoBehaviour
 {
     [SerializeField] private GameObject entity_; //AOEの実体
     [SerializeField] private GameObject entry_;  //AOEの予兆
@@ -18,17 +18,12 @@ public class CricleAOEControll : MonoBehaviour
         timer_ = entryTime_;
         entryActiveFlag_ = false;
         entityActiveFlag_ = false;
+        isActive();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //デバッグ用
-        if (Input.GetMouseButtonDown(0)) 
-        {
-            isActive();
-        }
-
         AOEEntry();
         AOEEntity();
     }
@@ -40,7 +35,7 @@ public class CricleAOEControll : MonoBehaviour
     {
         if (entityActiveFlag_) { return; }
         if (entryActiveFlag_) { return; }
-        else{ entryActiveFlag_ = true; Debug.Log("s"); }
+        else{ entryActiveFlag_ = true; }
     }
 
     /// <summary>
@@ -49,7 +44,9 @@ public class CricleAOEControll : MonoBehaviour
 
     public void AOEEntry()
     {
+        //entriyActiveFlagがfalseなら起動しない
         if (!entryActiveFlag_) { return; }
+
         entry_.SetActive (true);
         timer_ -= Time.deltaTime;
         if (timer_ < 0)
@@ -67,7 +64,9 @@ public class CricleAOEControll : MonoBehaviour
     /// </summary>
     public void AOEEntity()
     {
+        //entityActiveFlagがfalseなら起動しない
         if (!entityActiveFlag_) { return; }
+
         entity_ .SetActive (true);
         timer_ -= Time .deltaTime;
         if (timer_ < 0)
@@ -75,6 +74,8 @@ public class CricleAOEControll : MonoBehaviour
             entity_.SetActive(false);
             entityActiveFlag_ = false;
             timer_ = entityTime_;
+
+            Destroy(gameObject);
         }
     }
 }

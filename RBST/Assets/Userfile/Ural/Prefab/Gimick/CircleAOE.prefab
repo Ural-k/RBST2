@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 8597806150079216372}
   - component: {fileID: 9102597781273016854}
   m_Layer: 0
-  m_Name: CricleAOE
+  m_Name: CircleAOE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
