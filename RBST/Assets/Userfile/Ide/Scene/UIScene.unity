@@ -252,7 +252,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GaugeDirector
   Gauge: {fileID: 1929311072}
-  FillAmount: 1
+  MaxTime: 5
+  AutoStart: 1
 --- !u!4 &682205704
 Transform:
   m_ObjectHideFlags: 0
