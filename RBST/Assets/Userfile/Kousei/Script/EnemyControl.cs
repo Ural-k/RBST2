@@ -1,21 +1,77 @@
 using UnityEngine;
 
-public class EnemyControl : MonoBehaviour
+namespace Game.Enemy
 {
-    private float MoveSpeed = 3.0f;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void FixedUpdate()
+    public class EnemyMove : MonoBehaviour
     {
-        transform.position = new Vector3(Mathf.Sin(Time.time) * MoveSpeed, 0, 0);
-    }
-    void Start()
-    {
-        
-    }
+        //定数
+        private const float ARRIVE_DISTANCE = 0.1f;
 
-    // Update is called once per frame
-    void Update()
-    {
+        //Inspector設定
+        [Header("移動するポイント")]
+        [SerializeField]
+        private Transform[] points_;
+
+        [Header("移動スピード")]
+        [SerializeField]
+        private float moveSpeed_ = 2f;
         
+        //内部変数
+        private int currentPointIndex_ = 0;
+
+        //メイン処理
+        private void Update()
+        {
+            // ポイントが未設定なら処理しない（早期リターン）
+            if (points_ == null || points_.Length == 0)
+            {
+                return;
+            }
+
+            MoveToPoint();
+        }
+
+        //移動処理
+
+        private void MoveToPoint()
+        {
+            Transform targetPoint = points_[currentPointIndex_];
+
+            // 現在位置 → 目標位置へ移動
+            transform.position = Vector2.MoveTowards(
+                transform.position,
+                targetPoint.position,
+                moveSpeed_ * Time.deltaTime
+            );
+
+            // 到達判定
+            float distance =
+                Vector2.Distance(
+                    transform.position,
+                    targetPoint.position
+                );
+
+            bool isArrived = distance < ARRIVE_DISTANCE;
+
+            if (isArrived)
+            {
+                UpdateNextPointIndex();
+            }
+        }
+
+        //次のポイントへ
+
+        private void UpdateNextPointIndex()
+        {
+            currentPointIndex_++;
+
+            // 最後まで行ったら最初に戻る
+            bool isOverIndex = currentPointIndex_ >= points_.Length;
+
+            if (isOverIndex)
+            {
+                currentPointIndex_ = 0;
+            }
+        }
     }
 }
