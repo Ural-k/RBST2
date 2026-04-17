@@ -18,12 +18,12 @@ public class GaugeDirector : MonoBehaviour
 
     void Start()
     {
-        //リセット範囲内
+        //リセット関数
         ResetGauge();
 
         if(AutoStart)
         {
-            //スタート範囲内
+            //スタート関数
             StartGauge();
         }
     }
@@ -35,13 +35,15 @@ public class GaugeDirector : MonoBehaviour
             return;
         }
 
+        //CurrentTimeから減らす
         CurrentTime -= Time.deltaTime;
 
         if (CurrentTime < 0f)
         {
+            //0になったら
             CurrentTime = 0f;
 
-            //非表示にする
+            //非表示になる
             IsRunning = false;
         }
 
@@ -52,17 +54,20 @@ public class GaugeDirector : MonoBehaviour
     //ゲージを開始する
     public void StartGauge()
     {
-        //表示する
+        //表示される
         IsRunning = true;
     }
 
     //ゲージをリセットする
     public void ResetGauge()
     {
+        //CurrentTimeがMaxになる
         CurrentTime = MaxTime;
+
+        //Maxに戻る
         Gauge.fillAmount = 1f;
 
-        //非表示にする
+        //非表示になる
         IsRunning = false;
     }
 }
