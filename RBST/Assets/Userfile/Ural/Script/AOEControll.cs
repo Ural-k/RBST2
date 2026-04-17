@@ -24,14 +24,14 @@ public class AOEControll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        AOEEntry();
-        AOEEntity();
+        Entry();
+        Entity();
     }
 
     /// <summary>
     /// 予兆を生成するフラグをオンにする
     /// </summary>
-    public void isActive()
+    public virtual void isActive()
     {
         if (entityActiveFlag_) { return; }
         if (entryActiveFlag_) { return; }
@@ -42,7 +42,7 @@ public class AOEControll : MonoBehaviour
     /// 予兆を生成一定時間後に実体に移行
     /// </summary>
 
-    public void AOEEntry()
+    public virtual void Entry()
     {
         //entriyActiveFlagがfalseなら起動しない
         if (!entryActiveFlag_) { return; }
@@ -62,7 +62,7 @@ public class AOEControll : MonoBehaviour
     /// <summary>
     /// 実体を生成一定時間後に使った変数をリセット
     /// </summary>
-    public void AOEEntity()
+    public virtual void Entity()
     {
         //entityActiveFlagがfalseなら起動しない
         if (!entityActiveFlag_) { return; }
