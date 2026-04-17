@@ -1,29 +1,68 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class CircularGauge : MonoBehaviour
+public class GaugeDirector : MonoBehaviour
 {
-    [SerializeField] private Image Gauge;
+    //ゲージUI
+    public Image Gauge;
 
-    [SerializeField, Range(0f, 1f)] private float FillAmount = 1f;
+    //最大時間(秒)
+    public float MaxTime;
+
+    //自動開始をする
+    public bool AutoStart = true;
+
+    private float CurrentTime;
+
+    private bool IsRunning;
 
     void Start()
     {
-        Gauge.gameObject.SetActive(true);
-    }
-    void Update()
-    {
-        FillAmount = Mathf.PingPong(Time.time * 1, 1);
+        //リセット範囲内
+        ResetGauge();
 
-        if (Gauge != null)
+        if(AutoStart)
         {
-            Gauge.fillAmount = FillAmount;
-            Gauge.fillAmount = 1;
+            //スタート範囲内
+            StartGauge();
         }
     }
 
-    public void SetGauge(float value)
+    void Update()
     {
-        Gauge.fillAmount = Mathf.Clamp01(value);
+        if (!IsRunning)
+        {
+            return;
+        }
+
+        CurrentTime -= Time.deltaTime;
+
+        if (CurrentTime < 0f)
+        {
+            CurrentTime = 0f;
+
+            //非表示にする
+            IsRunning = false;
+        }
+
+        //0～1の範囲
+        Gauge.fillAmount = CurrentTime / MaxTime;
+    }
+
+    //ゲージを開始する
+    public void StartGauge()
+    {
+        //表示する
+        IsRunning = true;
+    }
+
+    //ゲージをリセットする
+    public void ResetGauge()
+    {
+        CurrentTime = MaxTime;
+        Gauge.fillAmount = 1f;
+
+        //非表示にする
+        IsRunning = false;
     }
 }
