@@ -6,6 +6,8 @@ public class GaugeDirector : MonoBehaviour
     //ゲージUI
     public Image Gauge;
 
+    public Image Kari;
+
     //最大時間(秒)
     public float MaxTime;
 
@@ -20,18 +22,19 @@ public class GaugeDirector : MonoBehaviour
 
     void Start()
     {
-        //リセット関数
-        ResetGauge();
-
-        if(AutoStart)
-        {
-            //スタート関数
-            StartGauge();
-        }
+        Kari.gameObject.SetActive(false);
     }
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            Kari.gameObject.SetActive(false);
+
+            //スタート関数
+            StartGauge();
+        }
+
         if (!IsRunning)
         {
             return;
@@ -48,6 +51,9 @@ public class GaugeDirector : MonoBehaviour
 
             //停止する
             IsRunning = false;
+
+            //リセット関数
+            ResetGauge();
         }
 
         //0～1の範囲
@@ -57,6 +63,9 @@ public class GaugeDirector : MonoBehaviour
     //ゲージを開始する
     public void StartGauge()
     {
+        //残り時間をMaxに戻す
+        CurrentTime = MaxTime;
+
         //動作を開始する
         IsRunning = true;
     }
@@ -64,13 +73,12 @@ public class GaugeDirector : MonoBehaviour
     //ゲージをリセットする
     public void ResetGauge()
     {
-        //残り時間をMaxに戻す
-        CurrentTime = MaxTime;
-
         //Maxに戻す
         Gauge.fillAmount = 1f;
 
         //停止する
         IsRunning = false;
+
+        Kari.gameObject.SetActive(true);
     }
 }
