@@ -333,12 +333,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2ddf45f2c01f6043b46765097362462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GaugeDirector
-  Gauge: {fileID: 1929311072}
-  Kari: {fileID: 1593042627}
-  Kuro: {fileID: 1316935873}
-  Suuji: {fileID: 646216203}
-  MaxTime: 5
-  AutoStart: 1
+  gaugeImage_: {fileID: 1929311072}
+  demoImage_: {fileID: 1593042627}
+  backgroundImage_: {fileID: 1316935873}
+  countText_: {fileID: 646216203}
+  maxTime_: 5
+  isAutoStart_: 1
 --- !u!4 &682205704
 Transform:
   m_ObjectHideFlags: 0
@@ -491,7 +491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.5882353}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.78431374}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
