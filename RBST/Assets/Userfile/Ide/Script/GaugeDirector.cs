@@ -8,6 +8,10 @@ public class GaugeDirector : MonoBehaviour
 
     public Image Kari;
 
+    public Image Kuro;
+
+    public Text Suuji;
+
     //最大時間(秒)
     public float MaxTime;
 
@@ -22,14 +26,20 @@ public class GaugeDirector : MonoBehaviour
 
     void Start()
     {
-        Kari.gameObject.SetActive(false);
+        Gauge.gameObject.SetActive(false);
+
+        Kuro.gameObject.SetActive(false);
+
+        Suuji.gameObject.SetActive(false);
+
+        Kari.gameObject.SetActive(true);
     }
 
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Q))
         {
-            Kari.gameObject.SetActive(false);
+            //Kari.gameObject.SetActive(true);
 
             //スタート関数
             StartGauge();
@@ -68,6 +78,12 @@ public class GaugeDirector : MonoBehaviour
 
         //動作を開始する
         IsRunning = true;
+
+        Gauge.gameObject.SetActive(true);
+
+        Kuro.gameObject.SetActive(true);
+
+        Suuji.gameObject.SetActive(true);
     }
 
     //ゲージをリセットする
@@ -78,6 +94,10 @@ public class GaugeDirector : MonoBehaviour
 
         //停止する
         IsRunning = false;
+
+        Kuro.gameObject.SetActive(false);
+
+        Suuji.gameObject.SetActive(false);
 
         Kari.gameObject.SetActive(true);
     }
