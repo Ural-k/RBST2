@@ -4,22 +4,22 @@ using UnityEngine.InputSystem;
 public class PlayerInputManager : PlayerSystem
 {
     [SerializeField] Job job_;
-    [SerializeField] JobStatus job_status_;
+    [SerializeField] JobStatus jobStatus_;
     PlayerStatusBase status_;
 
-    CharacterController character_controller_;
-    InputAction input_move_;
+    CharacterController characterController_;
+    InputAction inputMove_;
 
     void Start()
     {
-        status_ = job_status_.GetStatus(job_);
-        input_move_ = InputSystem.actions.FindAction("Move");
-        TryGetComponent(out character_controller_);
+        status_ = jobStatus_.GetStatus(job_);
+        inputMove_ = InputSystem.actions.FindAction("Move");
+        TryGetComponent(out characterController_);
     }
 
     void Update()
     {
-        PlayerMove(input_move_.ReadValue<Vector2>(),status_.move_speed_,character_controller_);
+        PlayerMove(inputMove_.ReadValue<Vector2>(),status_.MoveSpeed,characterController_);
     }
 
     //•¶Žš—ñ‚©‚çEnum‚É•ÏŠ·‚µ‚½‚¢

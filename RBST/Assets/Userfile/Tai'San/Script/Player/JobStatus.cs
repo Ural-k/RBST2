@@ -1,12 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using Unity.VisualScripting;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "JobsStatus", menuName = "ScriptableObjects/Status/JobsStatus")]
 class JobStatus : ScriptableObject
 {
     [SerializeField]
-    private PlayerStatusBase[] jobs_status = new PlayerStatusBase[(int)Job.Count];
+    private PlayerStatusBase[] jobsStatus = new PlayerStatusBase[(int)Job.Count];
 
-    public PlayerStatusBase GetStatus(Job job) { return jobs_status[(int)job]; }
+    public PlayerStatusBase GetStatus(Job job) { return jobsStatus[(int)job]; }
 }
 
 public enum Job
@@ -18,19 +20,62 @@ public enum Job
     Count
 }
 
+/// <summary>
+/// プレイヤーステータス
+/// </summary>
+/// <remarks>ステータスの更新はこれを新しく宣言して使う</remarks>
 [System.Serializable]
 class PlayerStatusBase
 {
-    [SerializeField] public string job_name_;
-    [SerializeField] public float move_speed_;
-    [SerializeField] public float attack_;
-    [SerializeField] public float defense_;
+    /*
+     :  初期値
+    */
+    [SerializeField] private string jobName_;
+    [SerializeField] private float moveSpeed_;
+    [SerializeField] private float attack_;
+    [SerializeField] private float defense_;
+    [SerializeField] private float criticalPercent;
 
+    //コンストラクタ
     PlayerStatusBase()
     {
-        job_name_ = new string("fiveman");
-        move_speed_ = 5;
+        jobName_ = new string("fiveman");
+        moveSpeed_ = 5;
         attack_ = 5;
         defense_ = 5;
+    }
+
+    /*
+     :  ↓プロパティ↓
+     */
+    //ジョブ名
+    public string JobName
+    {
+        get { return jobName_; }
+        set { jobName_ = value; }
+    }
+    //移動速度
+    public float MoveSpeed
+    {
+        get { return moveSpeed_; }
+        set { moveSpeed_ = value; }
+    }
+    //攻撃力
+    public float Attack
+    {
+        get { return attack_; }
+        set { attack_ = value; }
+    }
+    //防御力
+    public float Defense
+    {
+        get { return defense_; }
+        set { defense_ = value; }
+    }
+    //クリティカル率(0%～99.9%)
+    public float CriticalPercent
+    {
+        get { return criticalPercent; }
+        set { criticalPercent = value; }
     }
 }

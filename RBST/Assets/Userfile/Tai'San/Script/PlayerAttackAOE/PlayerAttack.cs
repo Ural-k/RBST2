@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    [SerializeField] GameObject circle_AOE_;
-    [SerializeField] GameObject square_AOE_;
-    [SerializeField] GameObject triangle_AOE_;
+    [SerializeField] GameObject circleAOE_;
+    [SerializeField] GameObject squareAOE_;
+    [SerializeField] GameObject triangleAOE_;
 
     /// <summary>
     /// スクリーン基準のプレイヤー円形攻撃範囲
@@ -13,7 +13,7 @@ public class PlayerAttack : MonoBehaviour
     /// <param name="scale">範囲の大きさ</param>
     public void CircleAttack(Vector2 position, float scale)
     {
-        var instance = Instantiate(circle_AOE_, position, Quaternion.identity);
+        var instance = Instantiate(circleAOE_, position, Quaternion.identity);
         instance.transform.localScale = new Vector2(scale, scale);
     }
 
@@ -24,7 +24,7 @@ public class PlayerAttack : MonoBehaviour
     /// <param name="scale">範囲の大きさ</param>
     public void CircleAttack(Transform target, float scale)
     {
-        var instance = Instantiate(circle_AOE_, target.transform.position, Quaternion.identity);
+        var instance = Instantiate(circleAOE_, target.transform.position, Quaternion.identity);
         instance.transform.localScale = new Vector2(scale, scale);
     }
 
@@ -36,7 +36,7 @@ public class PlayerAttack : MonoBehaviour
     /// <param name="scale">範囲の大きさ</param>
     public void CircleAttack(Transform target, Vector2 offset, float scale)
     {
-        var instance = Instantiate(circle_AOE_, target.transform.position, Quaternion.identity);
+        var instance = Instantiate(circleAOE_, target.transform.position, Quaternion.identity);
         instance.transform.position += (Vector3)offset;
         instance.transform.localScale = new Vector2(scale, scale);
     }
