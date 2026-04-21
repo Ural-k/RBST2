@@ -4,38 +4,38 @@ using UnityEngine.UI;
 public class GaugeDirector : MonoBehaviour
 {
     //ゲージUI
-    public Image Gauge;
+    public Image gauge_;
 
     //仮のUI
-    public Image Kari;
+    public Image kari_;
 
     //半透明UI
-    public Image Kuro;
+    public Image kuro_;
 
     //数字Text
-    public Text Suuji;
+    public Text suuji_;
 
     //最大時間(秒)
-    public float MaxTime;
+    public float maxTime_;
 
     //自動開始をする
-    public bool AutoStart = true;
+    public bool autoStart = true;
 
     //残り時間
-    private float CurrentTime;
+    private float currentTime_;
 
     //動作中のフラグ
-    private bool IsRunning;
+    private bool isRunning_;
 
     void Start()
     {
-        //非表示にする
-        Gauge.gameObject.SetActive(false);
-        Kuro.gameObject.SetActive(false);
-        Suuji.gameObject.SetActive(false);
+        //ゲージと半透明と数字が非表示になる
+        gauge_.gameObject.SetActive(false);
+        kuro_.gameObject.SetActive(false);
+        suuji_.gameObject.SetActive(false);
 
-        //表示する
-        Kari.gameObject.SetActive(true);
+        //仮のImageを表示させる
+        kari_.gameObject.SetActive(true);
     }
 
     void Update()
@@ -47,63 +47,62 @@ public class GaugeDirector : MonoBehaviour
             StartGauge();
         }
 
-        if (!IsRunning)
+        if (!isRunning_)
         {
             return;
         }
 
         //残り時間から減らす
-        CurrentTime -= Time.deltaTime;
+        currentTime_ -= Time.deltaTime;
 
         //0以下にならない
-        if (CurrentTime < 0f)
+        if (currentTime_ < 0f)
         {
             //0になったら
-            CurrentTime = 0f;
+            currentTime_ = 0f;
 
             //停止する
-            IsRunning = false;
+            isRunning_ = false;
 
             //リセット関数
             ResetGauge();
         }
 
         //ゲージのUIが減るのと同時に数字のTextも減っていく
-        Suuji.text = Mathf.CeilToInt(CurrentTime).ToString();
+        suuji_.text = Mathf.CeilToInt(currentTime_).ToString();
 
         //0～1の範囲
-        Gauge.fillAmount = CurrentTime / MaxTime;
+        gauge_.fillAmount = currentTime_ / maxTime_;
     }
 
     //ゲージを開始する
     public void StartGauge()
     {
         //残り時間をMaxに戻す
-        CurrentTime = MaxTime;
+        currentTime_ = maxTime_;
 
         //動作を開始する
-        IsRunning = true;
+        isRunning_ = true;
 
-        //表示する
-        Gauge.gameObject.SetActive(true);
-        Kuro.gameObject.SetActive(true);
-        Suuji.gameObject.SetActive(true);
+        //ゲージと半透明と数字が表示させる
+        gauge_.gameObject.SetActive(true);
+        kuro_.gameObject.SetActive(true);
+        suuji_.gameObject.SetActive(true);
     }
 
     //ゲージをリセットする
     public void ResetGauge()
     {
         //Maxに戻す
-        Gauge.fillAmount = 1f;
+        gauge_.fillAmount = 1f;
 
         //停止する
-        IsRunning = false;
+        isRunning_ = false;
 
-        //非表示にする
-        Kuro.gameObject.SetActive(false);
-        Suuji.gameObject.SetActive(false);
+        //半透明と数字が非表示になる
+        kuro_.gameObject.SetActive(false);
+        suuji_.gameObject.SetActive(false);
 
-        //表示する
-        Kari.gameObject.SetActive(true);
+        kari_.gameObject.SetActive(true);
     }
 }
