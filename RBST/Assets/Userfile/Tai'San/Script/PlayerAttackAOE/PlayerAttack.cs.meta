@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 138d9a97264050b4b8fe760456faeddb
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - circle_AOE_: {fileID: 998330928242473407, guid: fd0ae8028e04e4f4eb1e41486ef576d1, type: 3}
+  - square_AOE_: {fileID: 1312268731889166674, guid: 6771c3662176fd94c89b7e05002f2b59, type: 3}
+  - triangle_AOE_: {fileID: 803308874696299451, guid: 4cf3292ddf6ef8542b319a2bf25ae8f4, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

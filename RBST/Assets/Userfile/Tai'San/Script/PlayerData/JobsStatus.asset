@@ -17,7 +17,7 @@ MonoBehaviour:
     move_speed_: 5
     attack_: 5
     defense_: 5
-  - job_name_: fiveman
+  - job_name_: 
     move_speed_: 5
     attack_: 5
     defense_: 5
