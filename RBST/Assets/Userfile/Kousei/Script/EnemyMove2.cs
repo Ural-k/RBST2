@@ -4,8 +4,6 @@ namespace Game.Enemy
 {
     public class EnemyMove2 : MonoBehaviour
     {
-        // 定数
-
         // ポイント到達とみなす距離
         private const float ARRIVE_DISTANCE = 0.1f;
 
@@ -35,8 +33,6 @@ namespace Game.Enemy
         // 非表示状態の継続時間
         [SerializeField]
         private float invisibleTime_ = 2f;
-
-        // 内部変数
 
         // 現在向かっているポイントのインデックス
         private int currentPointIndex_ = 0;
