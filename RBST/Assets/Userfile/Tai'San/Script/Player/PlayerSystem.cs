@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class PlayerSystem : MonoBehaviour
+public class PlayerSystem : PlayerAttack
 {
     /// <summary>
     /// ƒvƒŒƒCƒ„[‚ÌˆÚ“®ˆ—
@@ -17,6 +16,16 @@ public class PlayerSystem : MonoBehaviour
     }
 
     public void Primary()
+    {
+        //CircleAttack();
+    }
+
+    public void Secondary()
+    {
+
+    }
+
+    public void Special()
     {
 
     }

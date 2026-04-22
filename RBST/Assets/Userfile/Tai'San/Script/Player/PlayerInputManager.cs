@@ -38,21 +38,21 @@ public class PlayerInputManager : PlayerSystem
     //    character_controller_.Move(move_value);
     //}
 
-    public void Primary(InputAction.CallbackContext context)
+    public void InputPrimary(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-
+        Primary();
     }
 
-    public void Secondary(InputAction.CallbackContext context)
+    public void InputSecondary(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-
+        Secondary();
     }
 
-    public void Special(InputAction.CallbackContext context)
+    public void InputSpecial(InputAction.CallbackContext context)
     {
         if(!context.performed) return;
-
+        Special();
     }
 }
