@@ -3,7 +3,6 @@ using UnityEngine.UI;
 
 public class GaugeDirector : MonoBehaviour
 {
-    
     [SerializeField] private Image gaugeImage_;          //ゲージUI
     [SerializeField] private Image demoImage_;           //仮のUI
     [SerializeField] private Image backgroundImage_;     //半透明UI
