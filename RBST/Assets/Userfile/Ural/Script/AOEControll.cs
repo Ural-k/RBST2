@@ -6,9 +6,13 @@ public class AOEControll : MonoBehaviour
     [SerializeField] private GameObject entry_;  //AOEの予兆
     [SerializeField] private float entryTime_;   //予兆時間
     [SerializeField] private float entityTime_;  //実体時間
-    private float timer_;                       //経過時間
+    [SerializeField] private Vector3 scale_;   　//範囲
+    private float timer_;                        //経過時間
     private bool entryActiveFlag_;               //起動フラグ
     private bool entityActiveFlag_;              //実体起動フラグ
+
+    //プロパティ
+    public Vector3 Scale { get { return scale_; } set { scale_ = value; } }
     
 
     void Start()
@@ -18,6 +22,7 @@ public class AOEControll : MonoBehaviour
         timer_ = entryTime_;
         entryActiveFlag_ = false;
         entityActiveFlag_ = false;
+        transform.localScale = scale_;
         isActive();
     }
 

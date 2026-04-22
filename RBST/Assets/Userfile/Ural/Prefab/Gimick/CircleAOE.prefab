@@ -269,3 +269,4 @@ MonoBehaviour:
   entry_: {fileID: 6357293448368625953}
   entryTime_: 3
   entityTime_: 3
+  scale_: {x: 0.5, y: 0.5, z: 0.5}
