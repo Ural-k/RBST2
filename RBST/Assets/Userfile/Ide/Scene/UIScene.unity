@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 646216204}
   - component: {fileID: 646216203}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: CountText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -276,7 +276,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 5
+  m_Text: New Text
 --- !u!222 &646216204
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 682205704}
   - component: {fileID: 682205703}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: GaugeDirector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -445,7 +445,7 @@ GameObject:
   - component: {fileID: 1316935872}
   - component: {fileID: 1316935873}
   m_Layer: 5
-  m_Name: Image1
+  m_Name: BackgroundImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -520,7 +520,7 @@ GameObject:
   - component: {fileID: 1593042628}
   - component: {fileID: 1593042627}
   m_Layer: 5
-  m_Name: Image
+  m_Name: DemoImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -595,7 +595,7 @@ GameObject:
   - component: {fileID: 1929311073}
   - component: {fileID: 1929311072}
   m_Layer: 5
-  m_Name: Image2
+  m_Name: GaugeImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
