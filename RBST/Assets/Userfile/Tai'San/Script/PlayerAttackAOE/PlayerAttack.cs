@@ -3,9 +3,6 @@ using UnityEngine.Pool;
 
 public class PlayerAttack : MonoBehaviour
 {
-    //ObjectPool<GameObject> pool_;
-    //public ObjectPool<GameObject> Pool { get => pool_; set => pool_ = value; }
-
     [SerializeField] GameObject circleAOE_;
     [SerializeField] GameObject squareAOE_;
     [SerializeField] GameObject triangleAOE_;
