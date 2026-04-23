@@ -43,8 +43,6 @@ namespace Game.Enemy
         // 待機中かどうか
         private bool isWaiting_ = false;
 
-        // 透明制御用変数
-
         // 表示/非表示の経過時間
         private float visibleTimer_ = 0f;
 
@@ -82,8 +80,6 @@ namespace Game.Enemy
             // 通常移動処理
             MoveToPoint();
         }
-
-        // 透明制御
 
         private void UpdateVisibility()
         {
@@ -137,8 +133,6 @@ namespace Game.Enemy
             color.a = 0f;
             spriteRenderer_.color = color;
         }
-
-        // 移動処理
 
         private void MoveToPoint()
         {
