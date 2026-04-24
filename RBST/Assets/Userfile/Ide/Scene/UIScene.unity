@@ -153,7 +153,7 @@ GameObject:
   - component: {fileID: 132096294}
   - component: {fileID: 132096295}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Tatebou2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 496393045}
   - component: {fileID: 496393046}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: Tatebou3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -415,8 +415,7 @@ MonoBehaviour:
   tatebou5_: {fileID: 1019527938}
   tatebou6_: {fileID: 1149062516}
   nanamebou2_: {fileID: 1201750594}
-  fillSpeed: 0.5
-  delayBetween: 1
+  fillSpeed_: 1
 --- !u!4 &583795537
 Transform:
   m_ObjectHideFlags: 0
@@ -466,12 +465,12 @@ RectTransform:
   - {fileID: 875789914}
   - {fileID: 1034782903}
   - {fileID: 2050020205}
-  - {fileID: 132096293}
-  - {fileID: 496393044}
-  - {fileID: 867081875}
   - {fileID: 2119202900}
+  - {fileID: 132096293}
   - {fileID: 1019527936}
+  - {fileID: 496393044}
   - {fileID: 1149062514}
+  - {fileID: 867081875}
   - {fileID: 1201750596}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -819,7 +818,7 @@ GameObject:
   - component: {fileID: 867081876}
   - component: {fileID: 867081877}
   m_Layer: 5
-  m_Name: Image (3)
+  m_Name: Nanamebou1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -910,7 +909,7 @@ GameObject:
   - component: {fileID: 1019527937}
   - component: {fileID: 1019527938}
   m_Layer: 5
-  m_Name: Image (5)
+  m_Name: Tatebounuri2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -990,7 +989,7 @@ GameObject:
   - component: {fileID: 1149062515}
   - component: {fileID: 1149062516}
   m_Layer: 5
-  m_Name: Image (6)
+  m_Name: Tatebounuri3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1065,7 +1064,7 @@ GameObject:
   - component: {fileID: 1201750595}
   - component: {fileID: 1201750594}
   m_Layer: 5
-  m_Name: Image (7)
+  m_Name: Nanamebounuri1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1246,8 +1245,8 @@ Transform:
   m_GameObject: {fileID: 1587263644}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.7963, y: -0.0385, z: 0}
-  m_LocalScale: {x: 7.997733, y: 10.203525, z: 1}
+  m_LocalPosition: {x: 4.8388, y: 0.0043, z: 0}
+  m_LocalScale: {x: 8.082652, y: 9.987033, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1377,7 +1376,7 @@ GameObject:
   - component: {fileID: 2050020206}
   - component: {fileID: 2050020207}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Tatebou1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1589,7 +1588,7 @@ GameObject:
   - component: {fileID: 2119202901}
   - component: {fileID: 2119202902}
   m_Layer: 5
-  m_Name: Image (4)
+  m_Name: Tatebounuri1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

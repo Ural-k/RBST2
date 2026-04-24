@@ -4,63 +4,70 @@ using System.Collections;
 
 public class StartDirector : MonoBehaviour
 {
-    [SerializeField] private Image tatebou1_;
-    [SerializeField] private Image tatebou2_;
-    [SerializeField] private Image tatebou3_;
-    [SerializeField] private Image nanamebou1_;
-    [SerializeField] private Image tatebou4_;
-    [SerializeField] private Image tatebou5_;
-    [SerializeField] private Image tatebou6_;
-    [SerializeField] private Image nanamebou2_;
-    public float fillSpeed; // “h‚éƒXƒs[ƒh
-    //public float delayBetween; // 1‚Â–ÚI—¹Œã‚Ì‘Ò‹@ŠÔ
+    [SerializeField] private Image tatebou1_;       //1‚Â–Ú‚Ìc–_‚Ì˜gUI
+    [SerializeField] private Image tatebou2_;       //2‚Â–Ú‚Ìc–_‚Ì˜gUI
+    [SerializeField] private Image tatebou3_;       //3‚Â–Ú‚Ìc–_‚Ì˜gUI
+    [SerializeField] private Image nanamebou1_;     //1‚Â–Ú‚ÌÎ‚ß–_‚Ì˜gUI
+    [SerializeField] private Image tatebou4_;       //1‚Â–Ú‚Ìc–_‚Ì“h‚èUI
+    [SerializeField] private Image tatebou5_;       //2‚Â–Ú‚Ìc–_‚Ì“h‚èUI
+    [SerializeField] private Image tatebou6_;       //3‚Â–Ú‚Ìc–_‚Ì“h‚èUI
+    [SerializeField] private Image nanamebou2_;     //1‚Â–Ú‚ÌÎ‚ß–_‚Ì“h‚èUI
+    public float fillSpeed_;                        //“h‚éƒXƒs[ƒh
 
     private void Start()
     {
+        //˜gUI‚ÍÅ‰‚Í•\¦‚³‚¹‚é
         tatebou1_.gameObject.SetActive(true);
         tatebou2_.gameObject.SetActive(true);
         tatebou3_.gameObject.SetActive(true);
         nanamebou1_.gameObject.SetActive(true);
+
+        //“h‚èUI‚ÍÅ‰‚Í”ñ•\¦‚É‚·‚é
         tatebou4_.gameObject.SetActive(false);
         tatebou5_.gameObject.SetActive(false);
         tatebou6_.gameObject.SetActive(false);
         nanamebou2_.gameObject.SetActive(false);
+
+        //Å‰‚ÌImage‚©‚ç“h‚èn‚ß‚é
         StartCoroutine(FillImages());
     }
 
     IEnumerator FillImages()
     {
-        // 1‚Â–Ú
+        //1‚Â–Ú‚Ìc–_‚ğ“h‚é
         tatebou4_.gameObject.SetActive(true);
         yield return StartCoroutine(FillImage(tatebou4_));
 
-        //yield return new WaitForSeconds(delayBetween);
-
-        // 2‚Â–Ú
+        //2‚Â–Ú‚Ìc–_‚ğ“h‚é
         tatebou5_.gameObject.SetActive(true);
         yield return StartCoroutine(FillImage(tatebou5_));
 
-        //yield return new WaitForSeconds(delayBetween);
-
-        // 3‚Â–Ú
+        //3‚Â–Ú‚Ìc–_‚ğ“h‚é
         tatebou6_.gameObject.SetActive(true);
         yield return StartCoroutine(FillImage(tatebou6_));
 
-        //yield return new WaitForSeconds(delayBetween);
-
-        // 4‚Â–Ú
+        //1‚Â–Ú‚ÌÎ‚ß–_‚ğ“h‚é
         nanamebou2_.gameObject.SetActive(true);
         yield return StartCoroutine(FillImage(nanamebou2_));
     }
 
+    //Image‚ÌfillAmount‚ÌƒRƒ‹[ƒ`ƒ“
     IEnumerator FillImage(Image image)
     {
+        //‰Šúó‘Ô‚Å‚Í0‚É‚·‚é
         image.fillAmount = 0f;
+
+        //fillAmount‚ª1‚É‚È‚é‚Ü‚Åƒ‹[ƒv‚³‚¹‚é
         while (image.fillAmount < 1f)
         {
-            image.fillAmount += fillSpeed * Time.deltaTime;
+            //“h‚é‘¬“x‚ÆŒo‰ßŠÔ‚ğŠ|‚¯‚Ä­‚µ‚¸‚Â‘‚â‚·
+            image.fillAmount += fillSpeed_ * Time.deltaTime;
+
+            //1ƒtƒŒ[ƒ€‘Ò‚Â
             yield return null;
         }
-        image.fillAmount = 1f; // ÅI“I‚ÉŠ®‘S“h‚è
+
+        //ÅI“I‚ÉŠ®‘S“h‚è
+        image.fillAmount = 1f;
     }
 }
