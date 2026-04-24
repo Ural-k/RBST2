@@ -1,6 +1,6 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class StartDirector : MonoBehaviour
 {
@@ -13,6 +13,15 @@ public class StartDirector : MonoBehaviour
     [SerializeField] private Image tatebou6_;       //3つ目の縦棒の塗りUI
     [SerializeField] private Image nanamebou2_;     //1つ目の斜め棒の塗りUI
     public float fillSpeed_;                        //塗るスピード
+    public Transform cube;
+    public float speed;
+    [SerializeField] private float minX;
+    [SerializeField] private float maxX;
+    [SerializeField] private float minY;
+    [SerializeField] private float maxY;
+    private bool isFilling = false;
+    private bool wasInside = false;
+    private Coroutine fillCoroutine;
 
     private void Start()
     {
@@ -27,9 +36,31 @@ public class StartDirector : MonoBehaviour
         tatebou5_.gameObject.SetActive(false);
         tatebou6_.gameObject.SetActive(false);
         nanamebou2_.gameObject.SetActive(false);
+    }
 
-        //最初のImageから塗り始める
-        StartCoroutine(FillImages());
+    private void Update()
+    {
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+
+        Vector3 move = new Vector3(horizontal, vertical, 0f);
+        cube.Translate(move * speed * Time.deltaTime);
+
+        // 今フレームで範囲内か
+        bool isInside = cube.position.x >= minX && cube.position.x <= maxX && cube.position.y >= minY && cube.position.y <= maxY;
+
+        if (!wasInside && isInside)
+        {
+            StartFill();
+        }
+
+        if (wasInside && !isInside)
+        {
+            ResetImages();
+        }
+
+        // 状態更新
+        wasInside = isInside;
     }
 
     IEnumerator FillImages()
@@ -49,6 +80,29 @@ public class StartDirector : MonoBehaviour
         //1つ目の斜め棒を塗る
         nanamebou2_.gameObject.SetActive(true);
         yield return StartCoroutine(FillImage(nanamebou2_));
+    }
+
+    void StartFill()
+    {
+        StopAllCoroutines(); // ←これ超重要
+        ResetImages();       // ←完全リセットしてから開始
+        StartCoroutine(FillImages());
+    }
+
+    void ResetImages()
+    {
+        isFilling = false;
+
+        ResetImage(tatebou4_);
+        ResetImage(tatebou5_);
+        ResetImage(tatebou6_);
+        ResetImage(nanamebou2_);
+    }
+
+    void ResetImage(Image image)
+    {
+        image.fillAmount = 0f;
+        image.gameObject.SetActive(false);
     }
 
     //ImageのfillAmountのコルーチン
