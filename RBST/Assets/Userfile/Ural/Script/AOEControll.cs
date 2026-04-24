@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AOEControll : MonoBehaviour
@@ -10,6 +11,28 @@ public class AOEControll : MonoBehaviour
     private float timer_;                        //経過時間
     private bool entryActiveFlag_;               //起動フラグ
     private bool entityActiveFlag_;              //実体起動フラグ
+
+    //プロパティ
+    public float EntryTime { get { return entryTime_; } }
+
+    public float EntityTime { get { return entityTime_; } }
+
+    public float Timer
+    {
+        get { return timer_; }
+        set { timer_ = value; }
+    }
+    public bool EntryActiveFlag
+    {
+        get { return entryActiveFlag_; }
+        set { entityActiveFlag_ = value; }
+    }
+
+    public bool EntityActiveFlag
+    {
+        get { return entityActiveFlag_; }
+        set { entityActiveFlag_ = value; }
+    }
 
     //プロパティ
     public Vector3 Scale { get { return scale_; } set { scale_ = value; } }
