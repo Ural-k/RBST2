@@ -591,7 +591,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   minPosition_: {x: -9.66, y: -4.19}
   maxPosition_: {x: 9.61, y: 6.08}
-  teleportInterval_: 5
+  teleportInterval_: 3
 --- !u!1 &1780236618
 GameObject:
   m_ObjectHideFlags: 0
