@@ -33,8 +33,9 @@ public class PlayerBase : MonoBehaviour
     protected float CriticalPercent
     { 
         get { return criticalPercent_; } 
-        set 
-        { 
+        set
+        {
+            //第二引数切り捨て
             float temp = value;
             temp *= 100;
             criticalPercent_ = Mathf.Floor(temp) / 100;
