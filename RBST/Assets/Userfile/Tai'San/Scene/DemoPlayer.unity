@@ -537,8 +537,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f6af70f0379080478e1056345998df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  referenceJobStatus_: {fileID: 11400000, guid: 3f2f0b06ec9294d48b360e78f27c0455, type: 2}
   job_: 0
-  jobStatus_: {fileID: 11400000, guid: 3f2f0b06ec9294d48b360e78f27c0455, type: 2}
+  status_:
+    jobName_: fiveMan
+    moveSpeed_: 5
+    hp_: 5
+    attack_: 5
+    defense_: 5
+    criticalPercent_: 1
 --- !u!1 &2031865152
 GameObject:
   m_ObjectHideFlags: 0

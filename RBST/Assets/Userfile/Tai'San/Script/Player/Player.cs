@@ -1,6 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// プレイヤー全般
+/// </summary>
+/// <remarks>(PlayerBase派生クラス)</remarks>
 public class Player : PlayerBase
 {
     CharacterController characterController_;
