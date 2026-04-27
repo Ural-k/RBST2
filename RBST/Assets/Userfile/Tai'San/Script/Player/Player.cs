@@ -4,11 +4,12 @@ using UnityEngine.InputSystem;
 /// <summary>
 /// プレイヤー全般
 /// </summary>
-/// <remarks>(PlayerBase派生クラス)</remarks>
-public class Player : PlayerBase
+/// <remarks>派生クラス</remarks>
+public class Player : PlayerUI
 {
     CharacterController characterController_;
     InputAction inputMove_;
+    [SerializeField] PlayerAttack playerAttack_;
 
     void Start()
     {
@@ -20,11 +21,9 @@ public class Player : PlayerBase
         PlayerMove(inputMove_.ReadValue<Vector2>(), characterController_);
     }
 
-
-
-    //public void InputSpecial(InputAction.CallbackContext context)
-    //{
-    //    if(!context.performed) return;
-    //    //Special();
-    //}
+    public void InputAttack(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        playerAttack_.CircleAttack(transform, Vector2.right * 4.5f, Vector2.one * 3);
+    }
 }

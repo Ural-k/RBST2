@@ -1,6 +1,3 @@
-using System;
-using System.ComponentModel;
-using UnityEditor;
 using UnityEngine;
 
 /// <summary>
@@ -21,6 +18,11 @@ public class PlayerBase : MonoBehaviour
     /// </summary>
     /// <remarks>property:ReadOnly</remarks>
     protected string JobName { get { return status_.jobName_; } }
+    /// <summary>
+    /// プレイヤーの名前
+    /// </summary>
+    /// <remarks>property:文字数制限を設ける予定</remarks>
+    protected string PlayerName { get { return status_.playerName_; } set { status_.playerName_ = value; } }
     /// <summary>
     /// 移動速度
     /// </summary>
@@ -52,7 +54,6 @@ public class PlayerBase : MonoBehaviour
         } 
     }
 
-
     /*
      :  関数↓↓
      */
@@ -77,34 +78,4 @@ public class PlayerBase : MonoBehaviour
         move_value *= status_.moveSpeed_ * Time.deltaTime;
         character_controller.Move(move_value);
     }
-}
-
-[System.Serializable]
-public struct PlayerStatus
-{                                                      //ゲーム内表記↓↓
-    [SerializeField] public string jobName_;           //(例)ナイト※編集不可
-    [SerializeField] public float moveSpeed_;          //MOV
-    [SerializeField] public float hp_;                 //HP
-    [SerializeField] public float attack_;             //ATK
-    [SerializeField] public float defense_;            //DEF
-    [SerializeField] public float criticalPercent_;    //CRT
-}
-
-public enum Job
-{
-    FiveMan,
-    DemoTank,
-    DemoHealer,
-    DemoDPS,
-    Count
-}
-
-/// <summary>
-/// ジョブステータスのテンプレート値を取得
-/// </summary>
-[CreateAssetMenu(fileName = "JobsStatus", menuName = "ScriptableObjects/Status/JobsStatus")]
-class JobStatus : ScriptableObject
-{
-    [SerializeField] PlayerStatus[] status_;
-    [HideInInspector] public PlayerStatus GetJobStatus(Job job) { return status_[(int)job]; }
 }

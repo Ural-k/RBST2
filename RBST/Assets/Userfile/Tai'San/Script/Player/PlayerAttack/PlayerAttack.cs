@@ -1,13 +1,13 @@
 using UnityEngine;
-using UnityEngine.Pool;
 
-public class PlayerAttack : MonoBehaviour
+[CreateAssetMenu(fileName = "PlayerAttack", menuName = "ScriptableObjects/PlayerAttack")]
+public class PlayerAttack : ScriptableObject
 {
     [SerializeField] GameObject circleAOE_;
     [SerializeField] GameObject squareAOE_;
     [SerializeField] GameObject triangleAOE_;
 
-    enum Attack
+    enum Shape
     {
         Circle,
         Square,
@@ -48,7 +48,6 @@ public class PlayerAttack : MonoBehaviour
         instance.transform.position += (Vector3)offset;
         instance.transform.localScale = scale;
     }
-
 
     public void SquareAttack(Vector2 position, Vector2 scale)
     {

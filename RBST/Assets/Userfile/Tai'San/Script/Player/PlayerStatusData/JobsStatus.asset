@@ -9,36 +9,42 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07982d98c96f4b84bbda250afbca0b3c, type: 3}
+  m_Script: {fileID: 11500000, guid: c77851cd8162c1941a68f08faa111e42, type: 3}
   m_Name: JobsStatus
   m_EditorClassIdentifier: Assembly-CSharp::JobStatus
   status_:
-  - jobName_: fiveMan
+  - jobName_: FiveMan
+    playerName_: tai5
     moveSpeed_: 5
+    level_: 5
+    exp_: 5
     hp_: 5
     attack_: 5
     defense_: 5
-    criticalPercent_: 1
-  - jobName_: DemoTank
-    moveSpeed_: 4
-    hp_: 100
-    attack_: 50
-    defense_: 100
-    criticalPercent_: 0.05
-  - jobName_: DemoHealer
-    moveSpeed_: 5
-    hp_: 50
-    attack_: 50
-    defense_: 50
-    criticalPercent_: 0.05
-  - jobName_: DemoDPS
-    moveSpeed_: 5
-    hp_: 70
-    attack_: 100
-    defense_: 70
-    criticalPercent_: 0.1
-  - jobName_: null
+    criticalPercent_: 5
+  - jobName_: 
+    playerName_: 
     moveSpeed_: 0
+    level_: 0
+    exp_: 0
+    hp_: 0
+    attack_: 0
+    defense_: 0
+    criticalPercent_: 0
+  - jobName_: 
+    playerName_: 
+    moveSpeed_: 0
+    level_: 0
+    exp_: 0
+    hp_: 0
+    attack_: 0
+    defense_: 0
+    criticalPercent_: 0
+  - jobName_: 
+    playerName_: 
+    moveSpeed_: 0
+    level_: 0
+    exp_: 0
     hp_: 0
     attack_: 0
     defense_: 0
