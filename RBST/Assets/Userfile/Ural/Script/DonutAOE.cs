@@ -69,4 +69,11 @@ public class DounutAOE : AOEControll
         Destroy(gameObject);
 
     }
+
+    public void InRange()
+    {
+        Vector2 center = transform.position;
+
+
+    }
 }
