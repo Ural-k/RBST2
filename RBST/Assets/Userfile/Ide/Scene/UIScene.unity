@@ -555,11 +555,11 @@ MonoBehaviour:
   nanamebou2_: {fileID: 1201750594}
   fillSpeed_: 1
   cube: {fileID: 1739845209}
-  speed: 10
-  minX: 1.5
-  maxX: 8.5
-  minY: -4.5
-  maxY: 4.5
+  speed: 5
+  minX: 1
+  maxX: 2
+  minY: 0
+  maxY: 1
 --- !u!4 &583795537
 Transform:
   m_ObjectHideFlags: 0
@@ -1805,7 +1805,7 @@ Transform:
   m_GameObject: {fileID: 1739845207}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.09, y: -1.91, z: 0}
+  m_LocalPosition: {x: -5.84, y: 2.37, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
