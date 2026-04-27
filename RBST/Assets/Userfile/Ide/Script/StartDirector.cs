@@ -19,9 +19,9 @@ public class StartDirector : MonoBehaviour
     [SerializeField] private float maxX;
     [SerializeField] private float minY;
     [SerializeField] private float maxY;
-    private bool isFilling = false;
     private bool wasInside = false;
     private Coroutine fillCoroutine;
+    private bool isFilling = false;
 
     private void Start()
     {
@@ -46,7 +46,7 @@ public class StartDirector : MonoBehaviour
         Vector3 move = new Vector3(horizontal, vertical, 0f);
         cube.Translate(move * speed * Time.deltaTime);
 
-        // 今フレームで範囲内か
+        //今フレームで範囲内か
         bool isInside = cube.position.x >= minX && cube.position.x <= maxX && cube.position.y >= minY && cube.position.y <= maxY;
 
         if (!wasInside && isInside)
@@ -59,7 +59,7 @@ public class StartDirector : MonoBehaviour
             ResetImages();
         }
 
-        // 状態更新
+        //状態更新
         wasInside = isInside;
     }
 
@@ -84,13 +84,24 @@ public class StartDirector : MonoBehaviour
 
     void StartFill()
     {
-        StopAllCoroutines(); // ←これ超重要
-        ResetImages();       // ←完全リセットしてから開始
+        if(isFilling)
+        {
+            return;
+        }
+        StopAllCoroutines();
+        ResetImages();
         StartCoroutine(FillImages());
     }
 
     void ResetImages()
     {
+        //コルーチン停止
+        if (fillCoroutine != null)
+        {
+            StopCoroutine(fillCoroutine);
+            fillCoroutine = null;
+        }
+
         isFilling = false;
 
         ResetImage(tatebou4_);
