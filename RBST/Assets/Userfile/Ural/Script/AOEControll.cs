@@ -34,15 +34,17 @@ public class AOEControll : MonoBehaviour
         set { entityActiveFlag_ = value; }
     }
 
-    //プロパティ
-    public Vector3 Scale { get { return scale_; } set { scale_ = value; } }
+    public Vector3 Scale {
+        get { return scale_; } 
+        set { scale_ = value; } 
+    }
     
 
     void Start()
     {
         entity_.SetActive(false);
         entry_.SetActive(false);
-        timer_ = entryTime_;
+        Timer = entryTime_;
         entryActiveFlag_ = false;
         entityActiveFlag_ = false;
         transform.localScale = scale_;
