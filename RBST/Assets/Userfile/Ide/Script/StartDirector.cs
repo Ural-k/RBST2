@@ -22,6 +22,7 @@ public class StartDirector : MonoBehaviour
     private bool wasInside = false;
     private Coroutine fillCoroutine;
     private bool isFilling = false;
+    private new Rigidbody2D rigidbody;
 
     private void Start()
     {
@@ -36,6 +37,8 @@ public class StartDirector : MonoBehaviour
         tatebou5_.gameObject.SetActive(false);
         tatebou6_.gameObject.SetActive(false);
         nanamebou2_.gameObject.SetActive(false);
+
+        rigidbody = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -88,14 +91,13 @@ public class StartDirector : MonoBehaviour
         {
             return;
         }
-        StopAllCoroutines();
-        ResetImages();
-        StartCoroutine(FillImages());
+
+        isFilling = true;
+        fillCoroutine = StartCoroutine(FillImages());
     }
 
     void ResetImages()
     {
-        //ÉRÉãÅ[É`Éìí‚é~
         if (fillCoroutine != null)
         {
             StopCoroutine(fillCoroutine);
