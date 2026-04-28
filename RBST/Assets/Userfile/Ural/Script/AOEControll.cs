@@ -7,6 +7,7 @@ public class AOEControll : MonoBehaviour
     [SerializeField] private GameObject entry_;  //AOEの予兆
     [SerializeField] private float entryTime_;   //予兆時間
     [SerializeField] private float entityTime_;  //実体時間
+    [SerializeField] private int damage_;        //ダメージ量
     [SerializeField] private Vector3 scale_;   　//範囲
     private float timer_;                        //経過時間
     private bool entryActiveFlag_;               //起動フラグ
@@ -17,27 +18,14 @@ public class AOEControll : MonoBehaviour
 
     public float EntityTime { get { return entityTime_; } }
 
-    public float Timer
-    {
-        get { return timer_; }
-        set { timer_ = value; }
-    }
-    public bool EntryActiveFlag
-    {
-        get { return entryActiveFlag_; }
-        set { entityActiveFlag_ = value; }
-    }
+    public int Damage { get { return damage_; } set { damage_ = value; } }
 
-    public bool EntityActiveFlag
-    {
-        get { return entityActiveFlag_; }
-        set { entityActiveFlag_ = value; }
-    }
+    public float Timer { get { return timer_; } set { timer_ = value; } }
+    public bool EntryActiveFlag { get { return entryActiveFlag_; } set { entityActiveFlag_ = value; } }
 
-    public Vector3 Scale {
-        get { return scale_; } 
-        set { scale_ = value; } 
-    }
+    public bool EntityActiveFlag { get { return entityActiveFlag_; } set { entityActiveFlag_ = value; } }
+
+    public Vector3 Scale { get { return scale_; }  set { scale_ = value; }  }
     
 
     void Start()

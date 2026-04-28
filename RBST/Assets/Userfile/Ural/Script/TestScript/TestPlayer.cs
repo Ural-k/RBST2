@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class TestPlayer : MonoBehaviour
+public class TestPlayer : MonoBehaviour, IDamageable
 {
     private Vector2 pos_;
     private float speed_;
@@ -21,5 +21,10 @@ public class TestPlayer : MonoBehaviour
         pos_.x += inputX * speed_ * Time.deltaTime;
         pos_.y += inputY * speed_ * Time.deltaTime;
         transform.position = pos_;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        Debug.Log("当たっちゃった…ワイプワイプ");
     }
 }
