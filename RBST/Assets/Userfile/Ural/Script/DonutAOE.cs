@@ -67,12 +67,12 @@ public class DounutAOE : AOEControll
         if (!EntityActiveFlag) { return; }
 
         EntityActiveFlag = false;
-        InRange();
+        TakeDamage();
         Destroy(gameObject);
 
     }
 
-    public void InRange()
+    public void TakeDamage()
     {
         //physics2Dのついているオブジェクトを取得
         var hits = Physics2D.OverlapCircleAll(center_, GetOuterRadian);
@@ -82,7 +82,7 @@ public class DounutAOE : AOEControll
         {
             //ドーナツの内側の安全地帯の範囲を計算し範囲内のオブジェクトを判定しない
             float sqrDist = ((Vector2)hit.transform.position - center_).sqrMagnitude;
-            float  inner = GetInnerRadian * GetInnerRadian;
+            float inner = GetInnerRadian * GetInnerRadian;
             if (sqrDist >= inner)
             {
                 //ダメージ処理

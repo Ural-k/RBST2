@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.Rendering.GPUSort;
 
 public class AOEControll : MonoBehaviour
 {
@@ -94,6 +95,17 @@ public class AOEControll : MonoBehaviour
             timer_ = entityTime_;
 
             Destroy(gameObject);
+        }
+    }
+
+    //“–‚½‚è”»’è‚É“–‚½‚Á‚½•¨‚ªIDamageable‚ğ‚Á‚Ä‚¢‚½‚çƒ_ƒ[ƒWˆ—
+    private void OnTriggerEnter(Collider other)
+    {
+        var bootDamage = other.GetComponent<IDamageable>();
+        if (bootDamage != null)
+        {
+            bootDamage.TakeDamage(damage_);
+
         }
     }
 }
