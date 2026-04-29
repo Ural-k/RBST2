@@ -65,7 +65,7 @@ public class PlayerBase : MonoBehaviour
     /// <remarks>property:ダメージ値は切り捨ての整数</remarks>
     protected virtual void TakeDamage(float damage)
     {
-        status_.hp_ -= damage;
+        status_.hp_ -= damage;//仮ダメージ計算
     }
     /// <summary>
     /// 移動処理(もしかしたら引数無し版も作れるかも...?)

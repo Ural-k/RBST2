@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 /// プレイヤー全般
 /// </summary>
 /// <remarks>派生クラス</remarks>
-public class Player : PlayerUI
+public class Player : PlayerBase
 {
     CharacterController characterController_;
     InputAction inputMove_;

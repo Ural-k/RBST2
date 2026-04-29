@@ -17,7 +17,7 @@ class JobStatus : ScriptableObject
 public struct PlayerStatus
 {                                     //ゲーム内表記例↓↓
     public string jobName_;           //(例)ナイト
-    public string playerName_;        //(例)taisan☆(←ホストに☆を入れる予定)
+    public string playerName_;        //(例)taisan☆(←ホストに☆などを入れる予定)
 
     public float moveSpeed_;          //MOV
 
@@ -25,7 +25,7 @@ public struct PlayerStatus
     public float exp_;                //EXP
 
     public float hp_;                 //HP
-    public float attack_;             //ATK
+    public float attack_;             //ATK (←物理ダメージ・魔法ダメージで分けるか別で作るか未定)
     public float defense_;            //DEF
     public float criticalPercent_;    //CRT
 }
