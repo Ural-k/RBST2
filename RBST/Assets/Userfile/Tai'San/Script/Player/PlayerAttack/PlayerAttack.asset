@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 138d9a97264050b4b8fe760456faeddb, type: 3}
+  m_Name: PlayerAttack
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
+  circleAOE_: {fileID: 998330928242473407, guid: fd0ae8028e04e4f4eb1e41486ef576d1, type: 3}
+  squareAOE_: {fileID: 1312268731889166674, guid: 6771c3662176fd94c89b7e05002f2b59, type: 3}
+  triangleAOE_: {fileID: 803308874696299451, guid: 4cf3292ddf6ef8542b319a2bf25ae8f4, type: 3}
