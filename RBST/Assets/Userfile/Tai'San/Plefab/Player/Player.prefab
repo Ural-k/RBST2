@@ -52,7 +52,7 @@ MonoBehaviour:
   job_: 0
   status_:
     jobName_: FiveMan
-    playerName_: tai5
+    playerName_: Taisan
     moveSpeed_: 5
     level_: 5
     exp_: 5

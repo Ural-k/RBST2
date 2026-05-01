@@ -1006,6 +1006,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6138337353257753731, guid: 86573eeecd78580478aae133792d068a, type: 3}
+      propertyPath: job_
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6138337353257753731, guid: 86573eeecd78580478aae133792d068a, type: 3}
+      propertyPath: status_.hp_
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6138337353257753731, guid: 86573eeecd78580478aae133792d068a, type: 3}
+      propertyPath: status_.attack_
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6138337353257753731, guid: 86573eeecd78580478aae133792d068a, type: 3}
+      propertyPath: status_.defense_
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6138337353257753731, guid: 86573eeecd78580478aae133792d068a, type: 3}
+      propertyPath: status_.jobName_
+      value: FiveMan
+      objectReference: {fileID: 0}
+    - target: {fileID: 6138337353257753731, guid: 86573eeecd78580478aae133792d068a, type: 3}
+      propertyPath: status_.moveSpeed_
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6138337353257753731, guid: 86573eeecd78580478aae133792d068a, type: 3}
+      propertyPath: status_.playerName_
+      value: Taisan
+      objectReference: {fileID: 0}
+    - target: {fileID: 6138337353257753731, guid: 86573eeecd78580478aae133792d068a, type: 3}
+      propertyPath: status_.criticalPercent_
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7180225609008546129, guid: 86573eeecd78580478aae133792d068a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
