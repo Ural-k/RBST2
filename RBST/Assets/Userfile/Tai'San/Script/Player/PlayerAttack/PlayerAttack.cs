@@ -1,20 +1,18 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerAttack", menuName = "ScriptableObjects/PlayerAttack")]
 public class PlayerAttack : ScriptableObject
 {
-    [SerializeField] GameObject circleAOE_;
-    [SerializeField] GameObject squareAOE_;
-    [SerializeField] GameObject triangleAOE_;
+    List<GameObject> attackAOE_ = new List<GameObject>();
+    //[SerializeField] GameObject circleAOE_;
+    //[SerializeField] GameObject squareAOE_;
 
     public enum PlayerAttackSphere
     {
         Single,                 //単体攻撃
         Circle,                 //円形
         Square,                 //四角形
-        Triangle,               //三角形
-        CircularSector,         //扇形
-        Donut,                  //ドーナツ形
     }
 
     public enum PlayerAttackType
@@ -25,7 +23,7 @@ public class PlayerAttack : ScriptableObject
 
     public enum AttackTarget
     {
-        None,
+        None,   //攻撃の際バフ・デバフを与えない場合、Noneで通す
         Enemy,  //敵に対して攻撃
         Player, //味方に対して攻撃
         Groval, //無差別攻撃
@@ -73,7 +71,7 @@ public class PlayerAttack : ScriptableObject
     /// <param name="scale">範囲の大きさ</param>
     public void CircleAttack(Vector2 position, Vector2 scale)
     {
-        var instance = Instantiate(circleAOE_, position, Quaternion.identity);
+        var instance = Instantiate(attackAOE_[(int)PlayerAttackSphere.Circle], position, Quaternion.identity);
         instance.transform.localScale = scale;
     }
 
@@ -84,7 +82,7 @@ public class PlayerAttack : ScriptableObject
     /// <param name="scale">範囲の大きさ</param>
     public void CircleAttack(Transform target, Vector2 scale)
     {
-        var instance = Instantiate(circleAOE_, target.transform.position, Quaternion.identity);
+        var instance = Instantiate(attackAOE_[(int)PlayerAttackSphere.Circle], target.transform.position, Quaternion.identity);
         instance.transform.localScale = scale;
     }
 
@@ -96,20 +94,20 @@ public class PlayerAttack : ScriptableObject
     /// <param name="scale">範囲の大きさ</param>
     public void CircleAttack(Transform target, Vector2 offset, Vector2 scale)
     {
-        var instance = Instantiate(circleAOE_, target.transform.position, Quaternion.identity);
+        var instance = Instantiate(attackAOE_[(int)PlayerAttackSphere.Circle], target.transform.position, Quaternion.identity);
         instance.transform.position += (Vector3)offset;
         instance.transform.localScale = scale;
     }
 
     public void SquareAttack(Vector2 position, Vector2 scale)
     {
-        var instance = Instantiate(squareAOE_, position, Quaternion.identity);
+        var instance = Instantiate(attackAOE_[(int)PlayerAttackSphere.Square], position, Quaternion.identity);
         instance.transform.localScale = scale;
     }
 
     public void SquareAttack(Transform target, Vector2 scale)
     {
-        var instance = Instantiate(squareAOE_, target.transform.position, Quaternion.identity);
+        var instance = Instantiate(attackAOE_[(int)PlayerAttackSphere.Square], target.transform.position, Quaternion.identity);
         instance.transform.localScale = scale;
     }
 

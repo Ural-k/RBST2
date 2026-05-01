@@ -4,7 +4,7 @@ using UnityEngine;
 /// ステータスの操作と移動
 /// </summary>
 /// <remarks>(プレイヤー基底クラス)</remarks>
-public class PlayerBase : MonoBehaviour, IDamageable
+public class PlayerBase : MonoBehaviour
 {
     [SerializeField] JobStatus referenceJobStatus_;        //参照するジョブステータス
     [SerializeField] Job job_;                             //職業

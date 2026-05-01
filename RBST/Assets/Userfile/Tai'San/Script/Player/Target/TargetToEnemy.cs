@@ -27,6 +27,8 @@ public class TargetToEnemy : MonoBehaviour
     /// </summary>
     void Target()
     {
+        if (targetersObject_ == null || targetersObject_.transform.childCount == 0) return;
+
         //全ターゲット対象をList化
         List<Transform> unintentionalTargeter = new();
         for(int i = 0; i < targetersObject_.transform.childCount; ++i)
