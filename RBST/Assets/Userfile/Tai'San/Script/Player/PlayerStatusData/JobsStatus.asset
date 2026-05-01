@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::JobStatus
   status_:
   - jobName_: FiveMan
-    playerName_: tai5
+    playerName_: Taisan
     moveSpeed_: 5
     level_: 5
     exp_: 5
@@ -22,30 +22,30 @@ MonoBehaviour:
     attack_: 5
     defense_: 5
     criticalPercent_: 5
-  - jobName_: 
-    playerName_: 
-    moveSpeed_: 0
-    level_: 0
-    exp_: 0
-    hp_: 0
-    attack_: 0
-    defense_: 0
-    criticalPercent_: 0
-  - jobName_: 
-    playerName_: 
-    moveSpeed_: 0
-    level_: 0
-    exp_: 0
-    hp_: 0
-    attack_: 0
-    defense_: 0
-    criticalPercent_: 0
-  - jobName_: 
-    playerName_: 
-    moveSpeed_: 0
-    level_: 0
-    exp_: 0
-    hp_: 0
-    attack_: 0
-    defense_: 0
-    criticalPercent_: 0
+  - jobName_: DemoTank
+    playerName_: Ural
+    moveSpeed_: 5
+    level_: 5
+    exp_: 5
+    hp_: 100
+    attack_: 50
+    defense_: 100
+    criticalPercent_: 2
+  - jobName_: DemoHealer
+    playerName_: kousei
+    moveSpeed_: 5
+    level_: 5
+    exp_: 5
+    hp_: 50
+    attack_: 50
+    defense_: 40
+    criticalPercent_: 2
+  - jobName_: DemoDPS
+    playerName_: ide
+    moveSpeed_: 6
+    level_: 5
+    exp_: 5
+    hp_: 60
+    attack_: 100
+    defense_: 60
+    criticalPercent_: 5
