@@ -25,7 +25,7 @@ public class DemoGameObjectManager : MonoBehaviour
             int i = Random.Range(0, 4);
             Player player = PlayerManager.GetPlayer(i);
             
-            Debug.Log(player.GetComponent<PlayerBase>().gameObject.name);
+            player.GetComponent<Player>().TakeDamage(10);
         }
 
     }

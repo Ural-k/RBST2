@@ -22,7 +22,11 @@ public class TestEnemyControll : MonoBehaviour
             //var square = Instantiate(square_, positionAOE_, Quaternion.identity);
             //square.GetComponent<AOEControll>().isActive();
 
-            int i = Random .Range(0,4);
+            int i = Random .Range(0,PlayerManager.GetAllPlayerListCount());
+            if(PlayerManager.GetPlayer(i) == null)
+            {
+                return;
+            }
             Player player = PlayerManager.GetPlayer(i);
 
             positionAOE_ = player.GetComponent<Transform>().transform.position;
