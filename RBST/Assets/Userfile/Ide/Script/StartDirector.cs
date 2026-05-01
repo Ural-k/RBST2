@@ -13,16 +13,16 @@ public class StartDirector : MonoBehaviour
     [SerializeField] private Image tatebou6_;       //3つ目の縦棒の塗りUI
     [SerializeField] private Image nanamebou2_;     //1つ目の斜め棒の塗りUI
     public float fillSpeed_;                        //塗るスピード
-    public Transform cube;
-    public float speed;
-    [SerializeField] private float minX;
-    [SerializeField] private float maxX;
-    [SerializeField] private float minY;
-    [SerializeField] private float maxY;
-    private bool wasInside = false;
-    private Coroutine fillCoroutine;
-    private bool isFilling = false;
-    private new Rigidbody2D rigidbody;
+    public Transform cube;                          //動かすブロックなど
+    public float speed;                             //ブロックのスピード
+    [SerializeField] private float minX;            //ブロックが認識されるXの最小値
+    [SerializeField] private float maxX;            //ブロックが認識されるXの最大値
+    [SerializeField] private float minY;            //ブロックが認識されるYの最小値
+    [SerializeField] private float maxY;            //ブロックが認識されるYの最大値
+    private bool wasInside = false;                 //
+    private Coroutine fillCoroutine;                //
+    private bool isFilling = false;                 //
+    private new Rigidbody2D rigidbody;              //ブロックのRigidbody2D
 
     private void Start()
     {
@@ -38,14 +38,15 @@ public class StartDirector : MonoBehaviour
         tatebou6_.gameObject.SetActive(false);
         nanamebou2_.gameObject.SetActive(false);
 
+        //ブロックのRigidbody2D
         rigidbody = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
+        //これらは念のため置いているので気にしないでください(消しても大丈夫なやつです)
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
-
         Vector3 move = new Vector3(horizontal, vertical, 0f);
         cube.Translate(move * speed * Time.deltaTime);
 
