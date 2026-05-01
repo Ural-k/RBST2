@@ -21,7 +21,7 @@ namespace Game.Enemy
         [SerializeField]
         private float fadeDuration_ = 0.5f;
 
-        // ====== “à•”•Ï”
+        //“à•”•Ï”
         private float timer_ = 0f;
         private float fadeTimer_ = 0f;
 
