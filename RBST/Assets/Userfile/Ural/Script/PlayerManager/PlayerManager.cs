@@ -1,0 +1,32 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerManager : MonoBehaviour
+{
+    
+    private static List<Player> playerList_ = new List<Player>();  //プレイヤーを管理するリスト
+
+    /// <summary>
+    /// プレイヤーをリストに追加する
+    /// </summary>
+    public static void AddPlayer(Player player)
+    {
+        playerList_.Add(player);
+    }
+
+    /// <summary>
+    /// list内の特定のPlayerを取得
+    /// </summary>
+    public static Player GetPlayer(int i)
+    {
+        return playerList_[i];
+    }
+
+    /// <summary>
+    /// playerList_の要素数を取得する
+    /// </summary>
+    public static int GetAllPlayerListCount()
+    {  
+        return playerList_.Count;
+    }
+}

@@ -326,7 +326,7 @@ MonoBehaviour:
   entityTime_: 1
   damage_: 0
   scale_: {x: 0, y: 0, z: 0}
-  innerDiameter_: 5
-  outerDiameter_: 100
+  innerDiameter_: 2
+  outerDiameter_: 6
   innerCricle_: {fileID: 4672693900536097764}
   outerCricle_: {fileID: 2087632429030053836}
