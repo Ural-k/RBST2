@@ -6,15 +6,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "JobsStatus", menuName = "ScriptableObjects/Status/JobsStatus")]
 class JobStatus : ScriptableObject
 {
-    [SerializeField] PlayerStatus[] status_;
-    [HideInInspector] public PlayerStatus GetJobStatus(Job job) { return status_[(int)job]; }
+    [SerializeField] JobStatusTemp[] status_;
+    [HideInInspector] public JobStatusTemp GetJobStatus(Job job) { return status_[(int)job]; }
 }
 
 /// <summary>
 /// プレイヤーのステータス項目
 /// </summary>
 [System.Serializable]
-public struct PlayerStatus
+public struct JobStatusTemp
 {                                     //ゲーム内表記例↓↓
     public string jobName_;           //(例)ナイト
     public string playerName_;        //(例)taisan☆(←ホストに☆などを入れる予定)
@@ -28,6 +28,11 @@ public struct PlayerStatus
     public float attack_;             //ATK (←物理ダメージ・魔法ダメージで分けるか別で作るか未定)
     public float defense_;            //DEF
     public float criticalPercent_;    //CRT
+}
+
+public struct DynamicPlayerStatus
+{
+
 }
 
 public enum Job

@@ -7,11 +7,62 @@ public class PlayerAttack : ScriptableObject
     [SerializeField] GameObject squareAOE_;
     [SerializeField] GameObject triangleAOE_;
 
-    enum Shape
+    public enum PlayerAttackSphere
     {
-        Circle,
-        Square,
-        Triangle
+        Single,                 //単体攻撃
+        Circle,                 //円形
+        Square,                 //四角形
+        Triangle,               //三角形
+        CircularSector,         //扇形
+        Donut,                  //ドーナツ形
+    }
+
+    public enum PlayerAttackType
+    {
+        None,       //特に指定無し
+        JumpOn,     //飛びつき
+    }
+
+    public enum AttackTarget
+    {
+        None,
+        Enemy,  //敵に対して攻撃
+        Player, //味方に対して攻撃
+        Groval, //無差別攻撃
+    }
+
+    public struct PlayerAttackArgument
+    {
+        public Transform target_;
+        public Vector2 position_;
+        public Vector2 scale_;
+        public Vector2 offset_;
+        public PlayerAttackSphere attackSphere_;
+        public PlayerAttackType attackType_;
+    }
+
+    public struct ModifyStatus
+    {
+        AttackTarget attackTarget_;
+        public bool buff_;
+        public float delay_;
+        public float lifeTime_;
+        //攻撃発動
+        //バフアイコン
+    }
+
+    /// <summary>
+    /// プレイヤーが攻撃する
+    /// </summary>
+    /// <param name="attack">攻撃の詳細</param>
+    /// <param name="status">攻撃時のバフ・デバフ効果の詳細</param>
+    public void OnAttack(PlayerAttackArgument attack, ModifyStatus status)
+    {
+        Transform transform = null;
+        if (attack.target_ == null) transform.position = attack.position_;
+        else transform = attack.target_;
+        //position += attack.offset_;
+
     }
 
     /// <summary>
