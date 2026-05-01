@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 /// プレイヤー全般
 /// </summary>
 /// <remarks>派生クラス</remarks>
-public class Player : PlayerBase
+public class Player : PlayerBase, IDamageable
 {
     [SerializeField] PlayerAttack playerAttack_;
 
@@ -15,6 +15,7 @@ public class Player : PlayerBase
 
     void Start()
     {
+        PlayerManager.AddPlayer(this);
         inputMove_ = InputSystem.actions.FindAction("Move");
         TryGetComponent(out characterController_);
         TryGetComponent(out targetToEnemy_);
@@ -29,4 +30,10 @@ public class Player : PlayerBase
         if (!context.performed) return;
         playerAttack_.CircleAttack(targetToEnemy_.GetTargetTransform,Vector2.one * 3);
     }
+    
+    public void TakeDamage(int damage_)
+    {
+        Debug.Log("当たっちゃったーワイプワイプ");
+    }
+
 }

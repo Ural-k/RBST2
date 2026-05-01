@@ -61,7 +61,8 @@ public class PlayerAttack : ScriptableObject
         Transform transform = null;
         if (attack.target_ == null) transform.position = attack.position_;
         else transform = attack.target_;
-        //position += attack.offset_;
+        transform.position += (Vector3)attack.offset_;
+        transform.localScale = attack.scale_;
 
     }
 

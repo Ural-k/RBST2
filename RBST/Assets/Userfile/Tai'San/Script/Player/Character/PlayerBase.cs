@@ -4,7 +4,7 @@ using UnityEngine;
 /// ステータスの操作と移動
 /// </summary>
 /// <remarks>(プレイヤー基底クラス)</remarks>
-public class PlayerBase : MonoBehaviour
+public class PlayerBase : MonoBehaviour, IDamageable
 {
     [SerializeField] JobStatus referenceJobStatus_;        //参照するジョブステータス
     [SerializeField] Job job_;                             //職業
@@ -43,27 +43,27 @@ public class PlayerBase : MonoBehaviour
     /// </summary>
     /// <remarks>property:0.00~1.00</remarks>
     protected float CriticalPercent
-    { 
-        get { return status_.criticalPercent_; } 
+    {
+        get { return status_.criticalPercent_; }
         set
         {
             //第二引数切り捨て
             float temp = value;
             temp *= 100;
             status_.criticalPercent_ = Mathf.Floor(temp) / 100;
-        } 
+        }
     }
 
     /*
      :  関数↓↓
      */
-    
+
     /// <summary>
     /// ダメージを与える(プレイヤーに対して)
     /// </summary>
     /// <param name="damage">ダメージ量</param>
     /// <remarks>property:ダメージ値は切り捨ての整数</remarks>
-    protected virtual void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
         status_.hp_ -= damage;//仮ダメージ計算
     }
@@ -78,4 +78,5 @@ public class PlayerBase : MonoBehaviour
         move_value *= status_.moveSpeed_ * Time.deltaTime;
         character_controller.Move(move_value);
     }
+
 }
