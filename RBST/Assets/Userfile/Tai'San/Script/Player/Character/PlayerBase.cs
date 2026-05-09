@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 /// <summary>
 /// ステータスの操作と移動
@@ -9,6 +10,12 @@ public class PlayerBase : MonoBehaviour
     [SerializeField] JobStatus referenceJobStatus_;        //参照するジョブステータス
     [SerializeField] Job job_;                             //職業
     [SerializeField] JobStatusTemp status_;                 //ステータスまとめ
+
+    [SerializeField] protected PlayerAttack playerAttack_;
+
+    protected CharacterController characterController_;
+    protected TargetToEnemy targetToEnemy_;
+    protected InputAction inputMove_;
 
     //動的ステータス変更(インスペクター操作用)
     private void OnValidate() { status_ = referenceJobStatus_.GetJobStatus(job_); }

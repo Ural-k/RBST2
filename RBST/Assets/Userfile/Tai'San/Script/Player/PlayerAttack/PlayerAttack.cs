@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerAttack", menuName = "ScriptableObjects/PlayerAttack")]
 public class PlayerAttack : ScriptableObject
 {
-    List<GameObject> attackAOE_ = new List<GameObject>();
+    [SerializeField] List<GameObject> attackAOE_ = new List<GameObject>();
     //[SerializeField] GameObject circleAOE_;
     //[SerializeField] GameObject squareAOE_;
 

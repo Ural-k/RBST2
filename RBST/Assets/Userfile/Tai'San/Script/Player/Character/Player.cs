@@ -7,12 +7,6 @@ using UnityEngine.InputSystem;
 /// <remarks>派生クラス</remarks>
 public class Player : PlayerBase, IDamageable
 {
-    [SerializeField] PlayerAttack playerAttack_;
-
-    CharacterController characterController_;
-    TargetToEnemy targetToEnemy_;
-    InputAction inputMove_;
-
     void Start()
     {
         PlayerManager.AddPlayer(this);
