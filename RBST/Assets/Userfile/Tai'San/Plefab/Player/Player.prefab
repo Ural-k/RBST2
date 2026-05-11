@@ -10,9 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7180225609008546129}
   - component: {fileID: 6138337353257753731}
-  - component: {fileID: 2690078698963569952}
   - component: {fileID: 6782165398992391355}
-  - component: {fileID: 4294597524047010671}
+  - component: {fileID: 2511807836803375239}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -48,33 +47,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f6af70f0379080478e1056345998df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  referenceJobStatus_: {fileID: 11400000, guid: 3f2f0b06ec9294d48b360e78f27c0455, type: 2}
-  job_: 0
-  status_:
-    jobName_: FiveMan
-    playerName_: Taisan
-    moveSpeed_: 5
-    level_: 5
-    exp_: 5
-    hp_: 5
-    attack_: 5
-    defense_: 5
-    criticalPercent_: 5
-  playerAttack_: {fileID: 11400000, guid: 3bda4e101ac438541970dd984a146133, type: 2}
---- !u!114 &2690078698963569952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5928127022687353163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7656752ff33ca584194872a22e3b5ca8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TargetForEnemy
-  targetersObject_: {fileID: 0}
-  targetGraphic_: {fileID: 0}
+  jobName_: 
+  playerName_: 
+  speed_: 0
+  attack_: 0
+  defense_: 0
+  gcd_: 0
+  critical_: 0
 --- !u!114 &6782165398992391355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,13 +172,16 @@ MonoBehaviour:
   m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!143 &4294597524047010671
-CharacterController:
+--- !u!58 &2511807836803375239
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5928127022687353163}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -208,16 +190,24 @@ CharacterController:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7213157726731507280
 GameObject:
   m_ObjectHideFlags: 0

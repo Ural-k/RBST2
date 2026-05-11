@@ -1,65 +1,80 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-/// <summary>
-/// ステータスの操作と移動
-/// </summary>
-/// <remarks>(プレイヤー基底クラス)</remarks>
-public class PlayerBase : MonoBehaviour
+public class PlayerBase : PlayerAttack
 {
-    [SerializeField] JobStatus referenceJobStatus_;        //参照するジョブステータス
-    [SerializeField] Job job_;                             //職業
-    [SerializeField] JobStatusTemp status_;                 //ステータスまとめ
+    [Header("ステータス")]
+    [SerializeField] protected string   jobName_;                  //職業名
+    [SerializeField] protected string   playerName_;               //プレイヤーの名前
+    [SerializeField] protected float    speed_;                    //移動速度
+    [SerializeField] protected float    attack_;                   //攻撃力
+    [SerializeField] protected float    defense_;                  //防御力
+    [SerializeField] protected float    gcd_;                      //グローバルクールダウン
+    [SerializeField] protected float    critical_;                 //クリティカル率
+    [SerializeField] protected float    lv_;
 
-    protected string    jobName_;
-    protected string    playerName_;
-    protected float     speed_;
-    protected float     attack_;
-    protected float     defense_;
-    protected float     gcd_;
-    protected float     critical_;
+    protected InputAction           inputAxis_;                //移動キー入力
+    protected Transform             target_;                   //ターゲット中のTransfrom
 
-    //動的ステータス変更(インスペクター操作用)
-    //private void OnValidate() { status_ = referenceJobStatus_.GetJobStatus(job_); }
+    [Header("ターゲット")]
+    [SerializeField] GameObject     targetersObject_;          //ターゲット可能なオブジェクト群の親
+    [SerializeField] Transform      targetGraphic_;            //ターゲット表示
 
-    /// <summary>
-    /// クリティカル率
-    /// </summary>
-    /// <remarks>property:0.00~1.00</remarks>
-    protected float CriticalPercent
+    private void Start()
     {
-        get { return status_.criticalPercent_; }
-        set
-        {
-            //第二引数切り捨て
-            float temp = value;
-            temp *= 100;
-            status_.criticalPercent_ = Mathf.Floor(temp) / 100;
-        }
+        PlayerManager.AddPlayer((Player)this);
+        inputAxis_ = InputSystem.actions.FindAction("Move");
+        StartCoroutine(PlayerCoroutine());
     }
 
-    /*
-     :  関数↓↓
-     */
-
     /// <summary>
-    /// ダメージを与える(プレイヤーに対して)
+    /// 移動
     /// </summary>
-    /// <param name="damage">ダメージ量</param>
-    /// <remarks>property:ダメージ値は切り捨ての整数</remarks>
-    public void TakeDamage(int damage)
+    protected virtual void PlayerMove()
     {
-        status_.hp_ -= damage;//仮ダメージ計算
-    }
-    /// <summary>
-    /// 移動処理(もしかしたら引数無し版も作れるかも...?)
-    /// </summary>
-    /// <param name="input">0~1の入力値</param>
-    /// <param name="character_controller">CharacterControllerコンポーネント</param>
-    protected virtual void PlayerMove(Vector2 input)
-    {
-        Vector2 move_value = input.normalized;
-        move_value *= status_.moveSpeed_ * Time.deltaTime;
+        Vector2 move_value = inputAxis_.ReadValue<Vector2>();
+        move_value *= speed_ * Time.deltaTime;
         transform.position += (Vector3)move_value;
     }
 
+    /// <summary>
+    /// ターゲット(左上から)
+    /// </summary>
+    protected void OnTarget()
+    {
+        if (targetersObject_ == null || targetersObject_.transform.childCount == 0) return;
+
+        //全ターゲット対象をList化
+        List<Transform> unintentionalTargeter = new();
+        for (int i = 0; i < targetersObject_.transform.childCount; ++i)
+            unintentionalTargeter.Add(targetersObject_.transform.GetChild(i));
+
+        //タゲ対象を左上優先で順番にList化
+        var sortTargeter =
+            unintentionalTargeter.OrderBy(n => n.position.x).ThenByDescending(n => n.position.y).ToList();
+
+        //次項へターゲット
+        if (target_ == null || target_ == sortTargeter[sortTargeter.Count - 1])
+            target_ = sortTargeter.First();
+        else
+        {
+            for (int i = 0; i < sortTargeter.Count - 1; ++i)
+            {
+                if (target_ == sortTargeter[i])
+                {
+                    target_ = sortTargeter[i + 1];
+                    break;
+                }
+            }
+        }
+
+        //ターゲットUI操作
+        if (targetGraphic_ == null) return;
+        targetGraphic_.parent = target_;
+        targetGraphic_.localPosition = Vector2.zero;
+    }
+
+    
 }
