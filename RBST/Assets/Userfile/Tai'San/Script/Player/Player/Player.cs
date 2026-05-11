@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Player : PlayerBase, IDamageable
+public class Player : PlayerBase
 {
     void Update()
     {
@@ -12,11 +12,7 @@ public class Player : PlayerBase, IDamageable
     public void InputAttack(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        SingleTargetAttackTest(this,target_, attack_, Vector2.one * 5);
-    }
-    
-    public void TakeDamage(int damage_)
-    {
-        Debug.Log("当たっちゃったーワイプワイプ");
+        GetComponent<IPlayerAttack>().Attack1();
+        //SingleTargetAttackTest(this, target_, attack_);
     }
 }

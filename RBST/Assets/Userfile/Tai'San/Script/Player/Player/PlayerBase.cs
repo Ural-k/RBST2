@@ -3,30 +3,13 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerBase : PlayerAttack
+public class PlayerBase : PlayerAttack, IDamageable
 {
-    [Header("ステータス")]
-    [SerializeField] protected string   jobName_;                  //職業名
-    [SerializeField] protected string   playerName_;               //プレイヤーの名前
-    [SerializeField] protected float    speed_;                    //移動速度
-    [SerializeField] protected float    attack_;                   //攻撃力
-    [SerializeField] protected float    defense_;                  //防御力
-    [SerializeField] protected float    gcd_;                      //グローバルクールダウン
-    [SerializeField] protected float    critical_;                 //クリティカル率
-    [SerializeField] protected float    lv_;
-
-    protected InputAction           inputAxis_;                //移動キー入力
-    protected Transform             target_;                   //ターゲット中のTransfrom
-
-    [Header("ターゲット")]
-    [SerializeField] GameObject     targetersObject_;          //ターゲット可能なオブジェクト群の親
-    [SerializeField] Transform      targetGraphic_;            //ターゲット表示
-
     private void Start()
     {
         PlayerManager.AddPlayer((Player)this);
         inputAxis_ = InputSystem.actions.FindAction("Move");
-        StartCoroutine(PlayerCoroutine());
+        //StartCoroutine(GlobalCoolDown(10));
     }
 
     /// <summary>
@@ -76,5 +59,8 @@ public class PlayerBase : PlayerAttack
         targetGraphic_.localPosition = Vector2.zero;
     }
 
-    
+    public void TakeDamage(int damage_)
+    {
+        Debug.Log("当たっちゃったーワイプワイプ");
+    }
 }
