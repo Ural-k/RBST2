@@ -12,7 +12,7 @@ public class Player : PlayerBase
     public void InputAttack(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        GetComponent<IPlayerAttack>().Attack1();
+        Attack1();
         //SingleTargetAttackTest(this, target_, attack_);
     }
 }

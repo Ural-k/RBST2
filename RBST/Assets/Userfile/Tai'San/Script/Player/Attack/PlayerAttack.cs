@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// 技倉庫
 /// </summary>
-public class PlayerAttack : PlayerStatus,IPlayerAttack
+public class PlayerAttack : PlayerStatus
 {
     /*
      :  コルーチンが必要な処理
@@ -60,7 +60,7 @@ public class PlayerAttack : PlayerStatus,IPlayerAttack
         }
     }
 
-    PlayerAttackData fire_ = new PlayerAttackData(
+    readonly PlayerAttackData fire_ = new PlayerAttackData(
         "ファイア",
         50,
         3,
@@ -71,11 +71,16 @@ public class PlayerAttack : PlayerStatus,IPlayerAttack
         0
         );
     
-
-
-    public void Attack1() { Debug.Log("攻撃1"); }
+    public void Attack1() { System.Console.WriteLine("攻撃１"); }
     public void Attack2() { Debug.Log("攻撃2"); }
     public void Attack3() { Debug.Log("攻撃3"); }
+
+    void OnAttack(PlayerAttack atk)
+    {
+
+    }
+
+
 
     /// <summary>
     /// シングルターゲットアタックテスト
@@ -96,7 +101,4 @@ public class PlayerAttack : PlayerStatus,IPlayerAttack
         scale = scale ?? Vector2.one;
         Debug.Log($"*{coller.gameObject.name}* → {power} ダメージ → *{target.gameObject.name}*");
     }
-
-
-
 }

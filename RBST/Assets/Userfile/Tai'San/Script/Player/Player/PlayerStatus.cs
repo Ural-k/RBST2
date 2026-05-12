@@ -31,7 +31,19 @@ public class PlayerAttackData
     public float width_;
     public float height_;
 
-    public PlayerAttackData(string name_, float damage_, float gcd_, float cd_, float delay_, float radius_, float width_, float height_)
+    delegate void UniqueAttackMethod();
+    //IEnumerable<UniqueAttackMethod> attackMethod;
+
+    public PlayerAttackData(
+          string name_
+        , float damage_
+        , float gcd_
+        , float cd_
+        , float delay_
+        , float radius_
+        , float width_
+        , float height_
+        )
     {
         this.name_ = name_;
         this.damage_ = damage_;
