@@ -6,23 +6,12 @@ using UnityEngine;
 /// </summary>
 public class PlayerAttack : PlayerStatus
 {
-    /*
-     :  コルーチンが必要な処理
-     :  ・クールダウン
-     :  ・グローバルクールダウン
-     :  ・デバフ・バフ
-     :  ・攻撃範囲の出るまでの時差etc
-     */
-
     [Header("クールダウン")]
     [SerializeField] float nowGlobalCoolTime_ = 0;
     [SerializeField] float nowCoolTime1_ = 0;
     [SerializeField] float nowCoolTime2_ = 0;
     [SerializeField] float nowCoolTime3_ = 0;
 
-    /*
-     :  クールダウン
-     */
     IEnumerator GlobalCoolDown(float gcd)
     {
         nowGlobalCoolTime_ = gcd;
@@ -60,45 +49,56 @@ public class PlayerAttack : PlayerStatus
         }
     }
 
-    readonly PlayerAttackData fire_ = new PlayerAttackData(
-        "ファイア",
-        50,
-        3,
-        2,
-        4,
-        0,
-        0,
-        0
-        );
-    
-    public void Attack1() { System.Console.WriteLine("攻撃１"); }
-    public void Attack2() { Debug.Log("攻撃2"); }
-    public void Attack3() { Debug.Log("攻撃3"); }
-
-    void OnAttack(PlayerAttack atk)
+    enum Skill
     {
-
+        Fire,
+        Meteor,
+        Length,
     }
+    [SerializeField] Skill skill1_;
+    [SerializeField] Skill skill2_;
+    [SerializeField] Skill skill3_;
+    delegate void Attacks();
+    Attacks[] attacks_ = new Attacks[(int)Skill.Length];
 
+    public void Attack1() { attacks_[(int)skill1_](); }//デリゲートがないって言われる
+    public void Attack2() { attacks_[(int)skill2_](); }
+    public void Attack3() { attacks_[(int)skill3_](); }
 
-
-    /// <summary>
-    /// シングルターゲットアタックテスト
-    /// </summary>
-    public void SingleTargetAttackTest(Player coller,Transform target, float power = 1,Vector2? scale = null, Vector2? offset = null)
+    Transform OnAttack(Transform target, float power = 1, float radian = 0, Vector2? wh = null, Vector2? scale = null, Vector2? offset = null)
     {
-        if (nowGlobalCoolTime_ != 0 || target == null) return;
-        StartCoroutine(GlobalCoolDown(5));
-        /*
-         :  登録する情報
-         :  ・gcd
-         :  ・cd
-         :  ・delay
-         :  ・
-         :
-         */
+        if (nowGlobalCoolTime_ != 0 || target == null) return null;
+        StartCoroutine(GlobalCoolDown(5));  //GCD
         offset = offset ?? Vector2.zero;
         scale = scale ?? Vector2.one;
-        Debug.Log($"*{coller.gameObject.name}* → {power} ダメージ → *{target.gameObject.name}*");
+
+        return target;
+    }
+
+    //スタートでは無くなる予定
+    private void Start()
+    {
+        attacks_[(int)Skill.Fire] = Fire;
+        attacks_[(int)Skill.Meteor] = Meteor;
+    }
+
+    /*
+     :  スキル↓↓
+     */
+
+    void Fire()
+    {
+        string name = "ファイア";
+        int power = 5;
+        //範囲
+        Transform target = OnAttack(target_, power);
+        //↓ここから特殊処理
+        Debug.Log($"*{gameObject.name}*の{name}! → {power} ダメージ → *{target.gameObject.name}*");
+
+        //gcd,cd,delay
+    }
+    void Meteor()
+    {
+
     }
 }

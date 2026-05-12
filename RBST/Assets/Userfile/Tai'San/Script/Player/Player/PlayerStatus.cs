@@ -20,42 +20,6 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField] protected Transform    targetGraphic_;     //ターゲット表示
 }
 
-public class PlayerAttackData
-{
-    public string name_;
-    public float damage_;
-    public float gcd_;
-    public float cd_;
-    public float delay_;
-    public float radius_;
-    public float width_;
-    public float height_;
-
-    delegate void UniqueAttackMethod();
-    //IEnumerable<UniqueAttackMethod> attackMethod;
-
-    public PlayerAttackData(
-          string name_
-        , float damage_
-        , float gcd_
-        , float cd_
-        , float delay_
-        , float radius_
-        , float width_
-        , float height_
-        )
-    {
-        this.name_ = name_;
-        this.damage_ = damage_;
-        this.gcd_ = gcd_;
-        this.cd_ = cd_;
-        this.delay_ = delay_;
-        this.radius_ = radius_;
-        this.width_ = width_;
-        this.height_ = height_;
-    }
-}
-
 interface IPlayerAttack
 {
     void Attack1();
