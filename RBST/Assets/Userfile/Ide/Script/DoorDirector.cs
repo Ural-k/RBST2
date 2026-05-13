@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class DoorDirector : MonoBehaviour
 {
-    [SerializeField] private Image DoorImage_;      //ドアUI
+    [SerializeField] private Image boorImage_;      //ドアUI
     [SerializeField] private float minX_;           //ブロックが認識されるXの最小値
     [SerializeField] private float maxX_;           //ブロックが認識されるXの最大値
     [SerializeField] private float minY_;           //ブロックが認識されるYの最小値
