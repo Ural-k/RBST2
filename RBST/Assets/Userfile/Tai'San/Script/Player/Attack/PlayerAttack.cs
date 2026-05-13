@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -6,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public class PlayerAttack : PlayerStatus
 {
+    [SerializeField] AttackEffectReference effect_;
     [Header("クールダウン")]
     [SerializeField] float nowGlobalCoolTime_ = 0;
     [SerializeField] float nowCoolTime1_ = 0;
@@ -61,39 +63,47 @@ public class PlayerAttack : PlayerStatus
     delegate void Attacks();
     Attacks[] attacks_ = new Attacks[(int)Skill.Length];
 
-    public void Attack1() { attacks_[(int)skill1_](); }//デリゲートがないって言われる
+    public void Attack1() { attacks_[(int)Skill.Fire](); }
     public void Attack2() { attacks_[(int)skill2_](); }
     public void Attack3() { attacks_[(int)skill3_](); }
 
-    Transform OnAttack(Transform target, float power = 1, float radian = 0, Vector2? wh = null, Vector2? scale = null, Vector2? offset = null)
+    void OnAttack(Transform target, float power = 1, float radian = 0, Vector2? wh = null, Vector2? scale = null, Vector2? offset = null)
     {
-        if (nowGlobalCoolTime_ != 0 || target == null) return null;
-        StartCoroutine(GlobalCoolDown(5));  //GCD
+        if (nowGlobalCoolTime_ != 0 || target == null) return;
         offset = offset ?? Vector2.zero;
         scale = scale ?? Vector2.one;
-
-        return target;
     }
 
-    //スタートでは無くなる予定
-    private void Start()
+    protected void InitalAttack()
     {
         attacks_[(int)Skill.Fire] = Fire;
         attacks_[(int)Skill.Meteor] = Meteor;
+    }
+
+    Queue<ParticleSystem> pool;
+
+    void Demo()
+    {
+        var ps = pool.Dequeue();
+        ps.gameObject.SetActive(true);
+        ps.Play();
     }
 
     /*
      :  スキル↓↓
      */
 
-    void Fire()
+    public void Fire()
     {
+        if (target_ == null) return;
         string name = "ファイア";
         int power = 5;
+        StartCoroutine(GlobalCoolDown(5));  //GCD
         //範囲
-        Transform target = OnAttack(target_, power);
+        OnAttack(target_, power);
+        Instantiate(effect_.fire_, target_.position, Quaternion.identity);
         //↓ここから特殊処理
-        Debug.Log($"*{gameObject.name}*の{name}! → {power} ダメージ → *{target.gameObject.name}*");
+        Debug.Log($"*{gameObject.name}*の{name}! → {power} ダメージ → *{target_.gameObject.name}*");
 
         //gcd,cd,delay
     }

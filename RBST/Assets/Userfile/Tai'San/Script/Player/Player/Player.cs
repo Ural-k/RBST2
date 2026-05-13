@@ -13,6 +13,5 @@ public class Player : PlayerBase
     {
         if (!context.performed) return;
         Attack1();
-        //SingleTargetAttackTest(this, target_, attack_);
     }
 }

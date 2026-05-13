@@ -9,7 +9,7 @@ public class PlayerBase : PlayerAttack, IDamageable
     {
         PlayerManager.AddPlayer((Player)this);
         inputAxis_ = InputSystem.actions.FindAction("Move");
-        //StartCoroutine(GlobalCoolDown(10));
+        InitalAttack();
     }
 
     /// <summary>

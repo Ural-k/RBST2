@@ -19,10 +19,3 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField] protected GameObject   targetersObject_;   //ターゲット可能なオブジェクト群の親
     [SerializeField] protected Transform    targetGraphic_;     //ターゲット表示
 }
-
-interface IPlayerAttack
-{
-    void Attack1();
-    void Attack2();
-    void Attack3();
-}
