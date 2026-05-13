@@ -76,17 +76,8 @@ public class PlayerAttack : PlayerStatus
 
     protected void InitalAttack()
     {
-        attacks_[(int)Skill.Fire] = Fire;
-        attacks_[(int)Skill.Meteor] = Meteor;
-    }
-
-    Queue<ParticleSystem> pool;
-
-    void Demo()
-    {
-        var ps = pool.Dequeue();
-        ps.gameObject.SetActive(true);
-        ps.Play();
+        attacks_[(int)Skill.Fire] = Fire;                       //ファイア
+        attacks_[(int)Skill.Meteor] = Meteor;                   //メテオ
     }
 
     /*
@@ -95,10 +86,11 @@ public class PlayerAttack : PlayerStatus
 
     public void Fire()
     {
-        if (target_ == null) return;
+        if (target_ == null || nowGlobalCoolTime_ != 0) return;
         string name = "ファイア";
+        float gcd = 2.5f;
         int power = 5;
-        StartCoroutine(GlobalCoolDown(5));  //GCD
+        StartCoroutine(GlobalCoolDown(gcd));  //GCD
         //範囲
         OnAttack(target_, power);
         Instantiate(effect_.fire_, target_.position, Quaternion.identity);

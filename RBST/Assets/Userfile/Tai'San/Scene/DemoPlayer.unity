@@ -1132,7 +1132,7 @@ PrefabInstance:
     - target: {fileID: 6138337353257753731, guid: 86573eeecd78580478aae133792d068a, type: 3}
       propertyPath: effect_
       value: 
-      objectReference: {fileID: 11400000, guid: 22d2848084fd64340922a1298ac944e3, type: 2}
+      objectReference: {fileID: 11400000, guid: f383c23f9069d9542bda806503faf776, type: 2}
     - target: {fileID: 6138337353257753731, guid: 86573eeecd78580478aae133792d068a, type: 3}
       propertyPath: status_.hp_
       value: 5

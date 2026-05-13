@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayerAttackReference", menuName = "ScriptableObjects/Player/AttackReference")]
+[CreateAssetMenu(fileName = "AttackEffectReference", menuName = "ScriptableObjects/Player/AttackEffectReference")]
 public class AttackEffectReference : ScriptableObject
 {
     [SerializeField] public GameObject fire_;
