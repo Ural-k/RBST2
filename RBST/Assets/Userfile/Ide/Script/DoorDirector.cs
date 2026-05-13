@@ -26,21 +26,6 @@ public class DoorDirector : MonoBehaviour
 
     private void Update()
     {
-        //cube_が既にDestroyされている場合は、それ以降の処理を行わない
-        if (cube_ == null)
-        {
-            if(cube2_ == null)
-            {
-                if(cube3_ == null)
-                {
-                    if(cube4_ == null)
-                    {
-                        return;
-                    }
-                }
-            }
-        }
-
         //移動のコード類
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
@@ -58,67 +43,86 @@ public class DoorDirector : MonoBehaviour
         float vertical4 = Input.GetAxisRaw("Vertical4");
         Vector2 move4 = new Vector2(horizontal4, vertical4);
 
-        //今フレームで範囲内か
-        bool isInside
+        if(cube_ != null)
+        {
+            //今フレームで範囲内か
+            bool isInside
             = cube_.position.x
             >= minX_ && cube_.position.x
             <= maxX_ && cube_.position.y
             >= minY_ && cube_.position.y
             <= maxY_;
-        bool isInside2
-            = cube2_.position.x
-            >= minX_ && cube_.position.x
-            <= maxX_ && cube_.position.y
-            >= minY_ && cube_.position.y
-            <= maxY_;
-        bool isInside3
-            = cube3_.position.x
-            >= minX_ && cube_.position.x
-            <= maxX_ && cube_.position.y
-            >= minY_ && cube_.position.y
-            <= maxY_;
-        bool isInside4
-            = cube4_.position.x
-            >= minX_ && cube_.position.x
-            <= maxX_ && cube_.position.y
-            >= minY_ && cube_.position.y
-            <= maxY_;
 
-        //範囲内に入った場合の処理
-        if (isInside)
-        {
-            if(isInside2)
+            //範囲内に入った場合の処理
+            if (isInside)
             {
-                if(isInside3)
-                {
-                    if(isInside4)
-                    {
-                        //cube_のGameObjectを削除
-                        Destroy(cube_.gameObject);
-                        Destroy(cube2_.gameObject);
-                        Destroy(cube3_.gameObject);
-                        Destroy(cube4_.gameObject);
-
-                        //参照をnullにして、以降のUpdateで触らないようにする
-                        cube_ = null;
-                        cube2_ = null;
-                        cube3_ = null;
-                        cube4_ = null;
-
-                        //このフレームの残り処理をスキップ
-                        return;
-                    }
-                }
+                //cube_のGameObjectを削除
+                Destroy(cube_.gameObject);
+                //参照をnullにして、以降のUpdateで触らないようにする
+                cube_ = null;
+            }
+            else
+            {
+                //移動のコード類
+                cube_.Translate(move * speed_ * Time.deltaTime);
             }
         }
+        if (cube2_ != null)
+        {
+            bool isInside2
+            = cube2_.position.x
+            >= minX_ && cube2_.position.x
+            <= maxX_ && cube2_.position.y
+            >= minY_ && cube2_.position.y
+            <= maxY_;
 
-        //移動のコード類
-        cube_.Translate(move * speed_ * Time.deltaTime);
+            if (isInside2)
+            {
+                Destroy(cube2_.gameObject);
+                cube2_ = null;
+            }
+            else
+            {
+                cube2_.Translate(move2 * speed_ * Time.deltaTime);
+            }
+        }
+        if (cube3_ != null)
+        {
+            bool isInside3
+            = cube3_.position.x
+            >= minX_ && cube3_.position.x
+            <= maxX_ && cube3_.position.y
+            >= minY_ && cube3_.position.y
+            <= maxY_;
 
-        cube2_.Translate(move2 * speed2_ * Time.deltaTime);
+            if (isInside3)
+            {
+                Destroy(cube3_.gameObject);
+                cube3_ = null;
+            }
+            else
+            {
+                cube3_.Translate(move3 * speed_ * Time.deltaTime);
+            }
+        }
+        if (cube4_ != null)
+        {
+            bool isInside4
+            = cube4_.position.x
+            >= minX_ && cube4_.position.x
+            <= maxX_ && cube4_.position.y
+            >= minY_ && cube4_.position.y
+            <= maxY_;
 
-        cube3_.Translate(move3 * speed3_ * Time.deltaTime);
-
-        cube4_.Translate(move4 * speed4_ * Time.deltaTime);
+            if (isInside4)
+            {
+                Destroy(cube4_.gameObject);
+                cube4_ = null;
+            }
+            else
+            {
+                cube4_.Translate(move4 * speed_ * Time.deltaTime);
+            }
+        }
     }
 }
