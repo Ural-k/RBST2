@@ -18,7 +18,7 @@ public class PlayerBase : PlayerAttack, IDamageable
     protected virtual void PlayerMove()
     {
         Vector2 move_value = inputAxis_.ReadValue<Vector2>();
-        move_value *= speed_ * Time.deltaTime;
+        move_value *= status_.speed_ * Time.deltaTime;
         transform.position += (Vector3)move_value;
     }
 

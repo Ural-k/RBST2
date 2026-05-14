@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -7,46 +6,26 @@ using UnityEngine;
 /// </summary>
 public class PlayerAttack : PlayerStatus
 {
-    [SerializeField] AttackEffectReference effect_;
+    [SerializeField] AttackEffectReference effects_;
     [Header("クールダウン")]
-    [SerializeField] float nowGlobalCoolTime_ = 0;
-    [SerializeField] float nowCoolTime1_ = 0;
-    [SerializeField] float nowCoolTime2_ = 0;
-    [SerializeField] float nowCoolTime3_ = 0;
+    [SerializeField] float nowGCD_ = 0;
+    [SerializeField] float nowCD1_ = 0;
+    [SerializeField] float nowCD2_ = 0;
+    [SerializeField] float nowCD3_ = 0;
 
-    IEnumerator GlobalCoolDown(float gcd)
+    IEnumerator PlayerStatusUpdate()
     {
-        nowGlobalCoolTime_ = gcd;
-        while (nowGlobalCoolTime_ != 0)
+        while (true)
         {
-            nowGlobalCoolTime_ = Mathf.Max(nowGlobalCoolTime_ - Time.deltaTime, 0);
-            yield return null;
-        }
-    }
-    IEnumerator CoolDown1(float cd)
-    {
-        nowCoolTime1_ = cd;
-        while (nowCoolTime1_ != 0)
-        {
-            nowCoolTime1_ = Mathf.Max(nowCoolTime1_ - Time.deltaTime, 0);
-            yield return null;
-        }
-    }
-    IEnumerator CoolDown2(float cd)
-    {
-        nowCoolTime2_ = cd;
-        while (nowCoolTime1_ != 0)
-        {
-            nowCoolTime2_ = Mathf.Max(nowCoolTime2_ - Time.deltaTime, 0);
-            yield return null;
-        }
-    }
-    IEnumerator CoolDown3(float cd)
-    {
-        nowCoolTime3_ = cd;
-        while (nowCoolTime1_ != 0)
-        {
-            nowCoolTime3_ = Mathf.Max(nowCoolTime3_ - Time.deltaTime, 0);
+            //GCD・CD
+            nowGCD_ = Mathf.Max(nowGCD_ - Time.deltaTime, 0);
+            nowCD1_ = Mathf.Max(nowGCD_ - Time.deltaTime, 0);
+            nowCD2_ = Mathf.Max(nowGCD_ - Time.deltaTime, 0);
+            nowCD3_ = Mathf.Max(nowGCD_ - Time.deltaTime, 0);
+
+            //バフ・デバフ
+
+
             yield return null;
         }
     }
@@ -61,23 +40,23 @@ public class PlayerAttack : PlayerStatus
     [SerializeField] Skill skill2_;
     [SerializeField] Skill skill3_;
     delegate void Attacks();
-    Attacks[] attacks_ = new Attacks[(int)Skill.Length];
+    Attacks[] skills_ = new Attacks[(int)Skill.Length];
 
-    public void Attack1() { attacks_[(int)Skill.Fire](); }
-    public void Attack2() { attacks_[(int)skill2_](); }
-    public void Attack3() { attacks_[(int)skill3_](); }
+    public void Attack1() { skills_[(int)Skill.Fire](); }
+    public void Attack2() { skills_[(int)skill2_](); }
+    public void Attack3() { skills_[(int)skill3_](); }
 
     void OnAttack(Transform target, float power = 1, float radian = 0, Vector2? wh = null, Vector2? scale = null, Vector2? offset = null)
     {
-        if (nowGlobalCoolTime_ != 0 || target == null) return;
+        if (nowGCD_ != 0 || target == null) return;
         offset = offset ?? Vector2.zero;
         scale = scale ?? Vector2.one;
     }
 
     protected void InitalAttack()
     {
-        attacks_[(int)Skill.Fire] = Fire;                       //ファイア
-        attacks_[(int)Skill.Meteor] = Meteor;                   //メテオ
+        skills_[(int)Skill.Fire] = Fire;                       //ファイア
+        skills_[(int)Skill.Meteor] = Meteor;                   //メテオ
     }
 
     /*
@@ -86,14 +65,14 @@ public class PlayerAttack : PlayerStatus
 
     public void Fire()
     {
-        if (target_ == null || nowGlobalCoolTime_ != 0) return;
+        if (target_ == null || nowGCD_ != 0) return;
         string name = "ファイア";
         float gcd = 2.5f;
         int power = 5;
-        StartCoroutine(GlobalCoolDown(gcd));  //GCD
+        nowGCD_ = gcd;  //GCD
         //範囲
         OnAttack(target_, power);
-        Instantiate(effect_.fire_, target_.position, Quaternion.identity);
+        Instantiate(effects_.fire_, target_.position, Quaternion.identity);
         //↓ここから特殊処理
         Debug.Log($"*{gameObject.name}*の{name}! → {power} ダメージ → *{target_.gameObject.name}*");
 
