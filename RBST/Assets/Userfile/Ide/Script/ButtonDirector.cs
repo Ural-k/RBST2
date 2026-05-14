@@ -4,63 +4,94 @@ using UnityEngine.UI;
 
 public class ButtonDirector : MonoBehaviour
 {
-    public Button[] buttons_;           //ボタン配列UI
-    private int currentIndex_ = 0;      //現在選択中のボタン番号
-    private bool isSwapped_ = false;    //キーが入れ替わっているかどうか
+    public Button[] buttons_;        //UIボタン配列
+    public int columnCount_;         //横方向のボタン数
+    private int currentIndex_ = 0;   //現在選択中のボタン番号
 
     void Start()
     {
-        //ボタンが2つ以上ある場合のみ処理
+        //ボタンが1つ以上ある場合のみ初期選択を設定
         if (buttons_.Length > 0)
         {
-            //最初のボタンを選択状態にする
-            EventSystem.current.SetSelectedGameObject(buttons_[currentIndex_].gameObject);
+            UpdateSelection();
         }
     }
 
     void Update()
     {
-        //ボタンが存在しない場合は何もしない
+        //ボタンが未設定の場合は処理しない
         if (buttons_.Length == 0)
         {
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            if(!isSwapped_)
-            {
-                //通常
-                currentIndex_ = (currentIndex_ - 1 + buttons_.Length) % buttons_.Length;
-            }
-            else
-            {
-                //切り替え後
-                currentIndex_ = (currentIndex_ + 1) % buttons_.Length;
-            }
+        //現在の行番号
+        int rowIndex = currentIndex_ / columnCount_;
 
-            //選択中のUIを更新
-            EventSystem.current.SetSelectedGameObject(buttons_[currentIndex_].gameObject);
+        //現在の列番号
+        int columnIndex = currentIndex_ % columnCount_;
+
+        //最下段の行番号
+        int maxRowIndex = (buttons_.Length - 1) / columnCount_;
+
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            rowIndex--;
+
+            //上端を超えたら最下段へループ
+            if (rowIndex < 0)
+            {
+                rowIndex = maxRowIndex;
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            if(!isSwapped_)
-            {
-                currentIndex_ = (currentIndex_ + 1) % buttons_.Length;
-            }
-            else
-            {
-                currentIndex_ = (currentIndex_ - 1 + buttons_.Length) % buttons_.Length;
-            }
+            rowIndex++;
 
-            EventSystem.current.SetSelectedGameObject(buttons_[currentIndex_].gameObject);
+            //下端を超えたら最上段へループ
+            if (rowIndex > maxRowIndex)
+            {
+                rowIndex = 0;
+            }
         }
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.A))
         {
-            //フラグを反転
-            isSwapped_ = !isSwapped_;
+            columnIndex--;
+
+            //左端を超えたら右端へループ
+            if (columnIndex < 0)
+            {
+                columnIndex = columnCount_ - 1;
+            }
         }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            columnIndex++;
+
+            //右端を超えたら左端へループ
+            if (columnIndex >= columnCount_)
+            {
+                columnIndex = 0;
+            }
+        }
+
+        //行・列 → 配列インデックスへ変換
+        int newIndex = rowIndex * columnCount_ + columnIndex;
+
+        // 範囲チェックをして存在しないボタンは無視する
+        if (newIndex < buttons_.Length)
+        {
+            currentIndex_ = newIndex;
+            UpdateSelection();
+        }
+    }
+
+    // 現在選択中のUIを更新する
+    void UpdateSelection()
+    {
+        EventSystem.current.SetSelectedGameObject(buttons_[currentIndex_].gameObject);
     }
 }
