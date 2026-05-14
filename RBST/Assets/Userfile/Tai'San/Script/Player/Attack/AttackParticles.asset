@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 007d217c98b7d32499416530a6c33dc8, type: 3}
-  m_Name: AttackEffectReference
-  m_EditorClassIdentifier: Assembly-CSharp::AttackEffectReference
+  m_Name: AttackParticles
+  m_EditorClassIdentifier: Assembly-CSharp::AttackParticles
   fire_: {fileID: 3419249946162298372, guid: c0c64ae9232a77c46b85d4b00dc341bc, type: 3}
   meteor_: {fileID: 0}

@@ -10,6 +10,7 @@ public class PlayerBase : PlayerAttack, IDamageable
         PlayerManager.AddPlayer((Player)this);
         inputAxis_ = InputSystem.actions.FindAction("Move");
         InitalAttack();
+        StartCoroutine(PlayerStatusUpdate());
     }
 
     /// <summary>
@@ -18,7 +19,7 @@ public class PlayerBase : PlayerAttack, IDamageable
     protected virtual void PlayerMove()
     {
         Vector2 move_value = inputAxis_.ReadValue<Vector2>();
-        move_value *= status_.speed_ * Time.deltaTime;
+        move_value *= parameter_.speed_ * Time.deltaTime;
         transform.position += (Vector3)move_value;
     }
 

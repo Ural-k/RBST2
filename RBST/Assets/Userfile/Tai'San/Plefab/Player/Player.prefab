@@ -47,13 +47,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f6af70f0379080478e1056345998df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  jobName_: 
-  playerName_: 
-  speed_: 0
-  attack_: 0
-  defense_: 0
-  gcd_: 0
-  critical_: 0
+  status_:
+    jobName_: 
+    playerName_: 
+    speed_: 0
+    attack_: 0
+    defense_: 0
+    critical_: 0
+    lv_: 0
+  targetersObject_: {fileID: 0}
+  targetGraphic_: {fileID: 0}
+  particles_: {fileID: 11400000, guid: 97899c7857ebebf43a3c2d4599b17484, type: 2}
+  nowGCD_: 0
+  nowCD1_: 0
+  nowCD2_: 0
+  nowCD3_: 0
+  skill1_: 0
+  skill2_: 0
+  skill3_: 0
 --- !u!114 &6782165398992391355
 MonoBehaviour:
   m_ObjectHideFlags: 0
