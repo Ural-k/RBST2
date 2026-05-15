@@ -16,6 +16,17 @@ public class PlayerStatus : MonoBehaviour
         public uint lv_;               //現在のレベル
     }
 
+    protected void SubtractionParameter(Parameter p)
+    {
+        parameter_.hp_ += p.hp_;
+        parameter_.speed_ += p.speed_;
+        parameter_.attack_ += p.attack_;
+        parameter_.defense_ += p.defense_;
+        parameter_.critical_ += p.critical_;
+        parameter_.lv_ += p.lv_;
+        Debug.Log("デバフ発動");
+    }
+
     [Header("パラメータ")]
     [SerializeField] protected Parameter parameter_;
     protected enum TargetType

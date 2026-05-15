@@ -3,11 +3,12 @@ using UnityEngine.InputSystem;
 
 public class Player : PlayerBase
 {
-    void Update()
+    private void Update()
     {
         PlayerMove();
         if (Input.GetKeyUp(KeyCode.Space)) OnTarget();  //デバック用仮処理↓↓
         if (Input.GetMouseButtonDown(1)) Attack2();
+        if(Input.GetKeyDown(KeyCode.B)) TakeMeBuff();
     }
 
     public void InputAttack1(InputAction.CallbackContext context) { if (context.performed) Attack1(); }
