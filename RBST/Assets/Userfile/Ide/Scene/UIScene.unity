@@ -3004,6 +3004,7 @@ MonoBehaviour:
   - {fileID: 403578908}
   - {fileID: 163833398}
   columnCount_: 4
+  currentIndex_: 0
 --- !u!4 &1654873468
 Transform:
   m_ObjectHideFlags: 0

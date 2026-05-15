@@ -6,14 +6,15 @@ public class ButtonDirector : MonoBehaviour
 {
     public Button[] buttons_;        //UIボタン配列
     public int columnCount_;         //横方向のボタン数
-    private int currentIndex_ = 0;   //現在選択中のボタン番号
+    public int currentIndex_;        //現在選択中のボタン番号
 
     void Start()
     {
         //ボタンが1つ以上ある場合のみ初期選択を設定
         if (buttons_.Length > 0)
         {
-            UpdateSelection();
+            //現在選択中のUIを更新する
+            EventSystem.current.SetSelectedGameObject(buttons_[currentIndex_].gameObject);
         }
     }
 
@@ -81,17 +82,11 @@ public class ButtonDirector : MonoBehaviour
         //行・列 → 配列インデックスへ変換
         int newIndex = rowIndex * columnCount_ + columnIndex;
 
-        // 範囲チェックをして存在しないボタンは無視する
+        //範囲チェックをして存在しないボタンは無視する
         if (newIndex < buttons_.Length)
         {
             currentIndex_ = newIndex;
-            UpdateSelection();
+            EventSystem.current.SetSelectedGameObject(buttons_[currentIndex_].gameObject);
         }
-    }
-
-    // 現在選択中のUIを更新する
-    void UpdateSelection()
-    {
-        EventSystem.current.SetSelectedGameObject(buttons_[currentIndex_].gameObject);
     }
 }
