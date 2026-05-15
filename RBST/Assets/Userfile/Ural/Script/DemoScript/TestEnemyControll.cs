@@ -6,6 +6,9 @@ public class TestEnemyControll : MonoBehaviour
     [SerializeField] private GameObject debug_;
     [SerializeField] private GameObject square_;
     [SerializeField] private Vector2 positionAOE_;
+    [SerializeField] private AOEShapeWrapper shapeWrapper_;
+
+    [SerializeField] private AOEColect colect_;
     void Start()
     {
         
@@ -31,8 +34,8 @@ public class TestEnemyControll : MonoBehaviour
 
             positionAOE_ = player.GetComponent<Transform>().transform.position;
 
-            var cricle = Instantiate(debug_, positionAOE_, Quaternion.identity);
-            cricle.GetComponent<AOEControll>().isActive();
+            var debug = Instantiate(debug_, positionAOE_, Quaternion.identity);
+            debug.GetComponent<AOEControll>().IsActive(shapeWrapper_.CallAOE(colect_));
         }
     }
 }
