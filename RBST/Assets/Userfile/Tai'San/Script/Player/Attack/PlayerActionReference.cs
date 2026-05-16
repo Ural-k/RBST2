@@ -53,11 +53,13 @@ public struct ActionInfo1
     //変動しない値
     public string name_;                //攻撃名
     public TargetType type_;            //攻撃対象o
-    public Action combo_;     //次に実行できるようになる技
+    public Action combo_;               //次に実行できるようになる技
     public Buff buff_;                  //付与するバフ
     public DeBuff deBuff_;              //付与するデバフ
+    public Vector2 jump_;               //飛びつき
+    public Vector2 position;            //座標
 
-    //攻撃範囲
+    //範囲
     public Vector2 aspect_;             //初期アスペクト比[versionAspect]o
     public float radius_;               //初期半径[varsionRadius]o
 
@@ -109,37 +111,37 @@ public struct ActionInfo1
                 { setflag |= 1 << 3; allVarsion.setSpeed_ = oneVersion.setSpeed_; }
             }
             //強化の変化量・倍率を合算
-            allVarsion.versionScaleLevel_ += oneVersion.versionScaleLevel_;
-            allVarsion.versionPower_ += oneVersion.versionPower_;
-            allVarsion.versionGcd_ += oneVersion.versionGcd_;
-            allVarsion.versionCd_ += oneVersion.versionCd_;
-            allVarsion.versionSpeed_ += oneVersion.versionSpeed_;
-            allVarsion.ratePower_ *= oneVersion.ratePower_;
-            allVarsion.rateGcd_ *= oneVersion.rateGcd_;
-            allVarsion.rateCd_ *= oneVersion.rateCd_;
-            allVarsion.rateSpeed_ *= oneVersion.rateSpeed_;
+            allVarsion.versionScaleLevel_   += oneVersion.versionScaleLevel_;
+            allVarsion.versionPower_        += oneVersion.versionPower_;
+            allVarsion.versionGcd_          += oneVersion.versionGcd_;
+            allVarsion.versionCd_           += oneVersion.versionCd_;
+            allVarsion.versionSpeed_        += oneVersion.versionSpeed_;
+            allVarsion.ratePower_   *= oneVersion.ratePower_;
+            allVarsion.rateGcd_     *= oneVersion.rateGcd_;
+            allVarsion.rateCd_      *= oneVersion.rateCd_;
+            allVarsion.rateSpeed_   *= oneVersion.rateSpeed_;
         }
         //固定値割り当て
         if (!dynamic)
         {
-            power_ = allVarsion.setPower_ == 0 ? power_ : allVarsion.setPower_;
-            gcd_ = allVarsion.setGcd_ == 0 ? gcd_ : allVarsion.setGcd_;
-            cd_ = allVarsion.setCd_ == 0 ? cd_ : allVarsion.setCd_;
-            speed_ = allVarsion.setSpeed_ == 0 ? speed_ : allVarsion.setSpeed_;
+            power_  = allVarsion.setPower_  == 0 ? power_   : allVarsion.setPower_;
+            gcd_    = allVarsion.setGcd_    == 0 ? gcd_     : allVarsion.setGcd_;
+            cd_     = allVarsion.setCd_     == 0 ? cd_      : allVarsion.setCd_;
+            speed_  = allVarsion.setSpeed_  == 0 ? speed_   : allVarsion.setSpeed_;
         }
         //変化量割り当て
-        power_ += allVarsion.versionPower_;
-        gcd_ += allVarsion.versionGcd_;
-        cd_ += allVarsion.versionCd_;
-        speed_ += allVarsion.versionSpeed_;
+        power_  += allVarsion.versionPower_;
+        gcd_    += allVarsion.versionGcd_;
+        cd_     += allVarsion.versionCd_;
+        speed_  += allVarsion.versionSpeed_;
         //変化量割り当て(範囲)
-        if (aspect_ != Vector2.zero) aspect_ = versionAspect_ * allVarsion.versionScaleLevel_;
-        if (radius_ != 0) radius_ = versionRadius_ * allVarsion.versionScaleLevel_;
+        if (aspect_ != Vector2.zero)    aspect_ = versionAspect_ * allVarsion.versionScaleLevel_;
+        if (radius_ != 0)               radius_ = versionRadius_ * allVarsion.versionScaleLevel_;
         //変化倍率割り当て
-        power_ = (int)(power_ * allVarsion.ratePower_);
-        gcd_ *= allVarsion.rateGcd_;
-        cd_ *= allVarsion.rateCd_;
-        speed_ *= allVarsion.rateSpeed_;
+        power_  = (int)(power_ * allVarsion.ratePower_);
+        gcd_    *= allVarsion.rateGcd_;
+        cd_     *= allVarsion.rateCd_;
+        speed_  *= allVarsion.rateSpeed_;
     }
 }
 
@@ -155,7 +157,7 @@ public struct ActionInfo2
     public float setCd_;                //固定(cd)
     public float setSpeed_;             //固定(スピード)
 
-    public int versionScaleLevel_;             //変化量(スケールレベル)
+    public int versionScaleLevel_;      //変化量(スケールレベル)
     public int versionPower_;           //変化量(攻撃力)
     public float versionGcd_;           //変化量(gcd)
     public float versionCd_;            //変化量(cd)

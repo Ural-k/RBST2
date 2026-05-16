@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7180225609008546129}
   - component: {fileID: 6138337353257753731}
+  - component: {fileID: 7477228226963313838}
   - component: {fileID: 6782165398992391355}
   - component: {fileID: 2511807836803375239}
   m_Layer: 0
@@ -47,9 +48,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f6af70f0379080478e1056345998df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  status_:
+  parameter_:
     jobName_: 
     playerName_: 
+    hp_: 0
     speed_: 0
     attack_: 0
     defense_: 0
@@ -57,14 +59,20 @@ MonoBehaviour:
     lv_: 0
   targetersObject_: {fileID: 0}
   targetGraphic_: {fileID: 0}
+--- !u!114 &7477228226963313838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5928127022687353163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed269ee190a8f2143b2d631f7c96976d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAction
   particles_: {fileID: 11400000, guid: 97899c7857ebebf43a3c2d4599b17484, type: 2}
-  nowGCD_: 0
-  nowCD1_: 0
-  nowCD2_: 0
-  nowCD3_: 0
-  skill1_: 0
-  skill2_: 0
-  skill3_: 0
+  reference_: {fileID: 11400000, guid: 102947632d6e34440849a7676cc03762, type: 2}
 --- !u!114 &6782165398992391355
 MonoBehaviour:
   m_ObjectHideFlags: 0

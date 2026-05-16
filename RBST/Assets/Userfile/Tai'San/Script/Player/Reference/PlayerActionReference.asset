@@ -18,6 +18,8 @@ MonoBehaviour:
     combo_: 0
     buff_: 0
     deBuff_: 0
+    jump_: {x: 0, y: 0}
+    position: {x: 0, y: 0}
     aspect_: {x: 0, y: 0}
     radius_: 5
     power_: 300
@@ -31,6 +33,8 @@ MonoBehaviour:
     combo_: 0
     buff_: 0
     deBuff_: 0
+    jump_: {x: 0, y: 0}
+    position: {x: 0, y: 0}
     aspect_: {x: 0, y: 0}
     radius_: 5
     power_: 300
