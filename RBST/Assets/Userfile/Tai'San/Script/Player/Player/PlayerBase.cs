@@ -3,14 +3,12 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerBase : PlayerAttack, IDamageable
+public class PlayerBase : PlayerStatus, IDamageable
 {
     private void Start()
     {
         PlayerManager.AddPlayer((Player)this);
         inputAxis_ = InputSystem.actions.FindAction("Move");
-        InitalAttack();
-        StartCoroutine(PlayerStatusUpdate());
     }
 
     /// <summary>

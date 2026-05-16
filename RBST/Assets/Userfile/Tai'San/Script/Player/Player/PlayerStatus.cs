@@ -29,10 +29,6 @@ public class PlayerStatus : MonoBehaviour
 
     [Header("パラメータ")]
     [SerializeField] protected Parameter parameter_;
-    protected enum TargetType
-    {
-        Enemy,Player,Natural
-    }
 
     protected InputAction   inputAxis_;         //移動キー入力
     protected Transform     target_ = null;     //ターゲット中のTransfrom
