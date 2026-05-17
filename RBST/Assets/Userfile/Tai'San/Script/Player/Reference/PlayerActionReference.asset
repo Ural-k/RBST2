@@ -13,33 +13,18 @@ MonoBehaviour:
   m_Name: PlayerActionReference
   m_EditorClassIdentifier: Assembly-CSharp::PlayerActionReference
   actionInfo_:
-  - name_: "\u30D5\u30A1\u30A4\u30A2"
-    type_: 0
+  - name_: Fire
+    target_: 0
     combo_: 0
     buff_: 0
     deBuff_: 0
-    jump_: {x: 0, y: 0}
-    position: {x: 0, y: 0}
+    jump_: 0
+    offset_: {x: 5, y: 0}
     aspect_: {x: 0, y: 0}
-    radius_: 5
+    radius_: 1
     power_: 300
     gcd_: 3
     cd_: 0
-    speed_: -99
-    versionAspect_: {x: 0, y: 0}
-    versionRadius_: 0.5
-  - name_: "\u30D5\u30A1\u30A4\u30A2"
-    type_: 0
-    combo_: 0
-    buff_: 0
-    deBuff_: 0
-    jump_: {x: 0, y: 0}
-    position: {x: 0, y: 0}
-    aspect_: {x: 0, y: 0}
-    radius_: 5
-    power_: 300
-    gcd_: 3
-    cd_: 0
-    speed_: -99
+    speed_: 1
     versionAspect_: {x: 0, y: 0}
     versionRadius_: 0.5

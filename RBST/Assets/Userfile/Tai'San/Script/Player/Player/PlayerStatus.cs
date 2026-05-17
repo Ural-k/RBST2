@@ -8,23 +8,13 @@ public class PlayerStatus : MonoBehaviour
     {
         public string jobName_;         //職業名
         public string playerName_;      //プレイヤーの名前
-        public float hp_;
+        public float maxHp_;            //最大HP
+        public float hp_;               //現在のHP
         public float speed_;            //移動速度
         public float attack_;           //攻撃力
         public float defense_;          //防御力
         public float critical_;         //クリティカル率
         public uint lv_;               //現在のレベル
-    }
-
-    protected void SubtractionParameter(Parameter p)
-    {
-        parameter_.hp_ += p.hp_;
-        parameter_.speed_ += p.speed_;
-        parameter_.attack_ += p.attack_;
-        parameter_.defense_ += p.defense_;
-        parameter_.critical_ += p.critical_;
-        parameter_.lv_ += p.lv_;
-        Debug.Log("デバフ発動");
     }
 
     [Header("パラメータ")]

@@ -4,28 +4,17 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PlayerActionReference", menuName = "ScriptableObjects/Player/PlayerActionReference")]
 public class PlayerActionReference : ScriptableObject
 {
-    [SerializeField] List<ActionInfo1> actionInfo_ = new List<ActionInfo1>();
+    [SerializeField] private List<ActionInfo1> actionInfo_ = new List<ActionInfo1>();
     public ActionInfo1 GetActionInfo(Action attackName) { return actionInfo_[(int)attackName]; }
 }
 
 public enum Action
 {
-    Null,
-    Fire,
+    Null = 99,
+    Fire = 0,
     Thunder,
     Bit,
     BitUpgrade,
-}
-
-public enum Buff
-{
-    Null,
-}
-
-public enum DeBuff
-{
-    Null,
-    Thunder,
 }
 
 //攻撃対象
@@ -50,14 +39,14 @@ public struct ActionInfo1
      :  ・マウス
      */
     
-    //変動しない値
+    //固定ステータス
     public string name_;                //攻撃名
-    public TargetType type_;            //攻撃対象o
+    public TargetType target_;          //攻撃対象o
     public Action combo_;               //次に実行できるようになる技
     public Buff buff_;                  //付与するバフ
     public DeBuff deBuff_;              //付与するデバフ
-    public Vector2 jump_;               //飛びつき
-    public Vector2 position;            //座標
+    public bool jump_;                  //飛びつき
+    public Vector2 offset_;           //座標o
 
     //範囲
     public Vector2 aspect_;             //初期アスペクト比[versionAspect]o

@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerBase : PlayerStatus, IDamageable
+public class PlayerBase : PlayerAction, IDamageable
 {
     private void Start()
     {
@@ -24,7 +24,7 @@ public class PlayerBase : PlayerStatus, IDamageable
     /// <summary>
     /// ターゲット(左上から)
     /// </summary>
-    protected void OnTarget()
+    protected void OnTarget()//将来的に近い敵からで取得したい
     {
         if (targetersObject_ == null || targetersObject_.transform.childCount == 0) return;
 
