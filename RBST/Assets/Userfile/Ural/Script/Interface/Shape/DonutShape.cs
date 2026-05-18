@@ -4,22 +4,26 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class DounutShape : IAOEshape
 {
-    private float innerRadius;
+    private float innerRadius_;
+    private AOEColect aoeColect_;
 
-    public Collider2D[] GetHits(float radius, Vector2 center)
+    public float InnerRadius { get { return innerRadius_; }  set { innerRadius_ = value; } }
+
+    public AOEColect AOEColect
     {
-        return GetHits(innerRadius, radius, center);
+        get { return aoeColect_; }
     }
-    public Collider2D[] GetHits(float innerRadius, float outerRadius, Vector2 center)
+    public Collider2D[] GetHits(float radius, Vector3 center)
     {
+        aoeColect_ = AOEColect.Donut;
 
-        var hits = Physics2D.OverlapCircleAll(center, outerRadius);
+        var hits = Physics2D.OverlapCircleAll(center, radius);
         List<Collider2D> result = new List<Collider2D>();
 
         foreach (var hit in hits)
         {
-            float sqrDist = ((Vector2)hit.transform.position - center).sqrMagnitude;
-            if (sqrDist >= innerRadius * innerRadius)
+            float sqrDist = ((Vector3)hit.transform.position - center).sqrMagnitude;
+            if (sqrDist >= innerRadius_ * innerRadius_)
             {
                 result.Add(hit);
             }
@@ -28,7 +32,7 @@ public class DounutShape : IAOEshape
         return result.ToArray();
     }
 
-   public void OnDrawGizmos(float radius,Vector2 center)
+   public void OnDrawGizmos(float radius,Vector3 center)
     {
         Gizmos.color = Color.yellow;
 
@@ -37,6 +41,8 @@ public class DounutShape : IAOEshape
 
         // “à‘¤
         Gizmos.color = Color.black;
-        Gizmos.DrawWireSphere(center, innerRadius);
+        Gizmos.DrawWireSphere(center, innerRadius_);
     }
 }
+
+

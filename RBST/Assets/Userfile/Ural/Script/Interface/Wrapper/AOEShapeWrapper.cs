@@ -29,15 +29,15 @@ public class AOEShapeWrapper
     public IAOEshape CallAOE(AOEColect colect)
     {
         IAOEshape temp;
-        switch (colect)
+        switch ((int)colect)
         {
-            case AOEColect.Circle:
+            case (int)AOEColect.Circle:
                 temp = circleShape_;
                 return (temp);
-            case AOEColect.Box:
+            case (int)AOEColect.Box:
                 temp = boxShape_;
                 return (temp);
-            case AOEColect.Donut:
+            case (int)AOEColect.Donut:
                 temp = donutShape_;
                 return (temp);
             default:

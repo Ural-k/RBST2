@@ -4,8 +4,17 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class BoxShape : IAOEshape
 {
-    public Collider2D[] GetHits(float radius,Vector2 center)
+
+    public float InnerRadius { get; set; }
+    private AOEColect aoeColect_;
+
+    public AOEColect AOEColect
     {
+        get { return aoeColect_; }
+    }
+    public Collider2D[] GetHits(float radius,Vector3 center)
+    {
+        aoeColect_ = AOEColect.Box;
         float size = radius * 2;
         Vector2 scale = new Vector2(size, size);
 
@@ -13,7 +22,7 @@ public class BoxShape : IAOEshape
     }
 
 
-    public void OnDrawGizmos(float radius,Vector2 center)
+    public void OnDrawGizmos(float radius,Vector3 center)
     {
         float size = radius * 2;
         Vector2 scale = new Vector2(size, size);
