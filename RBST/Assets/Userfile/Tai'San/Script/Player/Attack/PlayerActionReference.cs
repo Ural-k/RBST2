@@ -46,21 +46,17 @@ public struct ActionInfo1
     public Buff buff_;                  //付与するバフ
     public DeBuff deBuff_;              //付与するデバフ
     public bool jump_;                  //飛びつき
-    public Vector2 offset_;           //座標o
+    public Vector2 offset_;             //座標o
 
     //範囲
-    public Vector2 aspect_;             //初期アスペクト比[versionAspect]o
-    public float radius_;               //初期半径[varsionRadius]o
+    public Vector2 aspect_;             //初期アスペクト比[versionAspect,scale]o
+    public float radius_;               //初期半径[varsionRadius,scale]o
 
     //攻撃パラメータ
     public int power_;                  //攻撃力[power]
     public float gcd_;                  //GCD(0にするとGCDの干渉を受けなくなる)[gcd]
     public float cd_;                   //CD[cd]
     public float speed_;                //攻撃時のスピード[speed]
-
-    //レベル分の変化量
-    public Vector2 versionAspect_;      //変化量(アスペクト比)[3.scale(1.aspect)]
-    public float versionRadius_;        //変化量(半径)[3.scale(1.radius)]
 
     /// <summary>
     /// Info2の情報を元にInfo1書き換え
@@ -80,7 +76,6 @@ public struct ActionInfo1
          :   固定値割り当て
          :          ↓
          :   変化量割り当て
-         :   変化量割り当て(範囲)
          :          ↓
          :   変化倍率割り当て
          */
@@ -100,7 +95,7 @@ public struct ActionInfo1
                 { setflag |= 1 << 3; allVarsion.setSpeed_ = oneVersion.setSpeed_; }
             }
             //強化の変化量・倍率を合算
-            allVarsion.versionScaleLevel_   += oneVersion.versionScaleLevel_;
+            allVarsion.versionScale_        += oneVersion.versionScale_;
             allVarsion.versionPower_        += oneVersion.versionPower_;
             allVarsion.versionGcd_          += oneVersion.versionGcd_;
             allVarsion.versionCd_           += oneVersion.versionCd_;
@@ -110,6 +105,8 @@ public struct ActionInfo1
             allVarsion.rateCd_      *= oneVersion.rateCd_;
             allVarsion.rateSpeed_   *= oneVersion.rateSpeed_;
         }
+
+        //--<割り当て>-------------------------------------------------------------------
         //固定値割り当て
         if (!dynamic)
         {
@@ -119,13 +116,12 @@ public struct ActionInfo1
             speed_  = allVarsion.setSpeed_  == 0 ? speed_   : allVarsion.setSpeed_;
         }
         //変化量割り当て
-        power_  += allVarsion.versionPower_;
+        if (aspect_ != Vector2.zero) aspect_ += Vector2.one * allVarsion.versionScale_;
+        if (radius_ != 0) radius_ += allVarsion.versionScale_;
+        power_ += allVarsion.versionPower_;
         gcd_    += allVarsion.versionGcd_;
         cd_     += allVarsion.versionCd_;
         speed_  += allVarsion.versionSpeed_;
-        //変化量割り当て(範囲)
-        if (aspect_ != Vector2.zero)    aspect_ = versionAspect_ * allVarsion.versionScaleLevel_;
-        if (radius_ != 0)               radius_ = versionRadius_ * allVarsion.versionScaleLevel_;
         //変化倍率割り当て
         power_  = (int)(power_ * allVarsion.ratePower_);
         gcd_    *= allVarsion.rateGcd_;
@@ -146,7 +142,7 @@ public struct ActionInfo2
     public float setCd_;                //固定(cd)
     public float setSpeed_;             //固定(スピード)
 
-    public int versionScaleLevel_;      //変化量(スケールレベル)
+    public int versionScale_;           //変化量(スケール)
     public int versionPower_;           //変化量(攻撃力)
     public float versionGcd_;           //変化量(gcd)
     public float versionCd_;            //変化量(cd)

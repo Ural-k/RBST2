@@ -21,10 +21,8 @@ MonoBehaviour:
     jump_: 0
     offset_: {x: 5, y: 0}
     aspect_: {x: 0, y: 0}
-    radius_: 1
+    radius_: 0.1
     power_: 300
     gcd_: 3
     cd_: 0
     speed_: 1
-    versionAspect_: {x: 0, y: 0}
-    versionRadius_: 0.5

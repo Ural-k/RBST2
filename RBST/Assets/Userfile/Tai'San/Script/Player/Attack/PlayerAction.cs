@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.AdaptivePerformance.Provider.AdaptivePerformanceSubsystemDescriptor;
 
 public class PlayerAction : PlayerStatus
 {
@@ -16,7 +15,7 @@ public class PlayerAction : PlayerStatus
 
     public void OnAction(Action name)
     {
-        //継承したときのみ使える変数
+        //継承したときのみ使える変数(継承するか未定)
         Vector2 position;
 
         //---------------------------------------------------------------
@@ -25,18 +24,25 @@ public class PlayerAction : PlayerStatus
         //info.InfoSet(,true);←これを強化終了時にdynamicをfalseにして呼び出し&強化クラスにActionInfo2のListを作ってdynamicをtrueにして呼び出し
 
         position = (Vector2)transform.position + info.offset_;
-        Instantiate(particles_.fire_, position, Quaternion.identity);//パーティクル
 
-        List<Collider2D> hits = new List<Collider2D>();
-        Collider2D[] circleHit = Physics2D.OverlapCircleAll(position, info.radius_);
-        //Collider2D[] squareHit = Physics2D.OverlapBoxAll(position, info.aspect_, 0);//angle仮
-        foreach(Collider2D c in circleHit) { hits.Add(c); }
-        //foreach(Collider2D c in squareHit) { hits.Add(c); }
-        
-        if (hits.Count == 0) return;
-
-        bool square = info.aspect_ != Vector2.zero;
+        Collider2D[] hits = new Collider2D[0];
         bool circle = info.radius_ != 0;
+        bool square = info.aspect_ != Vector2.zero;
+
+        var ins = Instantiate(particles_.fire_, position, Quaternion.identity);//パーティクル
+        if (circle)
+        {
+            ins.transform.localScale = Vector2.one * info.radius_;
+            hits = Physics2D.OverlapCircleAll(position, info.radius_);
+        }
+        else if(square)
+        {
+            ins.transform.localScale = info.aspect_;
+            hits = Physics2D.OverlapBoxAll(position, info.aspect_, 0);
+        }
+        
+        if (hits.Length == 0) return;//当たっていない
+
         switch (info.target_)
         {
             case TargetType.Enemy:
