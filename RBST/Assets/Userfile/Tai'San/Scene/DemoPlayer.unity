@@ -1278,6 +1278,26 @@ PrefabInstance:
       propertyPath: status_.criticalPercent_
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 6138337353257753731, guid: 86573eeecd78580478aae133792d068a, type: 3}
+      propertyPath: demoEnemyList_.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6138337353257753731, guid: 86573eeecd78580478aae133792d068a, type: 3}
+      propertyPath: 'demoEnemyList_.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1107810453}
+    - target: {fileID: 6138337353257753731, guid: 86573eeecd78580478aae133792d068a, type: 3}
+      propertyPath: 'demoEnemyList_.Array.data[1]'
+      value: 
+      objectReference: {fileID: 895329404}
+    - target: {fileID: 6138337353257753731, guid: 86573eeecd78580478aae133792d068a, type: 3}
+      propertyPath: 'demoEnemyList_.Array.data[2]'
+      value: 
+      objectReference: {fileID: 1063052300}
+    - target: {fileID: 6138337353257753731, guid: 86573eeecd78580478aae133792d068a, type: 3}
+      propertyPath: 'demoEnemyList_.Array.data[3]'
+      value: 
+      objectReference: {fileID: 662811968}
     - target: {fileID: 7180225609008546129, guid: 86573eeecd78580478aae133792d068a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

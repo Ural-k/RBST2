@@ -17,17 +17,6 @@ public enum Action
     Null,
 }
 
-public enum ActionType
-{
-    Null,
-    ToEnemy,
-    ToPlayer,
-    OffsetToEnemy,
-    OffsetToPlayer,
-    JumpOnToEnemy,
-    JumpOnToPlayer,
-}
-
 //攻撃対象
 public enum TargetType
 {
@@ -36,27 +25,28 @@ public enum TargetType
     Natural,
     Null
 }
+ 
 
 //１つ攻撃に必要な基底の値と強化情報
 [System.Serializable]
 public struct ActionInfo1
 {                                       //役割[参照する強化値(変動する値)]
-    /*
-     :  追加する値メモ
+    /* 追加する値メモ
      :  ・突進するかどうか
      :  ・ターゲットの座標に設置
      :  ・offset,rotate
      :  ・inputで向き指定
      :  ・マウス
      */
-    
+
     //固定ステータス
-    public string name_;                //攻撃名
-    public TargetType targetType_;      //実行対象
-    public ActionType actionType_;      //攻撃方法
+    public string name_;                //攻撃名x
+    public TargetType targetType_;      //実行対象*
     public Action combo_;               //次に実行できるようになる技
-    public Buff buff_;                  //付与するバフ
-    public DeBuff deBuff_;              //付与するデバフ
+    public Buff buff_;                  //付与するバフx
+    public DeBuff deBuff_;              //付与するデバフx
+    public bool toTarget_;              //ターゲット中心o
+    public bool jumpOn_;                //飛びつき
     public Vector2 offset_;             //座標o
 
     //範囲

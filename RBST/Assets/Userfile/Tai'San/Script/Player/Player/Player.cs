@@ -6,7 +6,8 @@ public class Player : PlayerBase
     private void Update()
     {
         PlayerMove();
-        if (Input.GetKeyUp(KeyCode.Space)) OnTarget();  //デバック用仮処理↓↓
+        if(Input.GetKeyDown(KeyCode.Space)) OnAction(Action.Fire);
+        //if (Input.GetKeyUp(KeyCode.Space)) OnTarget();  //デバック用仮処理↓↓
     }
 
     //public void InputAttack1(InputAction.CallbackContext context) { if (context.performed) OnAction(Action.Fire); }
