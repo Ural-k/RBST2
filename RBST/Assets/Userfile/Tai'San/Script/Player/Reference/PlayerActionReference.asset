@@ -14,14 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerActionReference
   actionInfo_:
   - name_: Fire
-    target_: 0
-    combo_: 0
+    actionType_: 0
+    combo_: 4
     buff_: 0
     deBuff_: 0
-    jump_: 0
     offset_: {x: 5, y: 0}
     aspect_: {x: 0, y: 0}
-    radius_: 0.1
+    radius_: 2
     power_: 300
     gcd_: 3
     cd_: 0

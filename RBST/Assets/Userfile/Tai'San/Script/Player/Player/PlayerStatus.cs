@@ -14,16 +14,14 @@ public class PlayerStatus : MonoBehaviour
         public float attack_;           //攻撃力
         public float defense_;          //防御力
         public float critical_;         //クリティカル率
-        public uint lv_;               //現在のレベル
+        public uint lv_;                //現在のレベル
     }
 
     [Header("パラメータ")]
     [SerializeField] protected Parameter parameter_;
-
-    protected InputAction   inputAxis_;         //移動キー入力
-    protected Transform     target_ = null;     //ターゲット中のTransfrom
-
     [Header("ターゲット関連")]
-    [SerializeField] protected GameObject   targetersObject_;   //ターゲット可能なオブジェクト群の親
-    [SerializeField] protected Transform    targetGraphic_;     //ターゲット表示
+    [SerializeField] protected GameObject targetersObject_;   //ターゲット可能なオブジェクト群の親
+    [SerializeField] protected Transform targetGraphic_;     //ターゲット表示
+    protected InputAction inputAxis_;         //移動キー入力
+    protected Transform target_ = null;     //ターゲット中のTransfrom
 }

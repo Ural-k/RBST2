@@ -9,7 +9,7 @@ public class Player : PlayerBase
         if (Input.GetKeyUp(KeyCode.Space)) OnTarget();  //デバック用仮処理↓↓
     }
 
-    public void InputAttack1(InputAction.CallbackContext context) { if (context.performed) OnAction(Action.Fire); }
+    //public void InputAttack1(InputAction.CallbackContext context) { if (context.performed) OnAction(Action.Fire); }
     //public void InputAttack2(InputAction.CallbackContext context) { if (context.performed)  }
     //public void InputAttack3(InputAction.CallbackContext context) { if (context.performed)  }
 }

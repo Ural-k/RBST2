@@ -10,11 +10,22 @@ public class PlayerActionReference : ScriptableObject
 
 public enum Action
 {
-    Null = 99,
-    Fire = 0,
+    Fire,
     Thunder,
     Bit,
     BitUpgrade,
+    Null,
+}
+
+public enum ActionType
+{
+    Null,
+    ToEnemy,
+    ToPlayer,
+    OffsetToEnemy,
+    OffsetToPlayer,
+    JumpOnToEnemy,
+    JumpOnToPlayer,
 }
 
 //攻撃対象
@@ -41,11 +52,11 @@ public struct ActionInfo1
     
     //固定ステータス
     public string name_;                //攻撃名
-    public TargetType target_;          //攻撃対象o
+    public TargetType targetType_;      //実行対象
+    public ActionType actionType_;      //攻撃方法
     public Action combo_;               //次に実行できるようになる技
     public Buff buff_;                  //付与するバフ
     public DeBuff deBuff_;              //付与するデバフ
-    public bool jump_;                  //飛びつき
     public Vector2 offset_;             //座標o
 
     //範囲
