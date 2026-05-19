@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2997a44446c7c6c4284e805298353334, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AOEControll
-  entity_: {fileID: 0}
+  entity_: {fileID: 7372135126498929520}
   entry_: {fileID: 7372135126498929520}
   entryTime_: 3
   entityTime_: 0

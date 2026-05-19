@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// AOEの種類を格納するenum
+/// </summary>
 public enum AOEColect
 {
     Circle,
@@ -19,6 +22,9 @@ public class AOEShapeWrapper
 
     private AOEColect colect_ = new AOEColect();
 
+    /// <summary>
+    /// AOEの中身をセットする
+    /// </summary>
     public void AOESet()
     {
         circleShape_ = new CircleShape();
@@ -26,6 +32,12 @@ public class AOEShapeWrapper
         donutShape_ = new DounutShape();
     }
 
+
+    /// <summary>
+    /// AOEがの中身を呼び出す
+    /// </summary>
+    /// <param name="colect"></param>
+    /// <returns></returns>
     public IAOEshape CallAOE(AOEColect colect)
     {
         IAOEshape temp;
@@ -43,5 +55,14 @@ public class AOEShapeWrapper
             default:
                 return null;
         }
+    }
+
+    public float NormalizeInnerFloat(float materialInner,float objectRadius)
+    {
+        float radius;
+
+
+
+        return radius;
     }
 }
