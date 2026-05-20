@@ -14,7 +14,7 @@ public class PlayerAction : PlayerStatus
     {
         //継承したときのみ使える変数(継承するか未定)
         Vector2 position = (Vector2)transform.position;
-        Transform resultTransform = null;
+        List<Transform> resultTransform = new List<Transform>();
 
         //---------------------------------------------------------------
 
@@ -49,34 +49,62 @@ public class PlayerAction : PlayerStatus
         Collider2D[] hits = new Collider2D[0];
         var ins = Instantiate(particles_.fire_, position, Quaternion.identity);
 
-        //近いターゲット取得
-        if(info.toTarget_ && info.targetType_ == TargetType.Enemy)
-            resultTransform = demoEnemyList_.OrderBy(n => Vector2.Distance(transform.position, n.transform.position)).First();
-        else if(info.toTarget_ && info.targetType_ == TargetType.Player)
-        {
-            List<Transform> playerList = new List<Transform>();
-            for (int i = 0; i < PlayerManager.GetAllPlayerListCount(); ++i) playerList.Add(PlayerManager.GetPlayer(i).transform);
-            resultTransform = playerList.OrderBy(n => Vector2.Distance(transform.position, n.transform.position)).First();
-        }
+        //ここ汚いからのちのち変える
+        bool typeCircle = false;
+        bool typeSquare = false;
+        bool typeSingle = false;
+        bool targetEnemy = false;
+        bool targetPlayer = false;
 
-        bool singleAttack = false;
+        if(info.radius_ != 0) typeCircle = true;
+        else if(info.aspect_ != Vector2.zero) typeSquare = true;
+        else typeSingle = true;
+        if(info.targetType_ == TargetType.Enemy) targetEnemy = true;
+        else if(info.targetType_ == TargetType.Player) targetPlayer = true;
+
+        //近いターゲット取得
+        if (info.toTarget_)
+        {
+            if (targetEnemy)
+                resultTransform.Add(demoEnemyList_.OrderBy(n => Vector2.Distance(transform.position, n.transform.position)).First());
+            else if (targetPlayer)
+            {
+                List<Transform> playerList = new List<Transform>();
+                for (int i = 0; i < PlayerManager.GetAllPlayerListCount(); ++i) playerList.Add(PlayerManager.GetPlayer(i).transform);
+                resultTransform.Add(playerList.OrderBy(n => Vector2.Distance(transform.position, n.transform.position)).First());
+            }
+        }
+        else resultTransform.Add(transform);
 
         //パーティクル大きさ調整
-        if(info.radius_ != 0)//円形
+        if(typeCircle)//円形
         {
+            ins.transform.position = resultTransform[0].position;
             ins.transform.localScale = Vector2.one * info.radius_;
-            //resultTransform.GetComponent<>
+            //if (targetEnemy)
+            //{
+            //    resultTransform.Add(
+            //        (Transform)demoEnemyList_.OrderBy
+            //        (n => Vector2.Distance(resultTransform[0].transform.position, n.transform.position) < info.radius_));
+            //}
+            //else if(targetPlayer)
+            //{
+            //    List<Transform> playerList = new List<Transform>();
+            //    for (int i = 0; i < PlayerManager.GetAllPlayerListCount(); ++i) playerList.Add(PlayerManager.GetPlayer(i).transform);
+            //    resultTransform.Add((Transform)playerList.Where(n => Vector2.Distance(transform.position, n.transform.position)));
+            //}
+            resultTransform[0].gameObject.GetComponent<DemoEnemyDamage>().GetComponent<IEnemyDamageAble>().DamageAble(info.power_);
         }
-        else if(info.aspect_ != Vector2.zero)//矩形
+        else if(typeSquare)//矩形
         {
             ins.transform.localScale = info.aspect_;
         }
         else//単体
         {
-            singleAttack = true;
+            typeSingle = true;
         }
 
-        ins.transform.position = (Vector2)resultTransform.position + info.offset_;
+        ins.transform.position = (Vector2)resultTransform[0].position + info.offset_;
 
         if (hits.Length == 0) return;//当たっていない
 
@@ -88,53 +116,11 @@ public class PlayerAction : PlayerStatus
         //    {
         //        if (hit.GetComponent<ActionDriver>().targetType != TargetType.Enemy) return;
         //        Debug.Log($"あたった！。アクション名: {info.name_}");
-        //    }
-        
-        void TestAttack()
-        {
-
-        }
-    }
-
-    /// <summary>
-    /// ターゲット(左上から)
-    /// </summary>
-    public void OnTarget()      //将来的に近い敵からで取得したい
-    {
-        //if (targetersObject_ == null || targetersObject_.transform.childCount == 0) return;
-
-        ////全ターゲット対象をList化
-        //List<Transform> unintentionalTargeter = new();
-        //for (int i = 0; i < targetersObject_.transform.childCount; ++i)
-        //    unintentionalTargeter.Add(targetersObject_.transform.GetChild(i));
-
-        ////タゲ対象を左上優先で順番にList化
-        //var sortTargeter =
-        //    unintentionalTargeter.OrderBy(n => n.position.x).ThenByDescending(n => n.position.y).ToList();
-
-        ////次項へターゲット
-        //if (target_ == null || target_ == sortTargeter[sortTargeter.Count - 1])
-        //    target_ = sortTargeter.First();
-        //else
-        //{
-        //    for (int i = 0; i < sortTargeter.Count - 1; ++i)
-        //    {
-        //        if (target_ == sortTargeter[i])
-        //        {
-        //            target_ = sortTargeter[i + 1];
-        //            break;
-        //        }
-        //    }
-        //}
-
-        ////ターゲットUI操作
-        //if (targetGraphic_ == null) return;
-        //targetGraphic_.parent = target_;
-        //targetGraphic_.localPosition = Vector2.zero;
+        //    }        
     }
 }
 
 interface IEnemyDamageAble
 {
-    public void DamageAble();
+    public void DamageAble(int damage);
 }

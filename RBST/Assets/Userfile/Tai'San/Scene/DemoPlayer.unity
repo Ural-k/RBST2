@@ -128,7 +128,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 406262417}
-  - component: {fileID: 406262420}
   - component: {fileID: 406262418}
   - component: {fileID: 406262419}
   - component: {fileID: 406262421}
@@ -240,19 +239,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &406262420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 406262416}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d6b11a37b5d7464b972241262c2b117, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ActionDriver
-  targetType: 0
 --- !u!58 &406262421
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -298,7 +284,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 415440268}
-  - component: {fileID: 415440271}
   - component: {fileID: 415440269}
   - component: {fileID: 415440270}
   - component: {fileID: 415440272}
@@ -410,19 +395,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &415440271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 415440267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d6b11a37b5d7464b972241262c2b117, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ActionDriver
-  targetType: 0
 --- !u!58 &415440272
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -503,7 +475,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 526373603}
-  - component: {fileID: 526373606}
   - component: {fileID: 526373604}
   - component: {fileID: 526373605}
   - component: {fileID: 526373607}
@@ -615,19 +586,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &526373606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 526373602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d6b11a37b5d7464b972241262c2b117, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ActionDriver
-  targetType: 0
 --- !u!58 &526373607
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -764,6 +722,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 662811968}
+  - component: {fileID: 662811969}
   m_Layer: 0
   m_Name: Enemy4
   m_TagString: Untagged
@@ -787,6 +746,18 @@ Transform:
   - {fileID: 406262417}
   m_Father: {fileID: 422656065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &662811969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662811967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24823002a4a1f264ba1b419ce4f55ca3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemoEnemyDamage
 --- !u!1 &845465065
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,6 +904,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 895329404}
+  - component: {fileID: 895329405}
   m_Layer: 0
   m_Name: Enemy2
   m_TagString: Untagged
@@ -956,6 +928,18 @@ Transform:
   - {fileID: 526373603}
   m_Father: {fileID: 422656065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &895329405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895329403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24823002a4a1f264ba1b419ce4f55ca3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemoEnemyDamage
 --- !u!1 &1063052299
 GameObject:
   m_ObjectHideFlags: 0
@@ -965,6 +949,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1063052300}
+  - component: {fileID: 1063052301}
   m_Layer: 0
   m_Name: Enemy3
   m_TagString: Untagged
@@ -988,6 +973,18 @@ Transform:
   - {fileID: 415440268}
   m_Father: {fileID: 422656065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1063052301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1063052299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24823002a4a1f264ba1b419ce4f55ca3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemoEnemyDamage
 --- !u!1 &1107810452
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,6 +994,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1107810453}
+  - component: {fileID: 1107810454}
   m_Layer: 0
   m_Name: Enemy1
   m_TagString: Untagged
@@ -1020,6 +1018,18 @@ Transform:
   - {fileID: 2112904817}
   m_Father: {fileID: 422656065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1107810454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1107810452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24823002a4a1f264ba1b419ce4f55ca3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemoEnemyDamage
 --- !u!1 &2112904816
 GameObject:
   m_ObjectHideFlags: 0
@@ -1029,7 +1039,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2112904817}
-  - component: {fileID: 2112904820}
   - component: {fileID: 2112904818}
   - component: {fileID: 2112904819}
   - component: {fileID: 2112904821}
@@ -1141,19 +1150,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2112904820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2112904816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d6b11a37b5d7464b972241262c2b117, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ActionDriver
-  targetType: 0
 --- !u!58 &2112904821
 CircleCollider2D:
   m_ObjectHideFlags: 0
