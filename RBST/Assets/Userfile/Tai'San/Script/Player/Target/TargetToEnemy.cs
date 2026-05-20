@@ -8,14 +8,14 @@ using UnityEngine;
 public class TargetToEnemy : MonoBehaviour
 {
     [SerializeField,
-    Header("ターゲット可能なオブジェクトの親オブジェクト")] GameObject targetersObject_;
+    Header("ターゲット可能なオブジェクト群の親オブジェクト")] GameObject targetersObject_;
     [SerializeField,
     Header("ターゲット目印UI(GameObject)")]             Transform targetGraphic_;
 
     /*現在のターゲット*/
     Transform nowTarget_ = null;
 
-    public Transform targetTransform { get { return nowTarget_; } }
+    public Transform GetTargetTransform { get { return nowTarget_; } }
 
     private void Update()
     {

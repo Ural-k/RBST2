@@ -5,16 +5,20 @@ using UnityEngine.InputSystem;
 /// プレイヤー全般
 /// </summary>
 /// <remarks>派生クラス</remarks>
-public class Player : PlayerBase
+public class Player : PlayerBase, IDamageable
 {
-    CharacterController characterController_;
-    InputAction inputMove_;
     [SerializeField] PlayerAttack playerAttack_;
+
+    CharacterController characterController_;
+    TargetToEnemy targetToEnemy_;
+    InputAction inputMove_;
 
     void Start()
     {
+        PlayerManager.AddPlayer(this);
         inputMove_ = InputSystem.actions.FindAction("Move");
         TryGetComponent(out characterController_);
+        TryGetComponent(out targetToEnemy_);
     }
     void Update()
     {
@@ -24,6 +28,12 @@ public class Player : PlayerBase
     public void InputAttack(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        playerAttack_.CircleAttack(transform, Vector2.right * 4.5f, Vector2.one * 3);
+        playerAttack_.CircleAttack(targetToEnemy_.GetTargetTransform,Vector2.one * 3);
     }
+    
+    public void TakeDamage(int damage_)
+    {
+        Debug.Log("当たっちゃったーワイプワイプ");
+    }
+
 }

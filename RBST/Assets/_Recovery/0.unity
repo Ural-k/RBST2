@@ -323,15 +323,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa871937846146458b38959fabfea34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestEnemyControll
-  debug_:
-  - {fileID: 4854360435965813928, guid: 7a1f1ab794a4bab48aea352c19cf22b1, type: 3}
-  - {fileID: 6081284791802014722, guid: 38181d7ddbb0e554d9f176fba20426d1, type: 3}
-  - {fileID: 5024730748241880012, guid: d6ccaa0604a150a488b2d46be6776940, type: 3}
-  square_: {fileID: 6081284791802014722, guid: 38181d7ddbb0e554d9f176fba20426d1, type: 3}
+  debug_: {fileID: 4901032629403803686, guid: d6ccaa0604a150a488b2d46be6776940, type: 3}
+  square_: {fileID: 4388534007390443849, guid: 38181d7ddbb0e554d9f176fba20426d1, type: 3}
   positionAOE_: {x: -5, y: 0}
-  scale_: 5
-  innerRadius_: 0
-  colect_: 2
+--- !u!1 &2046792689
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2046792690}
+  m_Layer: 0
+  m_Name: Far
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2046792690
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2046792689}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.55358, y: 1.82474, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2088191883
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,4 +500,5 @@ SceneRoots:
   m_Roots:
   - {fileID: 2088191886}
   - {fileID: 1970733991}
+  - {fileID: 2046792690}
   - {fileID: 538358460}

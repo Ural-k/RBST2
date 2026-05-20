@@ -19,6 +19,8 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     public static Player GetPlayer(int i)
     {
+        if (playerList_.Count == 0) return null;
+
         return playerList_[i];
     }
 
