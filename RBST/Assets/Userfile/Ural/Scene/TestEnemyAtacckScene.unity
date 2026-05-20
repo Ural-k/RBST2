@@ -323,10 +323,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa871937846146458b38959fabfea34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestEnemyControll
-  debug_: {fileID: 4854360435965813928, guid: 7a1f1ab794a4bab48aea352c19cf22b1, type: 3}
+  debug_:
+  - {fileID: 4854360435965813928, guid: 7a1f1ab794a4bab48aea352c19cf22b1, type: 3}
+  - {fileID: 6081284791802014722, guid: 38181d7ddbb0e554d9f176fba20426d1, type: 3}
+  - {fileID: 5024730748241880012, guid: d6ccaa0604a150a488b2d46be6776940, type: 3}
   square_: {fileID: 6081284791802014722, guid: 38181d7ddbb0e554d9f176fba20426d1, type: 3}
   positionAOE_: {x: -5, y: 0}
-  colect_: 0
+  scale_: 5
+  innerRadius_: 0
+  colect_: 2
 --- !u!1 &2088191883
 GameObject:
   m_ObjectHideFlags: 0

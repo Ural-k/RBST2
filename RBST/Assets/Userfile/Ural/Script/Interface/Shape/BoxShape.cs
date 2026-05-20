@@ -6,7 +6,7 @@ public class BoxShape : IAOEshape
 {
 
     public float InnerRadius { get; set; }
-    private AOEColect aoeColect_;
+    private AOEColect aoeColect_ = AOEColect.Box;
 
     public AOEColect AOEColect
     {
@@ -14,7 +14,6 @@ public class BoxShape : IAOEshape
     }
     public Collider2D[] GetHits(float radius,Vector3 center)
     {
-        aoeColect_ = AOEColect.Box;
         float size = radius * 2;
         Vector2 scale = new Vector2(size, size);
 

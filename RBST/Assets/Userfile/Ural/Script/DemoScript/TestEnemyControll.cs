@@ -6,7 +6,7 @@ public class TestEnemyControll : MonoBehaviour
     [SerializeField] private GameObject[] debug_;
     [SerializeField] private GameObject square_;
     [SerializeField] private Vector2 positionAOE_;
-    [SerializeField] private Vector2 scale_;
+    [SerializeField] private float scale_;
     [SerializeField] private float innerRadius_;
     [SerializeField] private AOEShapeWrapper shapeWrapper_;
 

@@ -1,4 +1,5 @@
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using static UnityEngine.Rendering.GPUSort;
 
@@ -10,36 +11,34 @@ public class AOEControll : MonoBehaviour
     [SerializeField] private float entityTime_;  //実体時間
     [SerializeField] private int damage_;        //ダメージ量
     [SerializeField] private float diameter_;    //範囲(直径）
+    [SerializeField] private AOEShapeWrapper shapeWrapper_; //AOEWrapperのインスタンス
 
 
     private IAOEshape shape_;                    //範囲の形状
+    
     private Vector3 pos_;                        //範囲生成位置
     private float timer_;                        //経過時間
-    private float innerRadius_;
+    private float innerRaito_;                   //内側の円が
     private bool warningActiveFlag_;             //起動フラグ
     private bool entityActiveFlag_;              //実体起動フラグ
     
 
-    //プロパティ
-    public float EntryTime { get { return entryTime_; } }
-
-    public float EntityTime { get { return entityTime_; } }
+    //プロパテぃ
 
     public int Damage { get { return damage_; } set { damage_ = value; } }
 
-    public bool WarningActiveFlag { get { return warningActiveFlag_; }  set {  warningActiveFlag_ = value; } }
-
-    public bool EntityActiveFlag { get { return entityActiveFlag_; } set { entityActiveFlag_ = value; } }
-
     public float Radius { get { return diameter_ / 2; } }
+
+    private Vector2 Scale { get { return new Vector2(diameter_, diameter_); } }
     
 
     private void Awake()
     {
+        //初期化
         entity_.SetActive(false);
         entry_.SetActive(false);
         timer_ = entryTime_;
-        innerRadius_ = 0.0f;
+        innerRaito_ = 0.0f;
         warningActiveFlag_ = false;
         entityActiveFlag_ = false;
         pos_ = Vector3.zero;
@@ -51,22 +50,30 @@ public class AOEControll : MonoBehaviour
         pos_ = transform.position;
         Entry();
         Entity();
+
+        //マテリアルが_InnerRを持っていたら内側の範囲を設定する
+        if (entity_.GetComponent<SpriteRenderer>().material.HasProperty("_InnerR"))
+        {
+            InnerRadiusSet();
+        }
     }
 
     /// <summary>
     /// 予兆を生成するフラグをオンにする
     /// のちのち引数をscriptableに変更予定
     /// </summary>
-    public void IsActive(IAOEshape shape, Vector3 scale, float innerRadius)
+    public void IsActive(IAOEshape shape, float scale, float innerRaito)
     {
-
+        //生成されたときのステータスを設定
         shape_ = shape;
-        transform.localScale = scale;
-        diameter_ = scale.x;
-        innerRadius_ = innerRadius;
+        diameter_ = scale;
+        transform.localScale = Scale;
+        innerRaito_ = innerRaito;
+
+        //判定の開始
         if (entityActiveFlag_) { return; }
-        if (WarningActiveFlag) { return; }
-        else{ WarningActiveFlag = true; }
+        if (warningActiveFlag_) { return; }
+        else{ warningActiveFlag_ = true; }
 
     }
 
@@ -78,14 +85,13 @@ public class AOEControll : MonoBehaviour
     {
         
         //entriyActiveFlagがfalseなら起動しない
-        if (!WarningActiveFlag) { return; }
+        if (!warningActiveFlag_) { return; }
 
         
         entry_.SetActive (true);
         timer_ -= Time.deltaTime;
         if (timer_ < 0)
         {
-            
             entry_.SetActive(false);
             warningActiveFlag_ = false;
             entityActiveFlag_ = true;
@@ -107,11 +113,12 @@ public class AOEControll : MonoBehaviour
         ApplyDamage();
         if (timer_ < 0)
         {
-            Debug.Log("A");
+            
             entity_.SetActive(false);
             entityActiveFlag_ = false;
             timer_ = entityTime_;
 
+            //オブジェクトプールに変更するとき削除予定
             Destroy(gameObject);
         }
     }
@@ -122,10 +129,6 @@ public class AOEControll : MonoBehaviour
     /// </summary>
     private void ApplyDamage()
     {
-        if(shape_.AOEColect == AOEColect.Donut)
-        {
-            InnerRadiusSet();
-        }
         var hits = shape_.GetHits(Radius, pos_);
         foreach (var hit in hits)
         {
@@ -142,13 +145,25 @@ public class AOEControll : MonoBehaviour
     /// </summary>
     private void InnerRadiusSet()
     {
-        shape_.InnerRadius = innerRadius_;
+        
+        float innerRadius = 0.0f;
+
+        //与えられた割合をmaterialのパラメーターのステータスに変換
+        float temp = AOEShapeWrapper.DenomalizeInnerFloat(innerRaito_);
+
+        entity_.GetComponent<SpriteRenderer>().material.SetFloat("_InnerR", temp);
+
+        //内側の半径の作成
+        innerRadius = Radius * innerRaito_;
+        shape_.InnerRadius = innerRadius;
 
     }
 
+    /// <summary>
+    /// エディター内での当たり判定の可視化
+    /// </summary>
     private void OnDrawGizmos()
     {
         shape_.OnDrawGizmos(Radius, pos_);
     }
 }
-

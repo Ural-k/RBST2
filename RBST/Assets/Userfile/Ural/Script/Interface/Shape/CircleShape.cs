@@ -5,14 +5,14 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 public class CircleShape : IAOEshape
 {
     public float InnerRadius { get; set; }
-    private AOEColect aoeColect_;
+    private AOEColect aoeColect_ = AOEColect.Circle;
     public AOEColect AOEColect
     {
         get { return aoeColect_; }
     }
     public Collider2D[] GetHits(float radius,Vector3 center)
     {
-        aoeColect_ = AOEColect.Circle;
+        
         //physics2Dのついているオブジェクトすべてを返す
         return Physics2D.OverlapCircleAll(center,radius);
     }

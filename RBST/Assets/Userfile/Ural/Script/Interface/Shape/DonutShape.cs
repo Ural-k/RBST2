@@ -5,7 +5,7 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 public class DounutShape : IAOEshape
 {
     private float innerRadius_;
-    private AOEColect aoeColect_;
+    private AOEColect aoeColect_ = AOEColect.Donut;
 
     public float InnerRadius { get { return innerRadius_; }  set { innerRadius_ = value; } }
 
@@ -15,7 +15,6 @@ public class DounutShape : IAOEshape
     }
     public Collider2D[] GetHits(float radius, Vector3 center)
     {
-        aoeColect_ = AOEColect.Donut;
 
         var hits = Physics2D.OverlapCircleAll(center, radius);
         List<Collider2D> result = new List<Collider2D>();

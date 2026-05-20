@@ -1,7 +1,9 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
 /// AOEの種類を格納するenum
+/// 追加・削除したい場合はここを変更
 /// </summary>
 public enum AOEColect
 {
@@ -24,6 +26,7 @@ public class AOEShapeWrapper
 
     /// <summary>
     /// AOEの中身をセットする
+    /// 追加・削除したい場合はここを変更
     /// </summary>
     public void AOESet()
     {
@@ -36,7 +39,7 @@ public class AOEShapeWrapper
     /// <summary>
     /// AOEがの中身を呼び出す
     /// </summary>
-    /// <param name="colect"></param>
+    /// <param name="colect">種類名</param>
     /// <returns></returns>
     public IAOEshape CallAOE(AOEColect colect)
     {
@@ -57,12 +60,17 @@ public class AOEShapeWrapper
         }
     }
 
-    public float NormalizeInnerFloat(float materialInner,float objectRadius)
+    /// <summary>
+    /// MaterialのInnerRに変換するための関数
+    /// </summary>
+    /// <param name="inner">オブジェクトのscaleに対する割合</param>
+    /// <returns></returns>
+    public static float DenomalizeInnerFloat(float inner)
     {
-        float radius;
+        float innerR;
 
+        innerR = inner / 2;
 
-
-        return radius;
+        return innerR;
     }
 }
