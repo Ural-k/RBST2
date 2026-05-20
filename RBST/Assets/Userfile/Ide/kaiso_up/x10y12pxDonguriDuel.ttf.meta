@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 2a982bcc85c1f90449150c056ae968b8
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - x10y12pxDonguriDuel
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: b0672c70dd53c2246ac344d01fb6a2e8, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
