@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -17,7 +18,6 @@ public class AOEControll : MonoBehaviour
     private IAOEshape shape_;                    //範囲の形状
     
     private Vector3 pos_;                        //範囲生成位置
-    private float timer_;                        //経過時間
     private float innerRaito_;                   //内側の円が
     private bool warningActiveFlag_;             //起動フラグ
     private bool entityActiveFlag_;              //実体起動フラグ
@@ -37,7 +37,6 @@ public class AOEControll : MonoBehaviour
         //初期化
         entity_.SetActive(false);
         entry_.SetActive(false);
-        timer_ = entryTime_;
         innerRaito_ = 0.0f;
         warningActiveFlag_ = false;
         entityActiveFlag_ = false;
@@ -48,8 +47,6 @@ public class AOEControll : MonoBehaviour
     private void Update()
     {
         pos_ = transform.position;
-        Entry();
-        Entity();
 
         //マテリアルが_InnerRを持っていたら内側の範囲を設定する
         if (entity_.GetComponent<SpriteRenderer>().material.HasProperty("_InnerR"))
@@ -73,56 +70,11 @@ public class AOEControll : MonoBehaviour
         //判定の開始
         if (entityActiveFlag_) { return; }
         if (warningActiveFlag_) { return; }
-        else{ warningActiveFlag_ = true; }
-
-    }
-
-    /// <summary>
-    /// 予兆を生成一定時間後に実体に移行
-    /// </summary>
-
-    private  void Entry()
-    {
-        
-        //entriyActiveFlagがfalseなら起動しない
-        if (!warningActiveFlag_) { return; }
+        else{ StartCoroutine(Coroutine()); }
 
         
-        entry_.SetActive (true);
-        timer_ -= Time.deltaTime;
-        if (timer_ < 0)
-        {
-            entry_.SetActive(false);
-            warningActiveFlag_ = false;
-            entityActiveFlag_ = true;
-            timer_ = entityTime_;
-        }
 
     }
-
-    /// <summary>
-    /// 実体を生成一定時間後に使った変数をリセット
-    /// </summary>
-    private void Entity()
-    {
-        //entityActiveFlagがfalseなら起動しない
-        if (!entityActiveFlag_) { return; }
-        
-        entity_ .SetActive (true);
-        timer_ -= Time .deltaTime;
-        ApplyDamage();
-        if (timer_ < 0)
-        {
-            
-            entity_.SetActive(false);
-            entityActiveFlag_ = false;
-            timer_ = entityTime_;
-
-            //オブジェクトプールに変更するとき削除予定
-            Destroy(gameObject);
-        }
-    }
-
 
     /// <summary>
     /// ダメージ処理
@@ -165,5 +117,32 @@ public class AOEControll : MonoBehaviour
     private void OnDrawGizmos()
     {
         shape_.OnDrawGizmos(Radius, pos_);
+    }
+
+    IEnumerator Coroutine()
+    {
+        warningActiveFlag_ = true;
+
+        entry_.SetActive(true);
+        yield return new WaitForSeconds(entryTime_);
+        
+            entry_.SetActive(false);
+            warningActiveFlag_ = false;
+            entityActiveFlag_ = true;
+        
+
+        //entityActiveFlagがfalseなら起動しない
+        if (!entityActiveFlag_) { yield break; }
+
+        entity_.SetActive(true);
+        ApplyDamage();
+
+        yield return new WaitForSeconds(entityTime_);
+
+            entity_.SetActive(false);
+            entityActiveFlag_ = false;
+
+            //オブジェクトプールに変更するとき削除予定
+            Destroy(gameObject);
     }
 }
