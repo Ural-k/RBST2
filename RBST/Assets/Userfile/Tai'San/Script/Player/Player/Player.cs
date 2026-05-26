@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class Player : PlayerBase
 {
+    public Transform GetTransform() { return transform; }
+
     private void Update()
     {
         PlayerMove();
