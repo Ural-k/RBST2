@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: AttackParticles
   m_EditorClassIdentifier: Assembly-CSharp::AttackParticles
   fire_: {fileID: 3419249946162298372, guid: c0c64ae9232a77c46b85d4b00dc341bc, type: 3}
-  meteor_: {fileID: 0}
+  meteor_: {fileID: 4997235082424780348, guid: 0e14a2df6cbe4494db608f37e3bb88c5, type: 3}

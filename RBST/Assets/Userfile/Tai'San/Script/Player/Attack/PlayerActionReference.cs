@@ -40,24 +40,23 @@ public struct ActionInfo1
      */
 
     //固定ステータス
-    public string name_;                //攻撃名x
-    public TargetType targetType_;      //実行対象*
+    public string name_;                //攻撃名△
+    public TargetType targetType_;      //実行対象o
     public Action combo_;               //次に実行できるようになる技
-    public Buff buff_;                  //付与するバフx
-    public DeBuff deBuff_;              //付与するデバフx
+    //public Buff buff_;                  //付与するバフx
+    //public DeBuff deBuff_;              //付与するデバフx
     public bool toTarget_;              //ターゲット中心o
     public bool jumpOn_;                //飛びつき
-    public Vector2 offset_;             //座標o
 
     //範囲
     public Vector2 aspect_;             //初期アスペクト比[versionAspect,scale]o
     public float radius_;               //初期半径[varsionRadius,scale]o
 
     //攻撃パラメータ
-    public int power_;                  //攻撃力[power]
-    public float gcd_;                  //GCD(0にするとGCDの干渉を受けなくなる)[gcd]
-    public float cd_;                   //CD[cd]
-    public float speed_;                //攻撃時のスピード[speed]
+    public int power_;                  //攻撃力[power]△
+    public float gcd_;                  //GCD(0にするとGCDの干渉を受けなくなる)[gcd]x
+    public float cd_;                   //CD[cd]x
+    public float speed_;                //攻撃時のスピード[speed]x
 
     /// <summary>
     /// Info2の情報を元にInfo1書き換え

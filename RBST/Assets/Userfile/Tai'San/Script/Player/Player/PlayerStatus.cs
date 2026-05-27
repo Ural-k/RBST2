@@ -20,8 +20,5 @@ public class PlayerStatus : MonoBehaviour
     [Header("パラメータ")]
     [SerializeField] protected Parameter parameter_;
     [Header("ターゲット関連")]
-    [SerializeField] protected GameObject targetersObject_;   //ターゲット可能なオブジェクト群の親
-    [SerializeField] protected Transform targetGraphic_;     //ターゲット表示
     protected InputAction inputAxis_;         //移動キー入力
-    protected Transform target_ = null;     //ターゲット中のTransfrom
 }

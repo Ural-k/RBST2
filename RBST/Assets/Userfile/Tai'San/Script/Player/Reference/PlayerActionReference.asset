@@ -16,13 +16,10 @@ MonoBehaviour:
   - name_: Fire
     targetType_: 0
     combo_: 0
-    buff_: 0
-    deBuff_: 0
     toTarget_: 1
     jumpOn_: 0
-    offset_: {x: 0, y: 0}
-    aspect_: {x: 0, y: 0}
-    radius_: 2
+    aspect_: {x: 5, y: 5}
+    radius_: 5
     power_: 300
     gcd_: 3
     cd_: 0
