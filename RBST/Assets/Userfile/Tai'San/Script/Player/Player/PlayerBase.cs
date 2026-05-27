@@ -7,6 +7,7 @@ public class PlayerBase : PlayerAction, IDamageable
     {
         PlayerManager.AddPlayer((Player)this);
         inputAxis_ = InputSystem.actions.FindAction("Move");
+        StartCoroutine(CoolTime());
     }
 
     /// <summary>

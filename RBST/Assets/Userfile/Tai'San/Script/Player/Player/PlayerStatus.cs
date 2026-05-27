@@ -17,8 +17,7 @@ public class PlayerStatus : MonoBehaviour
         public uint lv_;                //現在のレベル
     }
 
-    [Header("パラメータ")]
-    [SerializeField] protected Parameter parameter_;
-    [Header("ターゲット関連")]
-    protected InputAction inputAxis_;         //移動キー入力
+    [SerializeField]
+    protected Parameter parameter_;
+    protected InputAction inputAxis_;
 }

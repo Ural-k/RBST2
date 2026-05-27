@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63e646a36da3154498af4ceb5384ffad, type: 3}
+  m_Name: ActionData
+  m_EditorClassIdentifier: Assembly-CSharp::ActionData
+  actionInfo_:
+  - name_: "\u30D5\u30A1\u30A4\u30A2"
+    particle_: {fileID: 3419249946162298372, guid: c0c64ae9232a77c46b85d4b00dc341bc, type: 3}
+    targetType_: 0
+    combo_: 0
+    toTarget_: 0
+    jumpOn_: 0
+    aspect_: {x: 50, y: 0.3}
+    radius_: 20
+    power_: 300
+    gcd_: 3
+    cd_: 0
+    speed_: -3
