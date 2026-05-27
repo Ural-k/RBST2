@@ -7,6 +7,4 @@ public class ButtonSystem : MonoBehaviour
     {
         
     }
-
- 
 }
