@@ -534,8 +534,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c3fea3a1ec6bd44aa2a9ff020c245b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  cube: {fileID: 1393696446}
-  speed: 10
+  cube_: {fileID: 1393696451}
+  speed_: 10
 --- !u!212 &1393696450
 SpriteRenderer:
   serializedVersion: 2
