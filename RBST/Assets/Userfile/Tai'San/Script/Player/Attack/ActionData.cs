@@ -1,6 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Action
+{
+    Fire,
+    Gun,
+    Null,
+}
+
 [CreateAssetMenu(fileName = "ActionData", menuName = "ScriptableObjects/Player/ActionData")]
 public class ActionData : ScriptableObject
 {
@@ -9,11 +16,6 @@ public class ActionData : ScriptableObject
     { return Resources.Load<ActionData>("ActionData").actionInfo_[(int)attackName]; }
 }
 
-public enum Action
-{
-    Fire,
-    Null,
-}
 
 //攻撃対象
 public enum TargetType
@@ -30,8 +32,6 @@ public enum TargetType
 public struct ActionInfo1
 {                                       //役割[参照する強化値(変動する値)]
     /* 追加する値メモ
-     :  ・突進するかどうか
-     :  ・ターゲットの座標に設置
      :  ・offset,rotate
      :  ・inputで向き指定
      :  ・マウス
@@ -42,7 +42,7 @@ public struct ActionInfo1
     [Tooltip("攻撃名")]                        public string name_;                //△
     [Tooltip("パーティクル")]                   public GameObject particle_;        //o
     [Tooltip("攻撃対象")]                      public TargetType targetType_;       //o
-    [Tooltip("次回実行可能の攻撃")]              public Action combo_;               //x
+    [Tooltip("次回実行可能の攻撃")]              public Action combo_;               //o
     //public Buff buff_;                  //付与するバフx
     //public DeBuff deBuff_;              //付与するデバフx
     [Tooltip("近い攻撃対象を中心に範囲を発生")]    public bool toTarget_;              //o
@@ -54,8 +54,9 @@ public struct ActionInfo1
 
     //攻撃パラメータ
     [Tooltip("威力値")]                        public int power_;                  //△
-    [Tooltip("GCD")]                          public float gcd_;                  //x
+    [Tooltip("GCD")]                          public float gcd_;                  //o
     [Tooltip("CD")]                           public float cd_;                   //x
+    [Tooltip("発動タイミング")]                 public float diray_;                //
     [Tooltip("攻撃時のスピード")]               public float speed_;                //x
 
     /// <summary>

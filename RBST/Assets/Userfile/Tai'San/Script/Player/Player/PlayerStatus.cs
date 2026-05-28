@@ -16,8 +16,14 @@ public class PlayerStatus : MonoBehaviour
         public float critical_;         //クリティカル率
         public uint lv_;                //現在のレベル
     }
-
-    [SerializeField]
-    protected Parameter parameter_;
+    [System.Serializable]
+    protected struct ActionState
+    {
+        public float gcd_, cd1_, cd2_, cd3_;
+        public Action action1_, action2_, action3_;
+    }
+    [SerializeField] protected Parameter parameter_;
+    [SerializeField] protected ActionState actionState_;
     protected InputAction inputAxis_;
+
 }

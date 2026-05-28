@@ -6,23 +6,24 @@ using UnityEngine;
 public class PlayerAction : PlayerStatus
 {
     [SerializeField, Header("DEMO")] private List<Transform> demoEnemyList_;
-    private float gcd;
 
-    protected IEnumerator CoolTime()
+    protected IEnumerator ActionCoroutine()
     {
-        gcd = Mathf.Max(gcd - Time.deltaTime, 0);
-        yield return null;
+        while (true)
+        {
+            actionState_.gcd_ = Mathf.Max(actionState_.gcd_ - Time.deltaTime, 0);
+            yield return null;
+        }
     }
 
-    protected void OnAction(Action name)
+    protected Action OnAction(Action action)
     {
-        if (gcd != 0) return;
-        //ベースのアクション情報を取得
-        ActionInfo1 info = ActionData.GetActionInfo(name);
+        if (actionState_.gcd_ != 0) return action;                                //GCDチェック
+        ActionInfo1 info = ActionData.GetActionInfo(action);         //スキル情報を取得
+        actionState_.gcd_ = info.gcd_;                                            //GCD更新
+
         //自身のバフ・デバフを参照してアクション情報を変更
         //info.InfoSet(,true);←これを強化終了時にdynamicをfalseにして呼び出し&強化クラスにActionInfo2のListを作ってdynamicをtrueにして呼び出し
-
-        //gcd = info.gcd_;
 
         /*
          :  攻撃対象
@@ -88,6 +89,8 @@ public class PlayerAction : PlayerStatus
          */
         foreach (Transform tr in hitResult) if (tr.GetComponent<TargetCircle>()) tr.GetComponent<IToEnemyDamageAble>().DamageAble(info.power_);
 
+        
+
         /*
          :  コンソールログ
          */
@@ -101,6 +104,8 @@ public class PlayerAction : PlayerStatus
             resultText += $"に{info.power_}ダメージ!!";
             Debug.Log(resultText);
         }
+
+        return info.combo_ == Action.Null ? action : info.combo_;
     }
 }
 
