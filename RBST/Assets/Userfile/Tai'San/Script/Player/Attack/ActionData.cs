@@ -38,7 +38,7 @@ public struct ActionInfo1
      */
 
     //固定ステータス
-    [Header("(ToolTip、あります。)")]
+    [Header("[ToolTip、あります。]")]
     [Tooltip("攻撃名")]                        public string name_;                //△
     [Tooltip("パーティクル")]                   public GameObject particle_;        //o
     [Tooltip("攻撃対象")]                      public TargetType targetType_;       //o
