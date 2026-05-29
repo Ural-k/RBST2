@@ -53,7 +53,7 @@ MonoBehaviour:
     playerName_: 
     maxHp_: 0
     hp_: 0
-    speed_: 0
+    speed_: 5
     attack_: 0
     defense_: 0
     critical_: 0
@@ -62,6 +62,7 @@ MonoBehaviour:
   targetGraphic_: {fileID: 0}
   particles_: {fileID: 0}
   reference_: {fileID: 0}
+  demoEnemyList_: []
 --- !u!114 &7477228226963313838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,6 +89,7 @@ MonoBehaviour:
   targetGraphic_: {fileID: 0}
   particles_: {fileID: 11400000, guid: 97899c7857ebebf43a3c2d4599b17484, type: 2}
   reference_: {fileID: 11400000, guid: 102947632d6e34440849a7676cc03762, type: 2}
+  demoEnemyList_: []
 --- !u!114 &6782165398992391355
 MonoBehaviour:
   m_ObjectHideFlags: 0

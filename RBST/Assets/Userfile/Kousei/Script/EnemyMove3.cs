@@ -34,7 +34,7 @@ namespace Game.Enemy
         private void Start()
         {
             spriteRenderer_ = GetComponent<SpriteRenderer>();
-            Teleport();
+            //Teleport();
         }
 
         //メイン処理
@@ -92,7 +92,7 @@ namespace Game.Enemy
             {
                 isFadingOut_ = false;
 
-                Teleport();
+                //UpdatePoint();
 
                 StartFadeIn();
             }
@@ -123,8 +123,23 @@ namespace Game.Enemy
         }
 
         //テレポート処理
-        private void Teleport()
+        private void UpdatePoint(Vector2 pos)
         {
+            transform.position = pos;
+        }
+
+        //透明度設定
+        private void SetAlpha(float alpha)
+        {
+            Color color = spriteRenderer_.color;
+            color.a = alpha;
+            spriteRenderer_.color = color;
+        }
+
+        public Vector2 SetNextPoint()
+        {
+            Vector2 temp = Vector2.zero;
+
             float randomX =
                 Random.Range(
                     minPosition_.x,
@@ -137,21 +152,12 @@ namespace Game.Enemy
                     maxPosition_.y
                 );
 
-            Vector2 randomPosition =
-                new Vector2(
+            temp = new Vector2(
                     randomX,
                     randomY
                 );
 
-            transform.position = randomPosition;
-        }
-
-        //透明度設定
-        private void SetAlpha(float alpha)
-        {
-            Color color = spriteRenderer_.color;
-            color.a = alpha;
-            spriteRenderer_.color = color;
+            return temp;
         }
     }
 }

@@ -7,16 +7,15 @@ using static UnityEngine.Rendering.GPUSort;
 public class AOEControll : MonoBehaviour
 {
     [SerializeField] private GameObject entity_; //AOEの実体
-    [SerializeField] private GameObject entry_;  //AOEの予兆
+    [SerializeField] private GameObject warning_;  //AOEの予兆
     [SerializeField] private float entryTime_;   //予兆時間
     [SerializeField] private float entityTime_;  //実体時間
     [SerializeField] private int damage_;        //ダメージ量
     [SerializeField] private float diameter_;    //範囲(直径）
-    [SerializeField] private AOEShapeWrapper shapeWrapper_; //AOEWrapperのインスタンス
+    [SerializeField] private AOECollect aoeCollect_;
 
 
     private IAOEshape shape_;                    //範囲の形状
-    
     private Vector3 pos_;                        //範囲生成位置
     private float innerRaito_;                   //内側の円が
     private bool warningActiveFlag_;             //起動フラグ
@@ -30,13 +29,20 @@ public class AOEControll : MonoBehaviour
     public float Radius { get { return diameter_ / 2; } }
 
     private Vector2 Scale { get { return new Vector2(diameter_, diameter_); } }
+
+    public AOECollect ShapeColect { get { return aoeCollect_; } }
+
+    public GameObject WarningObject { get { return warning_; } }
+    public GameObject EntityObject { get { return entity_; } }
     
 
     private void Awake()
     {
         //初期化
+        AOEShapeWrapper.AOESet();
+        shape_ = AOEShapeWrapper.CallAOE(aoeCollect_);
+        warning_.SetActive(false);
         entity_.SetActive(false);
-        entry_.SetActive(false);
         innerRaito_ = 0.0f;
         warningActiveFlag_ = false;
         entityActiveFlag_ = false;
@@ -59,21 +65,18 @@ public class AOEControll : MonoBehaviour
     /// 予兆を生成するフラグをオンにする
     /// のちのち引数をscriptableに変更予定
     /// </summary>
-    public void IsActive(IAOEshape shape, float scale, float innerRaito)
+    public void IsActive(TransformStract transformStruct )
     {
-        //生成されたときのステータスを設定
-        shape_ = shape;
-        diameter_ = scale;
+        //表示されたときの座標とサイズ等を設定
+        diameter_ = transformStruct.scale;
+        innerRaito_ = transformStruct.innerRadius;
+        transform.position = transformStruct.pos;
         transform.localScale = Scale;
-        innerRaito_ = innerRaito;
 
         //判定の開始
         if (entityActiveFlag_) { return; }
         if (warningActiveFlag_) { return; }
-        else{ StartCoroutine(Coroutine()); }
-
-        
-
+        else{ gameObject.SetActive(true); StartCoroutine(Coroutine()); }
     }
 
     /// <summary>
@@ -122,11 +125,10 @@ public class AOEControll : MonoBehaviour
     IEnumerator Coroutine()
     {
         warningActiveFlag_ = true;
-
-        entry_.SetActive(true);
+        warning_.SetActive(true);
         yield return new WaitForSeconds(entryTime_);
         
-            entry_.SetActive(false);
+            warning_.SetActive(false);
             warningActiveFlag_ = false;
             entityActiveFlag_ = true;
         
@@ -140,9 +142,7 @@ public class AOEControll : MonoBehaviour
         yield return new WaitForSeconds(entityTime_);
 
             entity_.SetActive(false);
+            gameObject.SetActive(false);
             entityActiveFlag_ = false;
-
-            //オブジェクトプールに変更するとき削除予定
-            Destroy(gameObject);
     }
 }
