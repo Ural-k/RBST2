@@ -10,10 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 63e646a36da3154498af4ceb5384ffad, type: 3}
-  m_Name: ActionData
-  m_EditorClassIdentifier: Assembly-CSharp::ActionData
-  actionInfo_:
-  - name_: "\u30C7\u30E2\u30D5\u30A1\u30A4\u30A2"
+  m_Name: SkillData
+  m_EditorClassIdentifier: Assembly-CSharp::SkillData
+  skillInfo_:
+  - name_: "\u30D5\u30A1\u30A4\u30A2"
+    particle_: {fileID: 3419249946162298372, guid: c0c64ae9232a77c46b85d4b00dc341bc, type: 3}
+    targetType_: 0
+    combo_: 0
+    toTarget_: 1
+    jumpOn_: 1
+    aspect_: {x: 0, y: 0}
+    radius_: 2
+    power_: 150
+    gcd_: 1
+    cd_: 0
+    diray_: 0
+    motionTime_: 0
+    motionSpeed_: 0
+  - name_: "\u30D5\u30A1\u30A4\u30A2II"
     particle_: {fileID: 3419249946162298372, guid: c0c64ae9232a77c46b85d4b00dc341bc, type: 3}
     targetType_: 0
     combo_: 0
@@ -21,21 +35,9 @@ MonoBehaviour:
     jumpOn_: 0
     aspect_: {x: 0, y: 0}
     radius_: 3
-    power_: 1700
+    power_: 300
     gcd_: 1
     cd_: 0
     diray_: 0
-    speed_: -3
-  - name_: "\u30C7\u30E2\u30AC\u30F3"
-    particle_: {fileID: 4997235082424780348, guid: 0e14a2df6cbe4494db608f37e3bb88c5, type: 3}
-    targetType_: 0
-    combo_: 0
-    toTarget_: 0
-    jumpOn_: 0
-    aspect_: {x: 50, y: 0.3}
-    radius_: 0
-    power_: 70
-    gcd_: 0.5
-    cd_: 0
-    diray_: 0
-    speed_: -3
+    motionTime_: 0
+    motionSpeed_: 0

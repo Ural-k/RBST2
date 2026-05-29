@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    
     private static List<Player> playerList_ = new List<Player>();  //プレイヤーを管理するリスト
 
     /// <summary>

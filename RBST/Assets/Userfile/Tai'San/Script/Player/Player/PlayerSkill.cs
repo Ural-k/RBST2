@@ -3,24 +3,45 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class PlayerAction : PlayerStatus
+//攻撃・スキル関係
+public class PlayerSkill : PlayerStatus
 {
-    [SerializeField, Header("DEMO")] private List<Transform> demoEnemyList_;
+    [SerializeField, Header("DEMO")] protected List<Transform> demoEnemyList_;//DEMO敵リスト
 
-    protected IEnumerator ActionCoroutine()
+    /*
+     :  クールタイム・攻撃のコルーチン
+     */
+    protected IEnumerator SkillCoroutine()
     {
         while (true)
         {
-            actionState_.gcd_ = Mathf.Max(actionState_.gcd_ - Time.deltaTime, 0);
+            gcd_ = Mathf.Max(gcd_ - Time.deltaTime, 0);
+            skill1_.cd_ = Mathf.Max(skill1_.cd_ - Time.deltaTime, 0);
+            skill2_.cd_ = Mathf.Max(skill2_.cd_ - Time.deltaTime, 0);
+            skill3_.cd_ = Mathf.Max(skill3_.cd_ - Time.deltaTime, 0);
+
+            //skill実行中のboolのようなものを作る。trueの間、飛びつきや移動速度低下の効果を受ける
+            if(motionTimer_ != 0)
+            {
+                transform.position += deltaPosition_;
+                motionTimer_ -= Time.deltaTime;
+                if (motionTimer_ <= 0)
+                {
+                    motionTimer_ = 0;
+                    parameter_.speed_ = 5;//仮
+                }
+            }
+
             yield return null;
         }
     }
 
-    protected Action OnAction(Action action)
+    protected SkillInstance OnSkill(SkillInstance skill)
     {
-        if (actionState_.gcd_ != 0) return action;                                //GCDチェック
-        ActionInfo1 info = ActionData.GetActionInfo(action);         //スキル情報を取得
-        actionState_.gcd_ = info.gcd_;                                            //GCD更新
+        Debug.Log("入力");
+        if (gcd_ != 0 || skill.cd_ != 0) return skill;              //GCDチェック
+        SkillInfo1 info = SkillData.GetSkillInfo(skill.skillName_); //スキル情報を取得
+        gcd_ = info.gcd_;                                           //GCD更新
 
         //自身のバフ・デバフを参照してアクション情報を変更
         //info.InfoSet(,true);←これを強化終了時にdynamicをfalseにして呼び出し&強化クラスにActionInfo2のListを作ってdynamicをtrueにして呼び出し
@@ -87,17 +108,16 @@ public class PlayerAction : PlayerStatus
         /*
          :  ターゲットサークルヘ送る
          */
-        foreach (Transform tr in hitResult) if (tr.GetComponent<TargetCircle>()) tr.GetComponent<IToEnemyDamageAble>().DamageAble(info.power_);
-
-        
+        foreach (Transform tr in hitResult)
+            if (tr.GetComponent<TargetCircle>()) tr.GetComponent<IToEnemyDamageAble>().DamageAble(info.power_);
 
         /*
          :  コンソールログ
          */
         string resultText = $"{gameObject.name}の{info.name_}!! →\n";
-        foreach (Transform tr in hitResult)
+        foreach (Transform tf in hitResult)
         {
-            resultText += $"{tr.gameObject.name}, ";
+            resultText += $"{tf.gameObject.name}, ";
         }
         if(hitResult.Count != 0)
         {
@@ -105,7 +125,20 @@ public class PlayerAction : PlayerStatus
             Debug.Log(resultText);
         }
 
-        return info.combo_ == Action.Null ? action : info.combo_;
+        /*
+         :  戻り値
+         */
+        //モーション情報
+        if (info.jumpOn_)   deltaPosition_ = transform.position + (center.position / info.motionTime_ * Time.deltaTime);
+        motionTimer_ = info.motionTime_;
+        parameter_.speed_ = info.motionSpeed_;
+
+
+        //スキル情報
+        SkillInstance resultSkill = new SkillInstance();
+        resultSkill.cd_ = info.cd_;
+        resultSkill.skillName_ = info.combo_;
+        return info.combo_ == SkillName.Null ? skill : resultSkill;
     }
 }
 
