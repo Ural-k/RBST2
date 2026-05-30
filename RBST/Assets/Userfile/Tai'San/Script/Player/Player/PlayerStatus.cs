@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class PlayerStatus : MonoBehaviour
 {
+    [SerializeField] protected bool log_;//仮
+
     //メモ:ジョブごとの初期スキルを持たすためにSkillNameをジョブごとに分ける必要がある
 
     [System.Serializable]//プレイヤー自身の状態数値
@@ -27,8 +29,8 @@ public class PlayerStatus : MonoBehaviour
         public float cd_;
         public SkillName skillName_;
     }
-    [SerializeField] protected float gcd_;
     [SerializeField] protected Parameter parameter_;
+    [SerializeField] protected float gcd_;
     [SerializeField] protected SkillInstance skill1_;
     [SerializeField] protected SkillInstance skill2_;
     [SerializeField] protected SkillInstance skill3_;

@@ -47,18 +47,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f6af70f0379080478e1056345998df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  gcd_: 0
   parameter_:
     jobName_: 
     playerName_: 
     maxHp_: 0
-    hp_: 0
+    hp_: 36000
     speed_: 5
     attack_: 0
     defense_: 0
     critical_: 0
     lv_: 0
-  particles_: {fileID: 11400000, guid: 97899c7857ebebf43a3c2d4599b17484, type: 2}
-  reference_: {fileID: 11400000, guid: 102947632d6e34440849a7676cc03762, type: 2}
+  skill1_:
+    cd_: 0
+    skillName_: 0
+  skill2_:
+    cd_: 0
+    skillName_: 2
+  skill3_:
+    cd_: 0
+    skillName_: 5
   demoEnemyList_: []
 --- !u!114 &6782165398992391355
 MonoBehaviour:

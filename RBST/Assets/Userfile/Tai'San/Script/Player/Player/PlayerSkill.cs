@@ -24,11 +24,8 @@ public class PlayerSkill : PlayerStatus
         SkillInfo1 info = SkillData.GetSkillInfo(skill.skillName_); //スキル情報を取得
         gcd_ = info.gcd_;                                           //GCD更新
 
-        //自身のバフ・デバフを参照してアクション情報を変更
-        //info.InfoSet(,true);←これを強化終了時にdynamicをfalseにして呼び出し&強化クラスにActionInfo2のListを作ってdynamicをtrueにして呼び出し
-
         /*
-         :  攻撃対象oo
+         :  攻撃対象
          */
         List<Transform> targetList = new List<Transform>();
         switch (info.targetType_)
@@ -46,7 +43,7 @@ public class PlayerSkill : PlayerStatus
         }
 
         /*
-         :  ターゲット中心ox
+         :  ターゲット中心
          */
         Transform center = transform;
         if (info.toTarget_) center = targetList.OrderBy(n => Vector2.Distance(transform.position, n.transform.position)).First();
@@ -61,7 +58,7 @@ public class PlayerSkill : PlayerStatus
         }
 
         /*
-         :  ヒット判定xo
+         :  ヒット判定
          */
         List<Transform> hitResult = new List<Transform>();//GetHit(center, targetList);
         if (info.radius_ == 0 && info.aspect_ == Vector2.zero) { hitResult.Add(center); }
@@ -81,31 +78,34 @@ public class PlayerSkill : PlayerStatus
             ).ToList();
 
         /*
-         :  ターゲットサークルヘ送るxo
+         :  ターゲットサークルヘ送る
          */
         foreach (Transform tr in hitResult)
             if (tr.GetComponent<TargetCircle>()) tr.GetComponent<IToEnemyDamageAble>().DamageAble(info.power_);
 
 #if UNITY_EDITOR
         /*
-         :  コンソールログ△o
+         :  コンソールログ
          */
-        string resultText = $"{gameObject.name}の{info.name_}!! →\n";
-        foreach (Transform tf in hitResult)
+        if (log_)//仮
         {
-            resultText += $"{tf.gameObject.name}, ";
-        }
-        if(hitResult.Count != 0)
-        {
-            resultText += $"に{info.power_}ダメージ!!";
-            Debug.Log(resultText);
+            string resultText = $"{gameObject.name}の{info.name_}!! →\n";
+            foreach (Transform tf in hitResult)
+            {
+                resultText += $"{tf.gameObject.name}, ";
+            }
+            if (hitResult.Count != 0)
+            {
+                resultText += $"に{info.power_}ダメージ!!";
+                Debug.Log(resultText);
+            }
         }
 #endif
         /*
-         :  戻り値ox
+         :  戻り値
          */
         //モーション情報
-        if(info.motion_.time_ != 0) StartCoroutine(MotionCoroutine(info.motion_, center.position));
+        if (info.motion_.time_ != 0) StartCoroutine(MotionCoroutine(info.motion_, center.position));
 
         //スキル情報
         SkillInstance resultSkill = new SkillInstance();
@@ -130,14 +130,6 @@ public class PlayerSkill : PlayerStatus
             skill3_.cd_ = Mathf.Max(skill3_.cd_ - Time.deltaTime, 0);
             yield return null;
         }
-    }
-
-    protected IEnumerator DirayCoroutine(float time, SkillInstance skill, Transform target)
-    {
-        float timer = time;
-        while (timer <= 0) { timer -= Time.deltaTime; yield return null; }
-        skill.cd_ = 0;
-        OnSkill(skill, target);
     }
 
     /// <summary>

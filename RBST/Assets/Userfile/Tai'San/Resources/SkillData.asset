@@ -13,31 +13,213 @@ MonoBehaviour:
   m_Name: SkillData
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   skillInfo_:
-  - name_: "\u30D5\u30A1\u30A4\u30A2"
+  - name_: "\u4EEE\u30D5\u30A1\u30A4\u30A2(1\u30AD\u30FC)"
     particle_: {fileID: 3419249946162298372, guid: c0c64ae9232a77c46b85d4b00dc341bc, type: 3}
     targetType_: 0
-    combo_: 0
+    combo_: 1
     toTarget_: 1
-    jumpOn_: 1
     aspect_: {x: 0, y: 0}
     radius_: 2
     power_: 150
     gcd_: 1
-    cd_: 0
-    diray_: 0
-    motionTime_: 0
-    motionSpeed_: 0
-  - name_: "\u30D5\u30A1\u30A4\u30A2II"
+    cd_: 1.5
+    motion_:
+      time_: 2
+      speed_: 0.1
+      jumpOn_: 0
+      jumpOrbit_:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+  - name_: "\u4EEE\u30D5\u30A1\u30A4\u30A2\u30B3\u30F3\u30DC(1\u30AD\u30FC)"
     particle_: {fileID: 3419249946162298372, guid: c0c64ae9232a77c46b85d4b00dc341bc, type: 3}
     targetType_: 0
     combo_: 0
     toTarget_: 1
-    jumpOn_: 0
     aspect_: {x: 0, y: 0}
-    radius_: 3
+    radius_: 4
     power_: 300
     gcd_: 1
     cd_: 0
-    diray_: 0
-    motionTime_: 0
-    motionSpeed_: 0
+    motion_:
+      time_: 1
+      speed_: 2
+      jumpOn_: 0
+      jumpOrbit_:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+  - name_: "\u4EEE\u5927\u708E\u4E0A\u30AD\u30C3\u30AF(2\u30AD\u30FC)"
+    particle_: {fileID: 3419249946162298372, guid: c0c64ae9232a77c46b85d4b00dc341bc, type: 3}
+    targetType_: 0
+    combo_: 3
+    toTarget_: 1
+    aspect_: {x: 0, y: 0}
+    radius_: 3
+    power_: 500
+    gcd_: 1
+    cd_: 0
+    motion_:
+      time_: 0.2
+      speed_: 0
+      jumpOn_: 1
+      jumpOrbit_:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+  - name_: "\u4EEE\u30C7\u30D0\u30D5(2\u30AD\u30FC)"
+    particle_: {fileID: 7634934446412523899, guid: f0a5c7f44ec9b9b41b7214a1107d42f1, type: 3}
+    targetType_: 0
+    combo_: 4
+    toTarget_: 1
+    aspect_: {x: 0, y: 0}
+    radius_: 4
+    power_: 600
+    gcd_: 1.5
+    cd_: 0
+    motion_:
+      time_: 1.2
+      speed_: 0.5
+      jumpOn_: 0
+      jumpOrbit_:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+  - name_: "\u4EEE\u81EA\u5DF1\u4E2D\u5FC3\u9053\u9023\u308C\u30D5\u30A1\u30A4\u30A2(2\u30AD\u30FC)"
+    particle_: {fileID: 3419249946162298372, guid: c0c64ae9232a77c46b85d4b00dc341bc, type: 3}
+    targetType_: 2
+    combo_: 2
+    toTarget_: 0
+    aspect_: {x: 0, y: 0}
+    radius_: 6
+    power_: 777
+    gcd_: 0
+    cd_: 3
+    motion_:
+      time_: 3
+      speed_: 0.1
+      jumpOn_: 0
+      jumpOrbit_:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+  - name_: "\u4EEE\u30D3\u30FC\u30E0(3\u30AD\u30FC)"
+    particle_: {fileID: 4997235082424780348, guid: 0e14a2df6cbe4494db608f37e3bb88c5, type: 3}
+    targetType_: 0
+    combo_: 6
+    toTarget_: 0
+    aspect_: {x: 50, y: 2}
+    radius_: 0
+    power_: 50
+    gcd_: 0.5
+    cd_: 0
+    motion_:
+      time_: 1
+      speed_: 7
+      jumpOn_: 0
+      jumpOrbit_:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
