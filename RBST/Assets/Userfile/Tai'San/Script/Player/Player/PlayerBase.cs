@@ -12,7 +12,7 @@ public class PlayerBase : PlayerSkill, IDamageable
         inputAxis_ = InputSystem.actions.FindAction("Move");
         StartCoroutine(CoolTimeCoroutine());
 
-        for (int i = 0; i < 4; ++i) demoEnemyList_.Add(GameObject.Find($"Enemy{i + 1}").transform);//仮
+        //for (int i = 0; i < 4; ++i) demoEnemyList_.Add(GameObject.Find($"Enemy{i + 1}").transform);//仮
     }
 
     /// <summary>
