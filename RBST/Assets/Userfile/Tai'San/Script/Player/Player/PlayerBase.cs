@@ -1,20 +1,18 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-//機能の使用・独自のクラスがない機能の宣言
+/// <summary>
+/// その他機能
+/// </summary>
 public class PlayerBase : PlayerSkill, IDamageable
 {
     private void Start()
     {
         PlayerManager.AddPlayer((Player)this);
         inputAxis_ = InputSystem.actions.FindAction("Move");
-        StartCoroutine(SkillCoroutine());
+        StartCoroutine(CoolTimeCoroutine());
 
-
-        for (int i = 0; i < 4; ++i)
-        {
-            demoEnemyList_.Add(GameObject.Find($"Enemy{i + 1}").transform);
-        }
+        for (int i = 0; i < 4; ++i) demoEnemyList_.Add(GameObject.Find($"Enemy{i + 1}").transform);//仮
     }
 
     /// <summary>

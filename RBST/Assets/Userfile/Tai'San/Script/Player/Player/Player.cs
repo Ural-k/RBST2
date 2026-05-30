@@ -1,6 +1,8 @@
 using UnityEngine.InputSystem;
 
-//Žå‚É“ü—ÍŽž‚É‘–‚ç‚¹‚é‹@”\
+/// <summary>
+/// “ü—Í
+/// </summary>
 public class Player : PlayerBase
 {
     private void Update() { PlayerMove(); }

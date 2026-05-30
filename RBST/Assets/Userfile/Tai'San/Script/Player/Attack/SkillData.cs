@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static PlayerStatus;
 
-//スキルの取得
+/// <summary>
+/// スキルの取得
+/// </summary>
 [CreateAssetMenu(fileName = "SkillData", menuName = "ScriptableObjects/Player/SkillData")]
 public class SkillData : ScriptableObject
 {
@@ -31,7 +32,15 @@ public enum TargetType
     Natural,
     Null
 }
- 
+
+[System.Serializable]
+public struct MotionInfo
+{
+    public float time_;
+    public float speed_;
+    public bool jumpOn_;
+    public AnimationCurve jumpOrbit_;
+}
 
 /*
  :  スキル設定
@@ -47,31 +56,27 @@ public struct SkillInfo1
 
     //固定ステータス
     [Header("[ToolTip、あります。]")]
-    [Tooltip("攻撃名")]                        public string name_;                //△
-    [Tooltip("パーティクル")]                   public GameObject particle_;        //o
+    [Tooltip("表示名")]                        public string name_;                //△
+    [Tooltip("演出プレファブ")]                 public GameObject particle_;        //o
     [Tooltip("攻撃対象")]                      public TargetType targetType_;       //o
-    [Tooltip("次回実行可能の攻撃")]              public SkillName combo_;            //o
+    [Tooltip("次回の攻撃")]                    public SkillName combo_;            //o
     //public Buff buff_;                  //付与するバフx
     //public DeBuff deBuff_;              //付与するデバフx
-    [Tooltip("近い攻撃対象を中心に範囲を発生")]    public bool toTarget_;              //o
-    [Tooltip("飛びつき")]                       public bool jumpOn_;                //x
+    [Tooltip("近い攻撃対象を中心に")]            public bool toTarget_;              //o
 
     //範囲
-    [Tooltip("アスペクト比")]                   public Vector2 aspect_;             //o
+    [Tooltip("矩形比率")]                       public Vector2 aspect_;             //o
     [Tooltip("半径")]                          public float radius_;               //o
 
     //攻撃パラメータ
     [Tooltip("威力値")]                        public int power_;                  //△
     [Tooltip("GCD")]                          public float gcd_;                  //o
-    [Tooltip("CD")]                           public float cd_;                   //x
-    [Tooltip("発動タイミング")]                 public float diray_;                //
-    //[Tooltip("モーション情報")]                 public SkillMotion motion_;         //o
-    [Header("モーション")]
-    public float motionTime_;
-    public float motionSpeed_;
+    [Tooltip("CD")]                           public float cd_;                   //o
+    [Tooltip("発動タイミング")]                 public float diray_;                //x
+    [Tooltip("発動後の動き")]                   public MotionInfo motion_;          //o
 
     /// <summary>
-    /// Info2の情報を元にInfo1書き換え
+    /// Info2の情報を元にInfo1書き換え※使うか未定
     /// </summary>
     /// <param name="versions">変動内容</param>
     /// <param name="dynamic">動的変動(固定値は使えない)</param>
@@ -139,7 +144,7 @@ public struct SkillInfo1
     }
 }
 
-//操作する強化値(スクタブ用)
+//操作する強化値(スクタブ用※使うか未定)
 [System.Serializable]
 public struct SkillInfo2
 {

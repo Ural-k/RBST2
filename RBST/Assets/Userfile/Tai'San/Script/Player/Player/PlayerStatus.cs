@@ -1,7 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-//変数宣言
+/// <summary>
+/// プレイヤーの変数関連
+/// </summary>
 public class PlayerStatus : MonoBehaviour
 {
     //メモ:ジョブごとの初期スキルを持たすためにSkillNameをジョブごとに分ける必要がある
@@ -25,25 +27,12 @@ public class PlayerStatus : MonoBehaviour
         public float cd_;
         public SkillName skillName_;
     }
-    //[System.Serializable]
-    //public struct SkillMotion//スキルモーション中の状態変化
-    //{
-    //    [Tooltip("モーション時間")]
-    //    public float time_;
-    //    [Tooltip("移動速度")]
-    //    public float speed_;
-    //    [HideInInspector]
-    //    public Vector2 toPosition;
-    //}
     [SerializeField] protected float gcd_;
     [SerializeField] protected Parameter parameter_;
     [SerializeField] protected SkillInstance skill1_;
     [SerializeField] protected SkillInstance skill2_;
     [SerializeField] protected SkillInstance skill3_;
-    //[SerializeField] protected SkillMotion motion_;
     protected InputAction inputAxis_;
-    protected float motionTimer_ = 0;
-    protected Vector3 deltaPosition_;
 
     /*
      :  プロパティ
