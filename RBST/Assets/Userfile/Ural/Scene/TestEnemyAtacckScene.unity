@@ -164,6 +164,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1139812532
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1139812534}
+  - component: {fileID: 1139812533}
+  m_Layer: 0
+  m_Name: EnemyAtackObjectPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1139812533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139812532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64b81a60ee08b9f468392d64faf44efb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAtackObjectPool
+  aoeObject_:
+  - {fileID: 4854360435965813928, guid: 7a1f1ab794a4bab48aea352c19cf22b1, type: 3}
+  - {fileID: 6081284791802014722, guid: 38181d7ddbb0e554d9f176fba20426d1, type: 3}
+  - {fileID: 5024730748241880012, guid: d6ccaa0604a150a488b2d46be6776940, type: 3}
+--- !u!4 &1139812534
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139812532}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.95541, y: -0.08094, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1970733990
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,6 +221,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1970733991}
+  - component: {fileID: 1970733992}
   m_Layer: 0
   m_Name: DemoEnemy
   m_TagString: Untagged
@@ -196,6 +245,20 @@ Transform:
   - {fileID: 1975671587}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1970733992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970733990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7e24bd3e9595b54c9dd355e3c6cebc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyControl
+  pool_: {fileID: 1139812533}
+  colect_: 0
 --- !u!1 &1975671583
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +271,6 @@ GameObject:
   - component: {fileID: 1975671586}
   - component: {fileID: 1975671585}
   - component: {fileID: 1975671584}
-  - component: {fileID: 1975671588}
   m_Layer: 0
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -311,27 +373,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1970733991}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1975671588
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1975671583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daa871937846146458b38959fabfea34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TestEnemyControll
-  debug_:
-  - {fileID: 4854360435965813928, guid: 7a1f1ab794a4bab48aea352c19cf22b1, type: 3}
-  - {fileID: 6081284791802014722, guid: 38181d7ddbb0e554d9f176fba20426d1, type: 3}
-  - {fileID: 5024730748241880012, guid: d6ccaa0604a150a488b2d46be6776940, type: 3}
-  square_: {fileID: 6081284791802014722, guid: 38181d7ddbb0e554d9f176fba20426d1, type: 3}
-  positionAOE_: {x: -5, y: 0}
-  scale_: 5
-  innerRadius_: 0
-  colect_: 2
 --- !u!1 &2088191883
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,3 +517,4 @@ SceneRoots:
   - {fileID: 2088191886}
   - {fileID: 1970733991}
   - {fileID: 538358460}
+  - {fileID: 1139812534}

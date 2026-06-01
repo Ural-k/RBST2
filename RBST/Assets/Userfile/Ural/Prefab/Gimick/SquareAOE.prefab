@@ -234,3 +234,4 @@ MonoBehaviour:
   entityTime_: 1
   damage_: 10
   diameter_: 2
+  aoeCollect_: 1

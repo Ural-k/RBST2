@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game.Enemy
 {
-    public class EnemyMove : MonoBehaviour
+    public class EnemyMove : MonoBehaviour,IEnemyMove
     {
         //定数
         private const float ARRIVE_DISTANCE = 0.1f;
@@ -43,11 +43,11 @@ namespace Game.Enemy
                 return;
             }
 
-            MoveToPoint();
+            //MoveToPoint();
         }
 
         //移動処理
-        private void MoveToPoint()
+        public void UpdatePoint(Vector2 nextPoint)
         {
             Transform targetPoint = points_[currentPointIndex_];
 
@@ -72,14 +72,14 @@ namespace Game.Enemy
         }
 
         //停止開始
-        private void StartWaiting()
+        public void StartWaiting()
         {
             isWaiting_ = true;
             waitTimer_ = 0f;
         }
 
         //停止中処理
-        private void UpdateWaiting()
+        public void UpdateWaiting()
         {
             waitTimer_ += Time.deltaTime;
 
@@ -92,17 +92,14 @@ namespace Game.Enemy
         }
 
         //停止終了
-        private void EndWaiting()
+        public void EndWaiting()
         {
             isWaiting_ = false;
-            UpdateNextPointIndex();
+            SetNextPoint();
         }
 
         //次のポイントへ
-        
-        
-        
-        private void UpdateNextPointIndex()
+        private void SetNextPoint()
         {
             currentPointIndex_++;
 

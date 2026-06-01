@@ -7,14 +7,12 @@ public class TestEnemyControll : MonoBehaviour
     [SerializeField] private GameObject square_;
     [SerializeField] private Vector2 positionAOE_;
     [SerializeField] private float scale_;
-    [SerializeField] private float innerRadius_;
-    [SerializeField] private AOEShapeWrapper shapeWrapper_;
 
-    [SerializeField] private AOEColect colect_;
+    [SerializeField] private AOECollect colect_;
 
     void Start()
     {
-        shapeWrapper_.AOESet();
+        //shapeWrapper_.AOESet();
     }
 
     // Update is called once per frame
@@ -33,7 +31,7 @@ public class TestEnemyControll : MonoBehaviour
             positionAOE_ = player.GetComponent<Transform>().transform.position;
 
             var debug = Instantiate(debug_[(int)colect_], positionAOE_, Quaternion.identity);
-            debug.GetComponent<AOEControll>().IsActive(shapeWrapper_.CallAOE(colect_),scale_,innerRadius_);
+            //debug.GetComponent<AOEControll>().IsActive(shapeWrapper_.CallAOE(colect_),scale_,innerRadius_);
         }
     }
 }

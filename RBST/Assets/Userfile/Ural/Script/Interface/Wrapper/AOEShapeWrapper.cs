@@ -5,7 +5,7 @@ using UnityEngine;
 /// AOEの種類を格納するenum
 /// 追加・削除したい場合はここを変更
 /// </summary>
-public enum AOEColect
+public enum AOECollect
 {
     Circle,
     Box,
@@ -14,25 +14,25 @@ public enum AOEColect
 }
 
 [System.Serializable]
-public class AOEShapeWrapper
+public static class AOEShapeWrapper
 {
-    private IAOEshape circleShape_;
-    private IAOEshape boxShape_;
-    private IAOEshape donutShape_;
+    private static IAOEshape circleShape_;
+    private static IAOEshape boxShape_;
+    private static IAOEshape donutShape_;
 
 
 
-    private AOEColect colect_ = new AOEColect();
+    private static AOECollect colect_ = new AOECollect();
 
     /// <summary>
     /// AOEの中身をセットする
     /// 追加・削除したい場合はここを変更
     /// </summary>
-    public void AOESet()
+    public static void AOESet()
     {
         circleShape_ = new CircleShape();
         boxShape_ = new BoxShape();
-        donutShape_ = new DounutShape();
+        donutShape_ = new DonutShape();
     }
 
 
@@ -41,18 +41,18 @@ public class AOEShapeWrapper
     /// </summary>
     /// <param name="colect">種類名</param>
     /// <returns></returns>
-    public IAOEshape CallAOE(AOEColect colect)
+    public static IAOEshape CallAOE(AOECollect colect)
     {
         IAOEshape temp;
         switch ((int)colect)
         {
-            case (int)AOEColect.Circle:
+            case (int)AOECollect.Circle:
                 temp = circleShape_;
                 return (temp);
-            case (int)AOEColect.Box:
+            case (int)AOECollect.Box:
                 temp = boxShape_;
                 return (temp);
-            case (int)AOEColect.Donut:
+            case (int)AOECollect.Donut:
                 temp = donutShape_;
                 return (temp);
             default:

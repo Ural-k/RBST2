@@ -2,16 +2,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
-public class DounutShape : IAOEshape
+public class DonutShape : IAOEshape
 {
     private float innerRadius_;
-    private AOEColect aoeColect_ = AOEColect.Donut;
+    private AOECollect aoeCollect_ = AOECollect.Donut;
 
     public float InnerRadius { get { return innerRadius_; }  set { innerRadius_ = value; } }
 
-    public AOEColect AOEColect
+    public AOECollect AOECollect
     {
-        get { return aoeColect_; }
+        get { return aoeCollect_; }
     }
     public Collider2D[] GetHits(float radius, Vector3 center)
     {
