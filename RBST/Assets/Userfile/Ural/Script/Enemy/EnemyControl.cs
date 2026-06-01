@@ -1,3 +1,5 @@
+﻿using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyControl : MonoBehaviour
@@ -7,8 +9,13 @@ public class EnemyControl : MonoBehaviour
     [SerializeField]private AOECollect colect_;
     private TransformStract tfStruct;
 
+    private int waitTime = 2;
+    private bool entryFlag_;
+
     private void Awake()
     {
+        entryFlag_ = false;
+        StartCoroutine(GimmickCorutine());
     }
 
     void Start()
@@ -23,18 +30,37 @@ public class EnemyControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
+    }
 
-            int i = Random.Range(0, PlayerManager.GetAllPlayerListCount());
-            if (PlayerManager.GetPlayer(i) == null)
+    IEnumerator GimmickCorutine()
+    {
+        while (true)
+        {
+            //入場
+            if (!entryFlag_)
             {
-                return;
+                //後々追加
             }
-            Player player = PlayerManager.GetPlayer(i);
-            tfStruct.pos = player.transform.position;
+            //待機
+            yield return new WaitForSeconds(waitTime);
+
+            //攻撃
+            //攻撃のステータスを設定（すくたぶがいいなぁ（ちらちら）
+            tfStruct.pos = new Vector2(0,0);    //攻撃を出す座標
+            tfStruct.innerRadius = 0f;          //内側の円の半径（ドーナツ使用時以外０）
+            tfStruct.scale = 0f;                //攻撃のサイズ
+            //↓ここだけ必須
+            colect_ = AOECollect.Circle;        //攻撃の種類を設定
+            //攻撃の表示と再生
             var GetAttack = pool_.GetObject(colect_);
             GetAttack.IsActive(tfStruct);
+
+            //↑　好きに改造してね♡
+            yield return new WaitForSeconds(waitTime);
+            //移動
+
+            //なんかもうがんばれ
+            yield return new WaitForSeconds(waitTime);
         }
     }
 }
