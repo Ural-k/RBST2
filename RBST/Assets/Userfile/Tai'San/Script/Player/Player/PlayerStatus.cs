@@ -1,27 +1,46 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// プレイヤーの変数関連
+/// </summary>
 public class PlayerStatus : MonoBehaviour
 {
-    [System.Serializable]
+    [SerializeField] protected bool log_;//仮
+
+    //メモ:ジョブごとの初期スキルを持たすためにSkillNameをジョブごとに分ける必要がある
+
+    [System.Serializable]//プレイヤー自身の状態数値
     protected struct Parameter
     {
-        public string jobName_;         //職業名
-        public string playerName_;      //プレイヤーの名前
-        public float maxHp_;            //最大HP
-        public float hp_;               //現在のHP
-        public float speed_;            //移動速度
-        public float attack_;           //攻撃力
-        public float defense_;          //防御力
-        public float critical_;         //クリティカル率
-        public uint lv_;                //現在のレベル
+        public string jobName_;         //職業名x
+        public string playerName_;      //プレイヤーの名前x
+        public float maxHp_;            //最大HPx
+        public float hp_;               //現在のHPx
+        public float speed_;            //移動速度o
+        public float attack_;           //攻撃力x
+        public float defense_;          //防御力x
+        public float critical_;         //クリティカル率x
+        public uint lv_;                //現在のレベルx
     }
-
-    [Header("パラメータ")]
+    [System.Serializable]//入力ごとのスキル情報
+    public struct SkillInstance
+    {
+        public float cd_;
+        public SkillName skillName_;
+    }
     [SerializeField] protected Parameter parameter_;
-    [Header("ターゲット関連")]
-    [SerializeField] protected GameObject targetersObject_;   //ターゲット可能なオブジェクト群の親
-    [SerializeField] protected Transform targetGraphic_;     //ターゲット表示
-    protected InputAction inputAxis_;         //移動キー入力
-    protected Transform target_ = null;     //ターゲット中のTransfrom
+    [SerializeField] protected float gcd_;
+    [SerializeField] protected SkillInstance skill1_;
+    [SerializeField] protected SkillInstance skill2_;
+    [SerializeField] protected SkillInstance skill3_;
+    protected InputAction inputAxis_;
+
+    /*
+     :  プロパティ
+     */
+    public float GetGCD { get { return gcd_; } }
+    public SkillInstance GetSkillInstance1 { get { return skill1_; } }
+    public SkillInstance GetSkillInstance2 { get { return skill2_; } }
+    public SkillInstance GetSkillInstance3 { get { return skill3_; } }
 }
