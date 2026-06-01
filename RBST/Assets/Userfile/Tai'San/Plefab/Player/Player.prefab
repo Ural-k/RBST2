@@ -9,8 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7180225609008546129}
-  - component: {fileID: 6138337353257753731}
-  - component: {fileID: 7477228226963313838}
+  - component: {fileID: 4020571769479627487}
   - component: {fileID: 6782165398992391355}
   - component: {fileID: 2511807836803375239}
   m_Layer: 0
@@ -36,7 +35,7 @@ Transform:
   - {fileID: 4221766511462128920}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6138337353257753731
+--- !u!114 &4020571769479627487
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48,46 +47,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f6af70f0379080478e1056345998df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  gcd_: 0
   parameter_:
     jobName_: 
     playerName_: 
     maxHp_: 0
-    hp_: 0
-    speed_: 0
+    hp_: 36000
+    speed_: 5
     attack_: 0
     defense_: 0
     critical_: 0
     lv_: 0
-  targetersObject_: {fileID: 0}
-  targetGraphic_: {fileID: 0}
-  particles_: {fileID: 0}
-  reference_: {fileID: 0}
---- !u!114 &7477228226963313838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5928127022687353163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed269ee190a8f2143b2d631f7c96976d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerAction
-  parameter_:
-    jobName_: 
-    playerName_: 
-    maxHp_: 0
-    hp_: 0
-    speed_: 0
-    attack_: 0
-    defense_: 0
-    critical_: 0
-    lv_: 0
-  targetersObject_: {fileID: 0}
-  targetGraphic_: {fileID: 0}
-  particles_: {fileID: 11400000, guid: 97899c7857ebebf43a3c2d4599b17484, type: 2}
-  reference_: {fileID: 11400000, guid: 102947632d6e34440849a7676cc03762, type: 2}
+  skill1_:
+    cd_: 0
+    skillName_: 0
+  skill2_:
+    cd_: 0
+    skillName_: 2
+  skill3_:
+    cd_: 0
+    skillName_: 5
+  demoEnemyList_: []
 --- !u!114 &6782165398992391355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,7 +94,19 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4020571769479627487}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: InputMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 351f2ccd-1f9f-44bf-9bec-d62ac5c5f408
     m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]'
   - m_PersistentCalls:
@@ -123,7 +115,7 @@ MonoBehaviour:
     m_ActionName: 'Player/Look[/Mouse/delta]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6138337353257753731}
+      - m_Target: {fileID: 4020571769479627487}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: InputAttack1
         m_Mode: 0
