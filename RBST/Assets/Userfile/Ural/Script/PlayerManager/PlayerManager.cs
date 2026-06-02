@@ -14,6 +14,19 @@ public class PlayerManager : MonoBehaviour
     }
 
     /// <summary>
+    /// “Á’è‚ÌƒvƒŒƒCƒ„[‚ğíœ
+    /// </summary>
+    public static void DeletePlayer(Player player)
+    {
+        foreach (Player p in playerList_)
+        {
+            if (p == player)
+            {
+                playerList_.Remove(p);
+            }
+        }
+    }
+    /// <summary>
     /// list“à‚Ì“Á’è‚ÌPlayer‚ğæ“¾
     /// </summary>
     public static Player GetPlayer(int i)
