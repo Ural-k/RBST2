@@ -44,28 +44,55 @@ public class EnemyControl : MonoBehaviour
             //待機
             yield return new WaitForSeconds(waitTime);
 
-            //攻撃
-            //攻撃のステータスを設定（すくたぶがいいなぁ（ちらちら）
-            tfStruct.pos = new Vector2(0,0);    //攻撃を出す座標
-            tfStruct.innerRadius = 0f;          //内側の円の半径（ドーナツ使用時以外０）
-            tfStruct.scale = 2f;                //攻撃のサイズ
-            //↓ここだけ必須
-            colect_ = AOECollect.Circle;        //攻撃の種類を設定
-            //攻撃の表示と再生
-            var GetAttack = pool_.GetObject(colect_);
-            GetAttack.IsActive(tfStruct);
+            ////攻撃
+            ////攻撃のステータスを設定（すくたぶがいいなぁ（ちらちら）
+            //tfStruct.pos = new Vector2(0,0);    //攻撃を出す座標
+            //tfStruct.innerRadius = 0f;          //内側の円の半径（ドーナツ使用時以外０）
+            //tfStruct.scale = 2f;                //攻撃のサイズ
+            ////↓ここだけ必須
+            //colect_ = AOECollect.Circle;        //攻撃の種類を設定
+            ////攻撃の表示と再生
+            //var GetAttack = pool_.GetObject(colect_);
+            //GetAttack.IsActive(tfStruct);
 
             yield return new WaitForSeconds(waitTime);
 
-            colect_ = AOECollect.Box;
+            colect_ = AOECollect.Box;                   //上
             tfStruct.pos = new Vector2(0, 30);
             tfStruct.scale = 55;
-
-            var uenagiharai = pool_.GetObject(colect_);
-            uenagiharai.IsActive(tfStruct);
-
-            colect_ = AOECollect.Box;
             
+            var GetAttack = pool_.GetObject(colect_);
+            GetAttack.IsActive(tfStruct);
+
+            tfStruct.pos = new Vector2(0, -30);         //下
+            tfStruct.scale = 55;
+
+            GetAttack = pool_.GetObject(colect_);
+            GetAttack.IsActive(tfStruct);
+
+            tfStruct.pos = new Vector2(-30, 0);         //左
+            tfStruct.scale = 67;
+
+            GetAttack = pool_.GetObject(colect_);
+            GetAttack.IsActive(tfStruct);
+
+            yield return new WaitForSeconds(5);
+
+            tfStruct.pos = new Vector2(0, 30);          //上
+            tfStruct.scale = 55;
+            GetAttack = pool_.GetObject(colect_);
+            GetAttack.IsActive(tfStruct);
+
+            tfStruct.pos = new Vector2(0, -30);         //下
+            tfStruct.scale = 55;
+            GetAttack = pool_.GetObject(colect_);
+            GetAttack.IsActive(tfStruct);
+
+            tfStruct.pos = new Vector2(30, 0);          //右
+            tfStruct.scale = 67;
+            GetAttack = pool_.GetObject(colect_);
+            GetAttack.IsActive(tfStruct);
+
 
             //↑　好きに改造してね♡
             yield return new WaitForSeconds(waitTime);
