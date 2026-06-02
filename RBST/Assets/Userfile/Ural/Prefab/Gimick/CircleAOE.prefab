@@ -138,11 +138,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AOEControll
   entity_: {fileID: 3759408176047728927}
-  entry_: {fileID: 7927243530876426263}
+  warning_: {fileID: 7927243530876426263}
   entryTime_: 3
   entityTime_: 1
   damage_: 10
   diameter_: 2
+  aoeCollect_: 0
 --- !u!1 &7927243530876426263
 GameObject:
   m_ObjectHideFlags: 0

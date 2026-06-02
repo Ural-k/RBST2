@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AOEControll
   entity_: {fileID: 5519732856150443550}
-  entry_: {fileID: 5775167547028939738}
+  warning_: {fileID: 5775167547028939738}
   entryTime_: 3
   entityTime_: 1
   damage_: 10
