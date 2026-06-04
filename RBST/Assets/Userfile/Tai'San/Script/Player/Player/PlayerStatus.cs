@@ -6,14 +6,12 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class PlayerStatus : MonoBehaviour
 {
-    [SerializeField] protected bool log_;//仮
-
-    //メモ:ジョブごとの初期スキルを持たすためにSkillNameをジョブごとに分ける必要がある
+    [SerializeField] protected bool debug_;//仮
 
     [System.Serializable]//プレイヤー自身の状態数値
     protected struct Parameter
     {
-        public string jobName_;         //職業名x
+        public int jobNumber_;          //職業
         public string playerName_;      //プレイヤーの名前x
         public float maxHp_;            //最大HPx
         public float hp_;               //現在のHPx
@@ -27,13 +25,15 @@ public class PlayerStatus : MonoBehaviour
     public struct SkillInstance
     {
         public float cd_;
-        public SkillName skillName_;
+        public int input_;
+        public int nowCombo_;
     }
     [SerializeField] protected Parameter parameter_;
     [SerializeField] protected float gcd_;
     [SerializeField] protected SkillInstance skill1_;
     [SerializeField] protected SkillInstance skill2_;
     [SerializeField] protected SkillInstance skill3_;
+    protected JobData skillData_;
     protected InputAction inputAxis_;
 
     /*

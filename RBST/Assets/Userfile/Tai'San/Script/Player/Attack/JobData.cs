@@ -1,29 +1,34 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
 /// スキルの取得
 /// </summary>
-[CreateAssetMenu(fileName = "SkillData", menuName = "ScriptableObjects/Player/SkillData")]
-public class SkillData : ScriptableObject
+[CreateAssetMenu(fileName = "99_JobName(UnNamed)", menuName = "ScriptableObjects/Player/JobData")]
+public class JobData : ScriptableObject
 {
-    [SerializeField] private List<SkillInfo1> skillInfo_ = new List<SkillInfo1>();
-    public static SkillInfo1 GetSkillInfo(SkillName attackName)
-    { return Resources.Load<SkillData>("SkillData").skillInfo_[(int)attackName]; }
-}
+    [SerializeField] private string jobName_;
+    [SerializeField] private SkillData[] skill1_;
+    [SerializeField] private SkillData[] skill2_;
+    [SerializeField] private SkillData[] skill3_;
 
-/*
- :  スキル名　※スキルを増やす場合このenumだけ追加する必要がある
- */
-public enum SkillName
-{
-    Fire,
-    Fire2,
-    JumpOnFire,
-    CenterFire,
-    DynamicFire,
-    BeamFire,
-    Null,
+    //ジョブ取得
+    private static JobData GetJobsData(int number) { return Resources.LoadAll<JobData>("Job")[number]; }
+
+    /// <summary>
+    /// スキル取得
+    /// </summary>
+    /// <param name="jobNumber">ジョブナンバー</param>
+    public static JobData GetJobSkill(int jobNumber) { return GetJobsData(jobNumber); }
+
+    //発動スキル取得
+    public SkillData[] GetSkill1() { return skill1_; }
+    public SkillData[] GetSkill2() { return skill2_; }
+    public SkillData[] GetSkill3() { return skill3_; }
+
+    /// <summary>
+    /// ジョブの名前
+    /// </summary>
+    public string GetJobName { get { return jobName_; } }
 }
 
 /*
@@ -50,7 +55,7 @@ public struct MotionInfo
  :  スキル設定
  */
 [System.Serializable]
-public struct SkillInfo1
+public struct SkillData
 {                                       //役割[参照する強化値(変動する値)]
     /* 追加する値メモ
      :  ・offset,rotate
@@ -62,7 +67,7 @@ public struct SkillInfo1
     [Tooltip("表示名")]                        public string name_;                //△
     [Tooltip("演出プレファブ")]                 public GameObject particle_;        //o
     [Tooltip("攻撃対象")]                      public TargetType targetType_;       //o
-    [Tooltip("次回の攻撃")]                    public SkillName combo_;            //o
+    //[Tooltip("次回の攻撃")]                    public SkillName combo_;            //o
     //public Buff buff_;                  //付与するバフx
     //public DeBuff deBuff_;              //付与するデバフx
     [Tooltip("近い攻撃対象を中心に")]            public bool toTarget_;              //o
