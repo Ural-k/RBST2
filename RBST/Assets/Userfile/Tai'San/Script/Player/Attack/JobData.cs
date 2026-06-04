@@ -7,7 +7,6 @@ using UnityEngine;
 public class JobData : ScriptableObject
 {
     [SerializeField] private string jobName_;
-    [Header("“ü—Í‚²‚Æ‚É”­“®‚·‚éƒXƒLƒ‹")]
     [SerializeField] private SkillData[] skill1_;
     [SerializeField] private SkillData[] skill2_;
     [SerializeField] private SkillData[] skill3_;
