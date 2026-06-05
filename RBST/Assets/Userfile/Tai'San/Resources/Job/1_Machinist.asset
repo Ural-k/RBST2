@@ -33,6 +33,25 @@ MonoBehaviour:
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
+  - name_: "\u30B7\u30E7\u30C3\u30C8"
+    particle_: {fileID: 4997235082424780348, guid: 0e14a2df6cbe4494db608f37e3bb88c5, type: 3}
+    targetType_: 0
+    toTarget_: 0
+    aspect_: {x: 50, y: 2}
+    radius_: 0
+    power_: 200
+    gcd_: 0
+    cd_: 5
+    motion_:
+      time_: 0
+      speed_: 0
+      jumpOn_: 0
+      jumpOrbit_:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
   skill2_:
   - name_: "\u30B7\u30E7\u30C3\u30C82"
     particle_: {fileID: 4997235082424780348, guid: 0e14a2df6cbe4494db608f37e3bb88c5, type: 3}
