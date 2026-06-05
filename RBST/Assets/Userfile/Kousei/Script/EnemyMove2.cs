@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game.Enemy
 {
-    public class EnemyMove2 : MonoBehaviour
+    public class EnemyMove2 : MonoBehaviour,IEnemyMove
     {
         // ポイント到達とみなす距離
         private const float ARRIVE_DISTANCE = 0.1f;
@@ -78,10 +78,10 @@ namespace Game.Enemy
             }
 
             // 通常移動処理
-            MoveToPoint();
+            //MoveToPoint();
         }
 
-        private void UpdateVisibility()
+        public void UpdateVisibility()
         {
             // 経過時間を加算
             visibleTimer_ += Time.deltaTime;
@@ -134,7 +134,7 @@ namespace Game.Enemy
             spriteRenderer_.color = color;
         }
 
-        private void MoveToPoint()
+        public void UpdatePoint(Vector2 nextPoint)
         {
             // 現在のターゲットポイント取得
             Transform targetPoint = points_[currentPointIndex_];
@@ -161,14 +161,14 @@ namespace Game.Enemy
             }
         }
 
-        private void StartWaiting()
+        public void StartWaiting()
         {
             // 待機開始
             isWaiting_ = true;
             waitTimer_ = 0f;
         }
 
-        private void UpdateWaiting()
+        public void UpdateWaiting()
         {
             // 待機時間を加算
             waitTimer_ += Time.deltaTime;
@@ -181,16 +181,16 @@ namespace Game.Enemy
             }
         }
 
-        private void EndWaiting()
+        public void EndWaiting()
         {
             // 待機終了
             isWaiting_ = false;
 
             // 次のポイントへ
-            UpdateNextPointIndex();
+            SetNextPoint();
         }
 
-        private void UpdateNextPointIndex()
+        private void SetNextPoint()
         {
             // インデックスを進める
             currentPointIndex_++;

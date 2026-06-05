@@ -6,11 +6,11 @@ public class BoxShape : IAOEshape
 {
 
     public float InnerRadius { get; set; }
-    private AOEColect aoeColect_ = AOEColect.Box;
+    private AOECollect aoeCollect_ = AOECollect.Box;
 
-    public AOEColect AOEColect
+    public AOECollect AOECollect
     {
-        get { return aoeColect_; }
+        get { return aoeCollect_; }
     }
     public Collider2D[] GetHits(float radius,Vector3 center)
     {

@@ -49,16 +49,62 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   debug_: 0
   parameter_:
+<<<<<<< HEAD
+    jobName_: 
+    playerName_: 
+    maxHp_: 0
+<<<<<<< HEAD
+    hp_: 0
+=======
+=======
     jobNumber_: 0
     playerName_: "\u9BDB\u8336\u6F2C\u3051"
     maxHp_: 36000
+>>>>>>> feature/player
     hp_: 36000
+>>>>>>> develop
     speed_: 5
     attack_: 0
     defense_: 0
     critical_: 0
     lv_: 0
+<<<<<<< HEAD
+<<<<<<< HEAD
+  targetersObject_: {fileID: 0}
+  targetGraphic_: {fileID: 0}
+  particles_: {fileID: 0}
+  reference_: {fileID: 0}
+  demoEnemyList_: []
+--- !u!114 &7477228226963313838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5928127022687353163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed269ee190a8f2143b2d631f7c96976d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAction
+  parameter_:
+    jobName_: 
+    playerName_: 
+    maxHp_: 0
+    hp_: 0
+    speed_: 0
+    attack_: 0
+    defense_: 0
+    critical_: 0
+    lv_: 0
+  targetersObject_: {fileID: 0}
+  targetGraphic_: {fileID: 0}
+  particles_: {fileID: 11400000, guid: 97899c7857ebebf43a3c2d4599b17484, type: 2}
+  reference_: {fileID: 11400000, guid: 102947632d6e34440849a7676cc03762, type: 2}
+=======
+=======
   gcd_: 0
+>>>>>>> feature/player
   skill1_:
     cd_: 0
     input_: 0
@@ -69,8 +115,13 @@ MonoBehaviour:
     nowCombo_: 0
   skill3_:
     cd_: 0
+<<<<<<< HEAD
+    skillName_: 5
+>>>>>>> develop
+=======
     input_: 0
     nowCombo_: 0
+>>>>>>> feature/player
   demoEnemyList_: []
 --- !u!114 &7897398019433228373
 MonoBehaviour:

@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -6,18 +7,16 @@ using static UnityEngine.Rendering.GPUSort;
 public class AOEControll : MonoBehaviour
 {
     [SerializeField] private GameObject entity_; //AOEの実体
-    [SerializeField] private GameObject entry_;  //AOEの予兆
+    [SerializeField] private GameObject warning_;  //AOEの予兆
     [SerializeField] private float entryTime_;   //予兆時間
     [SerializeField] private float entityTime_;  //実体時間
     [SerializeField] private int damage_;        //ダメージ量
     [SerializeField] private float diameter_;    //範囲(直径）
-    [SerializeField] private AOEShapeWrapper shapeWrapper_; //AOEWrapperのインスタンス
+    [SerializeField] private AOECollect aoeCollect_;
 
-
+    private AOEShapeWrapper shapeWrapper_;
     private IAOEshape shape_;                    //範囲の形状
-    
     private Vector3 pos_;                        //範囲生成位置
-    private float timer_;                        //経過時間
     private float innerRaito_;                   //内側の円が
     private bool warningActiveFlag_;             //起動フラグ
     private bool entityActiveFlag_;              //実体起動フラグ
@@ -30,14 +29,20 @@ public class AOEControll : MonoBehaviour
     public float Radius { get { return diameter_ / 2; } }
 
     private Vector2 Scale { get { return new Vector2(diameter_, diameter_); } }
+
+    public AOECollect ShapeColect { get { return aoeCollect_; } }
+
+    public GameObject WarningObject { get { return warning_; } }
+    public GameObject EntityObject { get { return entity_; } }
     
 
     private void Awake()
     {
         //初期化
+        shapeWrapper_ = new AOEShapeWrapper();
+        shape_ = shapeWrapper_.AOESet(aoeCollect_);
+        warning_.SetActive(false);
         entity_.SetActive(false);
-        entry_.SetActive(false);
-        timer_ = entryTime_;
         innerRaito_ = 0.0f;
         warningActiveFlag_ = false;
         entityActiveFlag_ = false;
@@ -48,8 +53,6 @@ public class AOEControll : MonoBehaviour
     private void Update()
     {
         pos_ = transform.position;
-        Entry();
-        Entity();
 
         //マテリアルが_InnerRを持っていたら内側の範囲を設定する
         if (entity_.GetComponent<SpriteRenderer>().material.HasProperty("_InnerR"))
@@ -62,67 +65,19 @@ public class AOEControll : MonoBehaviour
     /// 予兆を生成するフラグをオンにする
     /// のちのち引数をscriptableに変更予定
     /// </summary>
-    public void IsActive(IAOEshape shape, float scale, float innerRaito)
+    public void IsActive(TransformStract transformStruct )
     {
-        //生成されたときのステータスを設定
-        shape_ = shape;
-        diameter_ = scale;
+        //表示されたときの座標とサイズ等を設定
+        diameter_ = transformStruct.scale;
+        innerRaito_ = transformStruct.innerRadius;
+        transform.position = transformStruct.pos;
         transform.localScale = Scale;
-        innerRaito_ = innerRaito;
 
         //判定の開始
         if (entityActiveFlag_) { return; }
         if (warningActiveFlag_) { return; }
-        else{ warningActiveFlag_ = true; }
-
+        else{ gameObject.SetActive(true); StartCoroutine(Coroutine()); }
     }
-
-    /// <summary>
-    /// 予兆を生成一定時間後に実体に移行
-    /// </summary>
-
-    private  void Entry()
-    {
-        
-        //entriyActiveFlagがfalseなら起動しない
-        if (!warningActiveFlag_) { return; }
-
-        
-        entry_.SetActive (true);
-        timer_ -= Time.deltaTime;
-        if (timer_ < 0)
-        {
-            entry_.SetActive(false);
-            warningActiveFlag_ = false;
-            entityActiveFlag_ = true;
-            timer_ = entityTime_;
-        }
-
-    }
-
-    /// <summary>
-    /// 実体を生成一定時間後に使った変数をリセット
-    /// </summary>
-    private void Entity()
-    {
-        //entityActiveFlagがfalseなら起動しない
-        if (!entityActiveFlag_) { return; }
-        
-        entity_ .SetActive (true);
-        timer_ -= Time .deltaTime;
-        ApplyDamage();
-        if (timer_ < 0)
-        {
-            
-            entity_.SetActive(false);
-            entityActiveFlag_ = false;
-            timer_ = entityTime_;
-
-            //オブジェクトプールに変更するとき削除予定
-            Destroy(gameObject);
-        }
-    }
-
 
     /// <summary>
     /// ダメージ処理
@@ -135,6 +90,7 @@ public class AOEControll : MonoBehaviour
             var d = hit.GetComponent<IDamageable>();
             if (d != null)
             {
+                Debug.Log("A");
                 d.TakeDamage(damage_);
             }
         }
@@ -165,5 +121,29 @@ public class AOEControll : MonoBehaviour
     private void OnDrawGizmos()
     {
         shape_.OnDrawGizmos(Radius, pos_);
+    }
+
+    IEnumerator Coroutine()
+    {
+        warningActiveFlag_ = true;
+        warning_.SetActive(true);
+        yield return new WaitForSeconds(entryTime_);
+        
+            warning_.SetActive(false);
+            warningActiveFlag_ = false;
+            entityActiveFlag_ = true;
+        
+
+        //entityActiveFlagがfalseなら起動しない
+        if (!entityActiveFlag_) { yield break; }
+
+        entity_.SetActive(true);
+        ApplyDamage();
+
+        yield return new WaitForSeconds(entityTime_);
+
+            entity_.SetActive(false);
+            gameObject.SetActive(false);
+            entityActiveFlag_ = false;
     }
 }

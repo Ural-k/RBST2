@@ -10,7 +10,7 @@ public interface IAOEshape
     /// <summary>
     /// 各AOEが自分がどの形か記憶出来るようにしておく
     /// </summary>
-    public AOEColect AOEColect { get; }
+    public AOECollect AOECollect { get; }
 
     /// <summary>
     /// AOEのステータスを渡して当たり判定を生成する
