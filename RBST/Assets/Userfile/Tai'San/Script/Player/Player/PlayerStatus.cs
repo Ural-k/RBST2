@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class PlayerStatus : MonoBehaviour
 {
-    [SerializeField] protected bool debug_;//仮
+    [SerializeField] protected bool demodebug_;//仮
 
     [System.Serializable]//プレイヤー自身の状態数値
     protected struct Parameter

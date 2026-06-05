@@ -87,7 +87,7 @@ public class PlayerSkill : PlayerStatus
         /*
          :  コンソールログ
          */
-        if (debug_)//仮
+        if (demodebug_)//仮
         {
             string resultText = $"{gameObject.name}の{skillData.name_}!! →\n";
             foreach (Transform tf in hitResult)

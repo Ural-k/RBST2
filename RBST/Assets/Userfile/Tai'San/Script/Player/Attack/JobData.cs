@@ -1,5 +1,17 @@
 using UnityEngine;
 
+/*
+ :  <ジョブの実装の仕方>
+ :  1.Assets/Userfile/Tai'San/Resources/Job の中で右クリ。
+ :  2.Create/ScriptableObjects/Player/JobDataをクリック。
+ :  3.名前を他のアセットに合わせる形で書き換える
+ :  4.ジョブの名前を書き、スキルをそれぞれ設定する
+ :
+ :  ※ジョブ固有のスキルを実装したい場合
+ :  5.JobSystemの中にpublic class ジョブ名(英) : IJobSystemを実装
+ :  6.インターフェースに沿って固有のスキルを作る。オブジェクトを追加する際などにJobSystemに変数を追加してもいい
+ */
+
 /// <summary>
 /// スキルの取得
 /// </summary>
