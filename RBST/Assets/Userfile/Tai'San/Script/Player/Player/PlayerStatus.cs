@@ -25,14 +25,13 @@ public class PlayerStatus : MonoBehaviour
     public struct SkillInstance
     {
         public float cd_;
-        public int input_;
         public int nowCombo_;
     }
     [SerializeField] protected Parameter parameter_;
-    [SerializeField] protected float gcd_;
-    [SerializeField] protected SkillInstance skill1_;
-    [SerializeField] protected SkillInstance skill2_;
-    [SerializeField] protected SkillInstance skill3_;
+    protected float gcd_;
+    protected SkillInstance skill1_;
+    protected SkillInstance skill2_;
+    protected SkillInstance skill3_;
     protected JobData skillData_;
     protected InputAction inputAxis_;
 

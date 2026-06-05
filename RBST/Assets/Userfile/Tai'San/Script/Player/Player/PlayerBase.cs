@@ -12,8 +12,6 @@ public class PlayerBase : PlayerSkill, IDamageable
         inputAxis_ = InputSystem.actions.FindAction("Move");
         StartCoroutine(CoolTimeCoroutine());
         skillData_ = JobData.GetJobSkill(parameter_.jobNumber_);
-
-        //for (int i = 0; i < 4; ++i) demoEnemyList_.Add(GameObject.Find($"Enemy{i + 1}").transform);//仮
     }
 
     /// <summary>

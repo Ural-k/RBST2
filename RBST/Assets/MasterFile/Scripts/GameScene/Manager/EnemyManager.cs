@@ -45,5 +45,11 @@ public class EnemyManager : MonoBehaviour
         return enemyList_[i];
     }
     
-    
+    /// <summary>
+    /// EnemyList_‚Ì—v‘f”‚ğæ“¾‚·‚é
+    /// </summary>
+    public static int GetAllEnemyListCount()
+    {
+        return enemyList_.Count;
+    }
 }

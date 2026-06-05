@@ -8,8 +8,6 @@ using UnityEngine;
 /// </summary>
 public class PlayerSkill : PlayerStatus
 {
-    [SerializeField, Header("DEMO")] protected List<Transform> demoEnemyList_;//仮
-
     //メモ:マウスカーソル近くの敵に攻撃の処理もほしい
 
     /// <summary>
@@ -31,13 +29,13 @@ public class PlayerSkill : PlayerStatus
         switch (skillData.targetType_)
         {
             case TargetType.Enemy:
-                targetList.AddRange(demoEnemyList_);
+                for (int i = 0; i < EnemyManager.GetAllEnemyListCount(); ++i) targetList.Add(EnemyManager.GetEnemy(i).transform);
                 break;
             case TargetType.Player:
                 for (int i = 0; i < PlayerManager.GetAllPlayerListCount(); ++i) targetList.Add(PlayerManager.GetPlayer(i).transform);
                 break;
             case TargetType.Natural:
-                targetList.AddRange(demoEnemyList_);
+                for (int i = 0; i < EnemyManager.GetAllEnemyListCount(); ++i) targetList.Add(EnemyManager.GetEnemy(i).transform);
                 for (int i = 0; i < PlayerManager.GetAllPlayerListCount(); ++i) targetList.Add(PlayerManager.GetPlayer(i).transform);
                 break;
         }

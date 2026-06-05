@@ -8,7 +8,9 @@ public class Player : PlayerBase
 {
     private void Update()
     {
-        if(demodebug_) { skillData_ = JobData.GetJobSkill(parameter_.jobNumber_); }//途中でジョブを変えたときの切り替え
+#if UNITY_EDITOR
+        skillData_ = JobData.GetJobSkill(parameter_.jobNumber_); //途中でジョブを変えたときの切り替え
+#endif
         PlayerMove();
         if (Input.GetMouseButtonDown(1)) { skill2_ = OnSkill(skill2_, skillData_.GetSkill2()); }//仮↓
         if (Input.GetMouseButtonDown(2)) { skill3_ = OnSkill(skill3_, skillData_.GetSkill3()); }
