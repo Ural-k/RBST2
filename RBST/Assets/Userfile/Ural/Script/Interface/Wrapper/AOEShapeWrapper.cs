@@ -14,46 +14,28 @@ public enum AOECollect
 }
 
 [System.Serializable]
-public static class AOEShapeWrapper
+public class AOEShapeWrapper
 {
-    private static IAOEshape circleShape_;
-    private static IAOEshape boxShape_;
-    private static IAOEshape donutShape_;
 
-
-
-    private static AOECollect colect_ = new AOECollect();
+    private AOECollect colect_ = new AOECollect();
 
     /// <summary>
     /// AOEの中身をセットする
     /// 追加・削除したい場合はここを変更
     /// </summary>
-    public static void AOESet()
-    {
-        circleShape_ = new CircleShape();
-        boxShape_ = new BoxShape();
-        donutShape_ = new DonutShape();
-    }
-
-
-    /// <summary>
-    /// AOEがの中身を呼び出す
-    /// </summary>
-    /// <param name="colect">種類名</param>
-    /// <returns></returns>
-    public static IAOEshape CallAOE(AOECollect colect)
+    public IAOEshape AOESet(AOECollect colect)
     {
         IAOEshape temp;
         switch ((int)colect)
         {
             case (int)AOECollect.Circle:
-                temp = circleShape_;
+                temp = new CircleShape();
                 return (temp);
             case (int)AOECollect.Box:
-                temp = boxShape_;
+                temp = new BoxShape() ;
                 return (temp);
             case (int)AOECollect.Donut:
-                temp = donutShape_;
+                temp = new DonutShape();
                 return (temp);
             default:
                 return null;

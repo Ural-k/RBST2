@@ -14,7 +14,7 @@ public class AOEControll : MonoBehaviour
     [SerializeField] private float diameter_;    //”ÍˆÍ(’¼Œaj
     [SerializeField] private AOECollect aoeCollect_;
 
-
+    private AOEShapeWrapper shapeWrapper_;
     private IAOEshape shape_;                    //”ÍˆÍ‚ÌŒ`ó
     private Vector3 pos_;                        //”ÍˆÍ¶¬ˆÊ’u
     private float innerRaito_;                   //“à‘¤‚Ì‰~‚ª
@@ -39,8 +39,8 @@ public class AOEControll : MonoBehaviour
     private void Awake()
     {
         //‰Šú‰»
-        AOEShapeWrapper.AOESet();
-        shape_ = AOEShapeWrapper.CallAOE(aoeCollect_);
+        shapeWrapper_ = new AOEShapeWrapper();
+        shape_ = shapeWrapper_.AOESet(aoeCollect_);
         warning_.SetActive(false);
         entity_.SetActive(false);
         innerRaito_ = 0.0f;
@@ -90,6 +90,7 @@ public class AOEControll : MonoBehaviour
             var d = hit.GetComponent<IDamageable>();
             if (d != null)
             {
+                Debug.Log("A");
                 d.TakeDamage(damage_);
             }
         }

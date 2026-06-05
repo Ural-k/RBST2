@@ -5,9 +5,11 @@ using UnityEngine;
 public class EnemyControl : MonoBehaviour
 {
     [SerializeField] private EnemyAtackObjectPool pool_;
+    [SerializeField] private EnemyAttackPos[] scriptableObject_;
 
-    [SerializeField]private AOECollect colect_;
+    private AOECollect colect_;
     private TransformStract tfStruct;
+    private int attackPhase = 0;
 
     private int waitTime = 2;
     private bool entryFlag_;
@@ -34,6 +36,8 @@ public class EnemyControl : MonoBehaviour
 
     IEnumerator GimmickCorutine()
     {
+        var wait = new WaitForSeconds(waitTime);
+        var attackWait = new WaitForSeconds(5f);
         while (true)
         {
             //入場
@@ -42,7 +46,7 @@ public class EnemyControl : MonoBehaviour
                 //後々追加
             }
             //待機
-            yield return new WaitForSeconds(waitTime);
+            yield return wait;
 
             ////攻撃
             ////攻撃のステータスを設定（すくたぶがいいなぁ（ちらちら）
@@ -55,51 +59,25 @@ public class EnemyControl : MonoBehaviour
             //var GetAttack = pool_.GetObject(colect_);
             //GetAttack.IsActive(tfStruct);
 
-            yield return new WaitForSeconds(waitTime);
+            yield return wait;
 
-            colect_ = AOECollect.Box;                   //上
-            tfStruct.pos = new Vector2(0, 30);
-            tfStruct.scale = 55;
             
-            var GetAttack = pool_.GetObject(colect_);
-            GetAttack.IsActive(tfStruct);
-
-            tfStruct.pos = new Vector2(0, -30);         //下
-            tfStruct.scale = 55;
-
-            GetAttack = pool_.GetObject(colect_);
-            GetAttack.IsActive(tfStruct);
-
-            tfStruct.pos = new Vector2(-30, 0);         //左
-            tfStruct.scale = 67;
-
-            GetAttack = pool_.GetObject(colect_);
-            GetAttack.IsActive(tfStruct);
+            if (scriptableObject_.Length <= attackPhase) { attackPhase = 0; }
+            var data = scriptableObject_[attackPhase];
+            for (int i = 0;i < data.attackPos.Length;i++) 
+            {
+                colect_ = data.aoeCollect[i];
+                tfStruct.pos = data.attackPos[i];
+                tfStruct.scale = data.scale[i];
+                var GetAttack = pool_.GetObject(colect_);
+                GetAttack.IsActive(tfStruct);
+            }
+            attackPhase++;
 
             yield return new WaitForSeconds(5);
 
-            tfStruct.pos = new Vector2(0, 30);          //上
-            tfStruct.scale = 55;
-            GetAttack = pool_.GetObject(colect_);
-            GetAttack.IsActive(tfStruct);
-
-            tfStruct.pos = new Vector2(0, -30);         //下
-            tfStruct.scale = 55;
-            GetAttack = pool_.GetObject(colect_);
-            GetAttack.IsActive(tfStruct);
-
-            tfStruct.pos = new Vector2(30, 0);          //右
-            tfStruct.scale = 67;
-            GetAttack = pool_.GetObject(colect_);
-            GetAttack.IsActive(tfStruct);
-
-
-            //↑　好きに改造してね♡
-            yield return new WaitForSeconds(waitTime);
-            //移動
-
-            //なんかもうがんばれ
-            yield return new WaitForSeconds(waitTime);
+            ////移動
+            //yield return new WaitForSeconds(waitTime);
         }
     }
 }
