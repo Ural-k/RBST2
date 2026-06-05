@@ -47,7 +47,7 @@ public class PlayerSkill : PlayerStatus
         if (skillData.toTarget_) center = targetList.OrderBy(n => Vector2.Distance(transform.position, n.transform.position)).First();
 
         /*
-         :  パーティクルxo
+         :  パーティクル
          */
         if (skillData.particle_ != null)
         {

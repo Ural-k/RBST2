@@ -26,6 +26,6 @@ public class PlayerBase : PlayerSkill, IDamageable
 
     public void TakeDamage(int damage_)
     {
-        Debug.Log("当たっちゃったーワイプワイプ");
+        parameter_.hp_ -= damage_;
     }
 }
