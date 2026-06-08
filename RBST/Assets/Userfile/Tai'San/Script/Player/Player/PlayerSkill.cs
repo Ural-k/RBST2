@@ -43,16 +43,25 @@ public class PlayerSkill : PlayerStatus
         /*
          :  ターゲット中心
          */
-        Transform center = transform;
-        if (skillData.toTarget_) center = targetList.OrderBy(n => Vector2.Distance(transform.position, n.transform.position)).First();
-        center.position += (Vector3)skillData.offset_;
+        Transform firstTarget = null;
+        Vector2 resultPos = transform.position;
+        if (skillData.toTarget_)
+        {
+            firstTarget = targetList.OrderBy(n => Vector2.Distance(transform.position, n.transform.position)).First();
+            resultPos = firstTarget.position + (Vector3)skillData.offset_;
+        }
+        else if (skillData.baseDirection_)
+        {
+            resultPos += lastFace_;
+            Debug.Log($"player{transform.position} : attack{resultPos}");
+        }
 
         /*
          :  パーティクル
          */
         if (skillData.particle_ != null)
         {
-            var ins = Instantiate(skillData.particle_, center.position, Quaternion.identity);
+            var ins = Instantiate(skillData.particle_, resultPos, Quaternion.identity);
             ins.transform.localScale = skillData.radius_ == 0 ? skillData.aspect_ : Vector3.one * skillData.radius_;
         }
 
@@ -60,9 +69,9 @@ public class PlayerSkill : PlayerStatus
          :  ヒット判定
          */
         List<Transform> hitResult = new List<Transform>();
-        if (skillData.radius_ == 0 && skillData.aspect_ == Vector2.zero) { hitResult.Add(center); }
+        if (skillData.radius_ == 0 && skillData.aspect_ == Vector2.zero && firstTarget != null) { hitResult.Add(firstTarget); }
         else if (skillData.radius_ != 0)
-            hitResult = targetList.Where(n => Vector2.Distance(center.position, n.position) <= skillData.radius_ + n.transform.localScale.x / 2).ToList();
+            hitResult = targetList.Where(n => Vector2.Distance(resultPos, n.position) <= skillData.radius_ + n.transform.localScale.x / 2).ToList();
         else if (skillData.aspect_ != Vector2.zero)
             hitResult = targetList.Where(
             //n =>
@@ -70,10 +79,10 @@ public class PlayerSkill : PlayerStatus
             //Mathf.Pow(center.position.y - Mathf.Min(Mathf.Max(center.position.y, n.position.y), center.position.y + info.aspect_.y), 2)
             //<= n.transform.localScale.x / 2
             n =>
-            n.position.x >= center.position.x &&                        //centerより右
-            n.position.x <= center.position.x + skillData.aspect_.x &&       //center + infoより左
-            n.position.y >= center.position.y - skillData.aspect_.y / 2 &&   //center - info/2 より上
-            n.position.y <= center.position.y + skillData.aspect_.y / 2      //center + info/2 より下 →Centerは付け根 ※タゲサ非対応につき仮
+            n.position.x >= resultPos.x &&                        //centerより右
+            n.position.x <= resultPos.x + skillData.aspect_.x &&       //center + infoより左
+            n.position.y >= resultPos.y - skillData.aspect_.y / 2 &&   //center - info/2 より上
+            n.position.y <= resultPos.y + skillData.aspect_.y / 2      //center + info/2 より下 →Centerは付け根 ※タゲサ非対応につき仮
             ).ToList();
 
         /*
@@ -104,7 +113,7 @@ public class PlayerSkill : PlayerStatus
          :  戻り値
          */
         //モーション情報
-        if (skillData.motion_.time_ != 0) StartCoroutine(MotionCoroutine(skillData.motion_, center.position));
+        if (skillData.motion_.time_ != 0) StartCoroutine(MotionCoroutine(skillData.motion_, resultPos));
 
         //スキル情報
         SkillInstance resultSkill = new SkillInstance();
