@@ -12,8 +12,6 @@ public class PlayerBase : PlayerSkill, IDamageable
         inputAxis_ = InputSystem.actions.FindAction("Move");
         StartCoroutine(CoolTimeCoroutine());
         skillData_ = JobData.GetJobSkill(parameter_.jobNumber_);
-
-        //for (int i = 0; i < 4; ++i) demoEnemyList_.Add(GameObject.Find($"Enemy{i + 1}").transform);//仮
     }
 
     /// <summary>
@@ -22,12 +20,13 @@ public class PlayerBase : PlayerSkill, IDamageable
     protected virtual void PlayerMove()
     {
         Vector2 move_value = inputAxis_.ReadValue<Vector2>();
+        lastFace_ = move_value.normalized;
         move_value *= parameter_.speed_ * Time.deltaTime;
         transform.position += (Vector3)move_value;
     }
 
     public void TakeDamage(int damage_)
     {
-        Debug.Log("当たっちゃったーワイプワイプ");
+        parameter_.hp_ -= damage_;
     }
 }

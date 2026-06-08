@@ -8,7 +8,9 @@ public class Player : PlayerBase
 {
     private void Update()
     {
-        if(debug_) { skillData_ = JobData.GetJobSkill(parameter_.jobNumber_); }
+#if UNITY_EDITOR
+        skillData_ = JobData.GetJobSkill(parameter_.jobNumber_); //“r’†‚ÅƒWƒ‡ƒu‚ğ•Ï‚¦‚½‚Æ‚«‚ÌØ‚è‘Ö‚¦
+#endif
         PlayerMove();
         if (Input.GetMouseButtonDown(1)) { skill2_ = OnSkill(skill2_, skillData_.GetSkill2()); }//‰¼«
         if (Input.GetMouseButtonDown(2)) { skill3_ = OnSkill(skill3_, skillData_.GetSkill3()); }

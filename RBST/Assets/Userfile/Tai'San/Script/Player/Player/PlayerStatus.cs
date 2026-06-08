@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class PlayerStatus : MonoBehaviour
 {
-    [SerializeField] protected bool debug_;//仮
+    [SerializeField] protected bool demodebug_;//仮
 
     [System.Serializable]//プレイヤー自身の状態数値
     protected struct Parameter
@@ -25,16 +25,16 @@ public class PlayerStatus : MonoBehaviour
     public struct SkillInstance
     {
         public float cd_;
-        public int input_;
         public int nowCombo_;
     }
     [SerializeField] protected Parameter parameter_;
-    [SerializeField] protected float gcd_;
-    [SerializeField] protected SkillInstance skill1_;
-    [SerializeField] protected SkillInstance skill2_;
-    [SerializeField] protected SkillInstance skill3_;
+    protected float gcd_;
+    protected SkillInstance skill1_;
+    protected SkillInstance skill2_;
+    protected SkillInstance skill3_;
     protected JobData skillData_;
     protected InputAction inputAxis_;
+    protected Vector2 lastFace_;
 
     /*
      :  プロパティ

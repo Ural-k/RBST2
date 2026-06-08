@@ -8,8 +8,6 @@ using UnityEngine;
 /// </summary>
 public class PlayerSkill : PlayerStatus
 {
-    [SerializeField, Header("DEMO")] protected List<Transform> demoEnemyList_;//仮
-
     //メモ:マウスカーソル近くの敵に攻撃の処理もほしい
 
     /// <summary>
@@ -31,13 +29,13 @@ public class PlayerSkill : PlayerStatus
         switch (skillData.targetType_)
         {
             case TargetType.Enemy:
-                targetList.AddRange(demoEnemyList_);
+                for (int i = 0; i < EnemyManager.GetAllEnemyListCount(); ++i) targetList.Add(EnemyManager.GetEnemy(i).transform);
                 break;
             case TargetType.Player:
                 for (int i = 0; i < PlayerManager.GetAllPlayerListCount(); ++i) targetList.Add(PlayerManager.GetPlayer(i).transform);
                 break;
             case TargetType.Natural:
-                targetList.AddRange(demoEnemyList_);
+                for (int i = 0; i < EnemyManager.GetAllEnemyListCount(); ++i) targetList.Add(EnemyManager.GetEnemy(i).transform);
                 for (int i = 0; i < PlayerManager.GetAllPlayerListCount(); ++i) targetList.Add(PlayerManager.GetPlayer(i).transform);
                 break;
         }
@@ -47,9 +45,10 @@ public class PlayerSkill : PlayerStatus
          */
         Transform center = transform;
         if (skillData.toTarget_) center = targetList.OrderBy(n => Vector2.Distance(transform.position, n.transform.position)).First();
+        center.position += (Vector3)skillData.offset_;
 
         /*
-         :  パーティクルxo
+         :  パーティクル
          */
         if (skillData.particle_ != null)
         {
@@ -60,7 +59,7 @@ public class PlayerSkill : PlayerStatus
         /*
          :  ヒット判定
          */
-        List<Transform> hitResult = new List<Transform>();//GetHit(center, targetList);
+        List<Transform> hitResult = new List<Transform>();
         if (skillData.radius_ == 0 && skillData.aspect_ == Vector2.zero) { hitResult.Add(center); }
         else if (skillData.radius_ != 0)
             hitResult = targetList.Where(n => Vector2.Distance(center.position, n.position) <= skillData.radius_ + n.transform.localScale.x / 2).ToList();
@@ -87,7 +86,7 @@ public class PlayerSkill : PlayerStatus
         /*
          :  コンソールログ
          */
-        if (debug_)//仮
+        if (demodebug_)//仮
         {
             string resultText = $"{gameObject.name}の{skillData.name_}!! →\n";
             foreach (Transform tf in hitResult)
