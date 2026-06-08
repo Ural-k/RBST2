@@ -1,14 +1,22 @@
 using UnityEngine;
 
+public enum GameState
+{
+    isPlaying,
+    GameOver,
+}
+
 public class GameSceneManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    public static GameSceneManager Instance;
+    public GameState State { get;private set; }
+
+    private void Awake()
     {
-        
+         Instance = this;
     }
 
-    // Update is called once per frame
     private void Update()
     {
         //デバッグ用
@@ -16,5 +24,10 @@ public class GameSceneManager : MonoBehaviour
         {
             GameStateManager.instance.ClosedGame();
         }
+    }
+
+    public void GameOver()
+    {
+        State = GameState.GameOver;
     }
 }

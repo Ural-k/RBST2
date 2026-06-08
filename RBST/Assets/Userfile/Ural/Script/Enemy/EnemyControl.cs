@@ -22,7 +22,6 @@ public class EnemyControl : MonoBehaviour
 
     void Start()
     {
-        
         tfStruct = new TransformStract();
         tfStruct.pos = transform.position;
         tfStruct.innerRadius = 0f;
@@ -32,8 +31,13 @@ public class EnemyControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameSceneManager.Instance.State == GameState.GameOver) { StopAllCoroutines(); }
     }
 
+    /// <summary>
+    /// 攻撃こルーチン
+    /// </summary>
+    /// <returns></returns>
     IEnumerator GimmickCorutine()
     {
         var wait = new WaitForSeconds(waitTime);
@@ -73,8 +77,8 @@ public class EnemyControl : MonoBehaviour
                 GetAttack.IsActive(tfStruct);
             }
             attackPhase++;
-
-            yield return new WaitForSeconds(5);
+            Debug.Log(attackPhase);
+            yield return attackWait;
 
             ////移動
             //yield return new WaitForSeconds(waitTime);

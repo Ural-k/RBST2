@@ -23,7 +23,6 @@ public class AOEControll : MonoBehaviour
     
 
     //プロパテぃ
-
     public int Damage { get { return damage_; } set { damage_ = value; } }
 
     public float Radius { get { return diameter_ / 2; } }
@@ -123,6 +122,10 @@ public class AOEControll : MonoBehaviour
         shape_.OnDrawGizmos(Radius, pos_);
     }
 
+    /// <summary>
+    /// AOE用のコルーチン
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Coroutine()
     {
         warningActiveFlag_ = true;
