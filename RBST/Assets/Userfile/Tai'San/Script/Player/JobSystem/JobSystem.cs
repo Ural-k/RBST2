@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-///ジョブ固有のスキル実装
+///ジョブ固有のスキル実装(α版は使わない可能性)
 /// </summary>
 [CreateAssetMenu(fileName = "JobSystem", menuName = "ScriptableObjects/Player/JobSystem")]
 public class JobSystem : ScriptableObject

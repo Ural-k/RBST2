@@ -20,6 +20,7 @@ public class PlayerBase : PlayerSkill, IDamageable
     protected virtual void PlayerMove()
     {
         Vector2 move_value = inputAxis_.ReadValue<Vector2>();
+        lastFace_ = move_value.normalized;
         move_value *= parameter_.speed_ * Time.deltaTime;
         transform.position += (Vector3)move_value;
     }

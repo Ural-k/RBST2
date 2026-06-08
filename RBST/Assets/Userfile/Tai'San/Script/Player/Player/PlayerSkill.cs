@@ -45,6 +45,7 @@ public class PlayerSkill : PlayerStatus
          */
         Transform center = transform;
         if (skillData.toTarget_) center = targetList.OrderBy(n => Vector2.Distance(transform.position, n.transform.position)).First();
+        center.position += (Vector3)skillData.offset_;
 
         /*
          :  パーティクル
@@ -58,7 +59,7 @@ public class PlayerSkill : PlayerStatus
         /*
          :  ヒット判定
          */
-        List<Transform> hitResult = new List<Transform>();//GetHit(center, targetList);
+        List<Transform> hitResult = new List<Transform>();
         if (skillData.radius_ == 0 && skillData.aspect_ == Vector2.zero) { hitResult.Add(center); }
         else if (skillData.radius_ != 0)
             hitResult = targetList.Where(n => Vector2.Distance(center.position, n.position) <= skillData.radius_ + n.transform.localScale.x / 2).ToList();

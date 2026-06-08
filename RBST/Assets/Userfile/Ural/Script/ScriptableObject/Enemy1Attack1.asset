@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Enemy1Attack1
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackPos
   attackPos: []
+  scale: []
   aoeCollect: 

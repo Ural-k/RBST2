@@ -65,6 +65,8 @@ public struct SkillData
     [Tooltip("近い攻撃対象を中心に")] public bool toTarget_;                      //o
 
     //範囲
+    [Tooltip("中心")] public Vector2 offset_;                                   //x
+    [Tooltip("プレイヤー向き基準")] public bool baseDirection_;                   //x
     [Tooltip("矩形比率")] public Vector2 aspect_;                               //o
     [Tooltip("半径")] public float radius_;                                     //o
 

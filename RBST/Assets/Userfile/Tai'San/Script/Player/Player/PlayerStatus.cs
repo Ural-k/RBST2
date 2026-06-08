@@ -34,6 +34,7 @@ public class PlayerStatus : MonoBehaviour
     protected SkillInstance skill3_;
     protected JobData skillData_;
     protected InputAction inputAxis_;
+    protected Vector2 lastFace_;
 
     /*
      :  プロパティ
