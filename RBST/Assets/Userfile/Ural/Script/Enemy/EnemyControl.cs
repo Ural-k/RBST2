@@ -41,7 +41,7 @@ public class EnemyControl : MonoBehaviour
     IEnumerator GimmickCorutine()
     {
         var wait = new WaitForSeconds(waitTime);
-        var attackWait = new WaitForSeconds(5f);
+        var attackWait = new WaitForSeconds(5);
         while (true)
         {
             //入場
