@@ -56,7 +56,7 @@ public struct SkillData
      */
 
     //固定ステータス
-    [Tooltip("表示名")] public string name_;                                   //△
+    [Tooltip("表示名")] public string name_;                                    //△
     [Tooltip("演出プレファブ")] public GameObject particle_;                     //o
     [Tooltip("攻撃対象")] public TargetType targetType_;                        //o
     //[Tooltip("次回の攻撃")]                    public SkillName combo_;       //o

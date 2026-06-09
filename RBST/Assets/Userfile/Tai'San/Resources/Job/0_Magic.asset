@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63e646a36da3154498af4ceb5384ffad, type: 3}
   m_Name: 0_Magic
   m_EditorClassIdentifier: Assembly-CSharp::JobData
-  jobName_: "\u9B54\u6CD5\u4F7F\u3044\u4EEE"
+  jobName_: "\u9B54\u6CD5\u4F7F\u3044\u03B1"
   skill1_:
   - name_: "\u30D5\u30A1\u30A4\u30A2"
     particle_: {fileID: 3419249946162298372, guid: c0c64ae9232a77c46b85d4b00dc341bc, type: 3}

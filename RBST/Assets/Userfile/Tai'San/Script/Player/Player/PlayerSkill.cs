@@ -18,96 +18,22 @@ public class PlayerSkill : PlayerStatus
     /// <returns>次に発動できるスキル(コンボ)</returns>
     protected SkillInstance OnSkill(SkillInstance skillIns, SkillData[] skillDataArray, Transform target = null)
     {
-        if (gcd_ != 0 || skillIns.cd_ != 0) return skillIns;              //GCDチェック
+        if (GCDChecker() || skillIns.cd_ != 0) return skillIns;//GCDチェック
         SkillData skillData = skillDataArray[skillIns.nowCombo_];
-        gcd_ = skillData.gcd_;                                           //GCD更新
+        gcd_ = skillData.gcd_;//GCD更新
 
-        /*
-         :  攻撃対象
-         */
-        List<Transform> targetList = new List<Transform>();
-        switch (skillData.targetType_)
-        {
-            case TargetType.Enemy:
-                for (int i = 0; i < EnemyManager.GetAllEnemyListCount(); ++i) targetList.Add(EnemyManager.GetEnemy(i).transform);
-                break;
-            case TargetType.Player:
-                for (int i = 0; i < PlayerManager.GetAllPlayerListCount(); ++i) targetList.Add(PlayerManager.GetPlayer(i).transform);
-                break;
-            case TargetType.Natural:
-                for (int i = 0; i < EnemyManager.GetAllEnemyListCount(); ++i) targetList.Add(EnemyManager.GetEnemy(i).transform);
-                for (int i = 0; i < PlayerManager.GetAllPlayerListCount(); ++i) targetList.Add(PlayerManager.GetPlayer(i).transform);
-                break;
-        }
+        List<Transform> targetList = GetTarget(skillData.targetType_);//攻撃対象
 
-        /*
-         :  ターゲット中心
-         */
-        Transform firstTarget = null;
-        Vector2 resultPos = transform.position;
-        if (skillData.toTarget_)
-        {
-            firstTarget = targetList.OrderBy(n => Vector2.Distance(transform.position, n.transform.position)).First();
-            resultPos = firstTarget.position + (Vector3)skillData.offset_;
-        }
-        else if (skillData.baseDirection_)
-        {
-            resultPos += lastFace_;
-            Debug.Log($"player{transform.position} : attack{resultPos}");
-        }
+        Vector2 resultPos = GetCenter(skillData, GetNear(targetList));//ターゲット中心
 
-        /*
-         :  パーティクル
-         */
-        if (skillData.particle_ != null)
-        {
-            var ins = Instantiate(skillData.particle_, resultPos, Quaternion.identity);
-            ins.transform.localScale = skillData.radius_ == 0 ? skillData.aspect_ : Vector3.one * skillData.radius_;
-        }
+        GoParticle(skillData, resultPos);//パーティクル
 
-        /*
-         :  ヒット判定
-         */
-        List<Transform> hitResult = new List<Transform>();
-        if (skillData.radius_ == 0 && skillData.aspect_ == Vector2.zero && firstTarget != null) { hitResult.Add(firstTarget); }
-        else if (skillData.radius_ != 0)
-            hitResult = targetList.Where(n => Vector2.Distance(resultPos, n.position) <= skillData.radius_ + n.transform.localScale.x / 2).ToList();
-        else if (skillData.aspect_ != Vector2.zero)
-            hitResult = targetList.Where(
-            //n =>
-            //Mathf.Pow(center.position.x - Mathf.Min(Mathf.Max(center.position.x, n.position.x), center.position.x + info.aspect_.x), 2) +
-            //Mathf.Pow(center.position.y - Mathf.Min(Mathf.Max(center.position.y, n.position.y), center.position.y + info.aspect_.y), 2)
-            //<= n.transform.localScale.x / 2
-            n =>
-            n.position.x >= resultPos.x &&                        //centerより右
-            n.position.x <= resultPos.x + skillData.aspect_.x &&       //center + infoより左
-            n.position.y >= resultPos.y - skillData.aspect_.y / 2 &&   //center - info/2 より上
-            n.position.y <= resultPos.y + skillData.aspect_.y / 2      //center + info/2 より下 →Centerは付け根 ※タゲサ非対応につき仮
-            ).ToList();
+        List<Transform> hitResult = GetHit(skillData, targetList, resultPos);//ヒット判定
 
-        /*
-         :  ターゲットサークルヘ送る
-         */
-        foreach (Transform tr in hitResult)
-            if (tr.GetComponent<TargetCircle>()) tr.GetComponent<IToEnemyDamageAble>().DamageAble(skillData.power_);
+        foreach (Transform tf in hitResult) if (tf.GetComponent<TargetCircle>()) tf.GetComponent<IToEnemyDamageAble>().DamageAble(skillData.power_);//ターゲットサークルヘ送る
 
 #if UNITY_EDITOR
-        /*
-         :  コンソールログ
-         */
-        if (demodebug_)//仮
-        {
-            string resultText = $"{gameObject.name}の{skillData.name_}!! →\n";
-            foreach (Transform tf in hitResult)
-            {
-                resultText += $"{tf.gameObject.name}, ";
-            }
-            if (hitResult.Count != 0)
-            {
-                resultText += $"に{skillData.power_}ダメージ!!";
-                Debug.Log(resultText);
-            }
-        }
+        if (demodebug_) Log(skillData, hitResult);//コンソールログ
 #endif
         /*
          :  戻り値
@@ -123,7 +49,91 @@ public class PlayerSkill : PlayerStatus
     }
 
     /*
-     :  コルーチン
+     :  関数---------------------------------------------------------------------------------------------------------------
+     */
+
+    private bool GCDChecker()
+    {
+        return !(gcd_ == 0);
+    }
+
+    private List<Transform> GetTarget(TargetType type)
+    {
+        List<Transform> list = new List<Transform>();
+        switch (type)
+        {
+            case TargetType.Enemy:
+                for (int i = 0; i < EnemyManager.GetAllEnemyListCount(); ++i) list.Add(EnemyManager.GetEnemy(i).transform);
+                break;
+            case TargetType.Player:
+                for (int i = 0; i < PlayerManager.GetAllPlayerListCount(); ++i) list.Add(PlayerManager.GetPlayer(i).transform);
+                break;
+            case TargetType.Natural:
+                for (int i = 0; i < EnemyManager.GetAllEnemyListCount(); ++i) list.Add(EnemyManager.GetEnemy(i).transform);
+                for (int i = 0; i < PlayerManager.GetAllPlayerListCount(); ++i) list.Add(PlayerManager.GetPlayer(i).transform);
+                break;
+        }
+        return list;
+    }
+
+    private Transform GetNear(List<Transform> targetList)
+    {
+        return targetList.OrderBy(n => Vector2.Distance(transform.position, n.transform.position)).First();
+    }
+
+    private Vector2 GetCenter(SkillData data, Transform target)
+    {
+        if (data.toTarget_)             return target.position + (Vector3)data.offset_;
+        else if (data.baseDirection_)   return (Vector2)target.position + lastFace_ * 2;
+        return target.position;
+    }
+
+    private void GoParticle(SkillData data, Vector2 pos)
+    {
+        if (data.particle_ != null)
+        {
+            var ins = Instantiate(data.particle_, pos, Quaternion.identity);
+            ins.transform.localScale = data.radius_ == 0 ? data.aspect_ : Vector3.one * data.radius_;
+        }
+    }
+
+    private List<Transform> GetHit(SkillData data, List<Transform> targetList, Vector2 pos)
+    {
+        List<Transform> result = new List<Transform>();
+        if (data.radius_ == 0 && data.aspect_ == Vector2.zero && GetNear(targetList) != null) { result.Add(GetNear(targetList)); }
+        else if (data.radius_ != 0)
+            result = targetList.Where(n => Vector2.Distance(pos, n.position) <= data.radius_ + n.transform.localScale.x / 2).ToList();
+        else if (data.aspect_ != Vector2.zero)
+            result = targetList.Where(
+            //n =>
+            //Mathf.Pow(center.position.x - Mathf.Min(Mathf.Max(center.position.x, n.position.x), center.position.x + info.aspect_.x), 2) +
+            //Mathf.Pow(center.position.y - Mathf.Min(Mathf.Max(center.position.y, n.position.y), center.position.y + info.aspect_.y), 2)
+            //<= n.transform.localScale.x / 2
+            n =>
+            n.position.x >= pos.x &&                        //centerより右
+            n.position.x <= pos.x + data.aspect_.x &&       //center + infoより左
+            n.position.y >= pos.y - data.aspect_.y / 2 &&   //center - info/2 より上
+            n.position.y <= pos.y + data.aspect_.y / 2      //center + info/2 より下 →Centerは付け根 ※タゲサ非対応につき仮
+            ).ToList();
+        return result;
+    }
+
+    private void Log(SkillData data, List<Transform> result)
+    {
+        string resultText = $"{gameObject.name}の{data.name_}!! →\n";
+        foreach (Transform tf in result)
+        {
+            resultText += $"{tf.gameObject.name}, ";
+        }
+        if (result.Count != 0)
+        {
+            resultText += $"に{data.power_}ダメージ!!";
+            Debug.Log(resultText);
+        }
+    }
+
+    /*
+     :  コルーチン-----------------------------------------------------------------------------------------------------------
      */
     /// <summary>
     /// クールタイム
@@ -161,7 +171,6 @@ public class PlayerSkill : PlayerStatus
         }
         parameter_.speed_ = 5;
     }
-
 }
 
 interface IToEnemyDamageAble { public void DamageAble(int damage); }
