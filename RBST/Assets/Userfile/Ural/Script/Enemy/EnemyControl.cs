@@ -14,10 +14,16 @@ public class EnemyControl : MonoBehaviour
     private int waitTime = 2;
     private bool entryFlag_;
 
+    private int hp_ = 10;
+
+    private int maxHp_ = 10;
+
+    public int HP { get { return hp_; } set { hp_ -= value; } }
+
     private void Awake()
     {
         entryFlag_ = false;
-        StartCoroutine(GimmickCorutine());
+       // StartCoroutine(GimmickCorutine());
     }
 
     void Start()
@@ -31,14 +37,14 @@ public class EnemyControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameSceneManager.Instance.State == GameState.GameOver) { StopAllCoroutines(); }
+        //if (GameSceneManager.Instance.State == GameState.GameOver) { StopAllCoroutines(); }
     }
 
     /// <summary>
     /// 攻撃こルーチン
     /// </summary>
     /// <returns></returns>
-    IEnumerator GimmickCorutine()
+    public IEnumerator GimmickCorutine()
     {
         var wait = new WaitForSeconds(waitTime);
         var attackWait = new WaitForSeconds(5);

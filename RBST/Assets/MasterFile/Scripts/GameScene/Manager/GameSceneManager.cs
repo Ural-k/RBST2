@@ -10,27 +10,30 @@ public class GameSceneManager : MonoBehaviour
 {
 
     public static GameSceneManager Instance;
-    [SerializeField] private Canvas result_;
     public GameState State { get;private set; }
+
+    private IGameState currentState_;
 
     private void Awake()
     {
+        currentState_ = new PlayState();
         Instance = this;
-        result_.gameObject.SetActive(false);
     }
 
     private void Update()
     {
-        //デバッグ用
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            GameStateManager.instance.ClosedGame();
-        }
+       currentState_?.Update();
+    }
+
+    public void ChangeState(IGameState state)
+    {
+        currentState_?.Exit();
+        currentState_ = state;
+        currentState_?.Enter();
     }
 
     public void GameOver()
     {
         State = GameState.GameOver;
-        result_.gameObject.SetActive(true);
     }
 }

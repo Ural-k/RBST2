@@ -1,6 +1,6 @@
 using UnityEngine;
 
-interface IGameState
+public interface IGameState
 {
     public void Enter();
     public void Update();

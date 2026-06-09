@@ -4,17 +4,13 @@ public class GameObjectManager : MonoBehaviour
 {
     [SerializeField] private GameObject playerPrefab_;
     [SerializeField] private GameObject enemyPrefab_;
-    void Start()
-    {
-        
-    }
 
+    public static GameObjectManager Instance;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
             CreatePlayer();
-            CreateEnemy();
         }
         if (Input.GetKeyDown(KeyCode.X))
         {
@@ -23,17 +19,19 @@ public class GameObjectManager : MonoBehaviour
         }
     }
 
-    private void CreatePlayer()
+    public void CreatePlayer()
     {
         Player player = Instantiate(playerPrefab_).GetComponent<Player>();
         PlayerManager.AddPlayer(player);
     }
-    private void CreateEnemy()
+    public EnemyControl CreateEnemy()
     {
         EnemyControl enemy = Instantiate(enemyPrefab_).GetComponent <EnemyControl>();
         EnemyManager.AddEnemy(enemy);
+
+        return enemy;
     }
-    private void DestroyEnemy(EnemyControl enemyControl)
+    public void DestroyEnemy(EnemyControl enemyControl)
     {
         EnemyManager.DeleteEnemy(enemyControl);
         
