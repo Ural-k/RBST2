@@ -39,6 +39,7 @@ public class PlayerStatus : MonoBehaviour
     /*
      :  プロパティ
      */
+    public JobData GetJobData { get { return skillData_; } }
     public float GetGCD { get { return gcd_; } }
     public SkillInstance GetSkillInstance1 { get { return skill1_; } }
     public SkillInstance GetSkillInstance2 { get { return skill2_; } }

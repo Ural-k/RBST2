@@ -18,28 +18,27 @@ public class PlayerSkill : PlayerStatus
     /// <returns>次に発動できるスキル(コンボ)</returns>
     protected SkillInstance OnSkill(SkillInstance skillIns, SkillData[] skillDataArray, Transform target = null)
     {
-        if (GCDChecker() || skillIns.cd_ != 0) return skillIns;//GCDチェック
+        if (GCDChecker() || skillIns.cd_ != 0) return skillIns;                 //GCDチェック
         SkillData skillData = skillDataArray[skillIns.nowCombo_];
         gcd_ = skillData.gcd_;//GCD更新
 
-        List<Transform> targetList = GetTarget(skillData.targetType_);//攻撃対象
+        List<Transform> targetList = GetTarget(skillData.targetType_);          //攻撃対象
 
-        Vector2 resultPos = GetCenter(skillData, GetNear(targetList));//ターゲット中心
+        Vector2 resultPos = GetCenter(skillData, GetNear(targetList));          //ターゲット中心
 
         GoParticle(skillData, resultPos);//パーティクル
 
-        List<Transform> hitResult = GetHit(skillData, targetList, resultPos);//ヒット判定
+        List<Transform> hitResult = GetHit(skillData, targetList, resultPos);   //ヒット判定
 
         foreach (Transform tf in hitResult) if (tf.GetComponent<TargetCircle>()) tf.GetComponent<IToEnemyDamageAble>().DamageAble(skillData.power_);//ターゲットサークルヘ送る
 
 #if UNITY_EDITOR
-        if (demodebug_) Log(skillData, hitResult);//コンソールログ
+        if (demodebug_) Log(skillData, hitResult);                              //コンソールログ
 #endif
         /*
          :  戻り値
          */
-        //モーション情報
-        if (skillData.motion_.time_ != 0) StartCoroutine(MotionCoroutine(skillData.motion_, resultPos));
+        if (skillData.motion_.time_ != 0) StartCoroutine(MotionCoroutine(skillData.motion_, resultPos));//モーション情報
 
         //スキル情報
         SkillInstance resultSkill = new SkillInstance();
