@@ -101,20 +101,36 @@ public class PlayerSkill : PlayerStatus
         List<Transform> result = new List<Transform>();
         if (data.radius_ == 0 && data.aspect_ == Vector2.zero && GetNear(targetList) != null) { result.Add(GetNear(targetList)); }
         else if (data.radius_ != 0)
+        {
             result = targetList.Where(n => Vector2.Distance(pos, n.position) <= data.radius_ + n.transform.localScale.x / 2).ToList();
+            LookAt(pos);
+        }
         else if (data.aspect_ != Vector2.zero)
+        {
             result = targetList.Where(
-            //n =>
-            //Mathf.Pow(center.position.x - Mathf.Min(Mathf.Max(center.position.x, n.position.x), center.position.x + info.aspect_.x), 2) +
-            //Mathf.Pow(center.position.y - Mathf.Min(Mathf.Max(center.position.y, n.position.y), center.position.y + info.aspect_.y), 2)
-            //<= n.transform.localScale.x / 2
-            n =>
-            n.position.x >= pos.x &&                        //centerより右
-            n.position.x <= pos.x + data.aspect_.x &&       //center + infoより左
-            n.position.y >= pos.y - data.aspect_.y / 2 &&   //center - info/2 より上
-            n.position.y <= pos.y + data.aspect_.y / 2      //center + info/2 より下 →Centerは付け根 ※タゲサ非対応につき仮
+                //n =>
+                //Mathf.Pow(center.position.x - Mathf.Min(Mathf.Max(center.position.x, n.position.x), center.position.x + info.aspect_.x), 2) +
+                //Mathf.Pow(center.position.y - Mathf.Min(Mathf.Max(center.position.y, n.position.y), center.position.y + info.aspect_.y), 2)
+                //<= n.transform.localScale.x / 2
+                n =>
+                n.position.x >= pos.x &&                        //centerより右
+                n.position.x <= pos.x + data.aspect_.x &&       //center + infoより左
+                n.position.y >= pos.y - data.aspect_.y / 2 &&   //center - info/2 より上
+                n.position.y <= pos.y + data.aspect_.y / 2      //center + info/2 より下 →Centerは付け根 ※タゲサ非対応につき仮
             ).ToList();
+            LookAt(pos, true);
+        }
         return result;
+    }
+
+    protected void LookAt(Vector3 pos, bool horizontal = false)
+    {
+        pos += transform.position;
+        if (transform.position != pos)
+        {
+            lastFace_ = (pos - transform.position).normalized;
+            if (horizontal) lastFace_ *= Vector2.right;
+        }
     }
 
     private void Log(SkillData data, List<Transform> result)
@@ -165,7 +181,12 @@ public class PlayerSkill : PlayerStatus
         while (timer != motion.time_)
         {
             timer = Mathf.Min(timer + Time.deltaTime, motion.time_);
-            if (motion.jumpOn_) transform.position = Vector3.Lerp(startPos, endPos, motion.jumpOrbit_.Evaluate(timer / motion.time_));
+            if (motion.jumpOn_)
+            {
+                Vector3 pos = Vector3.Lerp(startPos, endPos, motion.jumpOrbit_.Evaluate(timer / motion.time_));
+                LookAt(pos);
+                transform.position = pos;
+            }
             yield return null;
         }
         parameter_.speed_ = 5;
