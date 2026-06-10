@@ -2,9 +2,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CourseController : MonoBehaviour
+public class KyaraSelectController : MonoBehaviour
 {
-    public Button[] buttons_;        //ホームボタン配列
+    public Button[] buttons_;        //キャラセレクトのボタン配列
     public int columnCount_;         //横方向のボタン数
     public int currentIndex_;        //現在選択中のボタン番号
 
