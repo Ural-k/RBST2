@@ -44,7 +44,7 @@ MonoBehaviour:
     aspect_: {x: 0, y: 0}
     radius_: 5
     power_: 300
-    gcd_: 2
+    gcd_: 1
     cd_: 0
     motion_:
       time_: 0

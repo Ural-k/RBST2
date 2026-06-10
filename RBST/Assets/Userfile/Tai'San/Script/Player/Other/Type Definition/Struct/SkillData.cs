@@ -23,6 +23,7 @@ public struct SkillData
     [Tooltip("中心")] public Vector2 offset_;                                   //x
     [Tooltip("矩形比率")] public Vector2 aspect_;                               //o
     [Tooltip("半径")] public float radius_;                                     //o
+    [Tooltip("回転")] public int rotate_;                                       //x
 
     //攻撃パラメータ
     [Tooltip("威力値")] public int power_;                                       //△

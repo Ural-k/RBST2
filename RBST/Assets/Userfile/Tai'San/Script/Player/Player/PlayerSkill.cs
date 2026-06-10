@@ -24,7 +24,7 @@ public class PlayerSkill : PlayerStatus
 
         List<Transform> targetList = GetTarget(skillData.targetType_);          //攻撃対象
 
-        Vector2 resultPos = GetCenter(skillData, GetNear(targetList));          //ターゲット中心
+        Vector2 resultPos = GetCenter(skillData, GetNear(targetList));          //攻撃座標(中心)取得
 
         GoParticle(skillData, resultPos);//パーティクル
 
@@ -91,8 +91,9 @@ public class PlayerSkill : PlayerStatus
     {
         if (data.particle_ != null)
         {
+            float sign = Mathf.Sign(LookAt(pos, true).x);
             var ins = Instantiate(data.particle_, pos, Quaternion.identity);
-            ins.transform.localScale = data.radius_ == 0 ? data.aspect_ : Vector3.one * data.radius_;
+            ins.transform.localScale = data.radius_ == 0 ? data.aspect_ * new Vector2(sign,1) : Vector3.one * data.radius_;
         }
     }
 
@@ -102,28 +103,29 @@ public class PlayerSkill : PlayerStatus
         if (data.radius_ == 0 && data.aspect_ == Vector2.zero && GetNear(targetList) != null) { result.Add(GetNear(targetList)); }
         else if (data.radius_ != 0)
         {
-            result = targetList.Where(n => Vector2.Distance(pos, n.position) <= data.radius_ + n.transform.localScale.x / 2).ToList();
             LookAt(pos);
+            result = targetList.Where(n => Vector2.Distance(pos, n.position) <= data.radius_ + n.transform.localScale.x / 2).ToList();
         }
         else if (data.aspect_ != Vector2.zero)
         {
+            Vector2 vec = LookAt(pos, true);
+            float sign = Mathf.Sign(vec.x);
             result = targetList.Where(
                 //n =>
                 //Mathf.Pow(center.position.x - Mathf.Min(Mathf.Max(center.position.x, n.position.x), center.position.x + info.aspect_.x), 2) +
                 //Mathf.Pow(center.position.y - Mathf.Min(Mathf.Max(center.position.y, n.position.y), center.position.y + info.aspect_.y), 2)
                 //<= n.transform.localScale.x / 2
                 n =>
-                n.position.x >= pos.x &&                        //centerより右
-                n.position.x <= pos.x + data.aspect_.x &&       //center + infoより左
-                n.position.y >= pos.y - data.aspect_.y / 2 &&   //center - info/2 より上
-                n.position.y <= pos.y + data.aspect_.y / 2      //center + info/2 より下 →Centerは付け根 ※タゲサ非対応につき仮
+                n.position.x >= pos.x &&                        //中心より右
+                n.position.x <= (pos.x + data.aspect_.x) * sign &&       //中心 + 先端より左
+                n.position.y >= pos.y - data.aspect_.y / 2 &&   //中心 - 底辺より上
+                n.position.y <= pos.y + data.aspect_.y / 2      //中心 + 上辺より下 →中心は付け根 ※タゲサ範囲無視につき仮
             ).ToList();
-            LookAt(pos, true);
         }
         return result;
     }
 
-    protected void LookAt(Vector3 pos, bool horizontal = false)
+    protected Vector2 LookAt(Vector3 pos, bool horizontal = false)
     {
         pos += transform.position;
         if (transform.position != pos)
@@ -131,6 +133,7 @@ public class PlayerSkill : PlayerStatus
             lastFace_ = (pos - transform.position).normalized;
             if (horizontal) lastFace_ *= Vector2.right;
         }
+        return lastFace_;
     }
 
     private void Log(SkillData data, List<Transform> result)
