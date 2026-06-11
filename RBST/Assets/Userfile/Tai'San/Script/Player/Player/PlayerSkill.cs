@@ -28,6 +28,8 @@ public class PlayerSkill : PlayerStatus
 
         GoParticle(skillData, resultPos);//パーティクル
 
+        Debug.Log(GetNear(targetList));
+
         List<Transform> hitResult = GetHit(skillData, targetList, resultPos);   //ヒット判定
 
         foreach (Transform tf in hitResult) if (tf.GetComponent<TargetCircle>()) tf.GetComponent<IToEnemyDamageAble>().DamageAble(skillData.power_);//ターゲットサークルヘ送る
@@ -84,7 +86,7 @@ public class PlayerSkill : PlayerStatus
     {
         if (data.toTarget_)             return target.position + (Vector3)data.offset_;
         else if (data.baseDirection_)   return (Vector2)target.position + lastFace_ * 2;
-        return target.position;
+        return transform.position + (Vector3)data.offset_;
     }
 
     private void GoParticle(SkillData data, Vector2 pos)
@@ -132,6 +134,7 @@ public class PlayerSkill : PlayerStatus
         {
             lastFace_ = (pos - transform.position).normalized;
             if (horizontal) lastFace_ *= Vector2.right;
+            Debug.Log(lastFace_ - (Vector2)transform.position);
         }
         return lastFace_;
     }
