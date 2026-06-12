@@ -140,12 +140,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f6af70f0379080478e1056345998df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  demodebug_: 1
+  demodebug_: 0
   parameter_:
     jobNumber_: 0
-    playerName_: "\u9BDB\u8336\u6F2C\u3051"
+    playerName_: player
     maxHp_: 1000
-    hp_: 0
+    hp_: 1000
     speed_: 5
     attack_: 0
     defense_: 0

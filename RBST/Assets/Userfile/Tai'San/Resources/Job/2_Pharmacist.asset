@@ -22,6 +22,7 @@ MonoBehaviour:
     offset_: {x: 0, y: 0}
     aspect_: {x: 0, y: 0}
     radius_: 8
+    rotate_: 0
     power_: 666
     gcd_: 1
     cd_: 10
@@ -44,6 +45,7 @@ MonoBehaviour:
     offset_: {x: 0, y: 0}
     aspect_: {x: 0, y: 0}
     radius_: 3
+    rotate_: 0
     power_: 50
     gcd_: 0.5
     cd_: 0.5
@@ -65,6 +67,7 @@ MonoBehaviour:
     offset_: {x: 0, y: 0}
     aspect_: {x: 0, y: 0}
     radius_: 3
+    rotate_: 0
     power_: 60
     gcd_: 0.5
     cd_: 0
@@ -79,7 +82,7 @@ MonoBehaviour:
         m_PostInfinity: 0
         m_RotationOrder: 0
   skill3_:
-  - name_: "\u6297\u4F53\u4F5C\u6210"
+  - name_: "\u6297\u4F53\u751F\u6210"
     particle_: {fileID: 5609775975947588435, guid: 9d87451d58e0d8b4f9c4942b817983c3, type: 3}
     targetType_: 1
     toTarget_: 0
@@ -87,6 +90,7 @@ MonoBehaviour:
     offset_: {x: 0, y: 0}
     aspect_: {x: 0, y: 0}
     radius_: 4
+    rotate_: 0
     power_: -1000
     gcd_: 1
     cd_: 10
