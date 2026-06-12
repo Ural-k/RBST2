@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
@@ -19,13 +20,15 @@ public class EnemyManager : MonoBehaviour
     /// </summary>
     public static void DeleteEnemy(EnemyControl enemy)
     {
+        EnemyControl temp = null;
         foreach(EnemyControl enemyControl in enemyList_)
         {
             if(enemyControl == enemy)
             {
-                enemyList_.Remove(enemyControl);
+                temp = enemy;
             }
         }
+        enemyList_.Remove(temp);
     }
 
     /// <summary>
@@ -39,9 +42,31 @@ public class EnemyManager : MonoBehaviour
     /// <summary>
     /// エネミーの取得
     /// </summary>
-    public static EnemyControl GetEnemy(int i)
+    public static EnemyControl GetEnemy(EnemyControl _enemy)
     {
+        EnemyControl enemy = null;
+
+        foreach(EnemyControl enemyControl in enemyList_)
+        {
+            if(enemyControl == _enemy)
+            {
+                enemy = _enemy;
+            }
+        }
+
+        return enemy;
+    }
+    public static EnemyControl GetEnemy(int i)
+    { 
         return enemyList_[i];
+    }
+
+        /// <summary>
+        /// エネミーリストの取得
+        /// </summary>
+        public static List<EnemyControl> GetAllEnemy()
+    {
+        return enemyList_;
     }
     
     /// <summary>
@@ -50,5 +75,10 @@ public class EnemyManager : MonoBehaviour
     public static int GetAllEnemyListCount()
     {
         return enemyList_.Count;
+    }
+
+    public static void AllDestroyEnemy()
+    {
+        enemyList_.Clear();
     }
 }

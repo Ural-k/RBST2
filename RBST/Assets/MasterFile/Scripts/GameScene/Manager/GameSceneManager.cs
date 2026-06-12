@@ -1,20 +1,39 @@
 using UnityEngine;
 
+public enum GameState
+{
+    isPlaying,
+    GameOver,
+}
+
 public class GameSceneManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static GameSceneManager Instance;
+
+    public GameState State { get;private set; }
+
+    private IGameState currentState_;
+
+    private void Awake()
     {
-        
+        if (Instance == null){ Instance = this;}
     }
 
-    // Update is called once per frame
+    private void Start()
+    {
+        currentState_ = new EntryState();
+        currentState_?.Enter();
+    }
+
     private void Update()
     {
-        //デバッグ用
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            GameStateManager.instance.ClosedGame();
-        }
+       currentState_?.Update();
+    }
+
+    public void ChangeState(IGameState state)
+    {
+        currentState_?.Exit();
+        currentState_ = state;
+        currentState_?.Enter();
     }
 }

@@ -6,13 +6,20 @@ public class EnemyControl : MonoBehaviour
 {
     [SerializeField] private EnemyAtackObjectPool pool_;
     [SerializeField] private EnemyAttackPos[] scriptableObject_;
+    [SerializeField] private TargetCircle targetCircle_;
 
     private AOECollect colect_;
-    private TransformStract tfStruct;
+    private EnemyAttackStract eaStruct;
     private int attackPhase = 0;
 
     private int waitTime = 2;
     private bool entryFlag_;
+    private int maxHp_ = 10000;
+
+    //のちのちついか
+    //private int damage_ = 10;
+
+    public int HP { get { return targetCircle_.hp_; } }
 
     private void Awake()
     {
@@ -22,22 +29,26 @@ public class EnemyControl : MonoBehaviour
 
     void Start()
     {
-        
-        tfStruct = new TransformStract();
-        tfStruct.pos = transform.position;
-        tfStruct.innerRadius = 0f;
-        tfStruct.scale = 1f;
+        eaStruct = new EnemyAttackStract();
+        eaStruct.pos = transform.position;
+        eaStruct.innerRadius = 0f;
+        eaStruct.scale = 1f;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Died()
     {
+        Destroy(gameObject);
     }
 
-    IEnumerator GimmickCorutine()
+
+    /// <summary>
+    /// 攻撃こルーチン
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator GimmickCorutine()
     {
         var wait = new WaitForSeconds(waitTime);
-        var attackWait = new WaitForSeconds(5f);
+        var attackWait = new WaitForSeconds(5);
         while (true)
         {
             //入場
@@ -67,14 +78,13 @@ public class EnemyControl : MonoBehaviour
             for (int i = 0;i < data.attackPos.Length;i++) 
             {
                 colect_ = data.aoeCollect[i];
-                tfStruct.pos = data.attackPos[i];
-                tfStruct.scale = data.scale[i];
+                eaStruct.pos = data.attackPos[i];
+                eaStruct.scale = data.scale[i];
                 var GetAttack = pool_.GetObject(colect_);
-                GetAttack.IsActive(tfStruct);
+                GetAttack.IsActive(eaStruct);
             }
             attackPhase++;
-
-            yield return new WaitForSeconds(5);
+            yield return attackWait;
 
             ////移動
             //yield return new WaitForSeconds(waitTime);

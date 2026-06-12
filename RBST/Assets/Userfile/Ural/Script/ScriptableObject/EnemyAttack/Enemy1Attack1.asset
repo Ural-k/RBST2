@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b11a096f8e5f994a9830df5f55a38ff, type: 3}
   m_Name: Enemy1Attack1
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackPos
-  attackPos: []
-  scale: []
-  aoeCollect: 
+  attackPos:
+  - {x: 0, y: 30}
+  - {x: 0, y: -30}
+  - {x: 30, y: 0}
+  scale:
+  - 55
+  - 55
+  - 67
+  aoeCollect: 010000000100000001000000

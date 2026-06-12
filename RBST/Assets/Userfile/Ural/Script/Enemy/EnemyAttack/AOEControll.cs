@@ -10,7 +10,7 @@ public class AOEControll : MonoBehaviour
     [SerializeField] private GameObject warning_;  //AOEの予兆
     [SerializeField] private float entryTime_;   //予兆時間
     [SerializeField] private float entityTime_;  //実体時間
-    [SerializeField] private int damage_;        //ダメージ量
+    [SerializeField] private int damage_ = 250;       //ダメージ量
     [SerializeField] private float diameter_;    //範囲(直径）
     [SerializeField] private AOECollect aoeCollect_;
 
@@ -23,7 +23,6 @@ public class AOEControll : MonoBehaviour
     
 
     //プロパテぃ
-
     public int Damage { get { return damage_; } set { damage_ = value; } }
 
     public float Radius { get { return diameter_ / 2; } }
@@ -65,7 +64,7 @@ public class AOEControll : MonoBehaviour
     /// 予兆を生成するフラグをオンにする
     /// のちのち引数をscriptableに変更予定
     /// </summary>
-    public void IsActive(TransformStract transformStruct )
+    public void IsActive(EnemyAttackStract transformStruct )
     {
         //表示されたときの座標とサイズ等を設定
         diameter_ = transformStruct.scale;
@@ -90,7 +89,6 @@ public class AOEControll : MonoBehaviour
             var d = hit.GetComponent<IDamageable>();
             if (d != null)
             {
-                Debug.Log("A");
                 d.TakeDamage(damage_);
             }
         }
@@ -123,6 +121,10 @@ public class AOEControll : MonoBehaviour
         shape_.OnDrawGizmos(Radius, pos_);
     }
 
+    /// <summary>
+    /// AOE用のコルーチン
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Coroutine()
     {
         warningActiveFlag_ = true;
