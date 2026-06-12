@@ -7,6 +7,9 @@ public class GameObjectManager : MonoBehaviour
 
     public static GameObjectManager Instance;
 
+    //デバッグ用
+    Vector2 pos = Vector2.zero;
+
     private void Awake()
     {
         if (Instance == null) Instance = this;
@@ -19,7 +22,7 @@ public class GameObjectManager : MonoBehaviour
     }
     public EnemyControl CreateEnemy()
     {
-        var temp = Instantiate(enemyPrefab_);
+        var temp = Instantiate(enemyPrefab_,pos,Quaternion.identity);
         EnemyControl enemy = temp.GetComponent<EnemyControl>();
         EnemyManager.AddEnemy(enemy);
 

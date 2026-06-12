@@ -10,7 +10,7 @@ public class AOEControll : MonoBehaviour
     [SerializeField] private GameObject warning_;  //AOEの予兆
     [SerializeField] private float entryTime_;   //予兆時間
     [SerializeField] private float entityTime_;  //実体時間
-    [SerializeField] private int damage_;        //ダメージ量
+    [SerializeField] private int damage_ = 250;       //ダメージ量
     [SerializeField] private float diameter_;    //範囲(直径）
     [SerializeField] private AOECollect aoeCollect_;
 
@@ -89,7 +89,6 @@ public class AOEControll : MonoBehaviour
             var d = hit.GetComponent<IDamageable>();
             if (d != null)
             {
-                Debug.Log("A");
                 d.TakeDamage(damage_);
             }
         }

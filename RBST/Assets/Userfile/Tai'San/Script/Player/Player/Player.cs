@@ -19,9 +19,12 @@ public class Player : PlayerBase
             demomemory_ = skillData_;
         }
 #endif
-        PlayerMove();
-        if (Input.GetMouseButtonDown(1)) { skill2_ = OnSkill(skill2_, skillData_.GetSkill2()); }//âºÅ´
-        if (Input.GetMouseButtonDown(2)) { skill3_ = OnSkill(skill3_, skillData_.GetSkill3()); }
+        if (GameSceneManager.Instance.State == GameState.isPlaying)
+        {
+            PlayerMove();
+            if (Input.GetMouseButtonDown(1)) { skill2_ = OnSkill(skill2_, skillData_.GetSkill2()); }//âºÅ´
+            if (Input.GetMouseButtonDown(2)) { skill3_ = OnSkill(skill3_, skillData_.GetSkill3()); }
+        }
     }
 
     public void InputAttack1(InputAction.CallbackContext context)

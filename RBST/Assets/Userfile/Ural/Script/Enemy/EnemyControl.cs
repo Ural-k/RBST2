@@ -6,6 +6,7 @@ public class EnemyControl : MonoBehaviour
 {
     [SerializeField] private EnemyAtackObjectPool pool_;
     [SerializeField] private EnemyAttackPos[] scriptableObject_;
+    [SerializeField] private TargetCircle targetCircle_;
 
     private AOECollect colect_;
     private EnemyAttackStract eaStruct;
@@ -13,14 +14,12 @@ public class EnemyControl : MonoBehaviour
 
     private int waitTime = 2;
     private bool entryFlag_;
-
-    private int hp_ ;
-    private int maxHp_ = 100;
+    private int maxHp_ = 10000;
 
     //のちのちついか
     //private int damage_ = 10;
 
-    public int HP { get { return hp_; } set { hp_ -= value; } }
+    public int HP { get { return targetCircle_.hp_; } }
 
     private void Awake()
     {
@@ -30,7 +29,6 @@ public class EnemyControl : MonoBehaviour
 
     void Start()
     {
-        hp_ = maxHp_;
         eaStruct = new EnemyAttackStract();
         eaStruct.pos = transform.position;
         eaStruct.innerRadius = 0f;
@@ -41,6 +39,7 @@ public class EnemyControl : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
 
     /// <summary>
     /// 攻撃こルーチン

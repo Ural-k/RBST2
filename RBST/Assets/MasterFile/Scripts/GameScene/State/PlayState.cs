@@ -22,9 +22,12 @@ public class PlayState : IGameState
             GameStateManager.instance.ClosedGame();
         }
 
-        if (Input.GetKeyDown(KeyCode.X))
+        if (enemyControl_.HP <= 0)
         {
-            enemyControl_.Died();
+            if (enemyControl_ != null)
+            {
+                enemyControl_.Died();
+            }
             GameSceneManager.Instance.ChangeState(nextState_);
         }
 
