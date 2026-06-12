@@ -142,7 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   demodebug_: 1
   parameter_:
-    jobNumber_: 2
+    jobNumber_: 0
     playerName_: "\u9BDB\u8336\u6F2C\u3051"
     maxHp_: 1000
     hp_: 0

@@ -132,9 +132,9 @@ public class PlayerSkill : PlayerStatus
         pos += transform.position;
         if (transform.position != pos)
         {
-            lastFace_ = (pos - transform.position).normalized;
+            lastFace_ = Vector2.Normalize(pos - transform.position);
             if (horizontal) lastFace_ *= Vector2.right;
-            Debug.Log(lastFace_ - (Vector2)transform.position);
+            Debug.Log(lastFace_);
         }
         return lastFace_;
     }

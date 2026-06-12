@@ -22,6 +22,7 @@ MonoBehaviour:
     offset_: {x: 0, y: 0}
     aspect_: {x: 0, y: 0}
     radius_: 5
+    rotate_: 0
     power_: 300
     gcd_: 1
     cd_: 0
@@ -43,6 +44,7 @@ MonoBehaviour:
     offset_: {x: 0, y: 0}
     aspect_: {x: 0, y: 0}
     radius_: 5
+    rotate_: 0
     power_: 300
     gcd_: 1
     cd_: 0
@@ -65,6 +67,7 @@ MonoBehaviour:
     offset_: {x: 0, y: 0}
     aspect_: {x: 0, y: 0}
     radius_: 2
+    rotate_: 0
     power_: 400
     gcd_: 0.5
     cd_: 0
@@ -104,6 +107,7 @@ MonoBehaviour:
     offset_: {x: 0, y: 0}
     aspect_: {x: 0, y: 0}
     radius_: 3
+    rotate_: 0
     power_: 500
     gcd_: 2
     cd_: 0
@@ -143,6 +147,7 @@ MonoBehaviour:
     offset_: {x: 0, y: 0}
     aspect_: {x: 0, y: 0}
     radius_: 5
+    rotate_: 0
     power_: 600
     gcd_: 0
     cd_: 3
@@ -183,6 +188,7 @@ MonoBehaviour:
     offset_: {x: 0, y: 0}
     aspect_: {x: 5, y: 1}
     radius_: 0
+    rotate_: 0
     power_: 0
     gcd_: 0
     cd_: 0.5

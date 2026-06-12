@@ -8,7 +8,6 @@ public class PlayerBase : PlayerSkill, IDamageable
 {
     private void Start()
     {
-        PlayerManager.AddPlayer((Player)this);
         inputAxis_ = InputSystem.actions.FindAction("Move");
         StartCoroutine(CoolTimeCoroutine());
         skillData_ = JobData.GetJobSkill(parameter_.jobNumber_);
