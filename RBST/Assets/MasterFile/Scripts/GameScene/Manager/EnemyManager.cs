@@ -20,13 +20,15 @@ public class EnemyManager : MonoBehaviour
     /// </summary>
     public static void DeleteEnemy(EnemyControl enemy)
     {
+        EnemyControl temp = null;
         foreach(EnemyControl enemyControl in enemyList_)
         {
             if(enemyControl == enemy)
             {
-                enemyList_.Remove(enemyControl);
+                temp = enemy;
             }
         }
+        enemyList_.Remove(temp);
     }
 
     /// <summary>
@@ -73,5 +75,10 @@ public class EnemyManager : MonoBehaviour
     public static int GetAllEnemyListCount()
     {
         return enemyList_.Count;
+    }
+
+    public static void AllDestroyEnemy()
+    {
+        enemyList_.Clear();
     }
 }

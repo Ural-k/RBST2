@@ -1,37 +1,47 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
-
+public enum UIType
+{
+    CharacterSelect,
+    Play,
+    Result
+}
 public class GameUIManager : MonoBehaviour
 {
     public static GameUIManager Instance;
 
-    [SerializeField] private Canvas resultUI_;
-    [SerializeField] private Canvas playUI_;
+    [SerializeField] private List<UIData> uiDataList_;
 
-
+    private Dictionary<UIType, GameObject> uiMap_;
     private void Awake()
     {
-        resultUI_.gameObject.SetActive(false);
-        playUI_.gameObject.SetActive(false);
-    }
-    
-    public void SetPlayUI()
-    {
-        playUI_.gameObject.SetActive(true);
+
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
+
+        uiMap_ = new Dictionary<UIType, GameObject>();
+
+        foreach (var data in uiDataList_)
+        {
+            uiMap_.Add(data.uiType, data.canvas);
+            data.canvas.SetActive(false);
+        }
     }
 
-    public void HidePlayUI()
+    public void Activate(UIType type)
     {
-        playUI_.gameObject.SetActive(false);
-    } 
-
-    public void SetResultUI()
-    {
-        resultUI_.gameObject.SetActive(true);
+        uiMap_[type].SetActive(true);
     }
 
-    public void HideResultUI()
+    public void Hide(UIType type)
     {
-        resultUI_.gameObject.SetActive(false);
+        uiMap_[type].SetActive(false);
     }
 }

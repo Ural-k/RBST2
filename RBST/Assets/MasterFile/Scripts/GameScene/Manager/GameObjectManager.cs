@@ -6,17 +6,10 @@ public class GameObjectManager : MonoBehaviour
     [SerializeField] private GameObject enemyPrefab_;
 
     public static GameObjectManager Instance;
-    void Update()
+
+    private void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            CreatePlayer();
-        }
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            //DestroyEnemy();
-            GameSceneManager.Instance.GameOver();
-        }
+        if (Instance == null) Instance = this;
     }
 
     public void CreatePlayer()
@@ -26,7 +19,8 @@ public class GameObjectManager : MonoBehaviour
     }
     public EnemyControl CreateEnemy()
     {
-        EnemyControl enemy = Instantiate(enemyPrefab_).GetComponent <EnemyControl>();
+        var temp = Instantiate(enemyPrefab_);
+        EnemyControl enemy = temp.GetComponent<EnemyControl>();
         EnemyManager.AddEnemy(enemy);
 
         return enemy;
@@ -34,6 +28,5 @@ public class GameObjectManager : MonoBehaviour
     public void DestroyEnemy(EnemyControl enemyControl)
     {
         EnemyManager.DeleteEnemy(enemyControl);
-        
     }
 }

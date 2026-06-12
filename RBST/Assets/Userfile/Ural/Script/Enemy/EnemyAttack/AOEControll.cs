@@ -64,7 +64,7 @@ public class AOEControll : MonoBehaviour
     /// 予兆を生成するフラグをオンにする
     /// のちのち引数をscriptableに変更予定
     /// </summary>
-    public void IsActive(TransformStract transformStruct )
+    public void IsActive(EnemyAttackStract transformStruct )
     {
         //表示されたときの座標とサイズ等を設定
         diameter_ = transformStruct.scale;

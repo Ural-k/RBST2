@@ -1,25 +1,28 @@
-using UnityEditorInternal;
 using UnityEngine;
 
 public class ResultState : IGameState
 {
+    private IGameState nextState_;
     public void Enter()
     {
-        GameSceneManager.Instance.GameOver();
-        GameUIManager.Instance.SetResultUI();
+        GameUIManager.Instance.Activate(UIType.Result);
+        nextState_ = new EntryState();
     }
 
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            GameStateManager.instance.LordTitle();
+            GameUIManager.Instance.Hide(UIType.Result);
+            Exit();
+            
         }
     }
 
     public void Exit() 
-    { 
-        GameUIManager.Instance.HideResultUI();
-        
+    {
+        PlayerManager.AllDestroyPlayer();
+        EnemyManager.AllDestroyEnemy();
+        GameStateManager.instance.LordTitle();
     }
 }

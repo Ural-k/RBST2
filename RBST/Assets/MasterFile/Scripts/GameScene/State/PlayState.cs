@@ -8,8 +8,7 @@ public class PlayState : IGameState
     public void Enter()
     {
         enemyControl_ = GameObjectManager.Instance.CreateEnemy();
-        enemyControl_.StartCoroutine(enemyControl_.GimmickCorutine());
-        GameUIManager.Instance.SetPlayUI();
+        GameUIManager.Instance.Activate(UIType.Play);
         nextState_ = new ResultState();
     }
 
@@ -23,8 +22,9 @@ public class PlayState : IGameState
             GameStateManager.instance.ClosedGame();
         }
 
-        if (enemyControl_.HP <= 0)
+        if (Input.GetKeyDown(KeyCode.X))
         {
+            enemyControl_.Died();
             GameSceneManager.Instance.ChangeState(nextState_);
         }
 
@@ -32,7 +32,6 @@ public class PlayState : IGameState
 
     public void Exit() 
     {
-        enemyControl_.StopAllCoroutines();
-        GameUIManager.Instance.HidePlayUI();
+        GameUIManager.Instance.Hide(UIType.Play);
     }
 }

@@ -8,36 +8,38 @@ public class EnemyControl : MonoBehaviour
     [SerializeField] private EnemyAttackPos[] scriptableObject_;
 
     private AOECollect colect_;
-    private TransformStract tfStruct;
+    private EnemyAttackStract eaStruct;
     private int attackPhase = 0;
 
     private int waitTime = 2;
     private bool entryFlag_;
 
-    private int hp_ = 10;
+    private int hp_ ;
+    private int maxHp_ = 100;
 
-    private int maxHp_ = 10;
+    //のちのちついか
+    //private int damage_ = 10;
 
     public int HP { get { return hp_; } set { hp_ -= value; } }
 
     private void Awake()
     {
         entryFlag_ = false;
-       // StartCoroutine(GimmickCorutine());
+        StartCoroutine(GimmickCorutine());
     }
 
     void Start()
     {
-        tfStruct = new TransformStract();
-        tfStruct.pos = transform.position;
-        tfStruct.innerRadius = 0f;
-        tfStruct.scale = 1f;
+        hp_ = maxHp_;
+        eaStruct = new EnemyAttackStract();
+        eaStruct.pos = transform.position;
+        eaStruct.innerRadius = 0f;
+        eaStruct.scale = 1f;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Died()
     {
-        //if (GameSceneManager.Instance.State == GameState.GameOver) { StopAllCoroutines(); }
+        Destroy(gameObject);
     }
 
     /// <summary>
@@ -77,13 +79,12 @@ public class EnemyControl : MonoBehaviour
             for (int i = 0;i < data.attackPos.Length;i++) 
             {
                 colect_ = data.aoeCollect[i];
-                tfStruct.pos = data.attackPos[i];
-                tfStruct.scale = data.scale[i];
+                eaStruct.pos = data.attackPos[i];
+                eaStruct.scale = data.scale[i];
                 var GetAttack = pool_.GetObject(colect_);
-                GetAttack.IsActive(tfStruct);
+                GetAttack.IsActive(eaStruct);
             }
             attackPhase++;
-            Debug.Log(attackPhase);
             yield return attackWait;
 
             ////移動

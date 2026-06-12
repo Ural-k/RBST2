@@ -8,16 +8,21 @@ public enum GameState
 
 public class GameSceneManager : MonoBehaviour
 {
-
     public static GameSceneManager Instance;
+
     public GameState State { get;private set; }
 
     private IGameState currentState_;
 
     private void Awake()
     {
-        currentState_ = new PlayState();
-        Instance = this;
+        if (Instance == null){ Instance = this;}
+    }
+
+    private void Start()
+    {
+        currentState_ = new EntryState();
+        currentState_?.Enter();
     }
 
     private void Update()
@@ -30,10 +35,5 @@ public class GameSceneManager : MonoBehaviour
         currentState_?.Exit();
         currentState_ = state;
         currentState_?.Enter();
-    }
-
-    public void GameOver()
-    {
-        State = GameState.GameOver;
     }
 }
