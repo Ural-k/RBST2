@@ -6,10 +6,18 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class Player : PlayerBase
 {
+    private JobData demomemory_ = null;
     private void Update()
     {
 #if UNITY_EDITOR
         skillData_ = JobData.GetJobSkill(parameter_.jobNumber_); //“r’†‚ÅƒWƒ‡ƒu‚ğ•Ï‚¦‚½‚Æ‚«‚ÌØ‚è‘Ö‚¦
+        if(skillData_ != demomemory_)
+        {
+            skill1_.nowCombo_ = 0;
+            skill2_.nowCombo_ = 0;
+            skill3_.nowCombo_ = 0;
+            demomemory_ = skillData_;
+        }
 #endif
         PlayerMove();
         if (Input.GetMouseButtonDown(1)) { skill2_ = OnSkill(skill2_, skillData_.GetSkill2()); }//‰¼«
