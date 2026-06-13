@@ -394,24 +394,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 900804720}
   m_CullTransparentMesh: 1
---- !u!1 &969797437 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5488602514916626267, guid: d03f277180c18f1409029bc7da55fa7e, type: 3}
-  m_PrefabInstance: {fileID: 6557166951286584239}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &969797438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 969797437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43fb3d8ee1e4ad145b5fef5064809b2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TargetCircle
-  hp_: 36000
 --- !u!1 &1091588263
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,15 +604,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -300467995472278766, guid: d03f277180c18f1409029bc7da55fa7e, type: 3}
       propertyPath: scriptableObject_.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -300467995472278766, guid: d03f277180c18f1409029bc7da55fa7e, type: 3}
       propertyPath: 'scriptableObject_.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 8e68bd9020b638c4995cfad1566afe11, type: 2}
+      objectReference: {fileID: 11400000, guid: 7362cb9b8d9e6ce4da1d61456c8fe119, type: 2}
     - target: {fileID: 5488602514916626267, guid: d03f277180c18f1409029bc7da55fa7e, type: 3}
       propertyPath: m_Name
       value: Enemy2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5488602514916626267, guid: d03f277180c18f1409029bc7da55fa7e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7626750772213263541, guid: d03f277180c18f1409029bc7da55fa7e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -687,15 +673,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -300467995472278766, guid: d03f277180c18f1409029bc7da55fa7e, type: 3}
       propertyPath: scriptableObject_.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -300467995472278766, guid: d03f277180c18f1409029bc7da55fa7e, type: 3}
       propertyPath: 'scriptableObject_.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 8e68bd9020b638c4995cfad1566afe11, type: 2}
+      objectReference: {fileID: 11400000, guid: 7362cb9b8d9e6ce4da1d61456c8fe119, type: 2}
     - target: {fileID: 5488602514916626267, guid: d03f277180c18f1409029bc7da55fa7e, type: 3}
       propertyPath: m_Name
       value: Enemy3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5488602514916626267, guid: d03f277180c18f1409029bc7da55fa7e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7626750772213263541, guid: d03f277180c18f1409029bc7da55fa7e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -949,15 +939,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -300467995472278766, guid: d03f277180c18f1409029bc7da55fa7e, type: 3}
       propertyPath: scriptableObject_.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -300467995472278766, guid: d03f277180c18f1409029bc7da55fa7e, type: 3}
       propertyPath: 'scriptableObject_.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 8e68bd9020b638c4995cfad1566afe11, type: 2}
+      objectReference: {fileID: 11400000, guid: 7362cb9b8d9e6ce4da1d61456c8fe119, type: 2}
     - target: {fileID: 5488602514916626267, guid: d03f277180c18f1409029bc7da55fa7e, type: 3}
       propertyPath: m_Name
       value: Enemy1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5488602514916626267, guid: d03f277180c18f1409029bc7da55fa7e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7626750772213263541, guid: d03f277180c18f1409029bc7da55fa7e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1242,6 +1236,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'PlayerInputManager[LocalMulti]'
       objectReference: {fileID: 0}
+    - target: {fileID: 7982721225244033798, guid: e2a31cff7579c294dab3beadb2409f00, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1257,12 +1255,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -300467995472278766, guid: d03f277180c18f1409029bc7da55fa7e, type: 3}
       propertyPath: scriptableObject_.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -300467995472278766, guid: d03f277180c18f1409029bc7da55fa7e, type: 3}
       propertyPath: 'scriptableObject_.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 8e68bd9020b638c4995cfad1566afe11, type: 2}
+      objectReference: {fileID: 11400000, guid: 7362cb9b8d9e6ce4da1d61456c8fe119, type: 2}
     - target: {fileID: 331031505515228095, guid: d03f277180c18f1409029bc7da55fa7e, type: 3}
       propertyPath: m_SortingOrder
       value: -80
@@ -1270,6 +1268,10 @@ PrefabInstance:
     - target: {fileID: 5488602514916626267, guid: d03f277180c18f1409029bc7da55fa7e, type: 3}
       propertyPath: m_Name
       value: Enemy4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5488602514916626267, guid: d03f277180c18f1409029bc7da55fa7e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6336226296291788287, guid: d03f277180c18f1409029bc7da55fa7e, type: 3}
       propertyPath: m_SortingOrder
@@ -1318,10 +1320,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5488602514916626267, guid: d03f277180c18f1409029bc7da55fa7e, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 969797438}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d03f277180c18f1409029bc7da55fa7e, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
