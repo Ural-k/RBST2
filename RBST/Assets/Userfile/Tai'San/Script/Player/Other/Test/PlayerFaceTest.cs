@@ -9,6 +9,6 @@ public class PlayerFaceTest : MonoBehaviour
     }
     private void Update()
     {
-        transform.localPosition = player_.GetLastFace / 2;
+        transform.localPosition = player_.GetInfo.lastFace_ / 2;
     }
 }

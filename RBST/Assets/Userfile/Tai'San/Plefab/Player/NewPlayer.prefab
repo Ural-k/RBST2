@@ -101,6 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9027175664271279066}
   - component: {fileID: 8719579936957951056}
+  - component: {fileID: 6867571715194131559}
   - component: {fileID: 1726620815561301000}
   - component: {fileID: 2379930171996449433}
   - component: {fileID: 5216280052677322935}
@@ -173,6 +174,18 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     lastFace_: {x: 0, y: 0}
+--- !u!114 &6867571715194131559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6965932836927583436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baee648fa2c628f45990dd1460bb4d2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillFunction
 --- !u!114 &1726620815561301000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,7 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 3098806392
+  GlobalObjectIdHash: 2058617316
   InScenePlacedSourceGlobalObjectIdHash: 0
   DeferredDespawnTick: 0
   Ownership: 1

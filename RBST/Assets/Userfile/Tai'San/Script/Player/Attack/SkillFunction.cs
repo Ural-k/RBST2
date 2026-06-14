@@ -5,9 +5,13 @@ using UnityEngine;
 
 public class SkillFunction : MonoBehaviour
 {
-    static SkillFunction function_ = new SkillFunction();
-    public static SkillFunction Instance { get { return function_; } }
+    PlayerInfo player_;
 
+    private void Start()
+    {
+        TryGetComponent<Player>(out Player player);
+        player_ = player.GetInfo;
+    }
     /// <summary>
     /// スキル発動
     /// </summary>
@@ -41,10 +45,12 @@ public class SkillFunction : MonoBehaviour
          */
         targetList = GetTarget(skillData.targetType_);
 
+        Debug.Log(targetList[0].name);
+
         /*
          :  攻撃座標の取得
          */
-        resultPos = GetCenter(skillData, GetNear(targetList));
+        resultPos = GetCenter(skillData, GetNear(targetList));//エラー
 
         /*
          :  パーティクルの生成
@@ -169,7 +175,7 @@ public class SkillFunction : MonoBehaviour
 
         void Log(SkillData data, List<Transform> result)
         {
-            string resultText = $"{gameObject.name}の{data.name_}!! →\n";
+            string resultText = $"{transform.gameObject.name}の{data.name_}!! →\n";
             foreach (Transform tf in result)
             {
                 resultText += $"{tf.gameObject.name}, ";
@@ -206,7 +212,5 @@ public class SkillFunction : MonoBehaviour
             }
             player.parameter_.speed_ = 5;
         }
-
-
     }
 }

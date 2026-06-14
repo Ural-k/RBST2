@@ -8,8 +8,11 @@ public class PlayerSkill : PlayerVariable
 {
     //メモ:マウスカーソル近くの敵に攻撃の処理もほしい
 
+    private SkillFunction function_;
+
     protected void OnInputSkill(out InputSkillInfo info, int num)
     {
+        TryGetComponent(out function_);
         InputSkillInfo ins = num switch
         {
             INPUT_SKILL_ONE     => info_.skill1_,
@@ -24,7 +27,7 @@ public class PlayerSkill : PlayerVariable
             INPUT_SKILL_THREE   => info_.skillData_.GetSkill3(),
             _                   => new SkillData[0]
         };
-        info = SkillFunction.Instance.OnSkill(info_, ins, data);
+        info = function_.OnSkill(info_, ins, data, transform);
     }
 
     /*
