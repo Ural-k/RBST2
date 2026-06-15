@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -6,7 +6,8 @@ public class EnemyControl : MonoBehaviour
 {
     [SerializeField] private EnemyAtackObjectPool pool_;
     [SerializeField] private EnemyAttackPos[] scriptableObject_;
-    [SerializeField] private TargetCircle targetCircle_;
+    [SerializeField] private int maxHp_ = 10000;
+    [SerializeField] private int hp_ = 10000;
 
     private AOECollect colect_;
     private EnemyAttackStract eaStruct;
@@ -14,12 +15,8 @@ public class EnemyControl : MonoBehaviour
 
     private int waitTime = 2;
     private bool entryFlag_;
-    private int maxHp_ = 10000;
 
-    //のちのちついか
-    //private int damage_ = 10;
-
-    public int HP { get { return targetCircle_.hp_; } }
+    public int HP { get { return hp_; } }
 
     private void Awake()
     {
@@ -37,58 +34,59 @@ public class EnemyControl : MonoBehaviour
 
     public void Died()
     {
+        EnemyManager.DeleteEnemy(this);
         Destroy(gameObject);
     }
 
+    public void TakeDamage(int damage)
+    {
+        hp_ = Mathf.Max(hp_ - damage, 0);
+        ShowFloatingText(damage, FloatingTextType.EnemyDamage);
 
-    /// <summary>
-    /// 攻撃こルーチン
-    /// </summary>
-    /// <returns></returns>
+        if (hp_ <= 0)
+        {
+            Died();
+        }
+    }
+
+    public void Heal(int heal)
+    {
+        hp_ = Mathf.Min(hp_ + heal, maxHp_);
+        ShowFloatingText(heal, FloatingTextType.Heal);
+    }
+
+    private void ShowFloatingText(int value, FloatingTextType type)
+    {
+        if (DamageTextManager.Instance == null) return;
+
+        DamageTextManager.Instance.Show(transform.position, value, type);
+    }
+
     public IEnumerator GimmickCorutine()
     {
         var wait = new WaitForSeconds(waitTime);
         var attackWait = new WaitForSeconds(5);
         while (true)
         {
-            //入場
             if (!entryFlag_)
             {
-                //後々追加
             }
-            //待機
-            yield return wait;
-
-            ////攻撃
-            ////攻撃のステータスを設定（すくたぶがいいなぁ（ちらちら）
-            //tfStruct.pos = new Vector2(0,0);    //攻撃を出す座標
-            //tfStruct.innerRadius = 0f;          //内側の円の半径（ドーナツ使用時以外０）
-            //tfStruct.scale = 2f;                //攻撃のサイズ
-            ////↓ここだけ必須
-            //colect_ = AOECollect.Circle;        //攻撃の種類を設定
-            ////攻撃の表示と再生
-            //var GetAttack = pool_.GetObject(colect_);
-            //GetAttack.IsActive(tfStruct);
 
             yield return wait;
+            yield return wait;
 
-            
             if (scriptableObject_.Length <= attackPhase) { attackPhase = 0; }
             var data = scriptableObject_[attackPhase];
-            for (int i = 0;i < data.attackPos.Length;i++) 
+            for (int i = 0; i < data.attackPos.Length; i++)
             {
                 colect_ = data.aoeCollect[i];
                 eaStruct.pos = data.attackPos[i];
                 eaStruct.scale = data.scale[i];
-                var GetAttack = pool_.GetObject(colect_);
-                GetAttack.IsActive(eaStruct);
+                var getAttack = pool_.GetObject(colect_);
+                getAttack.IsActive(eaStruct);
             }
             attackPhase++;
             yield return attackWait;
-
-            ////移動
-            //yield return new WaitForSeconds(waitTime);
         }
     }
 }
-

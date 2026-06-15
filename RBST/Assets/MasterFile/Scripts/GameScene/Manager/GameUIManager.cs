@@ -4,6 +4,7 @@ using UnityEngine.Rendering;
 public enum UIType
 {
     CharacterSelect,
+    Ready,
     Play,
     Result
 }
@@ -30,8 +31,8 @@ public class GameUIManager : MonoBehaviour
 
         foreach (var data in uiDataList_)
         {
-            uiMap_.Add(data.uiType, data.canvas);
-            data.canvas.SetActive(false);
+            uiMap_.Add(data.uiType, data.UIObject);
+            data.UIObject.SetActive(false);
         }
     }
 

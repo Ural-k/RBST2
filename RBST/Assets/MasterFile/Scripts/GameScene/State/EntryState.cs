@@ -28,6 +28,7 @@ public class EntryState : IGameState
                 if (PlayerManager.GetAllPlayerListCount() > 0)
                 {
                     GameUIManager.Instance.Hide(UIType.CharacterSelect);
+                    GameUIManager.Instance.Activate(UIType.Ready);
                     phase = EntryPhase.Phase2;
                 }
                 break;
@@ -41,8 +42,8 @@ public class EntryState : IGameState
                 
     }
     public void Exit() 
-    { 
-    
+    {
+        GameUIManager.Instance.Hide(UIType.Ready);
     }
     
 }

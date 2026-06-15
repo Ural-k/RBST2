@@ -8,7 +8,8 @@ public class GameObjectManager : MonoBehaviour
     public static GameObjectManager Instance;
 
     //デバッグ用
-    Vector2 pos = Vector2.zero;
+    private Vector2 offset = new Vector2(5, 0);
+
 
     private void Awake()
     {
@@ -22,7 +23,7 @@ public class GameObjectManager : MonoBehaviour
     }
     public EnemyControl CreateEnemy()
     {
-        var temp = Instantiate(enemyPrefab_,pos,Quaternion.identity);
+        var temp = Instantiate(enemyPrefab_,offset,Quaternion.identity);
         EnemyControl enemy = temp.GetComponent<EnemyControl>();
         EnemyManager.AddEnemy(enemy);
 
