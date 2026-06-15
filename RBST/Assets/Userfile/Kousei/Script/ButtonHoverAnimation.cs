@@ -14,12 +14,12 @@ namespace Game.UI
         IPointerDownHandler,
         IPointerUpHandler
     {
-        // ===== 定数 =====
+        //定数
 
         private const float MOVE_SPEED = 10.0f;
         private const float SCALE_SPEED = 15.0f;
 
-        // ===== Inspector設定 =====
+        //Inspector設定
 
         [Header("ホバー時の移動量")]
         [SerializeField]
@@ -29,7 +29,7 @@ namespace Game.UI
         [SerializeField]
         private float pressedScale_ = 0.9f;
 
-        // ===== メンバ変数 =====
+        //メンバ変数
 
         private RectTransform rectTransform_;
 
@@ -41,7 +41,6 @@ namespace Game.UI
 
         private bool isHover_;
 
-        // ===== Unityイベント =====
 
         private void Awake()
         {
@@ -79,7 +78,7 @@ namespace Game.UI
                 );
         }
 
-        // ===== ホバー =====
+        //ホバー
 
         public void OnPointerEnter(PointerEventData eventData)
         {
@@ -98,7 +97,7 @@ namespace Game.UI
                 = defaultPosition_;
         }
 
-        // ===== クリック =====
+        //クリック
 
         public void OnPointerDown(PointerEventData eventData)
         {
