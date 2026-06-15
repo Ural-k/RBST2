@@ -524,7 +524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 923398e997b932a45b74235d7a11ce28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  hoverMoveAmount_: 10
+  hoverMoveAmount_: 20
 --- !u!114 &703976825
 MonoBehaviour:
   m_ObjectHideFlags: 0
