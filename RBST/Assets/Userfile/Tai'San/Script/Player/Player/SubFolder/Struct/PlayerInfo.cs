@@ -13,6 +13,8 @@ public struct PlayerInfo
     [HideInInspector] public JobData skillData_;
     [HideInInspector] public InputAction inputAxis_;
     [HideInInspector] public Vector2 lastFace_;
+    [HideInInspector] public int filip_;
+    [HideInInspector] public float downTime_;
 
     public Vector2 LookAt(Vector3 pos, Transform me, bool horizontal = false)
     {
@@ -20,6 +22,7 @@ public struct PlayerInfo
         {
             lastFace_ = Vector2.Normalize(pos - me.position);
             if (horizontal) lastFace_ *= Vector2.right;
+            filip_ = (int)Mathf.Sign(lastFace_.x);
         }
         return lastFace_;
     }

@@ -17,7 +17,8 @@ MonoBehaviour:
   - name_: "\u30B7\u30E7\u30C3\u30C8"
     particle_: {fileID: 4997235082424780348, guid: 0e14a2df6cbe4494db608f37e3bb88c5, type: 3}
     targetType_: 0
-    toTarget_: 0
+    skillType_: 2
+    toTarget_: 1
     baseDirection_: 0
     offset_: {x: 0, y: 0}
     aspect_: {x: 50, y: 2}
@@ -39,6 +40,7 @@ MonoBehaviour:
   - name_: "\u30B7\u30E7\u30C3\u30C8"
     particle_: {fileID: 4997235082424780348, guid: 0e14a2df6cbe4494db608f37e3bb88c5, type: 3}
     targetType_: 0
+    skillType_: 2
     toTarget_: 0
     baseDirection_: 0
     offset_: {x: 0, y: 0}
@@ -62,7 +64,8 @@ MonoBehaviour:
   - name_: "\u30B7\u30E7\u30C3\u30C82"
     particle_: {fileID: 4997235082424780348, guid: 0e14a2df6cbe4494db608f37e3bb88c5, type: 3}
     targetType_: 0
-    toTarget_: 0
+    skillType_: 2
+    toTarget_: 1
     baseDirection_: 0
     offset_: {x: 0, y: 0}
     aspect_: {x: 100, y: 1}
@@ -85,6 +88,7 @@ MonoBehaviour:
   - name_: "\u8D85\u30B7\u30E7\u30C3\u30C8"
     particle_: {fileID: 7634934446412523899, guid: f0a5c7f44ec9b9b41b7214a1107d42f1, type: 3}
     targetType_: 0
+    skillType_: 0
     toTarget_: 1
     baseDirection_: 0
     offset_: {x: 0, y: 0}

@@ -9,8 +9,9 @@ public class PlayerBase : PlayerSkill, IDamageable
     private void Start()
     {
         info_.inputAxis_ = InputSystem.actions.FindAction("Move");
-        StartCoroutine(CoolTimeCoroutine(info_));
+        StartCoroutine(CoolTimeCoroutine());
         info_.skillData_ = JobData.GetJobSkill(info_.parameter_.jobNumber_);
+        info_.filip_ = 1;
         PlayerManager.AddPlayer((Player)this);//仮
     }
 
@@ -28,5 +29,10 @@ public class PlayerBase : PlayerSkill, IDamageable
     public void TakeDamage(int damage_)
     {
         info_.parameter_.hp_ -= damage_;
+        if(info_.parameter_.hp_ <= 0)
+        {
+            Debug.Log("死んだ！");
+            info_.downTime_ = 5f;//マジック
+        }
     }
 }
