@@ -10,27 +10,29 @@ public class Player : PlayerBase
     private void Update()
     {
 #if UNITY_EDITOR
-        skillData_ = JobData.GetJobSkill(parameter_.jobNumber_); //途中でジョブを変えたときの切り替え
-        if(skillData_ != demomemory_)
+        info_.skillData_ = JobData.GetJobSkill(info_.parameter_.jobNumber_); //途中でジョブを変えたときの切り替え
+        if(info_.skillData_ != demomemory_)
         {
-            skill1_.nowCombo_ = 0;
-            skill2_.nowCombo_ = 0;
-            skill3_.nowCombo_ = 0;
-            demomemory_ = skillData_;
+            info_.skill1_.nowCombo_ = 0;
+            info_.skill2_.nowCombo_ = 0;
+            info_.skill3_.nowCombo_ = 0;
+            demomemory_ = info_.skillData_;
         }
 #endif
-        if (GameSceneManager.Instance.State == GameState.isPlaying)
+        if (/*GameSceneManager.Instance.State == GameState.isPlaying*/info_.downTime_ == 0)
         {
             PlayerMove();
-            if (Input.GetMouseButtonDown(1)) { skill2_ = OnSkill(skill2_, skillData_.GetSkill2()); }//仮↓
-            if (Input.GetMouseButtonDown(2)) { skill3_ = OnSkill(skill3_, skillData_.GetSkill3()); }
+            if (Input.GetMouseButtonDown(1)) { OnInputSkill(out info_.skill2_, INPUT_SKILL_TWO); }//仮↓
+            if (Input.GetMouseButtonDown(2)) { OnInputSkill(out info_.skill3_, INPUT_SKILL_THREE); }
         }
+
+        if (Input.GetKeyDown(KeyCode.R)) { EnemyManager.DeleteAllEnemy(); }
     }
 
     public void InputAttack1(InputAction.CallbackContext context)
-    { if (context.performed) skill1_ = OnSkill(skill1_, skillData_.GetSkill1()); }
+    { if (context.performed && info_.downTime_ == 0) OnInputSkill(out info_.skill1_, INPUT_SKILL_ONE); }
     public void InputAttack2(InputAction.CallbackContext context)
-    { if (context.performed) skill2_ = OnSkill(skill2_, skillData_.GetSkill2()); }
+    { if (context.performed) OnInputSkill(out info_.skill2_, INPUT_SKILL_TWO); }
     public void InputAttack3(InputAction.CallbackContext context)
-    { if (context.performed) skill3_ = OnSkill(skill3_, skillData_.GetSkill3()); }
+    { if (context.performed) OnInputSkill(out info_.skill3_, INPUT_SKILL_THREE); }
 }

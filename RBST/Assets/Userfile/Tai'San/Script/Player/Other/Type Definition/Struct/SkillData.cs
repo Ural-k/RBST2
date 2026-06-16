@@ -16,6 +16,7 @@ public struct SkillData
     [Tooltip("表示名")] public string name_;                                    //△
     [Tooltip("演出プレファブ")] public GameObject particle_;                     //o
     [Tooltip("攻撃対象")] public TargetType targetType_;                        //o
+    [Tooltip("形状")] public SkillType skillType_;                              //x
     [Tooltip("近い攻撃対象を中心に")] public bool toTarget_;                      //o
 
     //範囲
