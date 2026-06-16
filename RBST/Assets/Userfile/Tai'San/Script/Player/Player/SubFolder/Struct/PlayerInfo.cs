@@ -17,6 +17,13 @@ public struct PlayerInfo
     [HideInInspector] public float downTime_;
     [HideInInspector] public int lastInput_;
 
+    /// <summary>
+    /// プレイヤーをposの方向へ向かせる
+    /// </summary>
+    /// <param name="pos">向かせる方向</param>
+    /// <param name="me">自身のTransform</param>
+    /// <param name="horizontal"></param>
+    /// <returns>向かせた方向</returns>
     public Vector2 LookAt(Vector3 pos, Transform me, bool horizontal = false)
     {
         if (me.position != pos)

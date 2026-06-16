@@ -173,26 +173,18 @@ public class PlayerSkill : PlayerVariable
         List<Transform> GetHit(SkillData data, List<Transform> targetList, Vector2 pos)
         {
             info_.LookAt(pos, transform, data.skillType_ == SkillType.Square);
-            //if(data.skillType_ ==SkillType.Square)
-            //{
-
-            //}
-
             List<Transform> result = data.skillType_ switch
             {
-                SkillType.Single => new List<Transform> { GetNear(targetList) },
-                SkillType.Circle => targetList.Where(n => Vector2.Distance(pos, n.position) <= data.radius_ + n.transform.localScale.x / 2).ToList(),
+                SkillType.Single => new List<Transform> { GetNear(targetList) },//max(xmin, min(cx, xmax)) / max(ymin, min(cy, ymax))
+                SkillType.Circle => targetList.Where(n => Vector2.Distance(pos, n.position) <= data.radius_ + n.GetComponent<TargetCircle>().GetRadius).ToList(),
                 SkillType.Square => targetList.Where(
-                    //n =>
-                    //Mathf.Pow(center.position.x - Mathf.Min(Mathf.Max(center.position.x, n.position.x), center.position.x + info.aspect_.x), 2) +
-                    //Mathf.Pow(center.position.y - Mathf.Min(Mathf.Max(center.position.y, n.position.y), center.position.y + info.aspect_.y), 2)
-                    //<= n.transform.localScale.x / 2
-                    n =>
-                    n.position.x <= transform.position.x + data.aspect_.x &&//Linqが?に対応していないっぽい
-                    n.position.y >= transform.position.y - data.aspect_.y / 2 &&   //中心 - 底辺より上
-                    n.position.y <= transform.position.y + data.aspect_.y / 2      //中心 + 上辺より下 →中心は付け根 ※タゲサ範囲無視につき仮
+                    n => Vector2.Distance(
+                        new Vector2(
+                            Mathf.Max(transform.position.x, Mathf.Min(n.position.x, transform.position.x + data.aspect_.x)),
+                            Mathf.Max(transform.position.y - data.aspect_.y / 2, Mathf.Min(n.position.y, transform.position.y + data.aspect_.y / 2))), 
+                        n.position) < n.GetComponent<TargetCircle>().GetRadius
                 ).ToList(),
-                _ => null
+                _ => new List<Transform>()
             };
             return result;
         }

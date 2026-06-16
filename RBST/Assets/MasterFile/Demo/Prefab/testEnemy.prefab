@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetCircle
   hp_: 10000
+  radius_: 1
 --- !u!1 &7193559851997201914
 GameObject:
   m_ObjectHideFlags: 0
