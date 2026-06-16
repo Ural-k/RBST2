@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 0.41960785}
+  m_Color: {r: 1, g: 0.359562, b: 0, a: 0.3137255}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -140,8 +140,7 @@ MonoBehaviour:
   entity_: {fileID: 3759408176047728927}
   warning_: {fileID: 7927243530876426263}
   entryTime_: 3
-  entityTime_: 1
-  damage_: 10
+  entityTime_: 0.5
   diameter_: 2
   aoeCollect_: 0
 --- !u!1 &7927243530876426263

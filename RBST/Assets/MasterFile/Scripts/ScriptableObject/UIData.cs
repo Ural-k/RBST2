@@ -4,5 +4,5 @@ using UnityEngine;
 public class UIData
 {
     public UIType uiType;
-    public GameObject canvas;
+    public GameObject UIObject;
 }

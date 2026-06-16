@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Enemy1Attack2
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackPos
   attackPos:
-  - {x: 0, y: 30}
-  - {x: 0, y: -30}
+  - {x: 0, y: 29}
+  - {x: 0, y: -29}
   - {x: -30, y: 0}
+  - {x: 40, y: 0}
   scale:
   - 55
   - 55
   - 67
-  aoeCollect: 010000000100000001000000
+  - 67
+  aoeCollect: 01000000010000000100000001000000

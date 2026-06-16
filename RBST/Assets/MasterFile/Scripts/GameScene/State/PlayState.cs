@@ -5,8 +5,10 @@ public class PlayState : IGameState
 {
     private EnemyControl enemyControl_;
     private IGameState nextState_;
+    private int playerCount_;
     public void Enter()
     {
+        playerCount_ = PlayerManager.GetAllPlayerListCount();
         enemyControl_ = GameObjectManager.Instance.CreateEnemy();
         GameUIManager.Instance.Activate(UIType.Play);
         nextState_ = new ResultState();
@@ -22,15 +24,28 @@ public class PlayState : IGameState
             GameStateManager.instance.ClosedGame();
         }
 
+        //•¡”íì¬Ä’²®
         if (enemyControl_.HP <= 0)
         {
             if (enemyControl_ != null)
             {
                 enemyControl_.Died();
             }
+            GameSceneManager.Instance.State = GameState.GameClear;
             GameSceneManager.Instance.ChangeState(nextState_);
         }
 
+        //‘h¶ì¬ŒãÄ’²®
+        for (int i = 0; i < playerCount_; i++)
+        {
+            if(PlayerManager.GetPlayerHP(i) <= 0)
+            {
+                enemyControl_.StopAllCoroutines();
+                PlayerManager.DestroyPlayer(PlayerManager.GetPlayer(i));
+                GameSceneManager.Instance.State = GameState.GameOver;
+                GameSceneManager.Instance.ChangeState(nextState_);
+            }
+        }
     }
 
     public void Exit() 

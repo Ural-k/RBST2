@@ -49,7 +49,12 @@ MonoBehaviour:
   pool_: {fileID: 8803944776186415707}
   scriptableObject_:
   - {fileID: 11400000, guid: 7362cb9b8d9e6ce4da1d61456c8fe119, type: 2}
+  - {fileID: 11400000, guid: 93038f050a5b079489d273bf498dd856, type: 2}
+  - {fileID: 11400000, guid: 2373249860b2fef4e89289c6b6276945, type: 2}
   - {fileID: 11400000, guid: 0826641e4fb8d6640ac61b6ddc94c0b2, type: 2}
+  - {fileID: 11400000, guid: 9c56cec91a875ab4a8ab2bdc8eb9d890, type: 2}
+  maxHp_: 10000
+  hp_: 10000
 --- !u!1 &5358036165044889240
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,9 +6,15 @@ public class TargetCircle : MonoBehaviour, IToEnemyDamageAble
     public void DamageAble(int damage)
     {
         hp_ = Mathf.Max(hp_ - damage, 0);
+
+        DamageTextManager.Instance.Show(
+            transform.position,
+            damage,
+            FloatingTextType.EnemyDamage
+        );
+
         if (hp_ == 0)
         {
-            Debug.Log($"{gameObject.name} Å® death");
             Destroy(gameObject);//âº
         }
     }

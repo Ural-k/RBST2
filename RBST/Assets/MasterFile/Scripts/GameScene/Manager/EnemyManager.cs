@@ -1,77 +1,59 @@
+using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
     private static List<EnemyControl> enemyList_ = new List<EnemyControl>();
-   
-    /// <summary>
-    /// エネミーの追加
-    /// </summary>
-    /// <param name="enemy"></param>
+
     public static void AddEnemy(EnemyControl enemy)
     {
+        if (enemy == null || enemyList_.Contains(enemy)) return;
+
         enemyList_.Add(enemy);
     }
 
-    /// <summary>
-    /// 特定のエネミー削除
-    /// </summary>
     public static void DeleteEnemy(EnemyControl enemy)
     {
-        EnemyControl temp = null;
-        foreach(EnemyControl enemyControl in enemyList_)
+        int index = enemyList_.IndexOf(enemy);
+
+        if (index >= 0)
         {
-            if(enemyControl == enemy)
-            {
-                temp = enemy;
-            }
+            enemyList_[index] = null;
         }
-        enemyList_.Remove(temp);
     }
 
-    /// <summary>
-    /// 全敵の削除
-    /// </summary>
+
     public static void DeleteAllEnemy()
     {
         enemyList_.Clear();
     }
 
-    /// <summary>
-    /// エネミーの取得
-    /// </summary>
-    public static EnemyControl GetEnemy(EnemyControl _enemy)
+    public static EnemyControl GetEnemy(EnemyControl enemy)
     {
-        EnemyControl enemy = null;
-
-        foreach(EnemyControl enemyControl in enemyList_)
+        foreach (EnemyControl enemyControl in enemyList_)
         {
-            if(enemyControl == _enemy)
+            if (enemyControl == enemy)
             {
-                enemy = _enemy;
+                return enemyControl;
             }
         }
 
-        return enemy;
+        return null;
     }
+
     public static EnemyControl GetEnemy(int i)
-    { 
+    {
+        if (i < 0 || i >= enemyList_.Count) return null;
+
         return enemyList_[i];
     }
 
-        /// <summary>
-        /// エネミーリストの取得
-        /// </summary>
-        public static List<EnemyControl> GetAllEnemy()
+    public static List<EnemyControl> GetAllEnemy()
     {
         return enemyList_;
     }
-    
-    /// <summary>
-    /// EnemyList_の要素数を取得する
-    /// </summary>
+
     public static int GetAllEnemyListCount()
     {
         return enemyList_.Count;

@@ -15,6 +15,7 @@ public class EntryState : IGameState
     private IGameState nextState_;  //ŽŸ‚Ìstate‚ðÝ’è‚µ‚Ä‚¨‚­
     public void Enter() 
     {
+        GameSceneManager.Instance.State = GameState.isPlaying;
         phase = EntryPhase.Phase1;
         GameUIManager.Instance.Activate(UIType.CharacterSelect);
         nextState_ = new PlayState();
@@ -28,6 +29,7 @@ public class EntryState : IGameState
                 if (PlayerManager.GetAllPlayerListCount() > 0)
                 {
                     GameUIManager.Instance.Hide(UIType.CharacterSelect);
+                    GameUIManager.Instance.Activate(UIType.Ready);
                     phase = EntryPhase.Phase2;
                 }
                 break;
@@ -41,8 +43,8 @@ public class EntryState : IGameState
                 
     }
     public void Exit() 
-    { 
-    
+    {
+        GameUIManager.Instance.Hide(UIType.Ready);
     }
     
 }
