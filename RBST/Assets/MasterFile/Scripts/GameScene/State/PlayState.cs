@@ -5,8 +5,15 @@ public class PlayState : IGameState
 {
     private EnemyControl enemyControl_;
     private IGameState nextState_;
+    private int playerCount_;
+    private Player[] players;
     public void Enter()
     {
+        playerCount_ = PlayerManager.GetAllPlayerListCount();
+        for (int i = 0; i < playerCount_; i++)
+        {
+            players[i] = PlayerManager.GetPlayer(i).GetComponent<Player>();
+        }
         enemyControl_ = GameObjectManager.Instance.CreateEnemy();
         GameUIManager.Instance.Activate(UIType.Play);
         nextState_ = new ResultState();
@@ -30,7 +37,6 @@ public class PlayState : IGameState
             }
             GameSceneManager.Instance.ChangeState(nextState_);
         }
-
     }
 
     public void Exit() 

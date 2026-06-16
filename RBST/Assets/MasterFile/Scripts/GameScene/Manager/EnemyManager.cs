@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,8 +15,14 @@ public class EnemyManager : MonoBehaviour
 
     public static void DeleteEnemy(EnemyControl enemy)
     {
-        enemyList_.Remove(enemy);
+        int index = enemyList_.IndexOf(enemy);
+
+        if (index >= 0)
+        {
+            enemyList_[index] = null;
+        }
     }
+
 
     public static void DeleteAllEnemy()
     {
@@ -37,6 +44,11 @@ public class EnemyManager : MonoBehaviour
 
     public static EnemyControl GetEnemy(int i)
     {
+        if (i < 0 || i >= enemyList_.Count)
+        {
+            return null;
+        }
+
         return enemyList_[i];
     }
 
@@ -48,22 +60,6 @@ public class EnemyManager : MonoBehaviour
     public static int GetAllEnemyListCount()
     {
         return enemyList_.Count;
-    }
-
-    public static void DamageEnemy(EnemyControl enemy, int damage)
-    {
-        EnemyControl target = GetEnemy(enemy);
-        if (target == null) return;
-
-        target.TakeDamage(damage);
-    }
-
-    public static void HealEnemy(EnemyControl enemy, int heal)
-    {
-        EnemyControl target = GetEnemy(enemy);
-        if (target == null) return;
-
-        target.Heal(heal);
     }
 
     public static void AllDestroyEnemy()

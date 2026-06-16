@@ -2,7 +2,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyControl : MonoBehaviour
+public class EnemyControl : MonoBehaviour, IToEnemyDamageAble
 {
     [SerializeField] private EnemyAtackObjectPool pool_;
     [SerializeField] private EnemyAttackPos[] scriptableObject_;
@@ -17,6 +17,7 @@ public class EnemyControl : MonoBehaviour
     private bool entryFlag_;
 
     public int HP { get { return hp_; } }
+    public int MaxHP { get { return maxHp_; } }
 
     private void Awake()
     {
@@ -32,29 +33,40 @@ public class EnemyControl : MonoBehaviour
         eaStruct.scale = 1f;
     }
 
+    /// <summary>
+    /// ダメージ処理
+    /// </summary>
+    public void DamageAble(int damage)
+    {
+        hp_ = Mathf.Max(hp_ - damage, 0);
+        ShowFloatingText(damage, FloatingTextType.EnemyDamage);
+        if (hp_ == 0)
+        {
+            Died();
+        }
+    }
+
+    /// <summary>
+    /// 死亡処理
+    /// </summary>
     public void Died()
     {
         EnemyManager.DeleteEnemy(this);
         Destroy(gameObject);
     }
 
-    public void TakeDamage(int damage)
-    {
-        hp_ = Mathf.Max(hp_ - damage, 0);
-        ShowFloatingText(damage, FloatingTextType.EnemyDamage);
-
-        if (hp_ <= 0)
-        {
-            Died();
-        }
-    }
-
+    /// <summary>
+    /// 敵の回復（使うかはわからない）
+    /// </summary>
     public void Heal(int heal)
     {
         hp_ = Mathf.Min(hp_ + heal, maxHp_);
         ShowFloatingText(heal, FloatingTextType.Heal);
     }
 
+    /// <summary>
+    /// ダメージの呼び出し
+    /// </summary>
     private void ShowFloatingText(int value, FloatingTextType type)
     {
         if (DamageTextManager.Instance == null) return;

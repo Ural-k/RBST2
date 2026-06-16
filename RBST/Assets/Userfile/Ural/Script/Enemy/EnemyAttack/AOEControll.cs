@@ -10,7 +10,6 @@ public class AOEControll : MonoBehaviour
     [SerializeField] private GameObject warning_;  //AOEの予兆
     [SerializeField] private float entryTime_;   //予兆時間
     [SerializeField] private float entityTime_;  //実体時間
-    [SerializeField] private int damage_ = 250;       //ダメージ量
     [SerializeField] private float diameter_;    //範囲(直径）
     [SerializeField] private AOECollect aoeCollect_;
 
@@ -20,7 +19,8 @@ public class AOEControll : MonoBehaviour
     private float innerRaito_;                   //内側の円が
     private bool warningActiveFlag_;             //起動フラグ
     private bool entityActiveFlag_;              //実体起動フラグ
-    
+    private int damage_ = 250;       //ダメージ量
+
 
     //プロパテぃ
     public int Damage { get { return damage_; } set { damage_ = value; } }
