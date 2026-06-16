@@ -69,7 +69,7 @@ public class HpGauge : MonoBehaviour
 
         
         SetVisible(true);
-        SetHp(player.GetInfo.parameter_.hp_, player.GetInfo.parameter_.maxHp_);
+        SetHp(player.GetInfo.parameter_.HP, player.GetInfo.parameter_.maxHp_);
     }
 
     private void SetHp(float hp, float maxHp)

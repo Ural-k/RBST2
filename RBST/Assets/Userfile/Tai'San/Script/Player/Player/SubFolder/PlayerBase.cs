@@ -32,7 +32,8 @@ public class PlayerBase : PlayerSkill, IDamageable,IToEnemyDamageAble
     public void TakeDamage(int damage)
     {
         info_.parameter_.HP -= damage;
-        if(info_.parameter_.HP == 0)
+        ShowFloatingText(damage, FloatingTextType.PlayerDamage);
+        if (info_.parameter_.HP == 0)
         {
             info_.downTime_ = DOWN_TIME;
             Death();
@@ -47,6 +48,13 @@ public class PlayerBase : PlayerSkill, IDamageable,IToEnemyDamageAble
             info_.downTime_ = DOWN_TIME;
             Death();
         }
+    }
+
+    private void ShowFloatingText(int value, FloatingTextType type)
+    {
+        if (DamageTextManager.Instance == null) return;
+
+        DamageTextManager.Instance.Show(transform.position, value, type);
     }
 
     void Death()

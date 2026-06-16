@@ -77,15 +77,14 @@ public class EnemyControl : MonoBehaviour, IToEnemyDamageAble
     public IEnumerator GimmickCorutine()
     {
         var wait = new WaitForSeconds(waitTime);
-        var attackWait = new WaitForSeconds(5);
+        var attackWait = new WaitForSeconds(3);
         while (true)
         {
             if (!entryFlag_)
             {
             }
 
-            yield return wait;
-            yield return wait;
+            yield return attackWait;
 
             if (scriptableObject_.Length <= attackPhase) { attackPhase = 0; }
             var data = scriptableObject_[attackPhase];
@@ -98,7 +97,6 @@ public class EnemyControl : MonoBehaviour, IToEnemyDamageAble
                 getAttack.IsActive(eaStruct);
             }
             attackPhase++;
-            yield return attackWait;
         }
     }
 }

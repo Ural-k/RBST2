@@ -116,10 +116,12 @@ public class AOEControll : MonoBehaviour
     /// <summary>
     /// エディター内での当たり判定の可視化
     /// </summary>
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         shape_.OnDrawGizmos(Radius, pos_);
     }
+#endif
 
     /// <summary>
     /// AOE用のコルーチン
