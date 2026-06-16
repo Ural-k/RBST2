@@ -17,11 +17,13 @@ MonoBehaviour:
   - name_: "\u30D1\u30F3\u30C1"
     particle_: {fileID: 3419249946162298372, guid: c0c64ae9232a77c46b85d4b00dc341bc, type: 3}
     targetType_: 0
+    skillType_: 1
     toTarget_: 0
     baseDirection_: 0
     offset_: {x: 3, y: 0}
     aspect_: {x: 0, y: 0}
     radius_: 2
+    rotate_: 0
     power_: 200
     gcd_: 0.7
     cd_: 0
@@ -39,11 +41,13 @@ MonoBehaviour:
   - name_: "\u98DB\u3073\u3064\u304D"
     particle_: {fileID: 3419249946162298372, guid: c0c64ae9232a77c46b85d4b00dc341bc, type: 3}
     targetType_: 0
+    skillType_: 1
     toTarget_: 1
     baseDirection_: 0
     offset_: {x: 0, y: 0}
     aspect_: {x: 0, y: 0}
     radius_: 2
+    rotate_: 0
     power_: 100
     gcd_: 0
     cd_: 5
@@ -79,11 +83,13 @@ MonoBehaviour:
   - name_: "\u30AB\u30A6\u30F3\u30BF\u30FC"
     particle_: {fileID: 5609775975947588435, guid: 9d87451d58e0d8b4f9c4942b817983c3, type: 3}
     targetType_: 1
+    skillType_: 1
     toTarget_: 0
     baseDirection_: 0
     offset_: {x: 0, y: 0}
     aspect_: {x: 0, y: 0}
     radius_: 5
+    rotate_: 0
     power_: -500
     gcd_: 2
     cd_: 0

@@ -53,3 +53,13 @@ public enum TargetType
     Natural,
     Null
 }
+
+/*
+ :  スキルタイプ
+ */
+public enum SkillType
+{
+    Single,
+    Circle,
+    Square,
+}

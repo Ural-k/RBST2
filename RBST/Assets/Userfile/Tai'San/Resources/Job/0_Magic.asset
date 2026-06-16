@@ -17,6 +17,7 @@ MonoBehaviour:
   - name_: "\u30D5\u30A1\u30A4\u30A2"
     particle_: {fileID: 3419249946162298372, guid: c0c64ae9232a77c46b85d4b00dc341bc, type: 3}
     targetType_: 0
+    skillType_: 1
     toTarget_: 1
     baseDirection_: 0
     offset_: {x: 0, y: 0}
@@ -39,6 +40,7 @@ MonoBehaviour:
   - name_: "\u30D5\u30A1\u30A4\u30A22"
     particle_: {fileID: 3419249946162298372, guid: c0c64ae9232a77c46b85d4b00dc341bc, type: 3}
     targetType_: 0
+    skillType_: 1
     toTarget_: 0
     baseDirection_: 1
     offset_: {x: 0, y: 0}
@@ -62,6 +64,7 @@ MonoBehaviour:
   - name_: "\u7A81\u9032\u30D5\u30A1\u30A4\u30A2"
     particle_: {fileID: 3419249946162298372, guid: c0c64ae9232a77c46b85d4b00dc341bc, type: 3}
     targetType_: 0
+    skillType_: 0
     toTarget_: 1
     baseDirection_: 0
     offset_: {x: 0, y: 0}
@@ -102,6 +105,7 @@ MonoBehaviour:
   - name_: "\u30C7\u30D0\u30D5(\u30C7\u30D0\u30D5\u6A5F\u80FD\u306A\u3057)"
     particle_: {fileID: 7634934446412523899, guid: f0a5c7f44ec9b9b41b7214a1107d42f1, type: 3}
     targetType_: 0
+    skillType_: 0
     toTarget_: 1
     baseDirection_: 0
     offset_: {x: 0, y: 0}
@@ -141,7 +145,8 @@ MonoBehaviour:
         m_RotationOrder: 4
   - name_: "\u3082\u308D\u3068\u3082\u7206\u7834\u30D5\u30A1\u30A4\u30A2"
     particle_: {fileID: 3419249946162298372, guid: c0c64ae9232a77c46b85d4b00dc341bc, type: 3}
-    targetType_: 2
+    targetType_: 0
+    skillType_: 1
     toTarget_: 0
     baseDirection_: 0
     offset_: {x: 0, y: 0}
@@ -180,16 +185,17 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
   skill3_:
-  - name_: "\u9069\u5F53\u30D5\u30A1\u30A4\u30A2"
-    particle_: {fileID: 4997235082424780348, guid: 0e14a2df6cbe4494db608f37e3bb88c5, type: 3}
+  - name_: "\u30B5\u30F3\u30C0\u30FC"
+    particle_: {fileID: 7634934446412523899, guid: f0a5c7f44ec9b9b41b7214a1107d42f1, type: 3}
     targetType_: 0
-    toTarget_: 0
+    skillType_: 1
+    toTarget_: 1
     baseDirection_: 0
     offset_: {x: 0, y: 0}
     aspect_: {x: 5, y: 1}
-    radius_: 0
+    radius_: 4
     rotate_: 0
-    power_: 0
+    power_: 300
     gcd_: 0
     cd_: 0.5
     motion_:

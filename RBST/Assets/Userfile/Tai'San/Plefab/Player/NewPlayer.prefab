@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.69803923}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -101,6 +101,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9027175664271279066}
   - component: {fileID: 8719579936957951056}
+  - component: {fileID: 6867571715194131559}
   - component: {fileID: 1726620815561301000}
   - component: {fileID: 2379930171996449433}
   - component: {fileID: 5216280052677322935}
@@ -141,16 +142,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   demodebug_: 0
-  parameter_:
-    jobNumber_: 0
-    playerName_: player
-    maxHp_: 1000
-    hp_: 1000
-    speed_: 5
-    attack_: 0
-    defense_: 0
-    critical_: 0
-    lv_: 0
+  info_:
+    parameter_:
+      jobNumber_: 0
+      playerName_: 
+      maxHp_: 1000
+      hp_: 1000
+      speed_: 5
+      attack_: 0
+      defense_: 0
+      critical_: 0
+      lv_: 0
+    gcd_: 0
+    skill1_:
+      cd_: 0
+      nowCombo_: 0
+    skill2_:
+      cd_: 0
+      nowCombo_: 0
+    skill3_:
+      cd_: 0
+      nowCombo_: 0
+    skillData_: {fileID: 0}
+    inputAxis_:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 2b51b821-a163-4038-9e4c-130578b9c13b
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    lastFace_: {x: 0, y: 0}
+--- !u!114 &6867571715194131559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6965932836927583436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baee648fa2c628f45990dd1460bb4d2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkillFunction
 --- !u!114 &1726620815561301000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,8 +447,8 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.13039607, g: 1, b: 0, a: 1}
+  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  m_Color: {r: 0, g: 1, b: 0.20540953, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
