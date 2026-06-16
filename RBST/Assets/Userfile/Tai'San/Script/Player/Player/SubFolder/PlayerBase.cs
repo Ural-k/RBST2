@@ -31,8 +31,8 @@ public class PlayerBase : PlayerSkill, IDamageable,IToEnemyDamageAble
 
     public void TakeDamage(int damage)
     {
-        info_.parameter_.hp_ -= damage;
-        if(info_.parameter_.hp_ <= 0)
+        info_.parameter_.HP -= damage;
+        if(info_.parameter_.HP == 0)
         {
             info_.downTime_ = DOWN_TIME;
             Death();
@@ -41,8 +41,8 @@ public class PlayerBase : PlayerSkill, IDamageable,IToEnemyDamageAble
 
     public void DamageAble(int damage)
     {
-        info_.parameter_.hp_ -= damage;
-        if (info_.parameter_.hp_ <= 0)
+        info_.parameter_.HP -= damage;
+        if (info_.parameter_.HP == 0)
         {
             info_.downTime_ = DOWN_TIME;
             Death();

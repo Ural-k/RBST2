@@ -140,14 +140,18 @@ public class PlayerSkill : PlayerVariable
             switch (type)
             {
                 case TargetType.Enemy:
-                    for (int i = 0; i < EnemyManager.GetAllEnemyListCount(); ++i) list.Add(EnemyManager.GetEnemy(i).gameObject.transform);
+                    if(EnemyManager.GetAllEnemyListCount() != 0) 
+                        for (int i = 0; i < EnemyManager.GetAllEnemyListCount(); ++i) list.Add(EnemyManager.GetEnemy(i).gameObject.transform);
                     break;
                 case TargetType.Player:
-                    for (int i = 0; i < PlayerManager.GetAllPlayerListCount(); ++i) list.Add(PlayerManager.GetPlayer(i).gameObject.transform);
+                    if(PlayerManager.GetAllPlayerListCount() != 0) 
+                        for (int i = 0; i < PlayerManager.GetAllPlayerListCount(); ++i) list.Add(PlayerManager.GetPlayer(i).gameObject.transform);
                     break;
                 case TargetType.Natural:
-                    for (int i = 0; i < EnemyManager.GetAllEnemyListCount(); ++i) list.Add(EnemyManager.GetEnemy(i).gameObject.transform);
-                    for (int i = 0; i < PlayerManager.GetAllPlayerListCount(); ++i) list.Add(PlayerManager.GetPlayer(i).gameObject.transform);
+                    if (EnemyManager.GetAllEnemyListCount() != 0) 
+                        for (int i = 0; i < EnemyManager.GetAllEnemyListCount(); ++i) list.Add(EnemyManager.GetEnemy(i).gameObject.transform);
+                    if (PlayerManager.GetAllPlayerListCount() != 0) 
+                        for (int i = 0; i < PlayerManager.GetAllPlayerListCount(); ++i) list.Add(PlayerManager.GetPlayer(i).gameObject.transform);
                     break;
             }
             return list;
