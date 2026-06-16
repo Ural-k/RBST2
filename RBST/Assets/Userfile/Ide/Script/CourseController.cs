@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class CourseController : MonoBehaviour
 {
-    public Button[] buttons_;        //ホームボタン配列
-    public int columnCount_;         //横方向のボタン数
-    public int currentIndex_;        //現在選択中のボタン番号
+    [SerializeField] private Button[] buttons_;        //ホームボタン配列
+    [SerializeField] private int columnCount_;         //横方向のボタン数
+    [SerializeField] private int currentIndex_;        //現在選択中のボタン番号
 
     void Start()
     {
@@ -35,27 +35,27 @@ public class CourseController : MonoBehaviour
         //最下段の行番号
         int maxRowIndex = (buttons_.Length - 1) / columnCount_;
 
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            rowIndex--;
+        //if (Input.GetKeyDown(KeyCode.W))
+        //{
+        //    rowIndex--;
 
-            //上端を超えたら最下段へループ
-            if (rowIndex < 0)
-            {
-                rowIndex = maxRowIndex;
-            }
-        }
+        //    //上端を超えたら最下段へループ
+        //    if (rowIndex < 0)
+        //    {
+        //        rowIndex = maxRowIndex;
+        //    }
+        //}
 
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            rowIndex++;
+        //if (Input.GetKeyDown(KeyCode.S))
+        //{
+        //    rowIndex++;
 
-            //下端を超えたら最上段へループ
-            if (rowIndex > maxRowIndex)
-            {
-                rowIndex = 0;
-            }
-        }
+        //    //下端を超えたら最上段へループ
+        //    if (rowIndex > maxRowIndex)
+        //    {
+        //        rowIndex = 0;
+        //    }
+        //}
 
         if (Input.GetKeyDown(KeyCode.A))
         {
