@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -34,7 +36,7 @@ public class PlayerManager : MonoBehaviour
     /// </summary>
     public static Player GetPlayer(int i)
     {
-        if (playerList_.Count == 0) return null;
+        if (i < 0 || i >= playerList_.Count) return null;
 
         return playerList_[i];
     }
@@ -51,4 +53,33 @@ public class PlayerManager : MonoBehaviour
     {
         playerList_.Clear();
     }
+
+    public static List<Player> GetAllPlayer()
+    {
+        return playerList_;
+    }
+
+    /// <summary>
+    /// ‰¼
+    /// </summary>
+    public static void DestroyPlayer(Player player)
+    {
+        Player temp = null;
+        foreach (Player p in playerList_)
+        {
+            if (p == player)
+            {
+                temp = p;
+            }
+        }
+
+        Destroy(temp.gameObject);
+    }
+
+
+    public static float GetPlayerHP(int i)
+    {
+        return playerList_[i].GetInfo.parameter_.hp_;
+    }
+
 }

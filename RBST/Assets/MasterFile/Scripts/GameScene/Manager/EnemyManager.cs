@@ -44,10 +44,7 @@ public class EnemyManager : MonoBehaviour
 
     public static EnemyControl GetEnemy(int i)
     {
-        if (i < 0 || i >= enemyList_.Count)
-        {
-            return null;
-        }
+        if (i < 0 || i >= enemyList_.Count) return null;
 
         return enemyList_[i];
     }

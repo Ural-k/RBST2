@@ -6,7 +6,8 @@ public enum UIType
     CharacterSelect,
     Ready,
     Play,
-    Result
+    GameClear,
+    GameOver,
 }
 public class GameUIManager : MonoBehaviour
 {

@@ -4,13 +4,14 @@ public enum GameState
 {
     isPlaying,
     GameOver,
+    GameClear,
 }
 
 public class GameSceneManager : MonoBehaviour
 {
     public static GameSceneManager Instance;
 
-    public GameState State { get;private set; }
+    public GameState State { get; set; }
 
     private IGameState currentState_;
 

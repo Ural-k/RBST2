@@ -15,6 +15,7 @@ public class EntryState : IGameState
     private IGameState nextState_;  //Ÿ‚Ìstate‚ğİ’è‚µ‚Ä‚¨‚­
     public void Enter() 
     {
+        GameSceneManager.Instance.State = GameState.isPlaying;
         phase = EntryPhase.Phase1;
         GameUIManager.Instance.Activate(UIType.CharacterSelect);
         nextState_ = new PlayState();
