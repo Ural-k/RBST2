@@ -15,6 +15,7 @@ public struct PlayerInfo
     [HideInInspector] public Vector2 lastFace_;
     [HideInInspector] public int filip_;
     [HideInInspector] public float downTime_;
+    [HideInInspector] public int lastInput_;
 
     public Vector2 LookAt(Vector3 pos, Transform me, bool horizontal = false)
     {

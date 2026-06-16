@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -27,6 +26,13 @@ public class PlayerSkill : PlayerVariable
             INPUT_SKILL_THREE   => info_.skillData_.GetSkill3(),
             _                   => new SkillData[0]
         };
+        if (info_.lastInput_ != input)
+        {
+            info_.skill1_.nowCombo_ = 0;
+            info_.skill2_.nowCombo_ = 0;
+            info_.skill3_.nowCombo_ = 0;
+        }
+
         info = OnSkill(insInfo, data);
     }
 
@@ -64,6 +70,15 @@ public class PlayerSkill : PlayerVariable
         targetList = GetTarget(skillData.targetType_);
 
         /*
+         :  空振り
+         */
+        if (targetList.Count == 0)
+        {
+            GoParticle(skillData, transform.position);
+            return new InputSkillInfo { cd_ = skillData.cd_, nowCombo_ = 0 };
+        }
+
+        /*
          :  攻撃座標の取得
          */
         targetPos = GetTargetPos(skillData, targetList);
@@ -79,7 +94,7 @@ public class PlayerSkill : PlayerVariable
         GoParticle(skillData, targetPos);
 
         /*
-         :  ターゲットサークルヘ結果を送る
+         :  ターゲットサークルヘ結果を送る ※TargetCircle->EnemyControll
          */
         foreach (Transform tf in hitResult) if (tf.GetComponent<TargetCircle>()) tf.GetComponent<IToEnemyDamageAble>().DamageAble(skillData.power_);
 
@@ -202,7 +217,6 @@ public class PlayerSkill : PlayerVariable
             }
         }
     }
-
 
     /*
      :  コルーチン-----------------------------------------------------------------------------------------------------------

@@ -25,6 +25,8 @@ public class Player : PlayerBase
             if (Input.GetMouseButtonDown(1)) { OnInputSkill(out info_.skill2_, INPUT_SKILL_TWO); }//âºÅ´
             if (Input.GetMouseButtonDown(2)) { OnInputSkill(out info_.skill3_, INPUT_SKILL_THREE); }
         }
+
+        if (Input.GetKeyDown(KeyCode.R)) { EnemyManager.DeleteAllEnemy(); }
     }
 
     public void InputAttack1(InputAction.CallbackContext context)
