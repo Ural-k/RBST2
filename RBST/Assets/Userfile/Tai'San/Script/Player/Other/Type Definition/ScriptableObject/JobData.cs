@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 /*
@@ -24,7 +25,12 @@ public class JobData : ScriptableObject
     [SerializeField] private SkillData[] skill3_;
 
     //ジョブ取得
-    private static JobData GetJobsData(int number) { return Resources.LoadAll<JobData>("Job")[number]; }
+    private static JobData GetJobsData(int number)
+    {
+        var result = Resources.LoadAll<JobData>("Job")[number];
+        for(int i = 0; i < result.GetSkill1().Count(); ++i) { result.GetSkill1()[i].particle_ = new ParticleSystem(); }
+        return result;
+    }
 
     /// <summary>
     /// スキル取得
@@ -57,7 +63,7 @@ public enum TargetType
 /*
  :  スキルタイプ
  */
-public enum SkillType
+public enum SkillShape
 {
     Single,
     Circle,

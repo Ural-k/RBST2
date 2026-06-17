@@ -168,23 +168,23 @@ public class PlayerSkill : PlayerVariable
 
         List<Transform> GetHit(SkillData data, List<Transform> targetList, Vector2 pos)
         {
-            info_.LookAt(pos, transform, data.skillType_ == SkillType.Square);
-            List<Transform> result = data.skillType_ switch
+            info_.LookAt(pos, transform, data.shape_ == SkillShape.Square);
+            List<Transform> result = data.shape_ switch
             {
-                SkillType.Single => new List<Transform> { GetNear(targetList) },//max(xmin, min(cx, xmax)) / max(ymin, min(cy, ymax))
-                SkillType.Circle => targetList.Where(n => Vector2.Distance(pos, n.position) <= data.radius_ + n.GetComponent<TargetCircle>().GetRadius).ToList(),
-                SkillType.Square => targetList.Where(
+                SkillShape.Single => new List<Transform> { GetNear(targetList) },//max(xmin, min(cx, xmax)) / max(ymin, min(cy, ymax))
+                SkillShape.Circle => targetList.Where(n => Vector2.Distance(pos, n.position) <= data.radius_ + n.GetComponent<TargetCircle>().GetRadius).ToList(),
+                SkillShape.Square => targetList.Where(
                 n => Vector2.Distance(
                     new Vector2(
-                        Mathf.Clamp(n.position.x, Mathf.Min(transform.position.x, transform.position.x + data.aspect_.x * info_.filip_),
-                        Mathf.Max(transform.position.x, transform.position.x + data.aspect_.x * info_.filip_)),
-                        Mathf.Max(transform.position.y - data.aspect_.y / 2, Mathf.Min(n.position.y, transform.position.y + data.aspect_.y / 2))),
+                        Mathf.Clamp(n.position.x, Mathf.Min(transform.position.x, transform.position.x + data.scale_.x * info_.filip_),
+                        Mathf.Max(transform.position.x, transform.position.x + data.scale_.x * info_.filip_)),
+                        Mathf.Max(transform.position.y - data.scale_.y / 2, Mathf.Min(n.position.y, transform.position.y + data.scale_.y / 2))),
                     n.position) < n.GetComponent<TargetCircle>().GetRadius
                 ).ToList(),
                 _ => new List<Transform>()
             };
 
-            Debug.Log($"{transform.position.x}, {data.aspect_.x}, {targetList[0].position.x}");
+            Debug.Log($"{transform.position.x}, {data.scale_.x}, {targetList[0].position.x}");
             return result;
         }
 
@@ -192,9 +192,9 @@ public class PlayerSkill : PlayerVariable
         {
             if (data.particle_ != null)
             {
-                if (data.skillType_ == SkillType.Square) pos = transform.position;
+                if (data.shape_ == SkillShape.Square) pos = transform.position;
                 var ins = Instantiate(data.particle_, pos, Quaternion.identity);
-                ins.transform.localScale = data.radius_ == 0 ? data.aspect_ * new Vector2(info_.filip_, 1) : Vector3.one * data.radius_;
+                ins.transform.localScale = data.radius_ == 0 ? data.scale_ * new Vector2(info_.filip_, 1) : Vector3.one * data.radius_;
             }
         }
 
