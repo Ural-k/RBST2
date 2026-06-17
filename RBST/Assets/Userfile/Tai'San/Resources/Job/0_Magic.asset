@@ -102,7 +102,7 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-  - name_: "\u30C7\u30D0\u30D5(\u30C7\u30D0\u30D5\u6A5F\u80FD\u306A\u3057)"
+  - name_: "\u30BC\u30ED\u8DDD\u96E2\u30D5\u30A1\u30A4\u30A2"
     particle_: {fileID: 7634934446412523899, guid: f0a5c7f44ec9b9b41b7214a1107d42f1, type: 3}
     targetType_: 0
     skillType_: 0
@@ -112,7 +112,7 @@ MonoBehaviour:
     aspect_: {x: 0, y: 0}
     radius_: 3
     rotate_: 0
-    power_: 100
+    power_: 300
     gcd_: 2
     cd_: 0
     motion_:
@@ -153,7 +153,7 @@ MonoBehaviour:
     aspect_: {x: 0, y: 0}
     radius_: 5
     rotate_: 0
-    power_: 250
+    power_: 500
     gcd_: 0
     cd_: 3
     motion_:
@@ -185,7 +185,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
   skill3_:
-  - name_: "\u30B5\u30F3\u30C0\u30FC"
+  - name_: "\u30D7\u30C1\u30D5\u30A1\u30A4\u30A2"
     particle_: {fileID: 7634934446412523899, guid: f0a5c7f44ec9b9b41b7214a1107d42f1, type: 3}
     targetType_: 0
     skillType_: 1
@@ -195,7 +195,7 @@ MonoBehaviour:
     aspect_: {x: 5, y: 1}
     radius_: 4
     rotate_: 0
-    power_: 30
+    power_: 15
     gcd_: 0
     cd_: 0.5
     motion_:

@@ -147,7 +147,6 @@ MonoBehaviour:
       jobNumber_: 0
       playerName_: 
       maxHp_: 1000
-      hp_: 1000
       speed_: 5
       attack_: 0
       defense_: 0
@@ -174,6 +173,9 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     lastFace_: {x: 0, y: 0}
+    filip_: 0
+    downTime_: 0
+    lastInput_: 0
 --- !u!114 &6867571715194131559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,7 +366,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Radius: 0.2
 --- !u!1 &7104761351529804707
 GameObject:
   m_ObjectHideFlags: 0

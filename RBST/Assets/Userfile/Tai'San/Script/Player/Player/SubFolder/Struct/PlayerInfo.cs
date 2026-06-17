@@ -10,6 +10,7 @@ public struct PlayerInfo
     [HideInInspector] public InputSkillInfo skill1_;
     [HideInInspector] public InputSkillInfo skill2_;
     [HideInInspector] public InputSkillInfo skill3_;
+    [HideInInspector] public float activeCombo_;
     [HideInInspector] public JobData skillData_;
     [HideInInspector] public InputAction inputAxis_;
     [HideInInspector] public Vector2 lastFace_;
