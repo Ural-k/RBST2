@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     //現在選択されているキャラクターのインデックス
     //UI選択やホーム画面の表示切り替えに使用される
-    public int selectedCharacterIndex_;
+    [SerializeField] public int selectedCharacterIndex_;
 
     private void Awake()
     {
@@ -70,10 +71,37 @@ public class GameManager : MonoBehaviour
         homeController_.SetActive(!homeController_.activeSelf);
     }
 
-    //選択中キャラクターのインデックスを更新する
-    //UIやホーム画面の表示内容切り替えに利用される
-    public void SetCharacterIndex(int index)
+    public void ShowCharacterSelect()
     {
-        selectedCharacterIndex_ = index;
+        kyaraPanel_.SetActive(true);
+        kyaraSelectController_.SetActive(true);
+
+        homePanel_.SetActive(false);
+        homeController_.SetActive(false);
+    }
+
+    public void ShowHome()
+    {
+        kyaraPanel_.SetActive(false);
+        kyaraSelectController_.SetActive(false);
+
+        homePanel_.SetActive(true);
+        homeController_.SetActive(true);
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // ★シーンが変わったら選択をリセット
+        selectedCharacterIndex_ = 0;
     }
 }
