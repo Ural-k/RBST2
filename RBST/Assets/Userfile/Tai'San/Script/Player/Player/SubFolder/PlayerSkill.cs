@@ -200,7 +200,7 @@ public class PlayerSkill : PlayerVariable
 
         int GetDamage(SkillData data)
         {
-            return data.power_ + RANDOME_DAMAGE_RANGE;
+            return Mathf.Max(data.power_ + Random.Range(-RANDOME_DAMAGE_RANGE,RANDOME_DAMAGE_RANGE), 1);
         }
     }
 
