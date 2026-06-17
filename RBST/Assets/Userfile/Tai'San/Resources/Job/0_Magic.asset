@@ -28,8 +28,8 @@ MonoBehaviour:
     gcd_: 1
     cd_: 0
     motion_:
-      time_: 1
-      speed_: 1
+      time_: 0
+      speed_: 0
       jumpOn_: 0
       jumpOrbit_:
         serializedVersion: 2
@@ -38,16 +38,16 @@ MonoBehaviour:
         m_PostInfinity: 0
         m_RotationOrder: 0
   - name_: "\u30D5\u30A1\u30A4\u30A22"
-    particle_: {fileID: 3419249946162298372, guid: c0c64ae9232a77c46b85d4b00dc341bc, type: 3}
+    particle_: {fileID: 7634934446412523899, guid: f0a5c7f44ec9b9b41b7214a1107d42f1, type: 3}
     targetType_: 0
     skillType_: 1
     toTarget_: 0
-    baseDirection_: 1
+    baseDirection_: 0
     offset_: {x: 0, y: 0}
     aspect_: {x: 0, y: 0}
-    radius_: 5
+    radius_: 3
     rotate_: 0
-    power_: 150
+    power_: 120
     gcd_: 1
     cd_: 0
     motion_:
@@ -71,7 +71,7 @@ MonoBehaviour:
     aspect_: {x: 0, y: 0}
     radius_: 2
     rotate_: 0
-    power_: 200
+    power_: 100
     gcd_: 0.5
     cd_: 0
     motion_:
@@ -112,7 +112,7 @@ MonoBehaviour:
     aspect_: {x: 0, y: 0}
     radius_: 3
     rotate_: 0
-    power_: 300
+    power_: 200
     gcd_: 2
     cd_: 0
     motion_:
@@ -153,11 +153,11 @@ MonoBehaviour:
     aspect_: {x: 0, y: 0}
     radius_: 5
     rotate_: 0
-    power_: 500
+    power_: 1500
     gcd_: 0
     cd_: 3
     motion_:
-      time_: 3
+      time_: 4
       speed_: 0.2
       jumpOn_: 0
       jumpOrbit_:
@@ -195,7 +195,7 @@ MonoBehaviour:
     aspect_: {x: 5, y: 1}
     radius_: 4
     rotate_: 0
-    power_: 15
+    power_: 60
     gcd_: 0
     cd_: 0.5
     motion_:
