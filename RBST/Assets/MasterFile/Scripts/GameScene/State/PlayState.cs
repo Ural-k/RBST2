@@ -6,12 +6,16 @@ public class PlayState : IGameState
     private EnemyControl enemyControl_;
     private IGameState nextState_;
     private int playerCount_;
+    private GetPlayUI playUI_;
     public void Enter()
     {
         playerCount_ = PlayerManager.GetAllPlayerListCount();
         enemyControl_ = GameObjectManager.Instance.CreateEnemy();
         GameUIManager.Instance.Activate(UIType.Play);
+        playUI_ = GameUIManager.Instance.GetPlayUI();
         nextState_ = new ResultState();
+        DemoTimer.Instance.ResetTimer();
+        DemoTimer.Instance.StartTimer();
     }
 
     // Update is called once per frame
@@ -27,29 +31,43 @@ public class PlayState : IGameState
         //•¡”íì¬Ä’²®
         if (enemyControl_.HP <= 0)
         {
-            if (enemyControl_ != null)
-            {
-                enemyControl_.Died();
-            }
-            GameSceneManager.Instance.State = GameState.GameClear;
-            GameSceneManager.Instance.ChangeState(nextState_);
+            Clear();
         }
 
         //‘h¶ì¬ŒãÄ’²®
         for (int i = 0; i < playerCount_; i++)
         {
-            if(PlayerManager.GetPlayerHP(i) <= 0)
+            playUI_.SetText(PlayerManager.GetPlayer(i));
+            if(PlayerManager.GetPlayerHP(i) <= 0 || DemoTimer.Instance.GetCurrentTime <= 0)
             {
-                enemyControl_.StopAllCoroutines();
-                PlayerManager.DestroyPlayer(PlayerManager.GetPlayer(i));
-                GameSceneManager.Instance.State = GameState.GameOver;
-                GameSceneManager.Instance.ChangeState(nextState_);
+                GameOver(i);
             }
         }
     }
 
     public void Exit() 
     {
+        EnemyManager.AllDestroyEnemy();
         GameUIManager.Instance.Hide(UIType.Play);
+    }
+
+    private void Clear()
+    {
+        if (enemyControl_ != null)
+        {
+            enemyControl_.Died();
+        }
+        DemoTimer.Instance.StopTimer();
+        GameSceneManager.Instance.State = GameState.GameClear;
+        GameSceneManager.Instance.ChangeState(nextState_);
+    }
+
+    private void GameOver(int i)
+    {
+        enemyControl_.StopAllCoroutines();
+        DemoTimer.Instance.StopTimer();
+        PlayerManager.DestroyPlayer(PlayerManager.GetPlayer(i));
+        GameSceneManager.Instance.State = GameState.GameOver;
+        GameSceneManager.Instance.ChangeState(nextState_);
     }
 }

@@ -23,7 +23,6 @@ public class ResultState : IGameState
     public void Exit() 
     {
         PlayerManager.AllDestroyPlayer();
-        EnemyManager.AllDestroyEnemy();
         GameStateManager.instance.LordTitle();
     }
     private void CheckResult(GameState state)
