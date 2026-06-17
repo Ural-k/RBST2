@@ -32,7 +32,6 @@ public class PlayerSkill : PlayerVariable
             info_.skill2_.nowCombo_ = 0;
             info_.skill3_.nowCombo_ = 0;
         }
-
         info = OnSkill(insInfo, data);
     }
 
@@ -93,17 +92,13 @@ public class PlayerSkill : PlayerVariable
          */
         GoParticle(skillData, targetPos);
 
+
+
         /*
          :  ターゲットサークルヘ結果を送る ※TargetCircle->EnemyControll
          */
-        foreach (Transform tf in hitResult) if (tf.GetComponent<TargetCircle>()) tf.GetComponent<IToEnemyDamageAble>().DamageAble(skillData.power_);
+        foreach (Transform tf in hitResult) if (tf.GetComponent<TargetCircle>()) tf.GetComponent<IToEnemyDamageAble>().DamageAble(GetDamage(skillData));
 
-#if UNITY_EDITOR
-        /*
-         :  コンソールログ
-         */
-        Log(skillData, hitResult);
-#endif
         /*
          :  モーション処理
          */
@@ -112,6 +107,7 @@ public class PlayerSkill : PlayerVariable
         /*
          :  CD・コンボ情報の戻り値
          */
+        info_.activeCombo_ = ACTIVE_COMBO_SECOND;
         return new InputSkillInfo { cd_ = skillData.cd_, nowCombo_ = inputInfo.nowCombo_ + 1 >= skillDataArray.Count() ? 0 : inputInfo.nowCombo_ + 1 };
 
 
@@ -140,7 +136,7 @@ public class PlayerSkill : PlayerVariable
             switch (type)
             {
                 case TargetType.Enemy:
-                    if(EnemyManager.GetAllEnemyListCount() != 0) 
+                    if(EnemyManager.GetAllEnemyListCount() != 0)
                         for (int i = 0; i < EnemyManager.GetAllEnemyListCount(); ++i) list.Add(EnemyManager.GetEnemy(i).gameObject.transform);
                     break;
                 case TargetType.Player:
@@ -178,14 +174,17 @@ public class PlayerSkill : PlayerVariable
                 SkillType.Single => new List<Transform> { GetNear(targetList) },//max(xmin, min(cx, xmax)) / max(ymin, min(cy, ymax))
                 SkillType.Circle => targetList.Where(n => Vector2.Distance(pos, n.position) <= data.radius_ + n.GetComponent<TargetCircle>().GetRadius).ToList(),
                 SkillType.Square => targetList.Where(
-                    n => Vector2.Distance(
-                        new Vector2(
-                            Mathf.Max(transform.position.x, Mathf.Min(n.position.x, transform.position.x + data.aspect_.x)),
-                            Mathf.Max(transform.position.y - data.aspect_.y / 2, Mathf.Min(n.position.y, transform.position.y + data.aspect_.y / 2))), 
-                        n.position) < n.GetComponent<TargetCircle>().GetRadius
+                n => Vector2.Distance(
+                    new Vector2(
+                        Mathf.Clamp(n.position.x, Mathf.Min(transform.position.x, transform.position.x + data.aspect_.x * info_.filip_),
+                        Mathf.Max(transform.position.x, transform.position.x + data.aspect_.x * info_.filip_)),
+                        Mathf.Max(transform.position.y - data.aspect_.y / 2, Mathf.Min(n.position.y, transform.position.y + data.aspect_.y / 2))),
+                    n.position) < n.GetComponent<TargetCircle>().GetRadius
                 ).ToList(),
                 _ => new List<Transform>()
             };
+
+            Debug.Log($"{transform.position.x}, {data.aspect_.x}, {targetList[0].position.x}");
             return result;
         }
 
@@ -199,18 +198,9 @@ public class PlayerSkill : PlayerVariable
             }
         }
 
-        void Log(SkillData data, List<Transform> result)
+        int GetDamage(SkillData data)
         {
-            string resultText = $"{transform.gameObject.name}の{data.name_}!! →\n";
-            foreach (Transform tf in result)
-            {
-                resultText += $"{tf.gameObject.name}, ";
-            }
-            if (result.Count != 0)
-            {
-                resultText += $"に{data.power_}ダメージ!!";
-                Debug.Log(resultText);
-            }
+            return data.power_ + RANDOME_DAMAGE_RANGE;
         }
     }
 
@@ -230,7 +220,6 @@ public class PlayerSkill : PlayerVariable
             info_.skill2_.cd_ = Mathf.Max(info_.skill2_.cd_ - Time.deltaTime, 0);
             info_.skill3_.cd_ = Mathf.Max(info_.skill3_.cd_ - Time.deltaTime, 0);
             info_.downTime_ = Mathf.Max(info_.downTime_ - Time.deltaTime, 0);
-            
             yield return null;
         }
     }

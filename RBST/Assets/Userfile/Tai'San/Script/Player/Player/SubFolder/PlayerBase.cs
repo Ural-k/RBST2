@@ -8,6 +8,7 @@ public class PlayerBase : PlayerSkill, IDamageable,IToEnemyDamageAble
 {
     private void Start()
     {
+        
         info_.inputAxis_ = InputSystem.actions.FindAction("Move");
         StartCoroutine(CoolTimeCoroutine());
         info_.skillData_ = JobData.GetJobSkill(info_.parameter_.jobNumber_);
