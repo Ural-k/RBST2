@@ -46,4 +46,9 @@ public class GameUIManager : MonoBehaviour
     {
         uiMap_[type].SetActive(false);
     }
+
+    public GetPlayUI GetPlayUI()
+    {
+        return uiMap_[UIType.Play].GetComponent<GetPlayUI>();
+    }
 }
