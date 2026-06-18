@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -87,21 +86,5 @@ public class GameManager : MonoBehaviour
 
         homePanel_.SetActive(true);
         homeController_.SetActive(true);
-    }
-
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        // ★シーンが変わったら選択をリセット
-        selectedCharacterIndex_ = 0;
     }
 }

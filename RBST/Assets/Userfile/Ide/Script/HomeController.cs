@@ -1,30 +1,29 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 
 public class HomeController : MonoBehaviour
 {
-    [SerializeField] private Image courseImage_;           //ƒR[ƒX”»’è—p‚ÌUI
-    [SerializeField] private Image kyaraImage_;            //ƒLƒƒƒ‰”»’è—p‚ÌUI
-    [SerializeField] private GameObject[] player_;          //UIƒGƒŠƒA‚Ö‚ÌN“ü”»’è‚ğs‚¤ƒvƒŒƒCƒ„[
-    [SerializeField] private Canvas canvas_;               //courseImage_‚ÌCanvasQÆ(À•W•ÏŠ·‚Ég—p)
-    [SerializeField] private GameObject courseSelect_;     //ƒR[ƒX‘I‘ğUI
-    [SerializeField] private GameObject kyaraSelect_;      //ƒLƒƒƒ‰‘I‘ğUI
-    [SerializeField] private Text courseText_;             //ƒR[ƒXˆÄ“àƒeƒLƒXƒg
-    [SerializeField] private Text kyaraText_;              //ƒLƒƒƒ‰ˆÄ“àƒeƒLƒXƒg
-    //[SerializeField] private GameObject[] cube_;           //ƒLƒƒƒ‰ƒNƒ^[‘I‘ğ‚É‰‚¶‚Ä•\¦‚³‚ê‚éƒLƒ…[ƒu(FEƒLƒƒƒ‰•\Œ»—p)
-    [SerializeField] private GameObject coursePanel_;
-    [SerializeField] private GameObject kyaraPanel_;
+    [SerializeField] private Image courseImage_;           //ã‚³ãƒ¼ã‚¹åˆ¤å®šç”¨ã®UI
+    [SerializeField] private Image kyaraImage_;            //ã‚­ãƒ£ãƒ©åˆ¤å®šç”¨ã®UI
+    [SerializeField] private GameObject[] player_;         //UIã‚¨ãƒªã‚¢ã¸ã®ä¾µå…¥åˆ¤å®šã‚’è¡Œã†ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼
+    [SerializeField] private Canvas canvas_;               //courseImage_ã®Canvaså‚ç…§(åº§æ¨™å¤‰æ›ã«ä½¿ç”¨)
+    [SerializeField] private GameObject courseSelect_;     //ã‚³ãƒ¼ã‚¹é¸æŠUI
+    [SerializeField] private GameObject kyaraSelect_;      //ã‚­ãƒ£ãƒ©é¸æŠUI
+    [SerializeField] private Text courseText_;             //ã‚³ãƒ¼ã‚¹æ¡ˆå†…ãƒ†ã‚­ã‚¹ãƒˆ
+    [SerializeField] private Text kyaraText_;              //ã‚­ãƒ£ãƒ©æ¡ˆå†…ãƒ†ã‚­ã‚¹ãƒˆ
+    [SerializeField] private GameObject coursePanel_;      //ã‚³ãƒ¼ã‚¹é¸æŠç”»é¢ã®UIãƒ‘ãƒãƒ«
+    [SerializeField] private GameObject kyaraPanel_;       //ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼é¸æŠç”»é¢ã®UIãƒ‘ãƒãƒ«
 
     private void Start()
     {
-        //Image‚ª‘®‚µ‚Ä‚¢‚éCanvas‚ğæ“¾(ƒXƒNƒŠ[ƒ“À•W”»’è‚Åg—p)
+        //ImageãŒå±ã—ã¦ã„ã‚‹Canvasã‚’å–å¾—(ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™åˆ¤å®šã§ä½¿ç”¨)
         canvas_ = courseImage_.canvas;
 
-        //‰Šúó‘Ô‚Å‚Í—¼•û‚ÌUIƒpƒlƒ‹‚ğ•\¦ó‘Ô‚É‚·‚é
+        //åˆæœŸçŠ¶æ…‹ã§ã¯ä¸¡æ–¹ã®UIãƒ‘ãƒãƒ«ã‚’è¡¨ç¤ºçŠ¶æ…‹ã«ã™ã‚‹
         courseSelect_.SetActive(true);
         kyaraSelect_.SetActive(true);
 
-        //‰Šúó‘Ô‚Å‚ÍˆÄ“àƒeƒLƒXƒg‚Í”ñ•\¦
+        //åˆæœŸçŠ¶æ…‹ã§ã¯æ¡ˆå†…ãƒ†ã‚­ã‚¹ãƒˆã¯éè¡¨ç¤º
         courseText_.gameObject.SetActive(false);
         kyaraText_.gameObject.SetActive(false);
 
@@ -35,14 +34,14 @@ public class HomeController : MonoBehaviour
 
         int index = GameManager.instance_.selectedCharacterIndex_;
 
-        // šˆÀ‘Sƒ`ƒFƒbƒN•t‚«‚Å•\¦
+        // â˜…å®‰å…¨ãƒã‚§ãƒƒã‚¯ä»˜ãã§è¡¨ç¤º
         if (index >= 0 && index < player_.Length)
         {
             player_[index].SetActive(true);
         }
 
-        //”z—ñ“à‚Ì‚·‚×‚Ä‚ÌƒLƒ…[ƒu‚ğŠm”F‚µA
-        //‘I‘ğ’†‚ÌƒCƒ“ƒfƒbƒNƒX‚Æˆê’v‚·‚é‚à‚Ì‚¾‚¯•\¦‚·‚é
+        //é…åˆ—å†…ã®ã™ã¹ã¦ã®ã‚­ãƒ¥ãƒ¼ãƒ–ã‚’ç¢ºèªã—ã€
+        //é¸æŠä¸­ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¨ä¸€è‡´ã™ã‚‹ã‚‚ã®ã ã‘è¡¨ç¤ºã™ã‚‹
         for (int i = 0; i < player_.Length; i++)
         {
             player_[i].SetActive(i == index);
@@ -51,20 +50,20 @@ public class HomeController : MonoBehaviour
 
     private void Update()
     {
-        //ƒvƒŒƒCƒ„[‚ªƒR[ƒXƒGƒŠƒA“à‚É‚¢‚é‚©‚Ç‚¤‚©
+        //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒã‚³ãƒ¼ã‚¹ã‚¨ãƒªã‚¢å†…ã«ã„ã‚‹ã‹ã©ã†ã‹
         bool isInCourse = false;
 
-        //ƒvƒŒƒCƒ„[‚ªƒLƒƒƒ‰ƒGƒŠƒA“à‚É‚¢‚é‚©‚Ç‚¤‚©
+        //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãŒã‚­ãƒ£ãƒ©ã‚¨ãƒªã‚¢å†…ã«ã„ã‚‹ã‹ã©ã†ã‹
         bool isInKyara = false;
 
-        //‘SƒvƒŒƒCƒ„[‚ğ‘ÎÛ‚É”»’è‚ğs‚¤
+        //å…¨ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã‚’å¯¾è±¡ã«åˆ¤å®šã‚’è¡Œã†
         foreach (GameObject player in player_)
         {
-            //ƒ[ƒ‹ƒhÀ•W ¨ ƒXƒNƒŠ[ƒ“À•W‚Ö•ÏŠ·
+            //ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ â†’ ã‚¹ã‚¯ãƒªãƒ¼ãƒ³åº§æ¨™ã¸å¤‰æ›
             Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(Camera.main, player.transform.position);
 
-            //ƒR[ƒXUI—Ìˆæ“à‚É‚¢‚é‚©”»’è
-            if(RectTransformUtility.RectangleContainsScreenPoint
+            //ã‚³ãƒ¼ã‚¹UIé ˜åŸŸå†…ã«ã„ã‚‹ã‹åˆ¤å®š
+            if (RectTransformUtility.RectangleContainsScreenPoint
             (
                     courseImage_.rectTransform,
                     screenPoint,
@@ -76,7 +75,7 @@ public class HomeController : MonoBehaviour
                 isInCourse = true;
             }
 
-            //ƒLƒƒƒ‰UI—Ìˆæ“à‚É‚¢‚é‚©”»’è
+            //ã‚­ãƒ£ãƒ©UIé ˜åŸŸå†…ã«ã„ã‚‹ã‹åˆ¤å®š
             if (RectTransformUtility.RectangleContainsScreenPoint
             (
                     kyaraImage_.rectTransform,
@@ -90,17 +89,17 @@ public class HomeController : MonoBehaviour
             }
         }
 
-        //ƒR[ƒXƒGƒŠƒA‚É“ü‚Á‚Ä‚¢‚éê‡‚Ì‚İƒeƒLƒXƒg•\¦
+        //ã‚³ãƒ¼ã‚¹ã‚¨ãƒªã‚¢ã«å…¥ã£ã¦ã„ã‚‹å ´åˆã®ã¿ãƒ†ã‚­ã‚¹ãƒˆè¡¨ç¤º
         courseText_.gameObject.SetActive(isInCourse);
 
-        //ƒLƒƒƒ‰ƒGƒŠƒA‚É“ü‚Á‚Ä‚¢‚éê‡‚Ì‚İƒeƒLƒXƒg•\¦
+        //ã‚­ãƒ£ãƒ©ã‚¨ãƒªã‚¢ã«å…¥ã£ã¦ã„ã‚‹å ´åˆã®ã¿ãƒ†ã‚­ã‚¹ãƒˆè¡¨ç¤º
         kyaraText_.gameObject.SetActive(isInKyara);
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
             if (isInKyara)
             {
-                GameManager.instance_.ShowCharacterSelect();
+                GameManager.instance_.ShowPanel();
             }
         }
     }
