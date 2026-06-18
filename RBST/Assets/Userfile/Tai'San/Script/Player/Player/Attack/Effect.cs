@@ -1,13 +1,8 @@
-using System.Collections;
 using UnityEngine;
 
 public class Effect : MonoBehaviour
 {
-    IEnumerator EffectCoroutine()
-    {
 
-        yield return null;
-    }
 }
 
 /*<<ENUM>>*/

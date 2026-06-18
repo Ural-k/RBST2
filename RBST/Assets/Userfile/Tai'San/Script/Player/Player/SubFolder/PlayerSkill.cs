@@ -213,6 +213,7 @@ public class PlayerSkill : PlayerVariable
     /// </summary>
     protected IEnumerator CoolTimeCoroutine()
     {
+        Transform lastTarget = null;
         while (true)
         {
             info_.gcd_ = Mathf.Max(info_.gcd_ - Time.deltaTime, 0);
