@@ -16,14 +16,7 @@ public class Player : PlayerBase
     private void Update()
     {
 #if UNITY_EDITOR
-        info_.skillData_ = JobData.GetJobSkill(info_.parameter_.jobNumber_); //途中でジョブを変えたときの切り替え
-        if(info_.skillData_ != demomemory_)
-        {
-            info_.skill1_.nowCombo_ = 0;
-            info_.skill2_.nowCombo_ = 0;
-            info_.skill3_.nowCombo_ = 0;
-            demomemory_ = info_.skillData_;
-        }
+        info_.JobChange(debugJobChangeNumber_);//途中でジョブを変えたときの切り替え
 #endif
         if (/*GameSceneManager.Instance.State == GameState.isPlaying*/info_.downTime_ == 0)
         {

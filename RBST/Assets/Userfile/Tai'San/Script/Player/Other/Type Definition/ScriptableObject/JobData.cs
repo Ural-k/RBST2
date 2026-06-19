@@ -1,4 +1,5 @@
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /*
@@ -24,19 +25,16 @@ public class JobData : ScriptableObject
     [SerializeField] private SkillData[] skill2_;
     [SerializeField] private SkillData[] skill3_;
 
-    //ジョブ取得
-    private static JobData GetJobsData(int number)
-    {
-        var result = Resources.LoadAll<JobData>("Job")[number];
-        for(int i = 0; i < result.GetSkill1().Count(); ++i) { result.GetSkill1()[i].particle_ = new ParticleSystem(); }
-        return result;
-    }
-
     /// <summary>
     /// スキル取得
     /// </summary>
     /// <param name="jobNumber">ジョブナンバー</param>
-    public static JobData GetJobSkill(int jobNumber) { return GetJobsData(jobNumber); }
+    public static JobData GetJobSkill(int jobNumber)
+    {
+        var result = Resources.LoadAll<JobData>("Job")[jobNumber];
+        //for (int i = 0; i < result.GetSkill1().Count(); ++i) { result.GetSkill1()[i].particle_ = new ParticleSystem(); }
+        return result;
+    }
 
     //発動スキル取得
     public SkillData[] GetSkill1() { return skill1_; }

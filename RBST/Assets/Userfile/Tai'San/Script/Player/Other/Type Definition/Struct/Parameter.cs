@@ -3,7 +3,7 @@ using UnityEngine;
 [System.Serializable]//プレイヤーの状態数値
 public struct Parameter
 {
-    public int jobNumber_;          //職業
+    [HideInInspector]public int jobNumber_;          //職業
     public string playerName_;      //プレイヤーの名前x
     public int maxHp_;              //最大HPx
     private int hp_;                 //現在のHPx

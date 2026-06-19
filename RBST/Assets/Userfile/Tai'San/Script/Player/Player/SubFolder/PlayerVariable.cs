@@ -14,7 +14,7 @@ public class PlayerVariable : MonoBehaviour
     protected const float DOWN_TIME             = 5.0f;
     protected const float ACTIVE_COMBO_SECOND   = 3.0f;
 
-    [SerializeField] protected bool demodebug_;//仮
+    [SerializeField] protected int debugJobChangeNumber_;//デバッグ用
     [SerializeField] protected PlayerInfo info_;
 
     public PlayerInfo GetInfo { get { return info_; } }

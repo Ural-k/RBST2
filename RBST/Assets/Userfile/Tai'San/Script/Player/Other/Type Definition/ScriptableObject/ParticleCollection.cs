@@ -12,7 +12,10 @@ public class ParticleCollection : ScriptableObject
         ParticleCollection particles = Resources.Load<ParticleCollection>("Particle/ParticleCollection");
         ParticleSystem particle = shape switch
         {
+            SkillShape.Single => data.particle_,
             SkillShape.Circle => particles.circle_,
+            SkillShape.Square => particles.squareBlue_,
+            _                   => particles.circle_,
         };
         return particle;
     }

@@ -21,9 +21,9 @@ public class PlayerSkill : PlayerVariable
         };
         SkillData[] data = input switch
         {
-            INPUT_SKILL_ONE     => info_.skillData_.GetSkill1(),
-            INPUT_SKILL_TWO     => info_.skillData_.GetSkill2(),
-            INPUT_SKILL_THREE   => info_.skillData_.GetSkill3(),
+            INPUT_SKILL_ONE     => info_.jobData_.GetSkill1(),
+            INPUT_SKILL_TWO     => info_.jobData_.GetSkill2(),
+            INPUT_SKILL_THREE   => info_.jobData_.GetSkill3(),
             _                   => new SkillData[0]
         };
         if (info_.lastInput_ != input)
