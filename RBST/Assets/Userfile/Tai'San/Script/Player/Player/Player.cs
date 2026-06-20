@@ -6,13 +6,6 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class Player : PlayerBase
 {
-    private JobData demomemory_ = null;
-
-    //debug—p
-    private void Awake()
-    {
-        info_.parameter_.HP = 1000;
-    }
     private void Update()
     {
 #if UNITY_EDITOR

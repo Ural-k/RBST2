@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class PlayerDebugText : MonoBehaviour
 {
-    private int targetPleyer_ = 0;
+    private readonly int targetPleyer_ = 0;
     private Text text_;
     private Player player_;
     
@@ -11,7 +11,7 @@ public class PlayerDebugText : MonoBehaviour
     private void Update()
     {
         player_ = PlayerManager.GetPlayer(targetPleyer_);
-        if (!player_) return;
+        if (player_ == null) return;
         text_.text = $"[表示] Player{targetPleyer_}  [ジョブ] : {player_.GetInfo.jobData_.GetJobName}  [POS] : {player_.transform.position}  [FACE] : {player_.GetInfo.lastFace_} [FILIP] : {player_.GetInfo.filip_} [LIFE] : {player_.GetInfo.parameter_.HP} / {player_.GetInfo.parameter_.maxHp_} : ";
         text_.text += player_.GetInfo.downTime_ == 0 ? "LIVE" : $"DEATH ({player_.GetInfo.downTime_:0.00})";
         text_.text += $"\n[GCD] : {player_.GetInfo.gcd_:0.00}\n";

@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class PlayerBase : PlayerSkill, IDamageable,IToEnemyDamageAble
 {
+    void Awake() => ParticleManager.InstanceLoad();
+
     private void Start()
     {
         info_.Initialize();

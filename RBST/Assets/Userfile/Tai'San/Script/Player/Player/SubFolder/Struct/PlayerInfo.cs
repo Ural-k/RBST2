@@ -24,16 +24,26 @@ public struct PlayerInfo
     public void Initialize()
     {
         inputAxis_      = InputSystem.actions.FindAction("Move");
-        parameter_      = new Parameter { HP = parameter_.maxHp_ };
-        skill1_         = new InputSkillInfo();
-        skill2_         = new InputSkillInfo();
-        skill3_         = new InputSkillInfo();
-        gcd_            = 0;
-        lastInput_      = 0;
-        activeCombo_    = 0;
-        downTime_       = 0;
+        parameter_.HP = parameter_.maxHp_;
         lastFace_       = Vector2.right;
         jobData_      = JobData.GetJobSkill(parameter_.jobNumber_);
+    }
+
+    /// <summary>
+    /// ジョブごとのパラメータリセット(まだ仮)
+    /// </summary>
+    public void ParameterReset()
+    {
+        parameter_ = new Parameter { HP = parameter_.maxHp_ };
+        skill1_ = new InputSkillInfo();
+        skill2_ = new InputSkillInfo();
+        skill3_ = new InputSkillInfo();
+        gcd_ = 0;
+        lastInput_ = 0;
+        activeCombo_ = 0;
+        downTime_ = 0;
+        lastFace_ = Vector2.right;
+        jobData_ = JobData.GetJobSkill(parameter_.jobNumber_);
     }
 
     /// <summary>

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 /// <summary>
 /// スキル関連
@@ -73,7 +74,8 @@ public class PlayerSkill : PlayerVariable
          */
         if (targetList.Count == 0)
         {
-            GoParticle(skillData, transform.position);
+            ParticleManager.Instance.SpawnParticle(skillData, transform.position, transform.position, info_.filip_);
+            //GoParticle(skillData, transform.position);
             return new InputSkillInfo { cd_ = skillData.cd_, nowCombo_ = 0 };
         }
 
@@ -90,9 +92,7 @@ public class PlayerSkill : PlayerVariable
         /*
          :  パーティクルの生成 (メモ:ここでビーム系攻撃か円形かなどで向きが変わるからenumとかで攻撃形状を把握できるようにする)
          */
-        GoParticle(skillData, targetPos);
-
-
+        ParticleManager.Instance.SpawnParticle(skillData, targetPos, transform.position, info_.filip_);
 
         /*
          :  ターゲットサークルヘ結果を送る ※TargetCircle->EnemyControll
@@ -172,7 +172,7 @@ public class PlayerSkill : PlayerVariable
             List<Transform> result = data.shape_ switch
             {
                 SkillShape.Single => new List<Transform> { GetNear(targetList) },//max(xmin, min(cx, xmax)) / max(ymin, min(cy, ymax))
-                SkillShape.Circle => targetList.Where(n => Vector2.Distance(pos, n.position) <= data.radius_ + n.GetComponent<TargetCircle>().GetRadius).ToList(),
+                SkillShape.Circle => targetList.Where(n => Vector2.Distance(pos, n.position) <= data.scale_.x + n.GetComponent<TargetCircle>().GetRadius).ToList(),
                 SkillShape.Square => targetList.Where(
                 n => Vector2.Distance(
                     new Vector2(
@@ -183,19 +183,7 @@ public class PlayerSkill : PlayerVariable
                 ).ToList(),
                 _ => new List<Transform>()
             };
-
-            Debug.Log($"{transform.position.x}, {data.scale_.x}, {targetList[0].position.x}");
             return result;
-        }
-
-        void GoParticle(SkillData data, Vector2 pos)
-        {
-            if (data.particle_ != null)
-            {
-                if (data.shape_ == SkillShape.Square) pos = transform.position;
-                var ins = Instantiate(data.particle_, pos, Quaternion.identity);
-                ins.transform.localScale = data.radius_ == 0 ? data.scale_ * new Vector2(info_.filip_, 1) : Vector3.one * data.radius_;
-            }
         }
 
         int GetDamage(SkillData data)
