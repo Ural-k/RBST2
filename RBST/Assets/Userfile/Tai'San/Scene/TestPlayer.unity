@@ -553,6 +553,71 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 244159345}
   m_CullTransparentMesh: 1
+--- !u!1 &355754017
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 355754018}
+  - component: {fileID: 355754019}
+  m_Layer: 0
+  m_Name: SubSkill
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &355754018
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355754017}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 46.82374, y: 0.80183, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &355754019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355754017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c2b7728220be73498dbdc0649225b35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SubSkill
+  skillData:
+    name_: 
+    targetType_: 0
+    shape_: 0
+    toTarget_: 0
+    baseDirection_: 0
+    offset_: {x: 0, y: 0}
+    scale_: {x: 0, y: 0}
+    power_: 0
+    gcd_: 0
+    cd_: 0
+    motion_:
+      time_: 0
+      speed_: 0
+      jumpOn_: 0
+      jumpOrbit_:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
 --- !u!1 &487400645
 GameObject:
   m_ObjectHideFlags: 0
@@ -3849,3 +3914,4 @@ SceneRoots:
   - {fileID: 224628058}
   - {fileID: 741333640}
   - {fileID: 1748174940}
+  - {fileID: 355754018}

@@ -1,6 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// プレイヤーの状態
+/// </summary>
+/// <remarks>GCD/CD・コンボ・職業etc</remarks>
 [System.Serializable]
 public struct PlayerInfo
 {
@@ -17,6 +21,7 @@ public struct PlayerInfo
     [HideInInspector] public int            filip_;
     [HideInInspector] public float          downTime_;
     [HideInInspector] public int            lastInput_;
+    [HideInInspector] public Effect         effect_;
 
     /// <summary>
     /// 初期化
@@ -24,9 +29,9 @@ public struct PlayerInfo
     public void Initialize()
     {
         inputAxis_      = InputSystem.actions.FindAction("Move");
-        parameter_.HP = parameter_.maxHp_;
+        parameter_.HP   = parameter_.maxHp_;
         lastFace_       = Vector2.right;
-        jobData_      = JobData.GetJobSkill(parameter_.jobNumber_);
+        jobData_        = JobData.GetJobSkill(parameter_.jobNumber_);
     }
 
     /// <summary>
@@ -34,16 +39,16 @@ public struct PlayerInfo
     /// </summary>
     public void ParameterReset()
     {
-        parameter_ = new Parameter { HP = parameter_.maxHp_ };
-        skill1_ = new InputSkillInfo();
-        skill2_ = new InputSkillInfo();
-        skill3_ = new InputSkillInfo();
-        gcd_ = 0;
-        lastInput_ = 0;
-        activeCombo_ = 0;
-        downTime_ = 0;
-        lastFace_ = Vector2.right;
-        jobData_ = JobData.GetJobSkill(parameter_.jobNumber_);
+        parameter_      = new Parameter { HP = parameter_.maxHp_ };
+        skill1_         = new InputSkillInfo();
+        skill2_         = new InputSkillInfo();
+        skill3_         = new InputSkillInfo();
+        gcd_            = 0;
+        lastInput_      = 0;
+        activeCombo_    = 0;
+        downTime_       = 0;
+        lastFace_       = Vector2.right;
+        jobData_        = JobData.GetJobSkill(parameter_.jobNumber_);
     }
 
     /// <summary>
@@ -53,11 +58,11 @@ public struct PlayerInfo
     public void JobChange(int jobNumber)
     {
         if (parameter_.jobNumber_ == jobNumber) return;
-        parameter_.jobNumber_ = jobNumber;
-        skill1_ = new InputSkillInfo { cd_ = 0, nowCombo_ = 0 };
-        skill2_ = new InputSkillInfo { cd_ = 0, nowCombo_ = 0 };
-        skill3_ = new InputSkillInfo { cd_ = 0, nowCombo_ = 0 };
-        jobData_ = JobData.GetJobSkill(jobNumber);
+        parameter_.jobNumber_   = jobNumber;
+        skill1_                 = new InputSkillInfo { cd_ = 0, nowCombo_ = 0 };
+        skill2_                 = new InputSkillInfo { cd_ = 0, nowCombo_ = 0 };
+        skill3_                 = new InputSkillInfo { cd_ = 0, nowCombo_ = 0 };
+        jobData_                = JobData.GetJobSkill(jobNumber);
     }
 
     /// <summary>
