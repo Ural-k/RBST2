@@ -9,15 +9,17 @@ public class EffectData : ScriptableObject
 
 public enum Buff
 {
-    None,
-    Attack,
-    Sprint,
-
+    None = 0,
+    Attack = 1 << 0,
+    Sprint = 1 << 1,
+    Count,
 }
 
 public enum Debuff
 {
-    Touen,
+    None = 0,
+    Touen = 1 << 0,
+    Count,
 }
 
 [System.Serializable]
