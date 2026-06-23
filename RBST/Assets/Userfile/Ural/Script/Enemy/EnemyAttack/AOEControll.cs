@@ -6,11 +6,11 @@ using static UnityEngine.Rendering.GPUSort;
 
 public class AOEControll : MonoBehaviour
 {
-    [SerializeField] private GameObject entity_; //AOEの実体
+    [SerializeField] private GameObject entity_;   //AOEの実体
     [SerializeField] private GameObject warning_;  //AOEの予兆
-    [SerializeField] private float entryTime_;   //予兆時間
-    [SerializeField] private float entityTime_;  //実体時間
-    [SerializeField] private float diameter_;    //範囲(直径）
+    [SerializeField] private float warningTime_;   //予兆時間
+    [SerializeField] private float entityTime_;    //実体時間
+    [SerializeField] private Vector2 scale_;
     [SerializeField] private AOECollect aoeCollect_;
 
     private AOEShapeWrapper shapeWrapper_;
@@ -19,15 +19,14 @@ public class AOEControll : MonoBehaviour
     private float innerRaito_;                   //内側の円が
     private bool warningActiveFlag_;             //起動フラグ
     private bool entityActiveFlag_;              //実体起動フラグ
-    private int damage_ = 250;       //ダメージ量
-
+    private int damage_ = 250;                   //ダメージ量
+    private EnemyAttackStract enemyAttackStract_;
+    private float diameter_ { get { return enemyAttackStract_.scale.x; } }  //範囲(直径）
 
     //プロパテぃ
     public int Damage { get { return damage_; } set { damage_ = value; } }
 
-    public float Radius { get { return diameter_ / 2; } }
-
-    private Vector2 Scale { get { return new Vector2(diameter_, diameter_); } }
+    public float Radius { get { return diameter_ * 0.5f; } }
 
     public AOECollect ShapeColect { get { return aoeCollect_; } }
 
@@ -66,11 +65,9 @@ public class AOEControll : MonoBehaviour
     /// </summary>
     public void IsActive(EnemyAttackStract transformStruct )
     {
-        //表示されたときの座標とサイズ等を設定
-        diameter_ = transformStruct.scale;
-        innerRaito_ = transformStruct.innerRadius;
-        transform.position = transformStruct.pos;
-        transform.localScale = Scale;
+        //攻撃のステータスを受け取りステータスを設定する
+        enemyAttackStract_ = transformStruct;
+        SetStatus();
 
         //判定の開始
         if (entityActiveFlag_) { return; }
@@ -79,49 +76,19 @@ public class AOEControll : MonoBehaviour
     }
 
     /// <summary>
-    /// ダメージ処理
+    /// ステータスをオブジェクトに設定
     /// </summary>
-    private void ApplyDamage()
+    private void SetStatus()
     {
-        var hits = shape_.GetHits(Radius, pos_);
-        foreach (var hit in hits)
-        {
-            var d = hit.GetComponent<IDamageable>();
-            if (d != null)
-            {
-                d.TakeDamage(damage_);
-            }
-        }
+        damage_ = enemyAttackStract_.damage;    
+        transform.position = enemyAttackStract_.pos;
+        transform.eulerAngles = new Vector3(0.0f, 0.0f, enemyAttackStract_.angle);
+        entity_.transform.localScale = enemyAttackStract_.scale;
+        warning_.transform.localScale = enemyAttackStract_.scale;
+        innerRaito_ = enemyAttackStract_.innerRadius;
+        warningTime_ = enemyAttackStract_.warningTime;
+        entityTime_ = enemyAttackStract_.entityTime;
     }
-
-    /// <summary>
-    /// 内側が空洞の場合に空洞のステータスを渡す
-    /// </summary>
-    private void InnerRadiusSet()
-    {
-        
-        float innerRadius = 0.0f;
-
-        //与えられた割合をmaterialのパラメーターのステータスに変換
-        float temp = AOEShapeWrapper.DenomalizeInnerFloat(innerRaito_);
-
-        entity_.GetComponent<SpriteRenderer>().material.SetFloat("_InnerR", temp);
-
-        //内側の半径の作成
-        innerRadius = Radius * innerRaito_;
-        shape_.InnerRadius = innerRadius;
-
-    }
-
-    /// <summary>
-    /// エディター内での当たり判定の可視化
-    /// </summary>
-#if UNITY_EDITOR
-    private void OnDrawGizmos()
-    {
-        shape_.OnDrawGizmos(Radius, pos_);
-    }
-#endif
 
     /// <summary>
     /// AOE用のコルーチン
@@ -131,7 +98,7 @@ public class AOEControll : MonoBehaviour
     {
         warningActiveFlag_ = true;
         warning_.SetActive(true);
-        yield return new WaitForSeconds(entryTime_);
+        yield return new WaitForSeconds(warningTime_);
         
             warning_.SetActive(false);
             warningActiveFlag_ = false;
@@ -150,4 +117,51 @@ public class AOEControll : MonoBehaviour
             gameObject.SetActive(false);
             entityActiveFlag_ = false;
     }
+
+    /// <summary>
+    /// 内側が空洞の場合に空洞のステータスを渡す
+    /// </summary>
+    private void InnerRadiusSet()
+    {
+
+
+        float innerRadius = 0.0f;
+
+        //与えられた割合をmaterialのパラメーターのステータスに変換
+        float temp = AOEShapeWrapper.DenomalizeInnerFloat(innerRaito_);
+
+        entity_.GetComponent<SpriteRenderer>().material.SetFloat("_InnerR", temp);
+        warning_.GetComponent<SpriteRenderer>().material.SetFloat("_InnerR", temp);
+
+        //内側の半径の作成
+        innerRadius = Radius * innerRaito_;
+        enemyAttackStract_.innerRadius = innerRadius;
+
+    }
+
+    /// <summary>
+    /// ダメージ処理
+    /// </summary>
+    private void ApplyDamage()
+    {
+        var hits = shape_.GetHits(enemyAttackStract_, pos_);
+        foreach (var hit in hits)
+        {
+            var d = hit.GetComponent<IDamageable>();
+            if (d != null)
+            {
+                d.TakeDamage(damage_);
+            }
+        }
+    }
+    /// <summary>
+    /// エディター内での当たり判定の可視化
+    /// </summary>
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        Matrix4x4 matrix = transform.localToWorldMatrix;
+        shape_.OnDrawGizmos(enemyAttackStract_, pos_,matrix);
+    }
+#endif
 }

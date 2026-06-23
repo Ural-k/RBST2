@@ -1,12 +1,19 @@
 using UnityEngine;
 
-public interface IEnemyMove 
+public interface IEnemyMove
 {
-    public void UpdatePoint(Vector2 v);
+    /// <summary>
+    /// ‰Šú‰»
+    /// </summary>
+    public void Enter();
 
-    public void StartWaiting();
+    /// <summary>
+    /// ˆÚ“®
+    /// </summary>
+    public void Tick();
 
-    public void UpdateWaiting();
-
-    public void EndWaiting();
+    /// <summary>
+    /// I—¹ˆ—
+    /// </summary>
+    public void Exit();
 }

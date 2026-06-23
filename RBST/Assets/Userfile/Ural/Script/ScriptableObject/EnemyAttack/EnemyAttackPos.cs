@@ -1,9 +1,8 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "EnemyAttackPos")]
-public class EnemyAttackPos : ScriptableObject
+public class EnemyAttackStatus : ScriptableObject
 {
-    public Vector2[] attackPos;
-    public float[] scale;
-    public AOECollect[] aoeCollect;
+    public EnemyAttackStract[] status;
+    public int AttackCount;
 }

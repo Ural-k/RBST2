@@ -7,9 +7,8 @@ using UnityEngine;
 /// </summary>
 public enum AOECollect
 {
-    Circle,
     Box,
-    Donut,
+    Circle,
     Num,
 }
 
@@ -31,11 +30,9 @@ public class AOEShapeWrapper
             case (int)AOECollect.Circle:
                 temp = new CircleShape();
                 return (temp);
+                break;
             case (int)AOECollect.Box:
                 temp = new BoxShape() ;
-                return (temp);
-            case (int)AOECollect.Donut:
-                temp = new DonutShape();
                 return (temp);
             default:
                 return null;

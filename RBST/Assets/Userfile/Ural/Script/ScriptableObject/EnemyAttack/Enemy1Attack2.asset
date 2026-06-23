@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b11a096f8e5f994a9830df5f55a38ff, type: 3}
   m_Name: Enemy1Attack2
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackPos
-  attackPos:
-  - {x: 0, y: 29}
-  - {x: 0, y: -29}
-  - {x: -30, y: 0}
-  - {x: 40, y: 0}
-  scale:
-  - 55
-  - 55
-  - 67
-  - 67
-  aoeCollect: 01000000010000000100000001000000
+  status:
+  - damage: 300
+    pos: {x: 0, y: 0}
+    angle: 0
+    scale: {x: 5, y: 5}
+    innerRadius: 2
+    aoeCollect: 1
+    warningTime: 3
+    entityTime: 1
+    nextAttackTime: 3
+  AttackCount: 0

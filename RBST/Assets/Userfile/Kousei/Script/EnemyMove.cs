@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game.Enemy
 {
-    public class EnemyMove : MonoBehaviour,IEnemyMove
+    public class EnemyMove : MonoBehaviour
     {
         //’è”
         private const float ARRIVE_DISTANCE = 0.1f;

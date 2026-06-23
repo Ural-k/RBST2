@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Game.Enemy
 {
-    public class EnemyMove2 : MonoBehaviour,IEnemyMove
+    public class EnemyMove2 : MonoBehaviour
     {
         // ポイント到達とみなす距離
         private const float ARRIVE_DISTANCE = 0.1f;
