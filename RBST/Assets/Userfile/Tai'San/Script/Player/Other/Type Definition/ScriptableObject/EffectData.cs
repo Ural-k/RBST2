@@ -1,18 +1,37 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "EffectData", menuName = "ScriptableObjects/Player/EffectData")]
 public class EffectData : ScriptableObject
 {
-    [SerializeField] private EffectInfo[] effectInfo_;
-    public EffectInfo[] GetEffectInfo { get { return effectInfo_; } }
+    [SerializeField] private List<SetBuff> buff_;
+    [SerializeField] private List<SetDebuff> debuff_;
+
+
+    [System.Serializable]
+    struct SetBuff
+    {
+        public Buff buff_;
+        public EffectInfo effectInfo_;
+    }
+    [System.Serializable]
+    struct SetDebuff
+    {
+        public Debuff debuff_;
+        public EffectInfo effectInfo_;
+    }
+
 }
 
 public enum Buff
 {
     None = 0,
-    Attack = 1 << 0,
-    Sprint = 1 << 1,
-    Count,
+    Buff1 = 1 << 0,
+    Buff2 = 1 << 1,
+    Buff3 = 1 << 2,
+    Buff4 = 1 << 3,
+    Buff5 = 1 << 4,
+    Buff6 = 1 << 5,
 }
 
 public enum Debuff
@@ -36,6 +55,10 @@ public struct EffectInfo
  :  効果テンプレート
  */
 [System.Serializable]
-public abstract record TEffect;
+public abstract record TEffect
+{
+    public static implicit operator TEffect(Buff buff) => new BuffEffect(buff);
+    public static implicit operator TEffect(Debuff debuff) => new DebuffEffect(debuff);
+}
 public record BuffEffect(Buff Value) : TEffect;
 public record DebuffEffect(Debuff Value) : TEffect;

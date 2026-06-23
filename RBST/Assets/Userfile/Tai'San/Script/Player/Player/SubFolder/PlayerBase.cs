@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 /// <summary>
 /// その他機能
@@ -7,9 +6,12 @@ using UnityEngine.InputSystem;
 public class PlayerBase : PlayerSkill, IDamageable,IToEnemyDamageAble
 {
     void Awake() => ParticleManager.InstanceLoad();
-
+    
     private void Start()
     {
+        info_.effect_.Add(Buff.Buff2);
+        info_.effect_.Add(Buff.Buff4);
+        info_.effect_.GetAllBuff();
         info_.Initialize();
         StartCoroutine(CoolTimeCoroutine());
     }
