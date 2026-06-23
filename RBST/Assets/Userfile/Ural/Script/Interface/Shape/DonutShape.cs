@@ -10,6 +10,7 @@ public class CircleShape : IAOEshape
     {
         get { return aoeCollect_; }
     }
+
     public Collider2D[] GetHits(EnemyAttackStract enemyAttackStract, Vector3 center)
     {
 
@@ -19,7 +20,7 @@ public class CircleShape : IAOEshape
 
         foreach (var hit in hits)
         {
-            float sqrDist = ((Vector3)hit.transform.position - center).sqrMagnitude;
+            float sqrDist = (hit.transform.position - center).sqrMagnitude;
             if (sqrDist >= enemyAttackStract.innerRadius * enemyAttackStract.innerRadius)
             {
                 result.Add(hit);

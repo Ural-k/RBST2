@@ -24,15 +24,18 @@ public class AOEShapeWrapper
     /// </summary>
     public IAOEshape AOESet(AOECollect colect)
     {
-        IAOEshape temp;
+        IAOEshape temp= null;
         switch ((int)colect)
         {
             case (int)AOECollect.Circle:
+
                 temp = new CircleShape();
+
                 return (temp);
-                break;
             case (int)AOECollect.Box:
+
                 temp = new BoxShape() ;
+
                 return (temp);
             default:
                 return null;
