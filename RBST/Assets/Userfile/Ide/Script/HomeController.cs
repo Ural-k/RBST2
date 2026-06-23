@@ -27,14 +27,14 @@ public class HomeController : MonoBehaviour
         courseText_.gameObject.SetActive(false);
         kyaraText_.gameObject.SetActive(false);
 
-        foreach (GameObject p in player_)
+        foreach (GameObject player in player_)
         {
-            p.SetActive(false);
+            player.SetActive(false);
         }
 
         int index = GameManager.instance_.selectedCharacterIndex_;
 
-        // ★安全チェック付きで表示
+        //安全チェック付きで表示
         if (index >= 0 && index < player_.Length)
         {
             player_[index].SetActive(true);
@@ -100,6 +100,11 @@ public class HomeController : MonoBehaviour
             if (isInKyara)
             {
                 GameManager.instance_.ShowPanel();
+
+                for(int i = 0; i < player_.Length; i++)
+                {
+                    player_[i].SetActive(false);
+                }
             }
         }
     }

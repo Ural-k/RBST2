@@ -721,6 +721,7 @@ MonoBehaviour:
   homePanel_: {fileID: 2033865266}
   homeController_: {fileID: 1133286127}
   selectedCharacterIndex_: 0
+  cube: {fileID: 1411616316}
 --- !u!4 &312571170
 Transform:
   m_ObjectHideFlags: 0

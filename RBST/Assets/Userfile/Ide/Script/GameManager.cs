@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -54,6 +55,9 @@ public class GameManager : MonoBehaviour
     {
         kyaraPanel_.SetActive(false);
         kyaraSelectController_.SetActive(false);
+
+        //HomeController hm = homeController_.GetComponent<HomeController>();
+        //hm.player_[selectedCharacterIndex_].SetActive(true);
 
         homePanel_.SetActive(true);
         homeController_.SetActive(true);
