@@ -5,7 +5,7 @@ public class HomeController : MonoBehaviour
 {
     [SerializeField] private Image courseImage_;           //コース判定用のUI
     [SerializeField] private Image kyaraImage_;            //キャラ判定用のUI
-    [SerializeField] private GameObject[] player_;         //UIエリアへの侵入判定を行うプレイヤー
+    [SerializeField] public GameObject[] player_;          //UIエリアへの侵入判定を行うプレイヤー
     [SerializeField] private Canvas canvas_;               //courseImage_のCanvas参照(座標変換に使用)
     [SerializeField] private GameObject courseSelect_;     //コース選択UI
     [SerializeField] private GameObject kyaraSelect_;      //キャラ選択UI
@@ -27,9 +27,9 @@ public class HomeController : MonoBehaviour
         courseText_.gameObject.SetActive(false);
         kyaraText_.gameObject.SetActive(false);
 
-        foreach (GameObject player in player_)
+        foreach (GameObject players in player_)
         {
-            player.SetActive(false);
+            players.SetActive(false);
         }
 
         int index = GameManager.instance_.selectedCharacterIndex_;
@@ -103,6 +103,7 @@ public class HomeController : MonoBehaviour
 
                 for(int i = 0; i < player_.Length; i++)
                 {
+                    player_[i].transform.position = new Vector3(1, 0, 0);
                     player_[i].SetActive(false);
                 }
             }

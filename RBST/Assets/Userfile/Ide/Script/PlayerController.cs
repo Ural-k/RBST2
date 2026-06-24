@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] public Transform cube_;
-    [SerializeField] public float speed_;
+    [SerializeField] private Transform cube_;
+    [SerializeField] private float speed_;
     private Rigidbody2D playerRigidbody_;
 
     private void Start()
