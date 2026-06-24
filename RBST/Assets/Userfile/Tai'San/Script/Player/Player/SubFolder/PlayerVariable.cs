@@ -1,9 +1,10 @@
+using Unity.Netcode;
 using UnityEngine;
 
 /// <summary>
 /// プレイヤーの変数関連
 /// </summary>
-public class PlayerVariable : MonoBehaviour
+public class PlayerVariable : NetworkBehaviour
 {
     protected const int INPUT_SKILL_ONE         = 1;
     protected const int INPUT_SKILL_TWO         = 2;
@@ -16,6 +17,8 @@ public class PlayerVariable : MonoBehaviour
 
     [SerializeField] protected int debugJobChangeNumber_;//デバッグ用
     [SerializeField] protected PlayerInfo info_;
+
+    protected Animation animation_;
 
     public PlayerInfo GetInfo { get { return info_; } }
 }

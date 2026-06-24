@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityEngine.InputSystem;
 
 /// <summary>
@@ -8,16 +7,19 @@ public class Player : PlayerBase
 {
     private void Update()
     {
-        PlayerMove();
+        if (IsOwner)
+        {
+            PlayerMove();
 #if UNITY_EDITOR
-        info_.JobChange(debugJobChangeNumber_);//途中でジョブを変えたときの切り替え
+            info_.JobChange(debugJobChangeNumber_);//途中でジョブを変えたときの切り替え
 #endif
+        }
     }
 
     public void InputAttack1(InputAction.CallbackContext context)
-    { if (context.performed && info_.downTime_ == 0) OnInputSkill(out info_.skill1_, INPUT_SKILL_ONE); }
+    { if (context.performed && info_.downTime_ == 0 && IsOwner) OnInputSkill(out info_.skill1_, INPUT_SKILL_ONE); }
     public void InputAttack2(InputAction.CallbackContext context)
-    { if (context.performed && info_.downTime_ == 0) OnInputSkill(out info_.skill2_, INPUT_SKILL_TWO); }
+    { if (context.performed && info_.downTime_ == 0 && IsOwner) OnInputSkill(out info_.skill2_, INPUT_SKILL_TWO); }
     public void InputAttack3(InputAction.CallbackContext context)
-    { if (context.performed && info_.downTime_ == 0) OnInputSkill(out info_.skill3_, INPUT_SKILL_THREE); }
+    { if (context.performed && info_.downTime_ == 0 && IsOwner) OnInputSkill(out info_.skill3_, INPUT_SKILL_THREE); }
 }

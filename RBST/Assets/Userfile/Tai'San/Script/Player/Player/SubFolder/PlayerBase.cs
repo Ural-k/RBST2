@@ -1,12 +1,16 @@
+using Unity.Netcode;
 using UnityEngine;
 
 /// <summary>
 /// その他機能
 /// </summary>
-public class PlayerBase : PlayerSkill, IDamageable,IToEnemyDamageAble
+public class PlayerBase : PlayerSkill, IDamageable, IToEnemyDamageAble//Avatar
 {
-    void Awake() => ParticleManager.InstanceLoad();
-    
+    void Awake()
+    {
+        ParticleManager.InstanceLoad();
+    }
+
     private void Start()
     {
         info_.effect_.Add(Buff.Buff2);

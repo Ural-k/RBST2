@@ -1,6 +1,7 @@
+using Unity.Netcode;
 using UnityEngine;
 
-public class GameObjectManager : MonoBehaviour
+public class GameObjectManager : NetworkBehaviour
 {
     [SerializeField] private GameObject playerPrefab_;
     [SerializeField] private GameObject enemyPrefab_;

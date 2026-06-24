@@ -22,6 +22,7 @@ public struct PlayerInfo
     [HideInInspector] public float          downTime_;
     [HideInInspector] public int            lastInput_;
     [HideInInspector] public Effect         effect_;
+    [HideInInspector] public SpriteRenderer avatar_;
 
     /// <summary>
     /// 初期化
@@ -29,6 +30,7 @@ public struct PlayerInfo
     public void Initialize()
     {
         inputAxis_      = InputSystem.actions.FindAction("Move");
+        avatar_         = GameObject.Find("Avatar").GetComponent<SpriteRenderer>();
         parameter_.HP   = parameter_.maxHp_;
         lastFace_       = Vector2.right;
         jobData_        = JobData.GetJobSkill(parameter_.jobNumber_);
@@ -78,7 +80,9 @@ public struct PlayerInfo
         {
             lastFace_                   = Vector2.Normalize(pos - me.position);
             if (horizontal) lastFace_   *= Vector2.right;
-            filip_                      = (int)Mathf.Sign(lastFace_.x);
+            filip_                      = lastFace_.x == 0 ? filip_ : (int)Mathf.Sign(lastFace_.x);
+            if (filip_ > 0)             avatar_.flipX = true;
+            else if (filip_ < 0)        avatar_.flipX = false;
         }
         return lastFace_;
     }
