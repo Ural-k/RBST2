@@ -34,8 +34,9 @@ public struct Effect
     {
         if (/*effectPower_[effect] <= info.power_*/true)
         {
-            if (effect is BuffEffect b) { buff_ |= (int)b.Value; Debug.Log("buff"); }
-            else if (effect is DebuffEffect d) { debuff_ |= (int)d.Value; Debug.Log("debuff"); }
+            if (effect is BuffEffect b) { /*buff_ |= (int)b.Value; Debug.Log("buff");*/ }
+            else if (effect is DebuffEffect d) { /*debuff_ |= (int)d.Value; Debug.Log("debuff");*/ }
+
             //effectTime_[effect] = info.time_;
             //effectPower_[effect] = info.power_;
         }
@@ -46,8 +47,8 @@ public struct Effect
     /// </summary>
     public void GetAllBuff()
     {
-        Debug.Log(buff_);
-        Debug.Log("memo: " + Enum.GetValues(typeof(Debuff)));
+        //Debug.Log(buff_);
+        //Debug.Log("memo: " + Enum.GetValues(typeof(Debuff)));
         foreach (Debuff d in Enum.GetValues(typeof(Debuff)))
         {
             if (d == Debuff.None) continue;

@@ -8,6 +8,7 @@ public class PlayerBase : PlayerSkill, IDamageable, IToEnemyDamageAble//Avatar
 {
     void Awake()
     {
+        PlayerManager.AddPlayer((Player)this);
         ParticleManager.InstanceLoad();
     }
 

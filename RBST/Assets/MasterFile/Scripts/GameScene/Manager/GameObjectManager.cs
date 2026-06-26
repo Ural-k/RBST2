@@ -1,7 +1,6 @@
-using Unity.Netcode;
 using UnityEngine;
 
-public class GameObjectManager : NetworkBehaviour
+public class GameObjectManager : MonoBehaviour
 {
     [SerializeField] private GameObject playerPrefab_;
     [SerializeField] private GameObject enemyPrefab_;
@@ -19,8 +18,7 @@ public class GameObjectManager : NetworkBehaviour
 
     public void CreatePlayer()
     {
-        Player player = Instantiate(playerPrefab_).GetComponent<Player>();
-        PlayerManager.AddPlayer(player);
+        Instantiate(playerPrefab_).GetComponent<Player>();
     }
     public EnemyControl CreateEnemy()
     {
