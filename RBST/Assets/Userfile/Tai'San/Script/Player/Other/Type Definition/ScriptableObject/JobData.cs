@@ -41,6 +41,8 @@ public class JobData : ScriptableObject
     public SkillData[] GetSkill2() { return skill2_; }
     public SkillData[] GetSkill3() { return skill3_; }
 
+
+
     /// <summary>
     /// ƒWƒ‡ƒu‚Ì–¼‘O
     /// </summary>

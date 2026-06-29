@@ -16,6 +16,7 @@ public struct SkillData
     [Tooltip("表示名")] public string name_;                                    //o
     [Tooltip("攻撃対象")] public TargetType targetType_;                        //o
     [Tooltip("形状")] public SkillShape shape_;                                //o
+    [Tooltip("コンボが途切れない")] public bool comboKeep_;                       //o
     [Tooltip("近い攻撃対象を中心に")] public bool toTarget_;                      //o
 
     //範囲

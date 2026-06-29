@@ -26,7 +26,7 @@ public class PlayerSkill : PlayerVariable
             INPUT_SKILL_THREE   => info_.jobData_.GetSkill3(),
             _                   => new SkillData[0]
         };
-        if (info_.lastInput_ != input)
+        if (info_.lastInput_ != input && !data[insInfo.nowCombo_].comboKeep_)
         {
             info_.skill1_.nowCombo_ = 0;
             info_.skill2_.nowCombo_ = 0;
