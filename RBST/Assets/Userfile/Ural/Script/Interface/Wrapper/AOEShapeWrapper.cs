@@ -7,9 +7,8 @@ using UnityEngine;
 /// </summary>
 public enum AOECollect
 {
-    Circle,
     Box,
-    Donut,
+    Circle,
     Num,
 }
 
@@ -25,17 +24,18 @@ public class AOEShapeWrapper
     /// </summary>
     public IAOEshape AOESet(AOECollect colect)
     {
-        IAOEshape temp;
+        IAOEshape temp= null;
         switch ((int)colect)
         {
             case (int)AOECollect.Circle:
+
                 temp = new CircleShape();
+
                 return (temp);
             case (int)AOECollect.Box:
+
                 temp = new BoxShape() ;
-                return (temp);
-            case (int)AOECollect.Donut:
-                temp = new DonutShape();
+
                 return (temp);
             default:
                 return null;
@@ -54,5 +54,35 @@ public class AOEShapeWrapper
         innerR = inner / 2;
 
         return innerR;
+    }
+
+
+}
+
+/// <summary>
+/// Ç±Ç±Ç©ÇÁà⁄ìÆóp
+/// </summary>
+[System.Serializable]
+public class EnemyMoveWrapper
+{
+    /// <summary>
+    /// à⁄ìÆèàóùÇÃéØï 
+    /// </summary>
+    public IEnemyMove MoveSet(EnemyMoveCollect moveCollect)
+    {
+        switch (moveCollect)
+        {
+            case EnemyMoveCollect.Normal:
+                return new NormalMove();
+
+            case EnemyMoveCollect.teleport:
+                return new TeleportMove();
+
+            case EnemyMoveCollect.wait:
+                //return new WaitMove();
+
+            default:
+                return null;
+        }
     }
 }

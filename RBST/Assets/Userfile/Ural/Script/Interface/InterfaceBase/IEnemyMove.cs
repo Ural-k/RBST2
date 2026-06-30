@@ -1,12 +1,18 @@
+using System.Collections;
 using UnityEngine;
 
-public interface IEnemyMove 
+public interface IEnemyMove
 {
-    public void UpdatePoint(Vector2 v);
+    /// <summary>
+    /// どの移動タイプか取得できる
+    /// </summary>
+    public EnemyMoveCollect moveCollect { get; }
 
-    public void StartWaiting();
-
-    public void UpdateWaiting();
-
-    public void EndWaiting();
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="enemy">enemyの座標</param>
+    /// <param name="emStruct">エネミー移動のステータス</param>
+    /// <returns></returns>
+    public IEnumerator EnemyMoveColutine(Transform enemy, EnemyMoveStract emStruct);
 }

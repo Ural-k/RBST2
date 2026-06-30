@@ -141,8 +141,8 @@ MonoBehaviour:
   warning_: {fileID: 7927243530876426263}
   entryTime_: 3
   entityTime_: 0.5
-  diameter_: 2
-  aoeCollect_: 0
+  scale_: {x: 0, y: 0}
+  aoeCollect_: 2
 --- !u!1 &7927243530876426263
 GameObject:
   m_ObjectHideFlags: 0
