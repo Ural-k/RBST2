@@ -55,4 +55,34 @@ public class AOEShapeWrapper
 
         return innerR;
     }
+
+
+}
+
+/// <summary>
+/// ‚±‚±‚©‚çˆÚ“®—p
+/// </summary>
+[System.Serializable]
+public class EnemyMoveWrapper
+{
+    /// <summary>
+    /// ˆÚ“®ˆ—‚Ì¯•Ê
+    /// </summary>
+    public IEnemyMove MoveSet(EnemyMoveCollect moveCollect)
+    {
+        switch (moveCollect)
+        {
+            case EnemyMoveCollect.Normal:
+                return new NormalMove();
+
+            case EnemyMoveCollect.teleport:
+                return new TeleportMove();
+
+            case EnemyMoveCollect.wait:
+                //return new WaitMove();
+
+            default:
+                return null;
+        }
+    }
 }

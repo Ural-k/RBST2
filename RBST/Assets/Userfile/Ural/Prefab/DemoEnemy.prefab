@@ -30,8 +30,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3573901327631671492}
   - {fileID: 1589506584379021293}
+  - {fileID: 3573901327631671492}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2188532228777705362
@@ -47,9 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyControl
   pool_: {fileID: 7533596009123415726}
-  scriptableObject_:
-  - {fileID: 11400000, guid: 8e68bd9020b638c4995cfad1566afe11, type: 2}
-  - {fileID: 11400000, guid: 0826641e4fb8d6640ac61b6ddc94c0b2, type: 2}
+  atackStatus_: []
+  moveStatus_: []
+  maxHp_: 10000
+  hp_: 10000
 --- !u!1 &3724696261339913992
 GameObject:
   m_ObjectHideFlags: 0

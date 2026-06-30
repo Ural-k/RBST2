@@ -1,19 +1,18 @@
+using System.Collections;
 using UnityEngine;
 
 public interface IEnemyMove
 {
     /// <summary>
-    /// 初期化
+    /// どの移動タイプか取得できる
     /// </summary>
-    public void Enter();
+    public EnemyMoveCollect moveCollect { get; }
 
     /// <summary>
-    /// 移動
+    /// 
     /// </summary>
-    public void Tick();
-
-    /// <summary>
-    /// 終了処理
-    /// </summary>
-    public void Exit();
+    /// <param name="enemy">enemyの座標</param>
+    /// <param name="emStruct">エネミー移動のステータス</param>
+    /// <returns></returns>
+    public IEnumerator EnemyMoveColutine(Transform enemy, EnemyMoveStract emStruct);
 }
