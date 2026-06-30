@@ -12,4 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0bc8d8ba05c1b24a90e0ed0fd3ea145, type: 3}
   m_Name: Enemy1NormalMove
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMoveAsset
-  status: []
+  status:
+  - moveCollect: 0
+    pos: {x: 0, y: -3}
+    moveTime: 2
+    waitTime: 0
+    nextMoveTime: 5
+    fadeTime: 0
+  - moveCollect: 0
+    pos: {x: -6, y: 0}
+    moveTime: 2
+    waitTime: 0
+    nextMoveTime: 5
+    fadeTime: 0
+  - moveCollect: 0
+    pos: {x: 0, y: 3}
+    moveTime: 2
+    waitTime: 0
+    nextMoveTime: 5
+    fadeTime: 0
+  - moveCollect: 0
+    pos: {x: 6, y: 0}
+    moveTime: 2
+    waitTime: 0
+    nextMoveTime: 5
+    fadeTime: 0

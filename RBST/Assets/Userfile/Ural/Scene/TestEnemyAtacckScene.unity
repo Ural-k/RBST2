@@ -174,11 +174,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 939173222034741896, guid: 57441cc463afb1e409ad3915eb3977c9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.27
+      value: 10.39
       objectReference: {fileID: 0}
     - target: {fileID: 939173222034741896, guid: 57441cc463afb1e409ad3915eb3977c9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.03245
+      value: -0.13
       objectReference: {fileID: 0}
     - target: {fileID: 939173222034741896, guid: 57441cc463afb1e409ad3915eb3977c9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -215,6 +215,42 @@ PrefabInstance:
     - target: {fileID: 2442147409038261784, guid: 57441cc463afb1e409ad3915eb3977c9, type: 3}
       propertyPath: m_Name
       value: DemoEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5338505943673103611, guid: 57441cc463afb1e409ad3915eb3977c9, type: 3}
+      propertyPath: moveStatus_.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5338505943673103611, guid: 57441cc463afb1e409ad3915eb3977c9, type: 3}
+      propertyPath: atackStatus_.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5338505943673103611, guid: 57441cc463afb1e409ad3915eb3977c9, type: 3}
+      propertyPath: 'moveStatus_.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 626f8e2613019ac47bcb8997c27393ad, type: 2}
+    - target: {fileID: 5338505943673103611, guid: 57441cc463afb1e409ad3915eb3977c9, type: 3}
+      propertyPath: 'moveStatus_.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: e847caf13ad135b42a5546214dcef2ad, type: 2}
+    - target: {fileID: 5338505943673103611, guid: 57441cc463afb1e409ad3915eb3977c9, type: 3}
+      propertyPath: 'moveStatus_.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 397dbc3340c32564ca9049411e5e617e, type: 2}
+    - target: {fileID: 5338505943673103611, guid: 57441cc463afb1e409ad3915eb3977c9, type: 3}
+      propertyPath: 'moveStatus_.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 626f8e2613019ac47bcb8997c27393ad, type: 2}
+    - target: {fileID: 5338505943673103611, guid: 57441cc463afb1e409ad3915eb3977c9, type: 3}
+      propertyPath: 'moveStatus_.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 626f8e2613019ac47bcb8997c27393ad, type: 2}
+    - target: {fileID: 5338505943673103611, guid: 57441cc463afb1e409ad3915eb3977c9, type: 3}
+      propertyPath: 'atackStatus_.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 557148efc8d905c408ff110e5cbcbcbd, type: 2}
+    - target: {fileID: 5338505943673103611, guid: 57441cc463afb1e409ad3915eb3977c9, type: 3}
+      propertyPath: moveBehaviours_.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5338505943673103611, guid: 57441cc463afb1e409ad3915eb3977c9, type: 3}
       propertyPath: scriptableObject_.Array.size
