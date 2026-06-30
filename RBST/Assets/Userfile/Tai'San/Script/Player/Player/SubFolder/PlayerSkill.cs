@@ -208,7 +208,6 @@ public class PlayerSkill : PlayerVariable
             info_.skill2_.cd_ = Mathf.Max(info_.skill2_.cd_ - Time.deltaTime, 0);
             info_.skill3_.cd_ = Mathf.Max(info_.skill3_.cd_ - Time.deltaTime, 0);
             info_.downTime_ = Mathf.Max(info_.downTime_ - Time.deltaTime, 0);
-            info_.effect_.AllEffectTimer();
             yield return null;
         }
     }

@@ -14,8 +14,6 @@ public class PlayerBase : PlayerSkill, IDamageable, IToEnemyDamageAble//Avatar
 
     private void Start()
     {
-        info_.effect_.Add(Buff.Buff2);
-        info_.effect_.Add(Buff.Buff4);
         info_.effect_.GetAllBuff();
         info_.Initialize();
         StartCoroutine(CoolTimeCoroutine());

@@ -882,7 +882,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameUIManager
   uiDataList_:
   - uiType: 0
-    UIObject: {fileID: 0}
+    UIObject: {fileID: 1091446250}
   - uiType: 1
     UIObject: {fileID: 639847574}
   - uiType: 2
@@ -3168,7 +3168,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2009246064
 MonoBehaviour:
   m_ObjectHideFlags: 0
