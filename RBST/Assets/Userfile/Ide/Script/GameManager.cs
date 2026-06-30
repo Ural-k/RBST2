@@ -52,7 +52,6 @@ public class GameManager : MonoBehaviour
     //ホーム画面を表示状態にする
     public void HidePanel()
     {
-        //キャラクター選択画面を非表示
         kyaraPanel_.SetActive(false);
         kyaraSelectController_.SetActive(false);
 
@@ -62,7 +61,6 @@ public class GameManager : MonoBehaviour
         //選択されたキャラクターを表示
         homeControllers.player_[selectedCharacterIndex_].SetActive(true);
 
-        //ホーム画面を表示
         homePanel_.SetActive(true);
         homeController_.SetActive(true);
     }
@@ -76,27 +74,5 @@ public class GameManager : MonoBehaviour
 
         homePanel_.SetActive(!homePanel_.activeSelf);
         homeController_.SetActive(!homeController_.activeSelf);
-    }
-
-    //キャラクター選択画面を表示する
-    //ShowPanel()と同じ役割を持つ
-    public void ShowCharacterSelect()
-    {
-        kyaraPanel_.SetActive(true);
-        kyaraSelectController_.SetActive(true);
-
-        homePanel_.SetActive(false);
-        homeController_.SetActive(false);
-    }
-
-    //ホーム画面を表示する。
-    //ShowHome()は表示切り替えのみを行い、キャラクター表示処理は実施しない
-    public void ShowHome()
-    {
-        kyaraPanel_.SetActive(false);
-        kyaraSelectController_.SetActive(false);
-
-        homePanel_.SetActive(true);
-        homeController_.SetActive(true);
     }
 }
