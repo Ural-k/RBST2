@@ -58,6 +58,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7626750772213263541}
   - component: {fileID: -300467995472278766}
+  - component: {fileID: 5605379609607250816}
   m_Layer: 0
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -97,8 +98,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyControl
   pool_: {fileID: 2227532220714133260}
   scriptableObject_:
-  - {fileID: 11400000, guid: 7362cb9b8d9e6ce4da1d61456c8fe119, type: 2}
-  targetCircle_: {fileID: 8233455451268444619}
+  - {fileID: 11400000, guid: 433451580051e6d4cbdb08fba322ea5b, type: 2}
+  maxHp_: 10000
+  hp_: 10000
+--- !u!114 &5605379609607250816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5488602514916626267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43fb3d8ee1e4ad145b5fef5064809b2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TargetCircle
+  hp_: 10000
+  radius_: 1
 --- !u!1 &6850883991037812015
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,6 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TargetCircle
   hp_: 0
+  radius_: 1
 --- !u!212 &331031505515228095
 SpriteRenderer:
   serializedVersion: 2

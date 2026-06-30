@@ -21,12 +21,12 @@ public class PlayerSkill : PlayerVariable
         };
         SkillData[] data = input switch
         {
-            INPUT_SKILL_ONE     => info_.skillData_.GetSkill1(),
-            INPUT_SKILL_TWO     => info_.skillData_.GetSkill2(),
-            INPUT_SKILL_THREE   => info_.skillData_.GetSkill3(),
+            INPUT_SKILL_ONE     => info_.jobData_.GetSkill1(),
+            INPUT_SKILL_TWO     => info_.jobData_.GetSkill2(),
+            INPUT_SKILL_THREE   => info_.jobData_.GetSkill3(),
             _                   => new SkillData[0]
         };
-        if (info_.lastInput_ != input)
+        if (info_.lastInput_ != input && !data[insInfo.nowCombo_].comboKeep_)
         {
             info_.skill1_.nowCombo_ = 0;
             info_.skill2_.nowCombo_ = 0;
@@ -73,7 +73,8 @@ public class PlayerSkill : PlayerVariable
          */
         if (targetList.Count == 0)
         {
-            GoParticle(skillData, transform.position);
+            ParticleManager.Instance.SpawnParticle(skillData, transform.position, transform.position, info_.filip_);
+            //GoParticle(skillData, transform.position);
             return new InputSkillInfo { cd_ = skillData.cd_, nowCombo_ = 0 };
         }
 
@@ -90,9 +91,7 @@ public class PlayerSkill : PlayerVariable
         /*
          :  パーティクルの生成 (メモ:ここでビーム系攻撃か円形かなどで向きが変わるからenumとかで攻撃形状を把握できるようにする)
          */
-        GoParticle(skillData, targetPos);
-
-
+        ParticleManager.Instance.SpawnParticle(skillData, targetPos, transform.position, info_.filip_);
 
         /*
          :  ターゲットサークルヘ結果を送る ※TargetCircle->EnemyControll
@@ -168,34 +167,22 @@ public class PlayerSkill : PlayerVariable
 
         List<Transform> GetHit(SkillData data, List<Transform> targetList, Vector2 pos)
         {
-            info_.LookAt(pos, transform, data.skillType_ == SkillType.Square);
-            List<Transform> result = data.skillType_ switch
+            info_.LookAt(pos, transform, data.shape_ == SkillShape.Square);
+            List<Transform> result = data.shape_ switch
             {
-                SkillType.Single => new List<Transform> { GetNear(targetList) },//max(xmin, min(cx, xmax)) / max(ymin, min(cy, ymax))
-                SkillType.Circle => targetList.Where(n => Vector2.Distance(pos, n.position) <= data.radius_ + n.GetComponent<TargetCircle>().GetRadius).ToList(),
-                SkillType.Square => targetList.Where(
+                SkillShape.Single => new List<Transform> { GetNear(targetList) },//max(xmin, min(cx, xmax)) / max(ymin, min(cy, ymax))
+                SkillShape.Circle => targetList.Where(n => Vector2.Distance(pos, n.position) <= data.scale_.x + n.GetComponent<TargetCircle>().GetRadius).ToList(),
+                SkillShape.Square => targetList.Where(
                 n => Vector2.Distance(
                     new Vector2(
-                        Mathf.Clamp(n.position.x, Mathf.Min(transform.position.x, transform.position.x + data.aspect_.x * info_.filip_),
-                        Mathf.Max(transform.position.x, transform.position.x + data.aspect_.x * info_.filip_)),
-                        Mathf.Max(transform.position.y - data.aspect_.y / 2, Mathf.Min(n.position.y, transform.position.y + data.aspect_.y / 2))),
+                        Mathf.Clamp(n.position.x, Mathf.Min(transform.position.x, transform.position.x + data.scale_.x * info_.filip_),
+                        Mathf.Max(transform.position.x, transform.position.x + data.scale_.x * info_.filip_)),
+                        Mathf.Max(transform.position.y - data.scale_.y / 2, Mathf.Min(n.position.y, transform.position.y + data.scale_.y / 2))),
                     n.position) < n.GetComponent<TargetCircle>().GetRadius
                 ).ToList(),
                 _ => new List<Transform>()
             };
-
-            Debug.Log($"{transform.position.x}, {data.aspect_.x}, {targetList[0].position.x}");
             return result;
-        }
-
-        void GoParticle(SkillData data, Vector2 pos)
-        {
-            if (data.particle_ != null)
-            {
-                if (data.skillType_ == SkillType.Square) pos = transform.position;
-                var ins = Instantiate(data.particle_, pos, Quaternion.identity);
-                ins.transform.localScale = data.radius_ == 0 ? data.aspect_ * new Vector2(info_.filip_, 1) : Vector3.one * data.radius_;
-            }
         }
 
         int GetDamage(SkillData data)
@@ -213,6 +200,7 @@ public class PlayerSkill : PlayerVariable
     /// </summary>
     protected IEnumerator CoolTimeCoroutine()
     {
+        Transform lastTarget = null;
         while (true)
         {
             info_.gcd_ = Mathf.Max(info_.gcd_ - Time.deltaTime, 0);
@@ -220,6 +208,7 @@ public class PlayerSkill : PlayerVariable
             info_.skill2_.cd_ = Mathf.Max(info_.skill2_.cd_ - Time.deltaTime, 0);
             info_.skill3_.cd_ = Mathf.Max(info_.skill3_.cd_ - Time.deltaTime, 0);
             info_.downTime_ = Mathf.Max(info_.downTime_ - Time.deltaTime, 0);
+            info_.effect_.AllEffectTimer();
             yield return null;
         }
     }

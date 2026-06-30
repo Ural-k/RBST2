@@ -18,8 +18,7 @@ public class GameObjectManager : MonoBehaviour
 
     public void CreatePlayer()
     {
-        Player player = Instantiate(playerPrefab_).GetComponent<Player>();
-        PlayerManager.AddPlayer(player);
+        Instantiate(playerPrefab_).GetComponent<Player>();
     }
     public EnemyControl CreateEnemy()
     {

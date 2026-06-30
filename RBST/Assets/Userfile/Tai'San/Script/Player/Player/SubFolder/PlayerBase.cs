@@ -1,18 +1,24 @@
+using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 /// <summary>
 /// その他機能
 /// </summary>
-public class PlayerBase : PlayerSkill, IDamageable,IToEnemyDamageAble
+public class PlayerBase : PlayerSkill, IDamageable, IToEnemyDamageAble//Avatar
 {
+    void Awake()
+    {
+        PlayerManager.AddPlayer((Player)this);
+        ParticleManager.InstanceLoad();
+    }
+
     private void Start()
     {
-        
-        info_.inputAxis_ = InputSystem.actions.FindAction("Move");
+        info_.effect_.Add(Buff.Buff2);
+        info_.effect_.Add(Buff.Buff4);
+        info_.effect_.GetAllBuff();
+        info_.Initialize();
         StartCoroutine(CoolTimeCoroutine());
-        info_.skillData_ = JobData.GetJobSkill(info_.parameter_.jobNumber_);
-        info_.filip_ = 1;
     }
 
     /// <summary>

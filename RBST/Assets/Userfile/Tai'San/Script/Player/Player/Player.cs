@@ -1,4 +1,3 @@
-using UnityEngine;
 using UnityEngine.InputSystem;
 
 /// <summary>
@@ -6,39 +5,21 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class Player : PlayerBase
 {
-    private JobData demomemory_ = null;
-
-    //debug用
-    private void Awake()
-    {
-        info_.parameter_.HP = 1000;
-    }
     private void Update()
     {
-#if UNITY_EDITOR
-        info_.skillData_ = JobData.GetJobSkill(info_.parameter_.jobNumber_); //途中でジョブを変えたときの切り替え
-        if(info_.skillData_ != demomemory_)
-        {
-            info_.skill1_.nowCombo_ = 0;
-            info_.skill2_.nowCombo_ = 0;
-            info_.skill3_.nowCombo_ = 0;
-            demomemory_ = info_.skillData_;
-        }
-#endif
-        if (/*GameSceneManager.Instance.State == GameState.isPlaying*/info_.downTime_ == 0)
+        if (IsOwner)
         {
             PlayerMove();
-            if (Input.GetMouseButtonDown(1)) { OnInputSkill(out info_.skill2_, INPUT_SKILL_TWO); }//仮↓
-            if (Input.GetMouseButtonDown(2)) { OnInputSkill(out info_.skill3_, INPUT_SKILL_THREE); }
+#if UNITY_EDITOR
+            info_.JobChange(debugJobChangeNumber_);//途中でジョブを変えたときの切り替え
+#endif
         }
-
-        if (Input.GetKeyDown(KeyCode.R)) { EnemyManager.DeleteAllEnemy(); }
     }
 
     public void InputAttack1(InputAction.CallbackContext context)
-    { if (context.performed && info_.downTime_ == 0) OnInputSkill(out info_.skill1_, INPUT_SKILL_ONE); }
+    { if (context.performed && info_.downTime_ == 0 && IsOwner) OnInputSkill(out info_.skill1_, INPUT_SKILL_ONE); }
     public void InputAttack2(InputAction.CallbackContext context)
-    { if (context.performed) OnInputSkill(out info_.skill2_, INPUT_SKILL_TWO); }
+    { if (context.performed && info_.downTime_ == 0 && IsOwner) OnInputSkill(out info_.skill2_, INPUT_SKILL_TWO); }
     public void InputAttack3(InputAction.CallbackContext context)
-    { if (context.performed) OnInputSkill(out info_.skill3_, INPUT_SKILL_THREE); }
+    { if (context.performed && info_.downTime_ == 0 && IsOwner) OnInputSkill(out info_.skill3_, INPUT_SKILL_THREE); }
 }

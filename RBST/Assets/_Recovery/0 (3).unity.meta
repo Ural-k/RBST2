@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 7fae868ec7b5af04e9ec43a46fc2c9c3
+=======
+guid: 241a75f5275b54042839c028a5a7567b
+>>>>>>> feature/player
 DefaultImporter:
   externalObjects: {}
   userData: 
