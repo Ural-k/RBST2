@@ -156,7 +156,7 @@ public class PlayerSkill : PlayerVariable
         {
             var nearTarger = GetNear(list);
             if (data.toTarget_) return nearTarger.position + (Vector3)data.offset_;
-            else if (data.baseDirection_) return (Vector2)transform.position + info_.lastFace_;
+            //else if (data.baseDirection_) return (Vector2)transform.position + info_.lastFace_;
             return transform.position + (Vector3)data.offset_;
         }
 
