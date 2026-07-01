@@ -5,10 +5,11 @@ public class HomeController : MonoBehaviour
 {
     [SerializeField] private Image kyaraImage_;            //キャラ判定用のUI
     [SerializeField] public GameObject[] player_;          //UIエリアへの侵入判定を行うプレイヤー
-    [SerializeField] private Canvas canvas_;               //courseImage_のCanvas参照(座標変換に使用)
     [SerializeField] private GameObject kyaraSelect_;      //キャラ選択UI
     [SerializeField] private Text kyaraText_;              //キャラ案内テキスト
     [SerializeField] private GameObject kyaraPanel_;       //キャラクター選択画面のUIパネル
+
+    [SerializeField] private Canvas canvas_;
 
     private void Start()
     {
@@ -48,18 +49,13 @@ public class HomeController : MonoBehaviour
         //全プレイヤーを対象に判定を行う
         foreach (GameObject player in player_)
         {
+            Camera cam = canvas_.worldCamera;
             //ワールド座標 → スクリーン座標へ変換
-            Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(Camera.main, player.transform.position);
+            //Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(cam, player.transform.position);
+            Vector2 screenPoint = cam.WorldToScreenPoint(player.transform.position);
 
             //キャラUI領域内にいるか判定
-            if (RectTransformUtility.RectangleContainsScreenPoint
-            (
-                    kyaraImage_.rectTransform,
-                    screenPoint,
-                    canvas_.renderMode == RenderMode.ScreenSpaceOverlay
-                    ? null
-                    : Camera.main
-            ))
+            if (RectTransformUtility.RectangleContainsScreenPoint(kyaraImage_.rectTransform,screenPoint,cam))
             {
                 isInKyara = true;
             }
