@@ -1,5 +1,4 @@
 using UnityEngine;
-using DG.Tweening;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
