@@ -8,8 +8,7 @@ public class HomeController : MonoBehaviour
     [SerializeField] private GameObject kyaraSelect_;      //キャラ選択UI
     [SerializeField] private Text kyaraText_;              //キャラ案内テキスト
     [SerializeField] private GameObject kyaraPanel_;       //キャラクター選択画面のUIパネル
-
-    [SerializeField] private Canvas canvas_;
+    [SerializeField] private Canvas canvas_;               //HomePanel用のCanvas
 
     private void Start()
     {
@@ -49,9 +48,10 @@ public class HomeController : MonoBehaviour
         //全プレイヤーを対象に判定を行う
         foreach (GameObject player in player_)
         {
+            //Canvasで使用しているカメラを取得
             Camera cam = canvas_.worldCamera;
+
             //ワールド座標 → スクリーン座標へ変換
-            //Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(cam, player.transform.position);
             Vector2 screenPoint = cam.WorldToScreenPoint(player.transform.position);
 
             //キャラUI領域内にいるか判定
