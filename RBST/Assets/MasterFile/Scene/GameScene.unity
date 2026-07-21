@@ -1555,7 +1555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca6568e7818b7d4ba6c12adcd3105a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameObjectManager
-  playerPrefab_: {fileID: 4952997762711244747, guid: ee5ed6e82ab49d54fb92d670212e39ed, type: 3}
+  playerPrefab_: {fileID: 2229839729165919394, guid: 25981dfa51b4bad4f845c423ab5baf1d, type: 3}
   enemyPrefab_: {fileID: 3293155659231759077, guid: 88a161a79331d0e4fbe5ac41524dead1, type: 3}
 --- !u!4 &1267825513
 Transform:

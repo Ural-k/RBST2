@@ -31,8 +31,12 @@ public class PlayerSkill : PlayerVariable
             info_.skill1_.nowCombo_ = 0;
             info_.skill2_.nowCombo_ = 0;
             info_.skill3_.nowCombo_ = 0;
+            playerIcon_.ActiveIconAllReset();
+            playerIcon_.SetText1(info_.jobData_.GetSkill1()[0].name_);
+            playerIcon_.SetText2(info_.jobData_.GetSkill2()[0].name_);
+            playerIcon_.SetText3(info_.jobData_.GetSkill3()[0].name_);
         }
-        info = OnSkill(insInfo, data);
+        info = OnSkill(insInfo, data, input);
     }
 
     /// <summary>
@@ -41,7 +45,7 @@ public class PlayerSkill : PlayerVariable
     /// <param name="inputInfo">発動したいスキル</param>
     /// <param name="target">ターゲットを指定</param>
     /// <returns>CD・コンボ情報</returns>
-    public InputSkillInfo OnSkill(InputSkillInfo inputInfo, SkillData[] skillDataArray/*, Transform target = null*/)
+    public InputSkillInfo OnSkill(InputSkillInfo inputInfo, SkillData[] skillDataArray, int input)
     {
         SkillData skillData;
         List<Transform> targetList;
@@ -107,7 +111,14 @@ public class PlayerSkill : PlayerVariable
          :  CD・コンボ情報の戻り値
          */
         info_.activeCombo_ = ACTIVE_COMBO_SECOND;
-        return new InputSkillInfo { cd_ = skillData.cd_, nowCombo_ = inputInfo.nowCombo_ + 1 >= skillDataArray.Count() ? 0 : inputInfo.nowCombo_ + 1 };
+        InputSkillInfo result = new InputSkillInfo { cd_ = skillData.cd_, nowCombo_ = inputInfo.nowCombo_ + 1 >= skillDataArray.Count() ? 0 : inputInfo.nowCombo_ + 1 };
+        switch (input)
+        {
+            case INPUT_SKILL_ONE: playerIcon_.ActiveIcon1(result.nowCombo_); playerIcon_.SetText1(info_.jobData_.GetSkill1()[result.nowCombo_].name_); break;
+            case INPUT_SKILL_TWO: playerIcon_.ActiveIcon2(result.nowCombo_); playerIcon_.SetText2(info_.jobData_.GetSkill2()[result.nowCombo_].name_); break;
+            case INPUT_SKILL_THREE: playerIcon_.ActiveIcon3(result.nowCombo_); playerIcon_.SetText3(info_.jobData_.GetSkill3()[result.nowCombo_].name_); break;
+        }
+        return result;
 
 
         /*
@@ -208,6 +219,9 @@ public class PlayerSkill : PlayerVariable
             info_.skill2_.cd_ = Mathf.Max(info_.skill2_.cd_ - Time.deltaTime, 0);
             info_.skill3_.cd_ = Mathf.Max(info_.skill3_.cd_ - Time.deltaTime, 0);
             info_.downTime_ = Mathf.Max(info_.downTime_ - Time.deltaTime, 0);
+            playerIcon_.SetCoolTime1(info_.gcd_, info_.skill1_.cd_);
+            playerIcon_.SetCoolTime2(info_.gcd_, info_.skill2_.cd_);
+            playerIcon_.SetCoolTime3(info_.gcd_, info_.skill3_.cd_);
             yield return null;
         }
     }

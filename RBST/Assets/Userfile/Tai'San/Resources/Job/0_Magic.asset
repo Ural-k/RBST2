@@ -15,15 +15,16 @@ MonoBehaviour:
   jobName_: "\u9B54\u6CD5\u4F7F\u3044\u03B1"
   skill1_:
   - name_: "\u30D5\u30A1\u30A4\u30A2"
-    targetType_: 0
-    shape_: 1
-    toTarget_: 1
-    baseDirection_: 0
-    offset_: {x: 0, y: 0}
-    scale_: {x: 5, y: 5}
     power_: 100
     gcd_: 1.2
     cd_: 0
+    comboKeep_: 0
+    targetType_: 0
+    shape_: 1
+    offset_: {x: 0, y: 0}
+    scale_: {x: 5, y: 5}
+    toTarget_: 1
+    subSkill_: {fileID: 0}
     motion_:
       time_: 0
       speed_: 0
@@ -35,54 +36,17 @@ MonoBehaviour:
         m_PostInfinity: 0
         m_RotationOrder: 0
   skill2_:
-  - name_: "\u7A81\u9032\u30D5\u30A1\u30A4\u30A2"
-    targetType_: 0
-    shape_: 1
-    toTarget_: 1
-    baseDirection_: 0
-    offset_: {x: 0, y: 0}
-    scale_: {x: 2, y: 2}
-    power_: 100
-    gcd_: 0.5
-    cd_: 0
-    motion_:
-      time_: 0.2
-      speed_: 0
-      jumpOn_: 1
-      jumpOrbit_:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 2
-          outSlope: 2
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
-  - name_: "\u30BC\u30ED\u8DDD\u96E2\u30D5\u30A1\u30A4\u30A2"
-    targetType_: 0
-    shape_: 0
-    toTarget_: 1
-    baseDirection_: 0
-    offset_: {x: 0, y: 0}
-    scale_: {x: 3, y: 3}
+  - name_: "\u30B5\u30F3\u30C0\u30FC"
     power_: 200
     gcd_: 2
     cd_: 0
+    comboKeep_: 0
+    targetType_: 0
+    shape_: 0
+    offset_: {x: 0, y: 0}
+    scale_: {x: 3, y: 3}
+    toTarget_: 1
+    subSkill_: {fileID: 0}
     motion_:
       time_: 2
       speed_: 0.5
@@ -111,55 +75,18 @@ MonoBehaviour:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-  - name_: "\u3082\u308D\u3068\u3082\u7206\u7834\u30D5\u30A1\u30A4\u30A2"
-    targetType_: 0
-    shape_: 1
-    toTarget_: 0
-    baseDirection_: 0
-    offset_: {x: 0, y: 0}
-    scale_: {x: 9, y: 9}
-    power_: 1500
-    gcd_: 0
-    cd_: 3
-    motion_:
-      time_: 4
-      speed_: 0.2
-      jumpOn_: 0
-      jumpOrbit_:
-        serializedVersion: 2
-        m_Curve:
-        - serializedVersion: 3
-          time: 0
-          value: 0
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 2
-          outSlope: 2
-          tangentMode: 0
-          weightedMode: 0
-          inWeight: 0
-          outWeight: 0
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
   skill3_:
   - name_: "\u30D7\u30C1\u30D5\u30A1\u30A4\u30A2"
-    targetType_: 0
-    shape_: 0
-    toTarget_: 1
-    baseDirection_: 0
-    offset_: {x: 0, y: 0}
-    scale_: {x: 1.5, y: 1.5}
     power_: 60
     gcd_: 0
     cd_: 0.5
+    comboKeep_: 0
+    targetType_: 0
+    shape_: 0
+    offset_: {x: 0, y: 0}
+    scale_: {x: 1.5, y: 1.5}
+    toTarget_: 1
+    subSkill_: {fileID: 0}
     motion_:
       time_: 0
       speed_: 0
