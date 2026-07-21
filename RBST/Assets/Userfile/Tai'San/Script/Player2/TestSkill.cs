@@ -7,7 +7,8 @@ using UnityEngine;
 /// </summary>
 public class TestSkill : MonoBehaviour
 {
-    public static TestSkill Instance;
+    private static TestSkill instance_ = new TestSkill();
+    public static TestSkill Instance { get { return instance_; } }
 
     /*
      *  îÕàÕéÊìæ
@@ -23,8 +24,9 @@ public class TestSkill : MonoBehaviour
         {
             List<Transform> target = new List<Transform>();
             for (int i = 0; i < EnemyManager.GetAllEnemyListCount(); ++i) target.Add(EnemyManager.GetEnemy(i).gameObject.transform);
-            var near = target.OrderBy(n => Vector2.Distance(from, n.position)).First();
-            return target.Where(n => Vector2.Distance(near.position, n.position) <= radius + n.GetComponent<TargetCircle>().GetRadius).ToArray();
+            var near = target.OrderBy(n => Vector2.Distance(from, n.position)).First().position;
+            ParticleManager.Instance.SpawnParticleCircle(near, new Vector2(radius, radius), 500, 1);
+            return target.Where(n => Vector2.Distance(near, n.position) <= radius + n.GetComponent<TargetCircle>().GetRadius).ToArray();
         }
         else return null;
     }
@@ -35,10 +37,11 @@ public class TestSkill : MonoBehaviour
     /// <param name="radius">îºåa</param>
     public Transform[] GetHitEnemy(Vector2 center, float radius)
     {
-        if (EnemyManager.GetAllEnemyListCount() != 0)
+        if (true/*EnemyManager.GetAllEnemyListCount() != 0*/)
         {
             List<Transform> target = new List<Transform>();
             for (int i = 0; i < EnemyManager.GetAllEnemyListCount(); ++i) target.Add(EnemyManager.GetEnemy(i).gameObject.transform);
+            ParticleManager.Instance.SpawnParticleCircle(center, new Vector2(radius, radius), 500, 1);
             return target.Where(n => Vector2.Distance(center, n.position) <= radius + n.GetComponent<TargetCircle>().GetRadius).ToArray();
         }
         else return null;
@@ -54,8 +57,9 @@ public class TestSkill : MonoBehaviour
         {
             List<Transform> target = new List<Transform>();
             for (int i = 0; i < PlayerManager.GetAllPlayerListCount(); ++i) target.Add(PlayerManager.GetPlayer(i).gameObject.transform);
-            var near = target.OrderBy(n => Vector2.Distance(from, n.position)).First();
-            return target.Where(n => Vector2.Distance(near.position, n.position) <= radius + n.GetComponent<TargetCircle>().GetRadius).ToArray();
+            var near = target.OrderBy(n => Vector2.Distance(from, n.position)).First().position;
+            ParticleManager.Instance.SpawnParticleCircle(near, new Vector2(radius, radius), 500, 1);
+            return target.Where(n => Vector2.Distance(near, n.position) <= radius + n.GetComponent<TargetCircle>().GetRadius).ToArray();
         }
         else return null;
     }
@@ -70,6 +74,7 @@ public class TestSkill : MonoBehaviour
         {
             List<Transform> target = new List<Transform>();
             for (int i = 0; i < PlayerManager.GetAllPlayerListCount(); ++i) target.Add(PlayerManager.GetPlayer(i).gameObject.transform);
+            ParticleManager.Instance.SpawnParticleCircle(center, new Vector2(radius, radius), 500, 1);
             return target.Where(n => Vector2.Distance(center, n.position) <= radius + n.GetComponent<TargetCircle>().GetRadius).ToArray();
         }
         else return null;
@@ -86,6 +91,4 @@ interface Defence
     /// </summary>
     /// <param name="point">É_ÉÅÅ[ÉWó </param>
     void DamageAble(int point);
-
-
 }

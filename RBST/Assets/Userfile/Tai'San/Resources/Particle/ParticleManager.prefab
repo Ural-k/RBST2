@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 620782607aca63d4a9e2ab00bfacc5a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParticleManager
-  particleEntries:
+  setParticles_:
   - phape_: 0
     prefab_: {fileID: 7634934446412523899, guid: f0a5c7f44ec9b9b41b7214a1107d42f1, type: 3}
   - phape_: 1

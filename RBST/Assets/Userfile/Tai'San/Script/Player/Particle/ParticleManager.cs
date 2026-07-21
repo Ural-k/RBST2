@@ -11,14 +11,14 @@ public class ParticleManager : MonoBehaviour
     const int   MINPOWER = 100;
     const int   MAXPOWER = 1000;
 
-    [SerializeField] private ParticleEntry[]                                particleEntries;
+    [SerializeField] private SetParticle[] setParticles_;
     private Dictionary<SkillShape, UnityEngine.Pool.ObjectPool<GameObject>> pool_;
 
     private static ParticleManager                                          instance_;
     public static ParticleManager                                           Instance { get { return instance_; } }
 
     [System.Serializable]
-    public struct ParticleEntry
+    public struct SetParticle
     {
         public SkillShape phape_;
         public GameObject prefab_;
@@ -30,7 +30,7 @@ public class ParticleManager : MonoBehaviour
     void Awake()
     {
         pool_ = new Dictionary<SkillShape, UnityEngine.Pool.ObjectPool<GameObject>>();
-        foreach (var entry in particleEntries)
+        foreach (var entry in setParticles_)
         {
             var prefab = entry.prefab_;
             pool_[entry.phape_]     = new UnityEngine.Pool.ObjectPool<GameObject>(
@@ -85,5 +85,29 @@ public class ParticleManager : MonoBehaviour
         result.transform.SetParent(transform);
         return result;
     }
+
+    /// <summary>
+    /// パーティクル呼び出し
+    /// </summary>
+    /// <param name="targetPos">呼び出し位置</param>
+    public GameObject SpawnParticleCircle(Vector2 pos, Vector2 scale, int power, int filip)
+    {
+        var result = pool_[SkillShape.Circle].Get();
+
+        result.transform.position = pos;
+        result.transform.localScale = scale;
+        var particleSystem = result.GetComponent<ParticleSystem>();
+
+        //威力MINPOWER~MAXPOWERでMAXCOLOR~MINCOLORの中で数値が変わる
+        Color color = particleSystem.startColor;
+        color.g = Mathf.Clamp(MAXCOLOR * (MINPOWER - (power - MINPOWER) / (MAXPOWER - MINPOWER)), MINCOLOR, MAXCOLOR);
+        Debug.Log(color.g);
+        particleSystem.startColor = color;
+
+        //親をマネージャーに
+        result.transform.SetParent(transform);
+        return result;
+    }
+
     public void Release(SkillShape type, GameObject ps) => pool_[type].Release(ps);
 }
