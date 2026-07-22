@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63e646a36da3154498af4ceb5384ffad, type: 3}
   m_Name: 2_Pharmacist
   m_EditorClassIdentifier: Assembly-CSharp::JobData
-  jobName_: "\u85AC\u58EB\u03B1"
+  jobName_: "\u85AC\u5E2B"
   skill1_:
   - name_: "\u5C0F\u74F6\u6295\u64F2"
-    power_: 50
-    gcd_: 0.3
+    power_: 100
+    gcd_: 0.5
     cd_: 0
     comboKeep_: 1
     targetType_: 0
@@ -58,7 +58,7 @@ MonoBehaviour:
         m_PostInfinity: 0
         m_RotationOrder: 0
   - name_: "\u5927\u74F6\u6295\u64F2"
-    power_: 400
+    power_: 800
     gcd_: 1
     cd_: 1
     comboKeep_: 1
@@ -113,7 +113,7 @@ MonoBehaviour:
     subSkill_: {fileID: 0}
     motion_:
       time_: 0.5
-      speed_: 3
+      speed_: 7
       jumpOn_: 0
       jumpOrbit_:
         serializedVersion: 2

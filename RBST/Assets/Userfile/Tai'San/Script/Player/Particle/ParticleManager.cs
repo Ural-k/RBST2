@@ -78,7 +78,6 @@ public class ParticleManager : MonoBehaviour
         //威力MINPOWER~MAXPOWERでMAXCOLOR~MINCOLORの中で数値が変わる
         Color color = particleSystem.startColor;
         color.g = Mathf.Clamp(MAXCOLOR * (MINPOWER - (data.power_ - MINPOWER) / (MAXPOWER - MINPOWER)), MINCOLOR, MAXCOLOR);
-        Debug.Log(color.g);
         particleSystem.startColor = color;
 
         //親をマネージャーに

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3272805496460951971}
   - component: {fileID: 7453747006869394674}
-  - component: {fileID: 5310383004566591737}
   m_Layer: 0
   m_Name: 'PlayerInputManager[LocalMulti]'
   m_TagString: Untagged
@@ -27,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 7982721225244033798}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.02832, y: -0.35987, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -52,7 +51,7 @@ MonoBehaviour:
   m_PlayerJoinedEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5310383004566591737}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: DemoMulti, Assembly-CSharp
         m_MethodName: OnPlayerJoined
         m_Mode: 0
@@ -67,7 +66,7 @@ MonoBehaviour:
   m_PlayerLeftEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5310383004566591737}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: DemoMulti, Assembly-CSharp
         m_MethodName: OnPlayerLeft
         m_Mode: 0
@@ -101,15 +100,3 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &5310383004566591737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7982721225244033798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b2617aa00ea2b74fafdc8e0de8d7e86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DemoMulti

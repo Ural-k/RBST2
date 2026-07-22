@@ -3,6 +3,9 @@ using UnityEngine;
 public class GameObjectManager : MonoBehaviour
 {
     [SerializeField] private GameObject playerPrefab_;
+    [SerializeField] private GameObject magic_;
+    [SerializeField] private GameObject pharmacist_;
+    [SerializeField] private GameObject sword_;
     [SerializeField] private GameObject enemyPrefab_;
 
     public static GameObjectManager Instance;
@@ -20,6 +23,19 @@ public class GameObjectManager : MonoBehaviour
     {
         Instantiate(playerPrefab_).GetComponent<Player>();
     }
+    public void CreateMagic()
+    {
+        Instantiate(magic_).GetComponent<Player>();
+    }
+    public void CreatePharmacist()
+    {
+        Instantiate(pharmacist_).GetComponent<Player>();
+    }
+    public void CreateSword()
+    {
+        Instantiate(sword_).GetComponent<Player>();
+    }
+
     public EnemyControl CreateEnemy()
     {
         var temp = Instantiate(enemyPrefab_,offset,Quaternion.identity);

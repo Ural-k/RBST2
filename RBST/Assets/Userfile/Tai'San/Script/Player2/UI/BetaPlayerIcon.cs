@@ -53,11 +53,11 @@ public class BetaPlayerIcon : MonoBehaviour
     }
     public void SetText2(string st)
     {
-        text1_.text = st;
+        text2_.text = st;
     }
     public void SetText3(string st)
     {
-        text1_.text = st;
+        text3_.text = st;
     }
 
     /// <summary>
