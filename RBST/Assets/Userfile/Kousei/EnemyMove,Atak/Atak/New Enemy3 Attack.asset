@@ -79,10 +79,82 @@ MonoBehaviour:
   - damage: 100
     pos: {x: 0, y: 0}
     angle: 0
-    scale: {x: 5.5, y: 5.5}
+    scale: {x: 5.3, y: 5.3}
     innerRadius: 0.85
     aoeCollect: 1
     warningTime: 8.5
-    entityTime: 4
-    nextAttackTime: 4
+    entityTime: 1
+    nextAttackTime: 10
+  - damage: 100
+    pos: {x: 0, y: 0}
+    angle: 0
+    scale: {x: 4.5, y: 4.5}
+    innerRadius: 0
+    aoeCollect: 1
+    warningTime: 6
+    entityTime: 1
+    nextAttackTime: 0.5
+  - damage: 100
+    pos: {x: 0, y: 0}
+    angle: 0
+    scale: {x: 5.3, y: 5.3}
+    innerRadius: 0.85
+    aoeCollect: 1
+    warningTime: 6.5
+    entityTime: 1
+    nextAttackTime: 0.5
+  - damage: 100
+    pos: {x: 0, y: 0}
+    angle: 0
+    scale: {x: 6.5, y: 6.5}
+    innerRadius: 0.85
+    aoeCollect: 1
+    warningTime: 7
+    entityTime: 1
+    nextAttackTime: 0.5
+  - damage: 100
+    pos: {x: 0, y: 0}
+    angle: 0
+    scale: {x: 8, y: 8}
+    innerRadius: 0.85
+    aoeCollect: 1
+    warningTime: 7.5
+    entityTime: 1
+    nextAttackTime: 0.5
+  - damage: 100
+    pos: {x: 0, y: 0}
+    angle: 0
+    scale: {x: 10, y: 10}
+    innerRadius: 0.85
+    aoeCollect: 1
+    warningTime: 8
+    entityTime: 1
+    nextAttackTime: 0.5
+  - damage: 100
+    pos: {x: 0, y: 0}
+    angle: 0
+    scale: {x: 12, y: 12}
+    innerRadius: 0.85
+    aoeCollect: 1
+    warningTime: 8.5
+    entityTime: 1
+    nextAttackTime: 0.5
+  - damage: 100
+    pos: {x: 0, y: 0}
+    angle: 0
+    scale: {x: 15, y: 15}
+    innerRadius: 0.85
+    aoeCollect: 1
+    warningTime: 9
+    entityTime: 1
+    nextAttackTime: 0.5
+  - damage: 100
+    pos: {x: 0, y: 0}
+    angle: 0
+    scale: {x: 18, y: 18}
+    innerRadius: 0.85
+    aoeCollect: 1
+    warningTime: 9.5
+    entityTime: 1
+    nextAttackTime: 6
   AttackCount: 1
