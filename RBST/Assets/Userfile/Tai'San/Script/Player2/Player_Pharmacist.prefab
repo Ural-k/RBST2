@@ -138,6 +138,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pharmacist
   parameter_:
+    hp_: 0
+    maxHp_: 0
     atk_: 0
     def_: 0
     spd_: 5
@@ -170,7 +172,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4921738195759874970}
         m_TargetAssemblyTypeName: Pharmacist, Assembly-CSharp
-        m_MethodName: PlayerMove
+        m_MethodName: Move
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
