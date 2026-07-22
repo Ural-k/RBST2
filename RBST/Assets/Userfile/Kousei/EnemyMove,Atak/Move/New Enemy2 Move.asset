@@ -10,30 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0bc8d8ba05c1b24a90e0ed0fd3ea145, type: 3}
-  m_Name: New Enemy1 Move
+  m_Name: New Enemy2 Move
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMoveAsset
   status:
-  - moveCollect: 0
-    pos: {x: 865, y: -353.2}
-    moveTime: 2
-    waitTime: 0
-    nextMoveTime: 2
-    fadeTime: 2
-  - moveCollect: 0
-    pos: {x: 851, y: -353.2}
-    moveTime: 2
-    waitTime: 0
-    nextMoveTime: 3
-    fadeTime: 2
-  - moveCollect: 0
-    pos: {x: 857, y: -353.2}
-    moveTime: 3
-    waitTime: 0
-    nextMoveTime: 5
-    fadeTime: 2
-  - moveCollect: 0
-    pos: {x: 857, y: -358.19}
+  - moveCollect: 1
+    pos: {x: -8, y: 0}
     moveTime: 2
     waitTime: 0
     nextMoveTime: 5
-    fadeTime: 2
+    fadeTime: 1
+  - moveCollect: 1
+    pos: {x: 0, y: 4}
+    moveTime: 2
+    waitTime: 0
+    nextMoveTime: 5
+    fadeTime: 1
+  - moveCollect: 1
+    pos: {x: 0, y: -4}
+    moveTime: 2
+    waitTime: 0
+    nextMoveTime: 5
+    fadeTime: 1
