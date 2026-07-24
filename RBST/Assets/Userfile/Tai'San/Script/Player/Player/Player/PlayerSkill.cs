@@ -219,9 +219,6 @@ public class PlayerSkill : PlayerVariable
             info_.skill2_.cd_ = Mathf.Max(info_.skill2_.cd_ - Time.deltaTime, 0);
             info_.skill3_.cd_ = Mathf.Max(info_.skill3_.cd_ - Time.deltaTime, 0);
             info_.downTime_ = Mathf.Max(info_.downTime_ - Time.deltaTime, 0);
-            playerIcon_.SetCoolTime1(info_.gcd_, info_.skill1_.cd_);
-            playerIcon_.SetCoolTime2(info_.gcd_, info_.skill2_.cd_);
-            playerIcon_.SetCoolTime3(info_.gcd_, info_.skill3_.cd_);
             yield return null;
         }
     }

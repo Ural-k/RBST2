@@ -4,9 +4,6 @@ using UnityEngine.UI;
 
 public class BetaPlayerIcon : MonoBehaviour
 {
-    [SerializeField] private Slider slider1_;
-    [SerializeField] private Slider slider2_;
-    [SerializeField] private Slider slider3_;
     [SerializeField] private Text text1_;
     [SerializeField] private Text text2_;
     [SerializeField] private Text text3_;
@@ -17,34 +14,6 @@ public class BetaPlayerIcon : MonoBehaviour
     private void Start()
     {
         ActiveIconAllReset();
-    }
-
-    /// <summary>
-    /// スキル１のクールダウン
-    /// </summary>
-    /// <param name="gcd"></param>
-    /// <param name="cd"></param>
-    public void SetCoolTime1(float gcd, float cd)
-    {
-        slider1_.value = Mathf.Max(gcd, cd);
-    }
-    /// <summary>
-    /// スキル２のクールダウン
-    /// </summary>
-    /// <param name="gcd"></param>
-    /// <param name="cd"></param>
-    public void SetCoolTime2(float gcd, float cd)
-    {
-        slider2_.value = Mathf.Max(gcd, cd);
-    }
-    /// <summary>
-    /// スキル３のクールダウン
-    /// </summary>
-    /// <param name="gcd"></param>
-    /// <param name="cd"></param>
-    public void SetCoolTime3(float gcd, float cd)
-    {
-        slider3_.value = Mathf.Max(gcd, cd);
     }
 
     public void SetText1(string st)
