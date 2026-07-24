@@ -27,9 +27,23 @@ public class DamageUI : MonoBehaviour
     //ダメージTextの移動・消滅処理を管理するCoroutine
     private Coroutine currentCoroutine;
 
+    private Rigidbody2D playerRigidbody_;
+    public Transform cube_;
+    public float speed_;
+
+    private void Start()
+    {
+        playerRigidbody_ = GetComponent<Rigidbody2D>();
+    }
+
     //動作確認用
     void Update()
     {
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+        Vector2 move = new Vector2(horizontal, vertical);
+        cube_.Translate(move * speed_ * Time.deltaTime);
+
         if (Input.GetKeyDown(KeyCode.Return))
         {
             TakeDamage(defaultDamage);
@@ -128,7 +142,7 @@ public class DamageUI : MonoBehaviour
         float time = 0;
 
         //表示時間
-        float lifeTime = 1.0f;
+        float lifeTime = 0.5f;
 
         //Textの色変更用
         Text legacyText =　damagePopupObject.GetComponent<Text>();
