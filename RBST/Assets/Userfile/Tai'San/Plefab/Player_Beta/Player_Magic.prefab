@@ -80,7 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Player
   ShowTopMostFoldoutHeaderGroup: 1
   debugJobChangeNumber_: 0
-  playerIcon_: {fileID: 0}
+  playerIcon_: {fileID: 3290133440541316816}
   info_:
     parameter_:
       jobNumber_: 0
@@ -813,6 +813,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a803c284460a7d243b06229e45d6bf17, type: 3}
+--- !u!114 &3290133440541316816 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4411528558255400701, guid: a803c284460a7d243b06229e45d6bf17, type: 3}
+  m_PrefabInstance: {fileID: 1193457436486578221}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d518e949a6d22a445b0f47e270db0147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BetaPlayerIcon
 --- !u!224 &6028305824402132518 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4843862201422642699, guid: a803c284460a7d243b06229e45d6bf17, type: 3}
