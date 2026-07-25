@@ -211,4 +211,4 @@ MonoBehaviour:
     warningTime: 2
     entityTime: 1
     nextAttackTime: 0.5
-  AttackCount: 5
+  AttackCount: 1

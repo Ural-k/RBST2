@@ -22,4 +22,4 @@ MonoBehaviour:
     warningTime: 3
     entityTime: 1
     nextAttackTime: 3
-  AttackCount: 0
+  AttackCount: 1
