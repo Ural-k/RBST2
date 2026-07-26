@@ -13,7 +13,7 @@ public class SIcon : MonoBehaviour
 
     public void OnClick()
     {
-        Debug.Log("–³‚µ");
+        Debug.Log("Tap");
     }
     public void PointEnter() => help_.SetActive(true);
     public void PointExit() => help_.SetActive(false);

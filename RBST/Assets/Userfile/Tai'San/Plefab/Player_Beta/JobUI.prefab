@@ -111,6 +111,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7303583457604570882}
+  - {fileID: 4674854033818624556}
+  - {fileID: 6501836237946431710}
   - {fileID: 6783035583504693641}
   - {fileID: 698136272501866936}
   - {fileID: 4764686172889950662}
@@ -120,9 +123,6 @@ RectTransform:
   - {fileID: 5318004082053079448}
   - {fileID: 3690079995104476991}
   - {fileID: 7286741863126360109}
-  - {fileID: 7303583457604570882}
-  - {fileID: 4674854033818624556}
-  - {fileID: 6501836237946431710}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -537,6 +537,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SIcon2-1
       objectReference: {fileID: 0}
+    - target: {fileID: 7215048876299373564, guid: 5f853c4601c2acd418ad32d74e37f90b, type: 3}
+      propertyPath: m_Text
+      value: "\u30B9\u30DA\u30B7\u30E3\u30EB\n\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC"
+      objectReference: {fileID: 0}
     - target: {fileID: 8672786486783011234, guid: 5f853c4601c2acd418ad32d74e37f90b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -654,6 +658,10 @@ PrefabInstance:
     - target: {fileID: 7028793695459817829, guid: 5f853c4601c2acd418ad32d74e37f90b, type: 3}
       propertyPath: m_Name
       value: SIcon2-3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7215048876299373564, guid: 5f853c4601c2acd418ad32d74e37f90b, type: 3}
+      propertyPath: m_Text
+      value: "\u30B9\u30DA\u30B7\u30E3\u30EB\n\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC"
       objectReference: {fileID: 0}
     - target: {fileID: 8672786486783011234, guid: 5f853c4601c2acd418ad32d74e37f90b, type: 3}
       propertyPath: m_Pivot.x
@@ -907,6 +915,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SIcon2-2
       objectReference: {fileID: 0}
+    - target: {fileID: 7215048876299373564, guid: 5f853c4601c2acd418ad32d74e37f90b, type: 3}
+      propertyPath: m_Text
+      value: "\u30B9\u30DA\u30B7\u30E3\u30EB\n\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC"
+      objectReference: {fileID: 0}
     - target: {fileID: 8672786486783011234, guid: 5f853c4601c2acd418ad32d74e37f90b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1037,9 +1049,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4843862201422642699}
     m_Modifications:
+    - target: {fileID: 289199284706071493, guid: 5f853c4601c2acd418ad32d74e37f90b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2206912234330377038, guid: 5f853c4601c2acd418ad32d74e37f90b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2646112580425562244, guid: 5f853c4601c2acd418ad32d74e37f90b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5770328322914741783, guid: 5f853c4601c2acd418ad32d74e37f90b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 7028793695459817829, guid: 5f853c4601c2acd418ad32d74e37f90b, type: 3}
       propertyPath: m_Name
       value: SIcon3-1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7215048876299373564, guid: 5f853c4601c2acd418ad32d74e37f90b, type: 3}
+      propertyPath: m_Text
+      value: "\u30B5\u30DD\u30FC\u30C8\n\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC\u30FC"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8088187016639248760, guid: 5f853c4601c2acd418ad32d74e37f90b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8672786486783011234, guid: 5f853c4601c2acd418ad32d74e37f90b, type: 3}
       propertyPath: m_Pivot.x

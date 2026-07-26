@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::JobData
   jobName_: "\u5263\u8853\u5E2B"
   skill1_:
-  - name_: "\u30A2\u30B4\u30D6\u30EC\u30FC\u30C9"
+  - name_: "\u30B4\u30A2\u30B9\u30E9\u30C3\u30B7\u30E5"
     power_: 200
     gcd_: 1
     cd_: 0
@@ -35,7 +35,7 @@ MonoBehaviour:
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
-  - name_: "\u30D6\u30EC\u30FC\u30C9\u30B3\u30F3\u30D3\u30CD\u30FC\u30B7\u30E7\u30F3"
+  - name_: "\u30A2\u30B4\u30D6\u30EC\u30FC\u30C9"
     power_: 300
     gcd_: 1
     cd_: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
-  - name_: "\u9023\u7D9A\u5263"
+  - name_: "\u9023\u7D9A\u5263\u30FB\u7D42"
     power_: 50
     gcd_: 0.5
     cd_: 5
@@ -181,7 +181,7 @@ MonoBehaviour:
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
-  - name_: "\u30E2\u30ED\u30D5\u30A1\u30A4\u30A2"
+  - name_: "\u30C6\u30E9\u30B9\u30E9\u30C3\u30B7\u30E5"
     power_: 1100
     gcd_: 0.5
     cd_: 10
