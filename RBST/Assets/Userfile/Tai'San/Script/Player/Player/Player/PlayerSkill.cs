@@ -57,6 +57,9 @@ public class PlayerSkill : PlayerVariable
          */
         if (GCDChecker() || inputInfo.cd_ != 0) return inputInfo;
 
+
+        info_.lastInput_ = input;
+
         /*
          :  現在のコンボに応じたのスキル情報の取得
          */
@@ -66,6 +69,7 @@ public class PlayerSkill : PlayerVariable
          :  GCD更新
          */
         info_.gcd_ = skillData.gcd_;
+        playerIcon_.SetGCD(skillData.gcd_);
 
         /*
          :  攻撃対象になりえるオブジェクトを取得(ENEMY or PLAYER)
@@ -114,9 +118,18 @@ public class PlayerSkill : PlayerVariable
         InputSkillInfo result = new InputSkillInfo { cd_ = skillData.cd_, nowCombo_ = inputInfo.nowCombo_ + 1 >= skillDataArray.Count() ? 0 : inputInfo.nowCombo_ + 1 };
         switch (input)
         {
-            case INPUT_SKILL_ONE: playerIcon_.ActiveIcon1(result.nowCombo_); playerIcon_.SetText1(info_.jobData_.GetSkill1()[result.nowCombo_].name_); break;
-            case INPUT_SKILL_TWO: playerIcon_.ActiveIcon2(result.nowCombo_); playerIcon_.SetText2(info_.jobData_.GetSkill2()[result.nowCombo_].name_); break;
-            case INPUT_SKILL_THREE: playerIcon_.ActiveIcon3(result.nowCombo_); playerIcon_.SetText3(info_.jobData_.GetSkill3()[result.nowCombo_].name_); break;
+            case INPUT_SKILL_ONE: 
+                playerIcon_.ActiveIcon1(result.nowCombo_, result.cd_); 
+                playerIcon_.SetText1(info_.jobData_.GetSkill1()[result.nowCombo_].name_); 
+                break;
+            case INPUT_SKILL_TWO: 
+                playerIcon_.ActiveIcon2(result.nowCombo_, result.cd_); 
+                playerIcon_.SetText2(info_.jobData_.GetSkill2()[result.nowCombo_].name_); 
+                break;
+            case INPUT_SKILL_THREE: 
+                playerIcon_.ActiveIcon3(result.nowCombo_, result.cd_); 
+                playerIcon_.SetText3(info_.jobData_.GetSkill3()[result.nowCombo_].name_); 
+                break;
         }
         return result;
 

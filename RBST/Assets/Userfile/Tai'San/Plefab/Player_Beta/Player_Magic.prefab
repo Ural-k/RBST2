@@ -687,6 +687,14 @@ PrefabInstance:
       propertyPath: 'skill2_.Array.data[2]'
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4411528558255400701, guid: a803c284460a7d243b06229e45d6bf17, type: 3}
+      propertyPath: coolTimeHelp1_.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4411528558255400701, guid: a803c284460a7d243b06229e45d6bf17, type: 3}
+      propertyPath: coolTimeHelp2_.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4453748824185829831, guid: a803c284460a7d243b06229e45d6bf17, type: 3}
       propertyPath: m_Text
       value: "\u30D5\u30A1\u30A4\u30A2"

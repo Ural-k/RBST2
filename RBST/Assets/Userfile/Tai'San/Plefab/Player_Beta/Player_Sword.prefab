@@ -647,6 +647,10 @@ PrefabInstance:
       propertyPath: 'skill1_.Array.data[2]'
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4411528558255400701, guid: a803c284460a7d243b06229e45d6bf17, type: 3}
+      propertyPath: coolTimeHelp1_.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4502628041310264271, guid: a803c284460a7d243b06229e45d6bf17, type: 3}
       propertyPath: m_Name
       value: JobUI

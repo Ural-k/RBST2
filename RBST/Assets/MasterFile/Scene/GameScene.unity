@@ -828,9 +828,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIAnimation
   loopTime_: 2
-  startScale_: 1
   changeScale_: 0.2
   animationType_: 1
+  endColor_: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &353815181
 GameObject:
   m_ObjectHideFlags: 0
@@ -2309,8 +2309,8 @@ MonoBehaviour:
   playerPrefab_: {fileID: 1491049056136672111, guid: 7f1a6ce3e4573bd4aa83bd4cc0657fc5, type: 3}
   magic_: {fileID: 1491049056136672111, guid: 7f1a6ce3e4573bd4aa83bd4cc0657fc5, type: 3}
   pharmacist_: {fileID: 2229839729165919394, guid: 25981dfa51b4bad4f845c423ab5baf1d, type: 3}
-  sword_: {fileID: 530517264843201466, guid: c7731ffcdc9464a4d9fc1ce6b50b2091, type: 3}
-  enemyPrefab_: {fileID: 3293155659231759077, guid: 88a161a79331d0e4fbe5ac41524dead1, type: 3}
+  sword_: {fileID: 211283658279584765, guid: c7731ffcdc9464a4d9fc1ce6b50b2091, type: 3}
+  enemyPrefab_: {fileID: 5023606967376310049, guid: ea69f346e6a78a844aff2148014a4f12, type: 3}
 --- !u!4 &1267825513
 Transform:
   m_ObjectHideFlags: 0

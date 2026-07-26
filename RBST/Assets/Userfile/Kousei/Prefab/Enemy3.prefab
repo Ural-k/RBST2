@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 58198316387762524}
   - component: {fileID: 7535583807887897810}
   - component: {fileID: 4249024119969295759}
+  - component: {fileID: 419976199661796797}
   m_Layer: 0
   m_Name: Enemy3
   m_TagString: Untagged
@@ -161,3 +162,17 @@ MonoBehaviour:
   aoeObject_:
   - {fileID: 5024730748241880012, guid: d6ccaa0604a150a488b2d46be6776940, type: 3}
   - {fileID: 6081284791802014722, guid: 38181d7ddbb0e554d9f176fba20426d1, type: 3}
+--- !u!114 &419976199661796797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8785667573313461392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43fb3d8ee1e4ad145b5fef5064809b2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TargetCircle
+  hp_: 0
+  radius_: 1
