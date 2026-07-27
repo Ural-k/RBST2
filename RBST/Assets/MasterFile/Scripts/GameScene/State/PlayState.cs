@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayState : IGameState
@@ -31,7 +32,7 @@ public class PlayState : IGameState
         //•¡”íì¬Ä’²®
         if (enemyControl_.HP <= 0)
         {
-            Clear();
+            //Clear();
         }
 
         //‘h¶ì¬ŒãÄ’²®
@@ -69,5 +70,17 @@ public class PlayState : IGameState
         PlayerManager.DestroyPlayer(PlayerManager.GetPlayer(i));
         GameSceneManager.Instance.State = GameState.GameOver;
         GameSceneManager.Instance.ChangeState(nextState_);
+    }
+
+    private int demoNowEnemy_ = 0;
+    private IEnumerator DemoNextEnemy()
+    {
+        ++demoNowEnemy_;
+        while(true)
+        {
+            if (Input.GetKeyDown(KeyCode.Return)) break;
+            yield return null;
+        }
+        
     }
 }
