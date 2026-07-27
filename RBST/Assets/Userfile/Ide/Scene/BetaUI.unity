@@ -1025,7 +1025,7 @@ Transform:
   m_GameObject: {fileID: 831746432}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1345,10 +1345,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1601030651}
   - component: {fileID: 1601030650}
-  - component: {fileID: 1601030649}
   - component: {fileID: 1601030648}
-  - component: {fileID: 1601030653}
   - component: {fileID: 1601030652}
+  - component: {fileID: 1601030653}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1369,30 +1368,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   speed: 5
+  animationController: {fileID: 1601030652}
   throwPoint: {fileID: 831746433}
   bottlePrefab: {fileID: 5107016589579615921, guid: d0f015b5d679ab74ea67d5cd2c542c32, type: 3}
---- !u!95 &1601030649
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1601030647}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 51edf0be366d6a5409d0b33aea1a82b9, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &1601030650
 SpriteRenderer:
   serializedVersion: 2
@@ -1461,7 +1439,7 @@ Transform:
   m_GameObject: {fileID: 1601030647}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.37578, y: 0.13118, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1480,9 +1458,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70e6fe0ee4c4a6f449671019cb73060c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimationSpeedController
-  animator: {fileID: 1601030649}
-  walkAnimationTime: 1.5
-  throwAnimationTime: 1
+  spriteRenderer: {fileID: 1601030650}
+  idleSprite: {fileID: 4394238243964846196, guid: 227fa1ad9b3d3a143a6307936314cbb4, type: 3}
+  moveSprite: {fileID: -8320879729768999028, guid: 9bb8f00488ae62745b2b400c5c386bbf, type: 3}
+  throw1: {fileID: 1707534487587842729, guid: 36ccfea11699f2140ac4d9b71c2368f0, type: 3}
+  throw2: {fileID: -9200012074166802053, guid: f2fb6794fce74c449bc248807c474314, type: 3}
 --- !u!50 &1601030653
 Rigidbody2D:
   serializedVersion: 5

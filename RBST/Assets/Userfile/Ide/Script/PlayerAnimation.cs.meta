@@ -1,12 +1,14 @@
 fileFormatVersion: 2
-guid: 0a1a5a7930bdd3c40a7327510b99cb1a
+guid: 70e6fe0ee4c4a6f449671019cb73060c
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - animationController: {instanceID: 0}
-  - throwPoint: {instanceID: 0}
-  - bottlePrefab: {instanceID: 0}
+  - spriteRenderer: {instanceID: 0}
+  - walk1: {instanceID: 0}
+  - walk2: {instanceID: 0}
+  - throw1: {instanceID: 0}
+  - throw2: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
