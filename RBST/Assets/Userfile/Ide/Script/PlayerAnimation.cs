@@ -3,34 +3,34 @@ using UnityEngine;
 public class PlayerAnimation : MonoBehaviour
 {
     //スプライトを表示するためのRenderer
-    public SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteRenderer spriteRenderer_;
 
     //待機時に表示するスプライト
-    public Sprite idleSprite;
+    [SerializeField] private Sprite idleSprite_;
 
     //移動中に表示するスプライト
-    public Sprite moveSprite;
+    [SerializeField] private Sprite moveSprite_;
 
     //投げアニメーション1枚目
-    public Sprite throw1;
+    [SerializeField] private Sprite throw1_;
 
     //投げアニメーション2枚目
-    public Sprite throw2;
+    [SerializeField] private Sprite throw2_;
 
     //投げアニメーション1枚あたりの表示時間
-    private float throwAnimationTime = 0.15f;
+    private float throwAnimationTime_ = 0.15f;
 
     //投げアニメーション経過時間を管理するタイマー
-    private float timer;
+    private float timer_;
 
     //現在投げアニメーション中かどうか
     //投げ中は歩きアニメーションなどを上書きしない
-    private bool throwing;
+    private bool isThrowing_;
 
     void Update()
     {
         //投げアニメーション中の場合のみ更新する
-        if (throwing)
+        if (isThrowing_)
         {
             ThrowAnimation();
         }
@@ -42,7 +42,7 @@ public class PlayerAnimation : MonoBehaviour
     {
         //投げアニメーション中は歩きアニメーションを変更しない
         //投げモーションを優先するため
-        if (throwing)
+        if (isThrowing_)
         {
             return;
         }
@@ -51,12 +51,12 @@ public class PlayerAnimation : MonoBehaviour
         if (moving)
         {
             //歩き用スプライトへ変更
-            spriteRenderer.sprite = moveSprite;
+            spriteRenderer_.sprite = moveSprite_;
         }
         else
         {
             //待機用スプライトへ変更
-            spriteRenderer.sprite = idleSprite;
+            spriteRenderer_.sprite = idleSprite_;
         }
     }
 
@@ -65,41 +65,41 @@ public class PlayerAnimation : MonoBehaviour
     public void StartThrow()
     {
         //投げアニメーション開始
-        throwing = true;
+        isThrowing_ = true;
 
         //タイマーをリセット
-        timer = 0;
+        timer_ = 0;
     }
 
     //投げアニメーションの更新処理
     void ThrowAnimation()
     {
         //経過時間を加算
-        timer += Time.deltaTime;
+        timer_ += Time.deltaTime;
 
         //1枚目の投げスプライトを表示
-        if (timer < throwAnimationTime)
+        if (timer_ < throwAnimationTime_)
         {
-            spriteRenderer.sprite = throw1;
+            spriteRenderer_.sprite = throw1_;
         }
 
         //2枚目の投げスプライトを表示
-        else if (timer < throwAnimationTime * 2)
+        else if (timer_ < throwAnimationTime_ * 2)
         {
-            spriteRenderer.sprite = throw2;
+            spriteRenderer_.sprite = throw2_;
         }
 
         //アニメーション終了
         else
         {
             //投げ状態を解除
-            throwing = false;
+            isThrowing_ = false;
 
             //タイマーをリセット
-            timer = 0;
+            timer_ = 0;
 
             //待機状態のスプライトへ戻す
-            spriteRenderer.sprite = idleSprite;
+            spriteRenderer_.sprite = idleSprite_;
         }
     }
 }

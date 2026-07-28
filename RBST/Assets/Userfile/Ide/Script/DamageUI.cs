@@ -5,27 +5,27 @@ using UnityEngine.UI;
 public class DamageUI : MonoBehaviour
 {
     //生成するダメージ表示用TextのPrefab
-    [SerializeField] private GameObject damageUI;
+    [SerializeField] private GameObject damageUI_;
 
     //ダメージ表示を配置するCanvas
-    [SerializeField] private Canvas popupCanvas;
+    [SerializeField] private Canvas popupCanvas_;
 
     //ダメージ表示を追従させる対象(敵やプレイヤー)
-    [SerializeField] private Transform targetObject;
+    [SerializeField] private Transform targetObject_;
 
     //テスト時に使用する初期ダメージ量
-    [SerializeField] private int defaultDamage;
+    [SerializeField] private int defaultDamage_;
 
     //現在表示中のダメージText
     //nullの場合は現在表示されていない
-    private GameObject currentPopup;
+    private GameObject currentPopup_;
 
     //現在表示中の合計ダメージ量
     //短時間に複数回攻撃を受けた場合、この値へ加算する
-    private int accumulatedDamage = 0;
+    private int accumulatedDamage_ = 0;
 
     //ダメージTextの移動・消滅処理を管理するCoroutine
-    private Coroutine currentCoroutine;
+    private Coroutine currentCoroutine_;
 
     private Rigidbody2D playerRigidbody_;
     public Transform cube_;
@@ -46,7 +46,7 @@ public class DamageUI : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            TakeDamage(defaultDamage);
+            TakeDamage(defaultDamage_);
         }
     }
 
@@ -54,44 +54,44 @@ public class DamageUI : MonoBehaviour
     public void TakeDamage(int damage = -1)
     {
         //引数が指定されていない場合は設定した初期ダメージを使用
-        int actualDamage = (damage < 0) ? defaultDamage : damage;
+        int actualDamage = (damage < 0) ? defaultDamage_ : damage;
 
         //すでにダメージ表示が存在する場合、新しいTextを作らず現在の数字へ加算する
-        if (currentPopup != null)
+        if (currentPopup_ != null)
         {
             //現在表示中のダメージへ追加
-            accumulatedDamage += actualDamage;
+            accumulatedDamage_ += actualDamage;
 
             //表示されている数字を更新
-            UpdateText(currentPopup, accumulatedDamage);
+            UpdateText(currentPopup_, accumulatedDamage_);
 
             //消滅までの時間をリセットするため、現在動いているCoroutineを停止
-            if (currentCoroutine != null)
+            if (currentCoroutine_ != null)
             {
-                StopCoroutine(currentCoroutine);
+                StopCoroutine(currentCoroutine_);
             }
 
             //新しく移動・消滅処理を開始
-            currentCoroutine = StartCoroutine(MoveAndDestroy(currentPopup));
+            currentCoroutine_ = StartCoroutine(MoveAndDestroy(currentPopup_));
 
             return;
         }
 
         //初めてダメージを表示する場合
-        accumulatedDamage = actualDamage;
+        accumulatedDamage_ = actualDamage;
 
         //ダメージTextをPrefabから生成
         //Canvasの子として生成することでUIとして表示する
-        currentPopup = Instantiate(damageUI,popupCanvas.transform);
+        currentPopup_ = Instantiate(damageUI_,popupCanvas_.transform);
 
         //対象オブジェクトの左上へ配置
-        SetPopupPosition(currentPopup);
+        SetPopupPosition(currentPopup_);
 
         //ダメージ数値を設定
-        UpdateText(currentPopup, accumulatedDamage);
+        UpdateText(currentPopup_, accumulatedDamage_);
 
         //上へ移動して消える処理を開始
-        currentCoroutine = StartCoroutine(MoveAndDestroy(currentPopup));
+        currentCoroutine_ = StartCoroutine(MoveAndDestroy(currentPopup_));
     }
 
     //ワールド座標にある対象をCanvas上の座標へ変換する
@@ -101,16 +101,16 @@ public class DamageUI : MonoBehaviour
         RectTransform popupRect = popup.GetComponent<RectTransform>();
 
         //キャラクターのワールド座標を画面座標へ変換
-        Vector2 screenPosition =　Camera.main.WorldToScreenPoint(targetObject.position);
+        Vector2 screenPosition =　Camera.main.WorldToScreenPoint(targetObject_.position);
 
         //CanvasのRectTransformを取得
-        RectTransform canvasRect =　popupCanvas.GetComponent<RectTransform>();
+        RectTransform canvasRect =　popupCanvas_.GetComponent<RectTransform>();
 
         //スクリーン座標をCanvas内のローカル座標へ変換
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             canvasRect,
             screenPosition,
-            popupCanvas.worldCamera,
+            popupCanvas_.worldCamera,
             out Vector2 localPoint
         );
 
@@ -147,10 +147,10 @@ public class DamageUI : MonoBehaviour
         //Textの色変更用
         Text legacyText =　damagePopupObject.GetComponent<Text>();
 
-        // UI移動用
+        //UI移動用
         RectTransform rect = damagePopupObject.GetComponent<RectTransform>();
 
-        // 指定時間まで表示を継続
+        //指定時間まで表示を継続
         while (time < lifeTime)
         {
             //時間を進める
@@ -179,9 +179,9 @@ public class DamageUI : MonoBehaviour
         }
 
         //自分自身が現在表示中のTextなら参照を解除
-        if (damagePopupObject == currentPopup)
+        if (damagePopupObject == currentPopup_)
         {
-            currentPopup = null;
+            currentPopup_ = null;
         }
 
         //表示終了後に削除

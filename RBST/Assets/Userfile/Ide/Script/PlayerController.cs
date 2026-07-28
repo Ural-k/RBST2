@@ -3,34 +3,45 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     //プレイヤーの移動速度
-    public float speed;
+    [SerializeField] private float speed_;
 
     //プレイヤーアニメーションを制御するスクリプト
-    public PlayerAnimation animationController;
+    [SerializeField] private PlayerAnimation animationController_;
 
     //ボトルを生成する位置
-    public Transform throwPoint;
+    [SerializeField] private Transform throwPoint_;
 
     //投げるボトルのPrefab
-    public GameObject bottlePrefab;
+    [SerializeField] private GameObject bottlePrefab_;
 
-    //プレイヤーが向いている方向
-    private int facingDirection = -1;
+    //狙う敵
+    [SerializeField] private Transform enemyTarget_;
+
+    //プレイヤーが初期で向いている方向
+    private int facingDirection_ = -1;
 
     //攻撃中かどうかを管理するフラグ
     //攻撃中は移動や追加攻撃をできないようにする
-    private bool attacking;
+    private bool isAttacking_;
 
     void Update()
     {
         //攻撃中ではない場合のみ操作を受け付ける
-        if (!attacking)
+        if (!isAttacking_)
         {
             //プレイヤー移動処理
             Move();
 
-            //Enterキー入力でボトルを投げる
-            if (Input.GetKeyDown(KeyCode.Return))
+            //マウス入力でボトルを投げる
+            if (Input.GetMouseButtonDown(0))
+            {
+                ThrowBottle();
+            }
+            if (Input.GetMouseButtonDown(1))
+            {
+                ThrowBottle();
+            }
+            if (Input.GetMouseButtonDown(2))
             {
                 ThrowBottle();
             }
@@ -52,35 +63,35 @@ public class PlayerController : MonoBehaviour
         {
             //移動方向を正規化して速度を一定にする
             //normalizedを使うことで斜め移動時の速度上昇を防ぐ
-            transform.position += (Vector3)move.normalized * speed * Time.deltaTime;
+            transform.position += (Vector3)move.normalized * speed_ * Time.deltaTime;
 
             //歩行アニメーション開始
-            animationController.SetWalking(true);
+            animationController_.SetWalking(true);
 
             //左方向へ移動した場合
             if (x < 0)
             {
                 //キャラクターを左向きに反転
-                transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
+                transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
 
                 //投げる方向を左に設定
-                facingDirection = -1;
+                facingDirection_ = -1;
             }
 
             //右方向へ移動した場合
             else if (x > 0)
             {
                 //キャラクターを右向きに反転
-                transform.localScale = new Vector3(-0.15f, 0.15f, 0.15f);
+                transform.localScale = new Vector3(-0.1f, 0.1f, 0.1f);
 
                 //投げる方向を右に設定
-                facingDirection = 1;
+                facingDirection_ = 1;
             }
         }
         else
         {
             //入力がない場合は待機アニメーションへ
-            animationController.SetWalking(false);
+            animationController_.SetWalking(false);
         }
     }
 
@@ -88,10 +99,10 @@ public class PlayerController : MonoBehaviour
     void ThrowBottle()
     {
         //投げるアニメーションを再生
-        animationController.StartThrow();
+        animationController_.StartThrow();
 
         //throwPointの位置にボトルを生成
-        GameObject bottle = Instantiate(bottlePrefab,throwPoint.position,Quaternion.identity);
+        GameObject bottle = Instantiate(bottlePrefab_,throwPoint_.position,Quaternion.identity);
 
         //生成したボトルの制御スクリプトを取得
         BottleController bottleScript = bottle.GetComponent<BottleController>();
@@ -99,16 +110,33 @@ public class PlayerController : MonoBehaviour
         //ボトルを飛ばす方向
         Vector2 throwDirection;
 
-        //プレイヤーの向いている方向によって投げる向きを決定
-        if (facingDirection == 1)
+        //敵が存在する場合
+        if (enemyTarget_ != null)
         {
-            //右向きの場合
-            throwDirection = Vector2.right;
+            //プレイヤーから敵への方向
+            Vector2 toEnemy = (enemyTarget_.position - transform.position).normalized;
+
+            //プレイヤーの向いている方向
+            Vector2 forward = new Vector2(facingDirection_, 0);
+
+            //敵が前側にいるか確認
+            float directionDot = Vector2.Dot(forward, toEnemy);
+
+            if (directionDot > 0)
+            {
+                //敵が前にいる場合は敵へ投げる
+                throwDirection = toEnemy;
+            }
+            else
+            {
+                //敵が後ろにいる場合は正面へ投げる
+                throwDirection = forward;
+            }
         }
         else
         {
-            //左向きの場合
-            throwDirection = Vector2.left;
+            //敵がいない場合は正面へ投げる
+            throwDirection = new Vector2(facingDirection_, 0);
         }
 
         //ボトル側のスクリプトへ投げる方向を渡す
