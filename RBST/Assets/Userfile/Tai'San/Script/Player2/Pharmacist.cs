@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 /// <summary>
 /// –òŽt
@@ -36,6 +37,6 @@ public class Pharmacist : TestPlayerBase
     }
     protected override void Skill3()
     {
-
+        
     }
 }
