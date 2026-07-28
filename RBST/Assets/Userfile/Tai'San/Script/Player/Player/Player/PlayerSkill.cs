@@ -155,6 +155,7 @@ public class PlayerSkill : PlayerVariable
         /// <returns></returns>
         List<Transform> GetTarget(TargetType type)
         {
+            foreach (var e in EnemyManager.GetAllEnemy()) { Debug.Log(e); }
             List<Transform> list = new List<Transform>();
             switch (type)
             {

@@ -11,7 +11,7 @@ public class PlayState : IGameState
     public void Enter()
     {
         playerCount_ = PlayerManager.GetAllPlayerListCount();
-        enemyControl_ = GameObjectManager.Instance.CreateEnemy();
+        enemyControl_ = GameObjectManager.Instance.CreateEnemy1();
         GameUIManager.Instance.Activate(UIType.Play);
         playUI_ = GameUIManager.Instance.GetPlayUI();
         nextState_ = new ResultState();
@@ -19,6 +19,7 @@ public class PlayState : IGameState
         DemoTimer.Instance.StartTimer();
     }
 
+    private int demoNowEnemy_ = 0;
     // Update is called once per frame
     public void Update()
     {
@@ -32,6 +33,29 @@ public class PlayState : IGameState
         //•¡”íì¬Ä’²®
         if (enemyControl_.HP <= 0)
         {
+            EnemyManager.AllDestroyEnemy();
+            switch (demoNowEnemy_)
+            {
+                case 0:
+                    if (Input.GetKeyDown(KeyCode.Return))
+                    {
+                        ++demoNowEnemy_;
+                        enemyControl_ = GameObjectManager.Instance.CreateEnemy2();
+                    }
+                    break;
+                case 1:
+                    if (Input.GetKeyDown(KeyCode.Return))
+                    {
+                        ++demoNowEnemy_;
+                        enemyControl_ = GameObjectManager.Instance.CreateEnemy3();
+                    }
+                    break;
+                case 2:
+                    Clear();
+                    break;
+            }
+
+
             //Clear();
         }
 
@@ -70,17 +94,5 @@ public class PlayState : IGameState
         PlayerManager.DestroyPlayer(PlayerManager.GetPlayer(i));
         GameSceneManager.Instance.State = GameState.GameOver;
         GameSceneManager.Instance.ChangeState(nextState_);
-    }
-
-    private int demoNowEnemy_ = 0;
-    private IEnumerator DemoNextEnemy()
-    {
-        ++demoNowEnemy_;
-        while(true)
-        {
-            if (Input.GetKeyDown(KeyCode.Return)) break;
-            yield return null;
-        }
-        
     }
 }

@@ -15,7 +15,7 @@ MonoBehaviour:
   jobName_: "\u9B54\u8853\u5E2B"
   skill1_:
   - name_: "\u30D5\u30A1\u30A4\u30A2"
-    power_: 200
+    power_: 36000
     gcd_: 1.2
     cd_: 0
     comboKeep_: 0
@@ -36,10 +36,10 @@ MonoBehaviour:
         m_PostInfinity: 0
         m_RotationOrder: 0
   skill2_:
-  - name_: "\u30A6\u30A3\u30F3\u30C9"
-    power_: -50
+  - name_: "\u30B5\u30F3\u30C0\u30FC"
+    power_: 400
     gcd_: 1.2
-    cd_: 0
+    cd_: 10
     comboKeep_: 1
     targetType_: 1
     shape_: 0
