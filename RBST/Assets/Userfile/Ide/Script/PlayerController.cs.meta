@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0a1a5a7930bdd3c40a7327510b99cb1a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - animationController: {instanceID: 0}
+  - throwPoint: {instanceID: 0}
+  - bottlePrefab: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
