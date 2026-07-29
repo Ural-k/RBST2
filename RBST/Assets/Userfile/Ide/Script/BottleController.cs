@@ -2,20 +2,6 @@ using UnityEngine;
 
 public class BottleController : MonoBehaviour
 {
-<<<<<<< HEAD
-    //ボトルが飛ぶ速度
-    [SerializeField] private float speed;
-
-    //ボトルの回転速度
-    [SerializeField] private float rotateSpeed;
-
-    //ボトルが存在できる時間
-    [SerializeField] private float lifeTime;
-
-    //ボトルが進む方向
-    //初期値は右方向
-    private Vector2 direction = Vector2.right;
-=======
     //ボトルが飛ぶ速度(speed×lifeTimeの計算で遠くへ飛ぶ(速度が速いと瓶の飛び方自体も変わる))
     [SerializeField] private float speed_;
 
@@ -34,27 +20,15 @@ public class BottleController : MonoBehaviour
 
     //投げられた位置を保存
     private Vector2 startPosition_;
->>>>>>> feature/BetaUI
 
     void Start()
     {
         //lifeTime秒後にボトルを削除する
-<<<<<<< HEAD
-        Destroy(gameObject, lifeTime);
-    }
-
-    //プレイヤー側から投げる方向を受け取る処理
-    //PlayerControllerから呼び出される
-    public void SetDirection(Vector2 dir)
-    {
-        //受け取った方向を移動方向として保存
-        direction = dir;
-=======
         Destroy(gameObject, lifeTime_);
 
         //投げられた瞬間の位置を保存
         startPosition_ = transform.position;
->>>>>>> feature/BetaUI
+
     }
 
     //毎フレーム呼ばれる処理
@@ -62,13 +36,6 @@ public class BottleController : MonoBehaviour
     {
         //設定された方向へボトルを移動させる
         //Time.deltaTimeを使うことでフレームレートに左右されない速度になる
-<<<<<<< HEAD
-        transform.position += (Vector3)(direction * speed * Time.deltaTime);
-
-        //ボトルを回転させる
-        //投げられている感じを出すための演出
-        transform.Rotate(0, 0, rotateSpeed * Time.deltaTime);
-=======
         transform.position += (Vector3)(direction_ * speed_ * Time.deltaTime);
 
         //ボトルを回転させる
@@ -101,6 +68,5 @@ public class BottleController : MonoBehaviour
             //ボトルを消す
             Destroy(gameObject);
         }
->>>>>>> feature/BetaUI
     }
 }

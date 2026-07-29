@@ -15,7 +15,7 @@ MonoBehaviour:
   jobName_: "\u9B54\u8853\u5E2B"
   skill1_:
   - name_: "\u30D5\u30A1\u30A4\u30A2"
-    power_: 36000
+    power_: 200
     gcd_: 1.2
     cd_: 0
     comboKeep_: 0

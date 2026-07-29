@@ -11,13 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/MasterFile/Scene/GameScene.unity
     guid: 58e7eeefd3fde8c4a99892f1d479778a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Userfile/Ide/Scene/SceneChange.unity
     guid: a8a1a0e99d7de13408aeb015d60f9bf6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Userfile/Ide/Scene/AfterScene.unity
     guid: a8e150305db4e28488148d7e93b9b7b8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Userfile/Tai'San/Scene/TestPlayer.unity
     guid: be86c47d5dfdba0449fb958d2645877a
   m_configObjects:

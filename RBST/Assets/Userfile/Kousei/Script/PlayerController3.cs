@@ -22,7 +22,7 @@ namespace Game.Player
 
         private void Update()
         {
-            Move();
+            //Move();
             Attack();
         }
 

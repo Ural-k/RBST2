@@ -33,6 +33,7 @@ public class PlayState : IGameState
         //•¡”íì¬Ä’²®
         if (enemyControl_.HP <= 0)
         {
+            DemoTimer.Instance.StopTimer();
             EnemyManager.AllDestroyEnemy();
             switch (demoNowEnemy_)
             {
@@ -41,6 +42,8 @@ public class PlayState : IGameState
                     {
                         ++demoNowEnemy_;
                         enemyControl_ = GameObjectManager.Instance.CreateEnemy2();
+                        DemoTimer.Instance.ResetTimer();
+                        DemoTimer.Instance.StartTimer();
                     }
                     break;
                 case 1:
@@ -48,6 +51,8 @@ public class PlayState : IGameState
                     {
                         ++demoNowEnemy_;
                         enemyControl_ = GameObjectManager.Instance.CreateEnemy3();
+                        DemoTimer.Instance.ResetTimer();
+                        DemoTimer.Instance.StartTimer();
                     }
                     break;
                 case 2:

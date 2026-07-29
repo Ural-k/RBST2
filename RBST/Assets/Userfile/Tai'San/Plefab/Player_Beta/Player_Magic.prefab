@@ -646,7 +646,7 @@ PrefabInstance:
     - target: {fileID: 862654676377986401, guid: a803c284460a7d243b06229e45d6bf17, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 104227793189977229, guid: 7d5c9b4d46e044341a0e477cfa166068, type: 3}
+      objectReference: {fileID: -2761673434527092231, guid: 902ee4f0bb74cd2499051fbcd4555a5d, type: 3}
     - target: {fileID: 1432606791550876623, guid: a803c284460a7d243b06229e45d6bf17, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -683,6 +683,10 @@ PrefabInstance:
       propertyPath: m_Text
       value: "\u30A6\u30A3\u30F3\u30C9"
       objectReference: {fileID: 0}
+    - target: {fileID: 2822119023877186772, guid: a803c284460a7d243b06229e45d6bf17, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -8166739503871155842, guid: 0298a5a4d2729f747b5a3fc9b58981b3, type: 3}
     - target: {fileID: 2825664791300754257, guid: a803c284460a7d243b06229e45d6bf17, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -733,7 +737,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4401258138995595008, guid: a803c284460a7d243b06229e45d6bf17, type: 3}
       propertyPath: m_Text
-      value: "\u30A6\u30A3\u30F3\u30C9"
+      value: "\u30B5\u30F3\u30C0\u30FC"
       objectReference: {fileID: 0}
     - target: {fileID: 4411528558255400701, guid: a803c284460a7d243b06229e45d6bf17, type: 3}
       propertyPath: skill1_.Array.size
@@ -805,7 +809,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6048755003092856288, guid: a803c284460a7d243b06229e45d6bf17, type: 3}
       propertyPath: m_Text
-      value: "\u4E00\u77AC\u8DB3\u304C\u901F\u304F\u306A\u308B\u3002\n\u3053\u306E\u30B9\u30AD\u30EB\u306F\u30B3\u30F3\u30DC\u3092\u4E2D\u65AD\u3057\u306A\u3044"
+      value: "\u8FD1\u3044\u6575\u306B\u96F7\u3092\u843D\u3068\u3059\u3002\n\u3053\u306E\u30B9\u30AD\u30EB\u306F\u30B3\u30F3\u30DC\u3092\u4E2D\u65AD\u3057\u306A\u3044"
       objectReference: {fileID: 0}
     - target: {fileID: 6146514184093432435, guid: a803c284460a7d243b06229e45d6bf17, type: 3}
       propertyPath: m_Text
@@ -833,12 +837,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6357985241175514637, guid: a803c284460a7d243b06229e45d6bf17, type: 3}
       propertyPath: m_Text
-      value: "\u30A6\u30A3\u30F3\u30C9"
+      value: "\u30B5\u30F3\u30C0\u30FC"
       objectReference: {fileID: 0}
     - target: {fileID: 6444536173967049258, guid: a803c284460a7d243b06229e45d6bf17, type: 3}
       propertyPath: m_Text
       value: "\u30E1\u30C6\u30AA"
       objectReference: {fileID: 0}
+    - target: {fileID: 6760671538245122675, guid: a803c284460a7d243b06229e45d6bf17, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -672695787142416771, guid: 1e6a9c0863ce64c48a5b060e6f1c925b, type: 3}
     - target: {fileID: 6850605388910408353, guid: a803c284460a7d243b06229e45d6bf17, type: 3}
       propertyPath: m_Pivot.x
       value: 0
