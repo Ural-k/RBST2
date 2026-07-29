@@ -90,6 +90,7 @@ public class HpGauge : MonoBehaviour
         if (!hideWhenTargetMissing_) return;
         if (hpSlider_ == null) return;
 
-        hpSlider_.gameObject.SetActive(visible);
+        if (!visible) hpSlider_.value = 0;
+        //hpSlider_.gameObject.SetActive(visible);
     }
 }
