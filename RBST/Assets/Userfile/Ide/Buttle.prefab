@@ -106,10 +106,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06b784abff553164585c44156f66ab82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BottleController
-  speed: 15
-  rotateSpeed: 900
-  lifeTime: 1
-  maxDistance: 15
+  speed_: 20
+  rotateSpeed_: 900
+  lifeTime_: 1
+  maxDistance_: 15
 --- !u!58 &1657759898880443534
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -137,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &24488156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,10 +150,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f851d496beb72bf4eb49f3edfa436eff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageUI
-  damageUI: {fileID: 7564643789261316524, guid: ac8ba71d9ee5a7c4aa44562b582649c2, type: 3}
-  popupCanvas: {fileID: 676301204}
-  targetObject: {fileID: 24488158}
-  defaultDamage: 10
+  damageUI_: {fileID: 0}
+  popupCanvas_: {fileID: 0}
+  targetObject_: {fileID: 0}
+  defaultDamage_: 0
   cube_: {fileID: 24488158}
   speed_: 10
 --- !u!212 &24488157
@@ -907,7 +907,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &676301202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1014,11 +1014,11 @@ GameObject:
   - component: {fileID: 734321776}
   m_Layer: 0
   m_Name: Square (1)
-  m_TagString: Enemy
+  m_TagString: EnemyTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &734321774
 SpriteRenderer:
   serializedVersion: 2
@@ -1520,7 +1520,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1601030648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1533,11 +1533,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a1a5a7930bdd3c40a7327510b99cb1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  speed: 5
-  animationController: {fileID: 1601030652}
-  throwPoint: {fileID: 831746433}
-  bottlePrefab: {fileID: 5107016589579615921, guid: d0f015b5d679ab74ea67d5cd2c542c32, type: 3}
-  enemyTarget: {fileID: 734321775}
+  speed_: 5
+  animationController_: {fileID: 1601030652}
+  throwPoint_: {fileID: 831746433}
+  bottlePrefab_: {fileID: 5107016589579615921, guid: d0f015b5d679ab74ea67d5cd2c542c32, type: 3}
+  enemyTarget_: {fileID: 734321775}
 --- !u!212 &1601030650
 SpriteRenderer:
   serializedVersion: 2
@@ -1625,11 +1625,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70e6fe0ee4c4a6f449671019cb73060c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimationSpeedController
-  spriteRenderer: {fileID: 1601030650}
-  idleSprite: {fileID: 4394238243964846196, guid: 227fa1ad9b3d3a143a6307936314cbb4, type: 3}
-  moveSprite: {fileID: -8320879729768999028, guid: 9bb8f00488ae62745b2b400c5c386bbf, type: 3}
-  throw1: {fileID: 1707534487587842729, guid: 36ccfea11699f2140ac4d9b71c2368f0, type: 3}
-  throw2: {fileID: -9200012074166802053, guid: f2fb6794fce74c449bc248807c474314, type: 3}
+  spriteRenderer_: {fileID: 1601030650}
+  idleSprite_: {fileID: 4394238243964846196, guid: 227fa1ad9b3d3a143a6307936314cbb4, type: 3}
+  moveSprite_: {fileID: -8320879729768999028, guid: 9bb8f00488ae62745b2b400c5c386bbf, type: 3}
+  throw1_: {fileID: 1707534487587842729, guid: 36ccfea11699f2140ac4d9b71c2368f0, type: 3}
+  throw2_: {fileID: -9200012074166802053, guid: f2fb6794fce74c449bc248807c474314, type: 3}
 --- !u!50 &1601030653
 Rigidbody2D:
   serializedVersion: 5
