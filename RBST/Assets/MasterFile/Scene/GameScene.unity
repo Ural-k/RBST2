@@ -1468,7 +1468,7 @@ RectTransform:
   m_Father: {fileID: 832226800}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1582,7 +1582,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -66.8, y: 2}
-  m_SizeDelta: {x: 20, y: 22.916666}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &870104023
 MonoBehaviour:
@@ -2357,6 +2357,7 @@ MonoBehaviour:
   enemy1_: {fileID: 4460599108243288859, guid: 24d85f093267dc94fb8ae2c4e428684a, type: 3}
   enemy2_: {fileID: 5023606967376310049, guid: ea69f346e6a78a844aff2148014a4f12, type: 3}
   enemy3_: {fileID: 8785667573313461392, guid: 85b0898c5e8eb014884d14636ad9c88d, type: 3}
+  bossName_: {fileID: 90982508}
 --- !u!4 &1267825513
 Transform:
   m_ObjectHideFlags: 0
@@ -2405,7 +2406,7 @@ RectTransform:
   m_Father: {fileID: 715462241}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2422,7 +2423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.021739066, g: 1, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2896,7 +2897,7 @@ RectTransform:
   m_Father: {fileID: 196525177}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 10, y: 0}
   m_SizeDelta: {x: 30, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3185,7 +3186,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 604, y: -33}
-  m_SizeDelta: {x: 31.666666, y: 21.666666}
+  m_SizeDelta: {x: 31.666666, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1695692837
 MonoBehaviour:
@@ -3712,7 +3713,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1842880479
 RectTransform:
   m_ObjectHideFlags: 0

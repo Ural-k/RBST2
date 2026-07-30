@@ -59,7 +59,7 @@ public class EnemyControl : MonoBehaviour, IToEnemyDamageAble
     /// </summary>
     public void Died()
     {
-        EnemyManager.DeleteEnemy(this);
+        GameObjectManager.Instance.DestroyEnemy(this);
         Destroy(gameObject);
     }
 

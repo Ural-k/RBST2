@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayState : IGameState
 {
+    [SerializeField] Text text_;
     private EnemyControl enemyControl_;
     private IGameState nextState_;
     private int playerCount_;

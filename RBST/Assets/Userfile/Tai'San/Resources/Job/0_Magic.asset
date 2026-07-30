@@ -15,7 +15,7 @@ MonoBehaviour:
   jobName_: "\u9B54\u8853\u5E2B"
   skill1_:
   - name_: "\u30D5\u30A1\u30A4\u30A2"
-    power_: 99999
+    power_: 200
     gcd_: 1.2
     cd_: 0
     comboKeep_: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
     gcd_: 1.2
     cd_: 10
     comboKeep_: 1
-    targetType_: 1
+    targetType_: 0
     shape_: 0
     offset_: {x: 0, y: 0}
     scale_: {x: 3, y: 3}

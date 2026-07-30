@@ -57,6 +57,7 @@ public class PlayerSkill : PlayerVariable
          */
         if (GCDChecker() || inputInfo.cd_ != 0) return inputInfo;
 
+        animator_.SetTrigger(ATTACK_HASH);
 
         info_.lastInput_ = input;
 

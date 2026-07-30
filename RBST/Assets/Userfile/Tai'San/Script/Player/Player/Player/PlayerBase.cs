@@ -31,6 +31,17 @@ public class PlayerBase : PlayerSkill, IDamageable, IToEnemyDamageAble//Avatar
                 Mathf.Clamp(transform.position.x + move_value.x, -MOVE_SCREEN_X, MOVE_SCREEN_X),
                 Mathf.Clamp(transform.position.y + move_value.y, -MOVE_SCREEN_Y, MOVE_SCREEN_Y)
             );
+
+        if (transform.position != result)
+        {
+            Debug.Log("a");
+            animator_.SetTrigger(IS_MOVING_HASH);
+        }
+        else 
+        {
+            animator_.ResetTrigger(IS_MOVING_HASH);
+        }
+
         transform.position = result;
     }
 

@@ -19,7 +19,18 @@ public class PlayerVariable : NetworkBehaviour
     [SerializeField] protected BetaPlayerIcon playerIcon_;
     [SerializeField] protected PlayerInfo info_;
 
-    protected Animation animation_;
+    [Header("アニメーション")]
+    [SerializeField]
+    protected Animator animator_;
+
+    protected static readonly int IS_MOVING_HASH
+    = Animator.StringToHash("IsMoving");
+
+    protected static readonly int ATTACK_HASH
+        = Animator.StringToHash("Attack");
+
+    protected static readonly int IDLE_HASH
+        = Animator.StringToHash("Idle");
 
     public PlayerInfo GetInfo { get { return info_; } }
 }

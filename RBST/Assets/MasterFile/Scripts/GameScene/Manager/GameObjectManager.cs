@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameObjectManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class GameObjectManager : MonoBehaviour
     [SerializeField] private GameObject enemy1_;
     [SerializeField] private GameObject enemy2_;
     [SerializeField] private GameObject enemy3_;
+    [SerializeField] private Text bossName_;
 
     public static GameObjectManager Instance;
 
@@ -43,6 +45,7 @@ public class GameObjectManager : MonoBehaviour
         var temp = Instantiate(enemy1_,offset,Quaternion.identity);
         EnemyControl enemy = temp.GetComponent<EnemyControl>();
         EnemyManager.AddEnemy(enemy);
+        bossName_.text = "RED APPLE";
 
         return enemy;
     }
@@ -52,7 +55,8 @@ public class GameObjectManager : MonoBehaviour
         var temp = Instantiate(enemy2_, offset, Quaternion.identity);
         EnemyControl enemy = temp.GetComponent<EnemyControl>();
         EnemyManager.AddEnemy(enemy);
-        
+        bossName_.text = "GREEN APPLE";
+
         return enemy;
     }
 
@@ -61,12 +65,14 @@ public class GameObjectManager : MonoBehaviour
         var temp = Instantiate(enemy3_, offset, Quaternion.identity);
         EnemyControl enemy = temp.GetComponent<EnemyControl>();
         EnemyManager.AddEnemy(enemy);
+        bossName_.text = "WHITE APPLE";
 
         return enemy;
     }
 
     public void DestroyEnemy(EnemyControl enemyControl)
     {
+        bossName_.text = "NEXT TO ENTER";
         EnemyManager.DeleteEnemy(enemyControl);
     }
 }
