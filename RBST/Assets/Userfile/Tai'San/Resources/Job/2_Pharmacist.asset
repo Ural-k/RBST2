@@ -58,7 +58,7 @@ MonoBehaviour:
         m_PostInfinity: 0
         m_RotationOrder: 0
   - name_: "\u5927\u74F6\u6295\u64F2"
-    power_: 800
+    power_: 999
     gcd_: 1
     cd_: 1
     comboKeep_: 1

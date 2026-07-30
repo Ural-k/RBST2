@@ -11,6 +11,7 @@ public class GameObjectManager : MonoBehaviour
     [SerializeField] private GameObject enemy2_;
     [SerializeField] private GameObject enemy3_;
     [SerializeField] private Text bossName_;
+    [SerializeField] private GameObject bgmObject_, bgm2_;
 
     public static GameObjectManager Instance;
 
@@ -46,6 +47,7 @@ public class GameObjectManager : MonoBehaviour
         EnemyControl enemy = temp.GetComponent<EnemyControl>();
         EnemyManager.AddEnemy(enemy);
         bossName_.text = "RED APPLE";
+        bgmObject_.SetActive(true);
 
         return enemy;
     }
@@ -66,6 +68,8 @@ public class GameObjectManager : MonoBehaviour
         EnemyControl enemy = temp.GetComponent<EnemyControl>();
         EnemyManager.AddEnemy(enemy);
         bossName_.text = "WHITE APPLE";
+        bgmObject_.SetActive(false);
+        bgm2_.SetActive(true);
 
         return enemy;
     }

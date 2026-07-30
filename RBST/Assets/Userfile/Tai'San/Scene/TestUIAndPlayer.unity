@@ -1372,6 +1372,7 @@ MonoBehaviour:
   enemy1_: {fileID: 0}
   enemy2_: {fileID: 0}
   enemy3_: {fileID: 0}
+  bossName_: {fileID: 0}
 --- !u!4 &615555345
 Transform:
   m_ObjectHideFlags: 0

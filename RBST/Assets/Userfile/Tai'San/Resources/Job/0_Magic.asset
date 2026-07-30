@@ -119,7 +119,7 @@ MonoBehaviour:
         m_PostInfinity: 0
         m_RotationOrder: 0
   - name_: "\u3082\u308D\u3068\u3082\u7206\u7834\u30D5\u30A1\u30A4\u30A2"
-    power_: 400
+    power_: 1300
     gcd_: 1.2
     cd_: 15
     comboKeep_: 0
