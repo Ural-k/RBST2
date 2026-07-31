@@ -15,7 +15,7 @@ public class PlayerVariable : NetworkBehaviour
     protected const float DOWN_TIME             = 5.0f;
     protected const float ACTIVE_COMBO_SECOND   = 3.0f;
 
-    [SerializeField] protected int debugJobChangeNumber_;//デバッグ用
+    [SerializeField] public int debugJobChangeNumber_;//デバッグ用
     [SerializeField] protected BetaPlayerIcon playerIcon_;
     [SerializeField] protected PlayerInfo info_;
 

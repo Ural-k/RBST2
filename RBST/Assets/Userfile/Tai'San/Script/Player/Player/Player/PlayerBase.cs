@@ -34,7 +34,6 @@ public class PlayerBase : PlayerSkill, IDamageable, IToEnemyDamageAble//Avatar
 
         if (transform.position != result)
         {
-            Debug.Log("a");
             animator_.SetTrigger(IS_MOVING_HASH);
         }
         else 

@@ -9,9 +9,9 @@ public class Player : PlayerBase
     private void Update()
     {
         PlayerMove();
-#if UNITY_EDITOR
         info_.JobChange(debugJobChangeNumber_);//“r’†‚ÅƒWƒ‡ƒu‚ğ•Ï‚¦‚½‚Æ‚«‚ÌØ‚è‘Ö‚¦
-#endif
+//#if UNITY_EDITOR
+//#endif
     }
 
     public void InputAttack1(InputAction.CallbackContext context)
