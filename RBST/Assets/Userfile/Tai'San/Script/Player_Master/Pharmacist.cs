@@ -6,7 +6,7 @@ using DG.Tweening;
 /// </summary>
 public class Pharmacist : TestPlayerBase
 {
-    int amaunt_;
+    int amaunt_;//écó ?
     Potion potion_;
     enum Potion
     {
@@ -21,14 +21,13 @@ public class Pharmacist : TestPlayerBase
         var demo = TestSkill.Instance.GetHitEnemy(Vector2.zero, 3);
         switch (potion_)
         {
-            case Potion.Water:
-                break;
             case Potion.Power:
                 break;
             case Potion.Heal:
                 break;
             case Potion.Poison:
                 break;
+            default: break;//êÖ
         }
     }
     protected override void Skill2()

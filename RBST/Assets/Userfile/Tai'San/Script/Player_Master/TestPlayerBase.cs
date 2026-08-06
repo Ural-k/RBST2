@@ -12,11 +12,22 @@ public abstract class TestPlayerBase : MonoBehaviour,ITestTargetCircle
     protected const float MOVE_SCREEN_Y = 4.8f;
     private const float TARGET_RADIUS = 0.1f;
 
+    /* アニメーション */
+    [SerializeField]
+    protected Animator animator_;
+
+    /* スキル */
+    private List<List<float>> cd_;
+    private int nowCombo_;
+    private float gcd_;
+
+    /* ステータス */
     [SerializeField]
     protected TestParameter parameter_;
-    private Dictionary<float, int> cdCombo_;
     private Vector2 moveAxis_;
-    float gcd_;
+
+    protected int IS_MOVING_HASH = Animator.StringToHash("IsMoving");
+
 
     /* プロパティ */
     public int HP { get { return parameter_.hp_; } set { parameter_.hp_ = value; } }
