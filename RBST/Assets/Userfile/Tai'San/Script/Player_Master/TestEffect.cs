@@ -6,6 +6,7 @@ using UnityEngine;
 /// </summary>
 public class TestEffect : MonoBehaviour
 {
+    public static TestEffect Instance { get; }
 
     public TestEffect()
     {
@@ -19,8 +20,9 @@ public class TestEffect : MonoBehaviour
     {
         while (true)
         {
+            yield return new WaitForSeconds(1.0f);
 
-            yield return new WaitForSeconds(1.0f);//１秒ごと更新
+            
         }
     }
 }

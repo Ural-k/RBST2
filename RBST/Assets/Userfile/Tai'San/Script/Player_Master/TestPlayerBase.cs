@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -7,6 +8,54 @@ using UnityEngine.InputSystem;
 /// </summary>
 public abstract class TestPlayerBase : MonoBehaviour,ITestTargetCircle
 {
+    /* バフ・デバフ */
+    private readonly List<Effect> _activeBuffs = new();
+    private float _tickTimer;
+
+    public event Action<Effect> OnBuffApplied;
+    public event Action<Effect> OnBuffRemoved;
+
+    public void AddEffect(EffectData data)
+    {
+        var existing = _activeBuffs.Find(b => b.Data.buffId == data.buffId);
+        if (existing != null && data.isStackable)
+        {
+            existing.StackCount = Mathf.Min(existing.StackCount + 1, data.maxStack);
+            existing.RemainingTime = data.duration; // リフレッシュ
+            return;
+        }
+
+        var instance = new Effect { Data = data, RemainingTime = data.duration, Target = GetComponent<TestPlayerBase>() };
+        _activeBuffs.Add(instance);
+        foreach (var effect in data.effects) effect.OnApply(instance);
+        OnBuffApplied?.Invoke(instance);
+    }
+
+    public void TakeDamage(float f) { }
+
+    public void TickEffect()
+    {
+        _tickTimer += Time.deltaTime;
+        if (_tickTimer < 1f) return;
+        _tickTimer -= 1f;
+
+        for (int i = _activeBuffs.Count - 1; i >= 0; --i)
+        {
+            var buff = _activeBuffs[i];
+            buff.RemainingTime -= 1f;
+            foreach (var effect in buff.Data.effects) effect.OnTick(buff);
+
+            if (buff.IsExpired)
+            {
+                foreach (var effect in buff.Data.effects) effect.OnRemove(buff);
+                OnBuffRemoved?.Invoke(buff);
+                _activeBuffs.RemoveAt(i);
+            }
+        }
+    }
+
+
+
     /* スクリーン制限範囲 */
     protected const float MOVE_SCREEN_X = 8.8f;
     protected const float MOVE_SCREEN_Y = 4.8f;

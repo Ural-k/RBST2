@@ -21,7 +21,6 @@ public struct PlayerInfo
     [HideInInspector] public int            filip_;
     [HideInInspector] public float          downTime_;
     [HideInInspector] public int            lastInput_;
-    [HideInInspector] public Effect         effect_;
     [HideInInspector] public SpriteRenderer avatar_;
 
     /// <summary>
