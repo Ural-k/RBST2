@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Effect : MonoBehaviour
 {
-    public EffectData Data;
-    public float RemainingTime;
-    public int StackCount = 1;
-    public TestPlayerBase Target;
+    public EffectData data_;
+    public float remainingTime_;
+    public int stackCount_ = 1;
+    public ITestTargetCircle target_;
 
-    public bool IsExpired => RemainingTime <= 0;
+    public bool IsExpired => remainingTime_ <= 0;
 }

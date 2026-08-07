@@ -9,52 +9,48 @@ using UnityEngine.InputSystem;
 public abstract class TestPlayerBase : MonoBehaviour,ITestTargetCircle
 {
     /* バフ・デバフ */
-    private readonly List<Effect> _activeBuffs = new();
-    private float _tickTimer;
+    private readonly List<Effect> activeBuffs_ = new();
+    private float tickTimer_;
 
     public event Action<Effect> OnBuffApplied;
     public event Action<Effect> OnBuffRemoved;
 
-    public void AddEffect(EffectData data)
+    void ITestTargetCircle.AddEffect(EffectData data)
     {
-        var existing = _activeBuffs.Find(b => b.Data.buffId == data.buffId);
-        if (existing != null && data.isStackable)
+        var existing = activeBuffs_.Find(b => b.data_.id_ == data.id_);
+        if (existing != null && data.maxStack_ > 1)
         {
-            existing.StackCount = Mathf.Min(existing.StackCount + 1, data.maxStack);
-            existing.RemainingTime = data.duration; // リフレッシュ
+            existing.stackCount_ = Mathf.Min(existing.stackCount_ + 1, data.maxStack_);
+            existing.remainingTime_ = data.tickTime_; // リフレッシュ
             return;
         }
 
-        var instance = new Effect { Data = data, RemainingTime = data.duration, Target = GetComponent<TestPlayerBase>() };
-        _activeBuffs.Add(instance);
-        foreach (var effect in data.effects) effect.OnApply(instance);
+        var instance = new Effect { data_ = data, remainingTime_ = data.tickTime_, target_ = GetComponent<TestPlayerBase>() };
+        activeBuffs_.Add(instance);
+        foreach (var effect in data.effects_) effect.OnApply(instance);
         OnBuffApplied?.Invoke(instance);
     }
 
-    public void TakeDamage(float f) { }
-
     public void TickEffect()
     {
-        _tickTimer += Time.deltaTime;
-        if (_tickTimer < 1f) return;
-        _tickTimer -= 1f;
+        tickTimer_ += Time.deltaTime;
+        if (tickTimer_ < 1f) return;
+        tickTimer_ -= 1f;
 
-        for (int i = _activeBuffs.Count - 1; i >= 0; --i)
+        for (int i = activeBuffs_.Count - 1; i >= 0; --i)
         {
-            var buff = _activeBuffs[i];
-            buff.RemainingTime -= 1f;
-            foreach (var effect in buff.Data.effects) effect.OnTick(buff);
+            var buff = activeBuffs_[i];
+            buff.remainingTime_ -= 1f;
+            foreach (var effect in buff.data_.effects_) effect.OnTick(buff);
 
             if (buff.IsExpired)
             {
-                foreach (var effect in buff.Data.effects) effect.OnRemove(buff);
+                foreach (var effect in buff.data_.effects_) effect.OnRemove(buff);
                 OnBuffRemoved?.Invoke(buff);
-                _activeBuffs.RemoveAt(i);
+                activeBuffs_.RemoveAt(i);
             }
         }
     }
-
-
 
     /* スクリーン制限範囲 */
     protected const float MOVE_SCREEN_X = 8.8f;
@@ -77,7 +73,6 @@ public abstract class TestPlayerBase : MonoBehaviour,ITestTargetCircle
 
     protected int IS_MOVING_HASH = Animator.StringToHash("IsMoving");
 
-
     /* プロパティ */
     public int HP { get { return parameter_.hp_; } set { parameter_.hp_ = value; } }
 
@@ -91,7 +86,8 @@ public abstract class TestPlayerBase : MonoBehaviour,ITestTargetCircle
     public void InputSkill3(InputAction.CallbackContext context) { if (context.performed) Skill3(); }
 
     float ITestTargetCircle.GetTargetRadius() { return TARGET_RADIUS; }
-    void ITestTargetCircle.SabHitPoint(int point) { HP -= point; }
+    void ITestTargetCircle.TakeDamage(float point) { HP -= (int)point; }
+    void ITestTargetCircle.TakeHeal(float point) { HP += (int)point; }
 
     /// <summary>
     /// 移動入力
