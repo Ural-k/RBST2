@@ -15,9 +15,7 @@ public class EffectData : ScriptableObject
     public int stackPower_;
     public int maxStack_ = 1;
 
-    [Header("発動間隔")]
-    public float tickTime_ = 5f;
-
-    [Header("効果内容")]
+    [Header("効果")]
+    public EffectType type_;
     [SerializeReference, SubclassSelector] public List<IEffect> effects_ = new();
 }

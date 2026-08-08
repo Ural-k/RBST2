@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,26 +10,48 @@ using UnityEngine.InputSystem;
 public abstract class TestPlayerBase : MonoBehaviour,ITestTargetCircle
 {
     /* バフ・デバフ */
-    private readonly List<Effect> activeBuffs_ = new();
+    private readonly List<Effect> activeEffect_ = new();
     private float tickTimer_;
 
     public event Action<Effect> OnBuffApplied;
     public event Action<Effect> OnBuffRemoved;
 
-    void ITestTargetCircle.AddEffect(EffectData data)
+    void ITestTargetCircle.AddEffect(EffectData data, int time)
     {
-        var existing = activeBuffs_.Find(b => b.data_.id_ == data.id_);
-        if (existing != null && data.maxStack_ > 1)
+        Debug.Log("AddEffect");
+        var effect = activeEffect_.Find(n => n.data_.id_ == data.id_);
+        if (effect != null && data.maxStack_ > 1)
         {
-            existing.stackCount_ = Mathf.Min(existing.stackCount_ + 1, data.maxStack_);
-            existing.remainingTime_ = data.tickTime_; // リフレッシュ
+            effect.stackCount_ = Mathf.Min(effect.stackCount_ + 1, data.maxStack_);
+            effect.timer_ = time;
             return;
         }
 
-        var instance = new Effect { data_ = data, remainingTime_ = data.tickTime_, target_ = GetComponent<TestPlayerBase>() };
-        activeBuffs_.Add(instance);
-        foreach (var effect in data.effects_) effect.OnApply(instance);
+        var instance = new Effect { data_ = data, timer_ = time, target_ = GetComponent<ITestTargetCircle>() };
+        activeEffect_.Add(instance);
+        foreach (var e in data.effects_) e.OnApply(instance);
         OnBuffApplied?.Invoke(instance);
+    }
+
+    void ITestTargetCircle.RemoveEffect(EffectData data)
+    {
+        var effect = activeEffect_.Find(n => n.data_.id_ == data.id_);
+        if (effect == null) { Debug.Log("なし"); return; }
+
+        foreach (var e in data.effects_) e.OnRemove(effect);
+        OnBuffRemoved?.Invoke(effect);
+        activeEffect_.Remove(effect);
+    }
+
+    void ITestTargetCircle.RemoveEffect(int num)
+    {
+        for (int i = 0; i < num; ++i)
+        {
+            var effect = activeEffect_.OrderByDescending(n => n.timer_).First();//秒数の多い方から解除
+            foreach (var e in effect.data_.effects_) e.OnRemove(effect);
+            OnBuffRemoved?.Invoke(effect);
+            activeEffect_.Remove(effect);
+        }
     }
 
     public void TickEffect()
@@ -37,17 +60,17 @@ public abstract class TestPlayerBase : MonoBehaviour,ITestTargetCircle
         if (tickTimer_ < 1f) return;
         tickTimer_ -= 1f;
 
-        for (int i = activeBuffs_.Count - 1; i >= 0; --i)
+        for (int i = activeEffect_.Count - 1; i >= 0; --i)
         {
-            var buff = activeBuffs_[i];
-            buff.remainingTime_ -= 1f;
+            var buff = activeEffect_[i];
+            buff.timer_ -= 1f;
             foreach (var effect in buff.data_.effects_) effect.OnTick(buff);
 
-            if (buff.IsExpired)
+            if (buff.timer_ <= 0)
             {
                 foreach (var effect in buff.data_.effects_) effect.OnRemove(buff);
                 OnBuffRemoved?.Invoke(buff);
-                activeBuffs_.RemoveAt(i);
+                activeEffect_.RemoveAt(i);
             }
         }
     }
@@ -86,7 +109,7 @@ public abstract class TestPlayerBase : MonoBehaviour,ITestTargetCircle
     public void InputSkill3(InputAction.CallbackContext context) { if (context.performed) Skill3(); }
 
     float ITestTargetCircle.GetTargetRadius() { return TARGET_RADIUS; }
-    void ITestTargetCircle.TakeDamage(float point) { HP -= (int)point; }
+    void ITestTargetCircle.TakeDamage(float point) { HP -= (int)point; Debug.Log($"TakeDamage : {point}"); }
     void ITestTargetCircle.TakeHeal(float point) { HP += (int)point; }
 
     /// <summary>
@@ -101,19 +124,14 @@ public abstract class TestPlayerBase : MonoBehaviour,ITestTargetCircle
 
     private void Awake() => PlayerManager.AddPlayer(new Player());
 
-    private void Update() => transform.position =
+    private void Update()
+    {
+        transform.position =
         new Vector2(
             Mathf.Clamp(transform.position.x + moveAxis_.x, -MOVE_SCREEN_X, MOVE_SCREEN_X),
             Mathf.Clamp(transform.position.y + moveAxis_.y, -MOVE_SCREEN_Y, MOVE_SCREEN_Y)
         );
-}
 
-[System.Serializable]
-public struct TestParameter
-{
-    public int hp_;
-    public int maxHp_;
-    public int atk_;
-    public int def_;
-    public int spd_;
+        TickEffect();
+    }
 }

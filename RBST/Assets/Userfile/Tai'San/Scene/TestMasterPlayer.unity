@@ -563,6 +563,121 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!1001 &1199561295
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4408120803341017641, guid: a7fb1078ec2bf5248b3588570051881a, type: 3}
+      propertyPath: m_Name
+      value: Player_Pharmacist
+      objectReference: {fileID: 0}
+    - target: {fileID: 6337857113509736316, guid: a7fb1078ec2bf5248b3588570051881a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.75487
+      objectReference: {fileID: 0}
+    - target: {fileID: 6337857113509736316, guid: a7fb1078ec2bf5248b3588570051881a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.08824
+      objectReference: {fileID: 0}
+    - target: {fileID: 6337857113509736316, guid: a7fb1078ec2bf5248b3588570051881a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6337857113509736316, guid: a7fb1078ec2bf5248b3588570051881a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6337857113509736316, guid: a7fb1078ec2bf5248b3588570051881a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6337857113509736316, guid: a7fb1078ec2bf5248b3588570051881a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6337857113509736316, guid: a7fb1078ec2bf5248b3588570051881a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6337857113509736316, guid: a7fb1078ec2bf5248b3588570051881a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6337857113509736316, guid: a7fb1078ec2bf5248b3588570051881a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6337857113509736316, guid: a7fb1078ec2bf5248b3588570051881a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8106800065050998550, guid: a7fb1078ec2bf5248b3588570051881a, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a7fb1078ec2bf5248b3588570051881a, type: 3}
+--- !u!114 &1199561296 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4921738195759874970, guid: a7fb1078ec2bf5248b3588570051881a, type: 3}
+  m_PrefabInstance: {fileID: 1199561295}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c3c1445294c01e40ab435c3773fcf0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Pharmacist
+--- !u!1 &1338115266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1338115267}
+  - component: {fileID: 1338115268}
+  m_Layer: 0
+  m_Name: DemoManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1338115267
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338115266}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1338115268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1338115266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8ce03871e33ff243a7c5d3b56329e5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemoPlayerManager
+  player_: {fileID: 1199561296}
+  effectData_: {fileID: 11400000, guid: 619a6cfd6bb276e4593ae2f9c4af2646, type: 2}
 --- !u!1 &1358185158
 GameObject:
   m_ObjectHideFlags: 0
@@ -844,3 +959,5 @@ SceneRoots:
   - {fileID: 125134798}
   - {fileID: 166365121}
   - {fileID: 69536302}
+  - {fileID: 1199561295}
+  - {fileID: 1338115267}

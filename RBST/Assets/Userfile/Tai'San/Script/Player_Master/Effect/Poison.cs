@@ -1,14 +1,13 @@
 using System;
 
 [Serializable]
-public class AttackDeltaTime : IEffect
+public class DamageDeltaTime : IEffect
 {
     public float damagePerTick_ = 5f;
     public void OnApply(Effect i) { }
-    public void OnTick(Effect i) => i.target_.TakeDamage(damagePerTick_ * i.stackCount_);
+    public void OnTick(Effect i) => i.target_.TakeDamage(50);
     public void OnRemove(Effect i) { }
 }
-
 
 [Serializable]
 public class AttackUpEffect : IEffect
