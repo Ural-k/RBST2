@@ -7,12 +7,10 @@ using UnityEngine;
 /// </summary>
 public class TestSkill : MonoBehaviour
 {
-    private static TestSkill instance_ = new TestSkill();
-    public static TestSkill Instance { get { return instance_; } }
+    public static TestSkill Instance { get; }
 
-    /*
-     *  範囲取得
-     */
+    /* ↓↓↓範囲取得↓↓↓ */
+
     /// <summary>
     /// 一番近い敵中心の範囲に当たった敵の取得
     /// </summary>
@@ -37,7 +35,7 @@ public class TestSkill : MonoBehaviour
     /// <param name="radius">半径</param>
     public Transform[] GetHitEnemy(Vector2 center, float radius)
     {
-        if (true/*EnemyManager.GetAllEnemyListCount() != 0*/)
+        if (EnemyManager.GetAllEnemyListCount() != 0)
         {
             List<Transform> target = new List<Transform>();
             for (int i = 0; i < EnemyManager.GetAllEnemyListCount(); ++i) target.Add(EnemyManager.GetEnemy(i).gameObject.transform);
@@ -80,15 +78,4 @@ public class TestSkill : MonoBehaviour
         else return null;
 
     }
-
-
-}
-
-interface Defence
-{
-    /// <summary>
-    /// ダメージを与える
-    /// </summary>
-    /// <param name="point">ダメージ量</param>
-    void DamageAble(int point);
 }

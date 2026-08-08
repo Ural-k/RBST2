@@ -1,6 +1,5 @@
-using UnityEngine;
 
-public class Effect : MonoBehaviour
+public class EffectController
 {
     public EffectData data_;
     public float timer_;

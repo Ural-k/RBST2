@@ -1,7 +1,17 @@
 
 public interface IEffect
 {
-    void OnApply(Effect instance);
-    void OnTick(Effect instance);
-    void OnRemove(Effect instance);
+    /// <summary>
+    /// 付与時の呼び出し
+    /// </summary>
+    void OnApply(EffectController instance);
+    /// <summary>
+    /// 毎秒の呼び出し
+    /// </summary>
+    /// <param name="instance"></param>
+    void OnTick(EffectController instance);
+    /// <summary>
+    /// 解除時の呼び出し
+    /// </summary>
+    void OnRemove(EffectController instance);
 }

@@ -1,6 +1,10 @@
+using UnityEngine;
+using System.Collections.Generic;
 
 public interface ITestTargetCircle
 {
+    List<EffectController> ActiveEffect { get; set; }
+
     /// <summary>
     /// ターゲットサークルの半径の取得
     /// </summary>

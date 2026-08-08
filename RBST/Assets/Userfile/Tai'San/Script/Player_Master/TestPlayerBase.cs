@@ -10,15 +10,16 @@ using UnityEngine.InputSystem;
 public abstract class TestPlayerBase : MonoBehaviour,ITestTargetCircle
 {
     /* バフ・デバフ */
-    private readonly List<Effect> activeEffect_ = new();
+    List<EffectController> ITestTargetCircle.ActiveEffect { get; set; }
+
+    private readonly List<EffectController> activeEffect_ = new();
     private float tickTimer_;
 
-    public event Action<Effect> OnBuffApplied;
-    public event Action<Effect> OnBuffRemoved;
+    public event Action<EffectController> OnBuffApplied;
+    public event Action<EffectController> OnBuffRemoved;
 
     void ITestTargetCircle.AddEffect(EffectData data, int time)
     {
-        Debug.Log("AddEffect");
         var effect = activeEffect_.Find(n => n.data_.id_ == data.id_);
         if (effect != null && data.maxStack_ > 1)
         {
@@ -27,33 +28,37 @@ public abstract class TestPlayerBase : MonoBehaviour,ITestTargetCircle
             return;
         }
 
-        var instance = new Effect { data_ = data, timer_ = time, target_ = GetComponent<ITestTargetCircle>() };
+        var instance = new EffectController { data_ = data, timer_ = time, target_ = GetComponent<ITestTargetCircle>() };
         activeEffect_.Add(instance);
         foreach (var e in data.effects_) e.OnApply(instance);
         OnBuffApplied?.Invoke(instance);
     }
-
     void ITestTargetCircle.RemoveEffect(EffectData data)
     {
-        var effect = activeEffect_.Find(n => n.data_.id_ == data.id_);
-        if (effect == null) { Debug.Log("なし"); return; }
+        var effect = activeEffect_.FirstOrDefault(n => n.data_.id_ == data.id_);
+        if (effect == null) { return; }
 
-        foreach (var e in data.effects_) e.OnRemove(effect);
+        foreach (var e in effect.data_.effects_) e.OnRemove(effect);
         OnBuffRemoved?.Invoke(effect);
         activeEffect_.Remove(effect);
     }
-
     void ITestTargetCircle.RemoveEffect(int num)
     {
         for (int i = 0; i < num; ++i)
         {
-            var effect = activeEffect_.OrderByDescending(n => n.timer_).First();//秒数の多い方から解除
-            foreach (var e in effect.data_.effects_) e.OnRemove(effect);
-            OnBuffRemoved?.Invoke(effect);
-            activeEffect_.Remove(effect);
+            var debuf = activeEffect_.Where(n => n.data_.type_ == EffectType.Debuff).ToList();  //デバフのみ
+            if(debuf.Count != 0)
+            {
+                var effect = debuf?.OrderByDescending(n => n.timer_).First();                        //秒数の多い方から解除
+                if (effect != null)
+                {
+                    foreach (var e in effect.data_.effects_) e.OnRemove(effect);
+                    OnBuffRemoved?.Invoke(effect);
+                    activeEffect_.Remove(effect);
+                }
+            }
         }
     }
-
     public void TickEffect()
     {
         tickTimer_ += Time.deltaTime;
@@ -62,14 +67,14 @@ public abstract class TestPlayerBase : MonoBehaviour,ITestTargetCircle
 
         for (int i = activeEffect_.Count - 1; i >= 0; --i)
         {
-            var buff = activeEffect_[i];
-            buff.timer_ -= 1f;
-            foreach (var effect in buff.data_.effects_) effect.OnTick(buff);
+            var effect = activeEffect_[i];
+            effect.timer_ -= 1f;
+            foreach (var e in effect.data_.effects_) e.OnTick(effect);
 
-            if (buff.timer_ <= 0)
+            if (effect.timer_ <= 0)
             {
-                foreach (var effect in buff.data_.effects_) effect.OnRemove(buff);
-                OnBuffRemoved?.Invoke(buff);
+                foreach (var e in effect.data_.effects_) e.OnRemove(effect);
+                OnBuffRemoved?.Invoke(effect);
                 activeEffect_.RemoveAt(i);
             }
         }
@@ -122,7 +127,11 @@ public abstract class TestPlayerBase : MonoBehaviour,ITestTargetCircle
         moveAxis_ *= parameter_.spd_ * Time.deltaTime;
     }
 
-    private void Awake() => PlayerManager.AddPlayer(new Player());
+    private void Start()
+    {
+        PlayerManager.AddPlayer(new Player());
+        InputManager.Instance.onMove_ += Move;
+    }
 
     private void Update()
     {
