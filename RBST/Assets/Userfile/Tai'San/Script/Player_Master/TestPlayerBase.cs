@@ -10,8 +10,6 @@ using UnityEngine.InputSystem;
 public abstract class TestPlayerBase : MonoBehaviour,ITestTargetCircle
 {
     /* バフ・デバフ */
-    List<EffectController> ITestTargetCircle.ActiveEffect { get; set; }
-
     private readonly List<EffectController> activeEffect_ = new();
     private float tickTimer_;
 

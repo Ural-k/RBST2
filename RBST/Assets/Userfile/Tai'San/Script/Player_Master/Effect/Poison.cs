@@ -5,7 +5,7 @@ public class DamageDeltaTime : IEffect
 {
     public float damagePerTick_ = 5f;
     public void OnApply(EffectController i) { }
-    public void OnTick(EffectController i) => i.target_.TakeDamage(50);
+    public void OnTick(EffectController i) => i.target_.TakeDamage(i.data_.initalPower_ + (i.stackCount_ - 1) * i.data_.stackPower_);
     public void OnRemove(EffectController i) { }
 }
 
