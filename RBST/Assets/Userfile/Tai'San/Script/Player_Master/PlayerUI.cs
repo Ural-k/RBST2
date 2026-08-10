@@ -22,10 +22,8 @@ public class PlayerUI : MonoBehaviour
 
     private void Start()
     {
-        player_.OnBuffApplied += AddEffect;
-        player_.OnBuffRemoved += RemoveEffect;
-
-
+        player_.Effect.OnBuffApplied += AddEffect;
+        player_.Effect.OnBuffRemoved += RemoveEffect;
     }
 
     /// <summary>

@@ -1,23 +1,31 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DemoPlayerManager : MonoBehaviour
 {
     [SerializeField] TestPlayerBase player_;
     [SerializeField] EffectData effectData_;
+    [SerializeField] Text debugUI_;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            player_.GetComponent<ITestTargetCircle>().AddEffect(effectData_, 20);
+            player_.Effect.AddEffect(effectData_, 20);
         }
         if (Input.GetKeyDown(KeyCode.O))
         {
-            player_.GetComponent<ITestTargetCircle>().RemoveEffect(1);
+            player_.Effect.RemoveEffect(5);
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
-            player_.GetComponent<ITestTargetCircle>().RemoveEffect(effectData_);
+            player_.Effect.RemoveEffect(effectData_);
         }
+
+        string debug = "NULL";
+        debug = "[効果一覧]\n";
+        foreach (var active in player_.Effect.GetActive) debug += $"{active.data_.name_} : {active.timer_}\n";
+
+        debugUI_.text = debug;
     }
 }
