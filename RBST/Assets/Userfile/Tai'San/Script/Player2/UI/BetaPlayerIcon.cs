@@ -26,13 +26,13 @@ public class BetaPlayerIcon : MonoBehaviour
 
     private void Update()
     {
-        foreach (var help in coolTimeHelp1_) 
-        { help.fillAmount = player_.GetInfo.skill1_.cd_ != 0 ? player_.GetInfo.skill1_.cd_ / helpTime1_ : player_.GetInfo.gcd_ / gcdTime_; }
-        foreach (var help in coolTimeHelp2_) 
-        { help.fillAmount = player_.GetInfo.skill2_.cd_ != 0 ? player_.GetInfo.skill2_.cd_ / helpTime2_ : player_.GetInfo.gcd_ / gcdTime_; }
-        foreach (var help in coolTimeHelp3_) 
-        { help.fillAmount = player_.GetInfo.skill3_.cd_ != 0 ? player_.GetInfo.skill3_.cd_ / helpTime3_ : player_.GetInfo.gcd_ / gcdTime_; }
-        gcdTimer_ = Mathf.Max(gcdTimer_ - Time.deltaTime, 0);
+        //foreach (var help in coolTimeHelp1_) 
+        //{ help.fillAmount = player_.GetInfo.skill1_.cd_ != 0 ? player_.GetInfo.skill1_.cd_ / helpTime1_ : player_.GetInfo.gcd_ / gcdTime_; }
+        //foreach (var help in coolTimeHelp2_) 
+        //{ help.fillAmount = player_.GetInfo.skill2_.cd_ != 0 ? player_.GetInfo.skill2_.cd_ / helpTime2_ : player_.GetInfo.gcd_ / gcdTime_; }
+        //foreach (var help in coolTimeHelp3_) 
+        //{ help.fillAmount = player_.GetInfo.skill3_.cd_ != 0 ? player_.GetInfo.skill3_.cd_ / helpTime3_ : player_.GetInfo.gcd_ / gcdTime_; }
+        //gcdTimer_ = Mathf.Max(gcdTimer_ - Time.deltaTime, 0);
     }
 
     float NanIsZero(float num)

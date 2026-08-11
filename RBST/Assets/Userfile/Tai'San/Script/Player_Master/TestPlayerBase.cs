@@ -1,49 +1,55 @@
-using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 /// <summary>
-/// β版以降に使用したいプレイヤーベース
+/// マスター版に使用したいプレイヤーベース(ローカル)
 /// </summary>
-public abstract class TestPlayerBase : MonoBehaviour,ITestTargetCircle
+public abstract class Player : MonoBehaviour,ITestTargetCircle
 {
-    /* バフ・デバフ */
-    public Effect Effect { get; set; }
-
-    /* スクリーン制限範囲 */
+    /* 移動範囲 */
     protected const float MOVE_SCREEN_X = 8.8f;
     protected const float MOVE_SCREEN_Y = 4.8f;
-    private const float TARGET_RADIUS = 0.1f;
 
-    /* アニメーション */
-    [SerializeField]
-    protected Animator animator_;
-
-    /* スキル */
-    private List<List<float>> cd_;
-    private int nowCombo_;
-    private float gcd_;
-
-    /* ステータス */
-    public float CircleRadius { get; set; } = 0.1f;
-    [SerializeField]
-    protected TestParameter parameter_;
-    private Vector2 moveAxis_;
+    [SerializeField] protected TestParameter parameter_;
+    [SerializeField] protected Animator animator_;
 
     protected int IS_MOVING_HASH = Animator.StringToHash("IsMoving");
+    protected int[] nowCombo_ = new int[2];
+    protected float gcd_;
+    protected float[] cd_;
+    private Vector2 moveAxis_;
 
-    /* プロパティ */
-    public int HP { get { return parameter_.hp_; } set { parameter_.hp_ = value; } }
+    public TestParameter Parameter { get { return parameter_; } set { parameter_ = value; } }
+    public Effect Effect { get; set; }
+    public float Radius { get; set; } = 0.1f;
 
     private void Start()
     {
-        Effect = new Effect(this);
-        InputManager.Instance.onMove_ += Move;
-        PlayerManager.AddPlayer(new Player());
+        Effect = new(this);
+        InputManager.Instance.OnMove_ += Move;
+        InputManager.Instance.OnSkill1_ += InputSkill1;
+        InputManager.Instance.OnSkill2_ += InputSkill2;
+        InputManager.Instance.OnSkill3_ += InputSkill3;
+        PlayerManager.AddPlayer(this);
+        ParticleManager.InstanceLoad();//超仮(範囲表示)
+    }
+
+    /* 入力 */
+    public void InputSkill1(InputValue value) { if (value.isPressed && gcd_ <= 0 && cd_[0] <= 0) Skill1(); }
+    public void InputSkill2(InputValue value) { if (value.isPressed && gcd_ <= 0 && cd_[1] <= 0) Skill2(); }
+    public void InputSkill3(InputValue value) { if (value.isPressed && gcd_ <= 0 && cd_[2] <= 0) Skill3(); }
+    public void Move(InputValue value)
+    {
+        moveAxis_ = value.Get<Vector2>();
+        moveAxis_ *= parameter_.spd_ * Time.deltaTime;
     }
 
     private void Update()
     {
+        gcd_ = Mathf.Max(gcd_ - Time.deltaTime, 0);
+        for (int i = 0; i < cd_.Count(); ++i) 
+            cd_[i] = Mathf.Max(cd_[i] - Time.deltaTime, 0);
         transform.position =
         new Vector2(
             Mathf.Clamp(transform.position.x + moveAxis_.x, -MOVE_SCREEN_X, MOVE_SCREEN_X),
@@ -53,25 +59,11 @@ public abstract class TestPlayerBase : MonoBehaviour,ITestTargetCircle
         Effect.TickEffect();
     }
 
-    protected abstract void Skill1();
-    protected abstract void Skill2();
-    protected abstract void Skill3();
+    protected abstract void Skill1(int s = 0);
+    protected abstract void Skill2(int s = 1);
+    protected abstract void Skill3(int s = 2);
 
-    /* 入力 */
-    public void InputSkill1(InputAction.CallbackContext context) { if (context.performed) Skill1(); }
-    public void InputSkill2(InputAction.CallbackContext context) { if (context.performed) Skill2(); }
-    public void InputSkill3(InputAction.CallbackContext context) { if (context.performed) Skill3(); }
-
-    void ITestTargetCircle.TakeDamage(float point) { HP -= (int)point; Debug.Log($"TakeDamage : {point}"); }
-    void ITestTargetCircle.TakeHeal(float point) { HP += (int)point; }
-
-    /// <summary>
-    /// 移動入力
-    /// </summary>
-    /// <param name="context"></param>
-    public void Move(InputAction.CallbackContext context)
-    {
-        moveAxis_ = context.ReadValue<Vector2>();
-        moveAxis_ *= parameter_.spd_ * Time.deltaTime;
-    }
+    Vector2 ITestTargetCircle.GetPosition => transform.position;
+    void ITestTargetCircle.TakeDamage(int point) { parameter_.hp_ -= point; }
+    void ITestTargetCircle.TakeHeal(int point) { parameter_.hp_ += point; }
 }

@@ -4,7 +4,7 @@ using UnityEngine.Pool;
 
 public class PlayerUI : MonoBehaviour
 {
-    [SerializeField] private TestPlayerBase player_;
+    [SerializeField] private Player player_;
     private Dictionary<Sprite, Sprite> buff_;
     private Dictionary<Sprite, Sprite> debuff_;
 

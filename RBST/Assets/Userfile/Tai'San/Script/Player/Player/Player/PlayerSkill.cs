@@ -53,7 +53,7 @@ public class PlayerSkill : PlayerVariable
         List<Transform> hitResult;
 
         /*
-         :  GCD・CDチェック
+         :  GCD・CDチェックx
          */
         if (GCDChecker() || inputInfo.cd_ != 0) return inputInfo;
 
@@ -62,23 +62,23 @@ public class PlayerSkill : PlayerVariable
         info_.lastInput_ = input;
 
         /*
-         :  現在のコンボに応じたのスキル情報の取得
+         :  現在のコンボに応じたのスキル情報の取得x
          */
         skillData = skillDataArray[inputInfo.nowCombo_];
 
         /*
-         :  GCD更新
+         :  GCD更新x
          */
         info_.gcd_ = skillData.gcd_;
         playerIcon_.SetGCD(skillData.gcd_);
 
         /*
-         :  攻撃対象になりえるオブジェクトを取得(ENEMY or PLAYER)
+         :  攻撃対象になりえるオブジェクトを取得(ENEMY or PLAYER)o
          */
         targetList = GetTarget(skillData.targetType_);
 
         /*
-         :  空振り
+         :  空振りo
          */
         if (targetList.Count == 0)
         {
@@ -88,32 +88,32 @@ public class PlayerSkill : PlayerVariable
         }
 
         /*
-         :  攻撃座標の取得
+         :  攻撃座標の取得x
          */
         targetPos = GetTargetPos(skillData, targetList);
 
         /*
-         :  ヒット結果(範囲内)
+         :  ヒット結果(範囲内)o
          */
         hitResult = GetHit(skillData, targetList, targetPos);
 
         /*
-         :  パーティクルの生成 (メモ:ここでビーム系攻撃か円形かなどで向きが変わるからenumとかで攻撃形状を把握できるようにする)
+         :  パーティクルの生成 (メモ:ここでビーム系攻撃か円形かなどで向きが変わるからenumとかで攻撃形状を把握できるようにする)x
          */
         ParticleManager.Instance.SpawnParticle(skillData, targetPos, transform.position, info_.filip_);
 
         /*
-         :  ターゲットサークルヘ結果を送る ※TargetCircle->EnemyControll
+         :  ターゲットサークルヘ結果を送る ※TargetCircle->EnemyControllx
          */
         foreach (Transform tf in hitResult) if (tf.GetComponent<TargetCircle>()) tf.GetComponent<IToEnemyDamageAble>().DamageAble(GetDamage(skillData));
 
         /*
-         :  モーション処理
+         :  モーション処理x
          */
         if (skillData.motion_.time_ != 0) StartCoroutine(MotionCoroutine(skillData.motion_, targetPos));
 
         /*
-         :  CD・コンボ情報の戻り値
+         :  CD・コンボ情報の戻り値x
          */
         info_.activeCombo_ = ACTIVE_COMBO_SECOND;
         InputSkillInfo result = new InputSkillInfo { cd_ = skillData.cd_, nowCombo_ = inputInfo.nowCombo_ + 1 >= skillDataArray.Count() ? 0 : inputInfo.nowCombo_ + 1 };

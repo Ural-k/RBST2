@@ -2,6 +2,9 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// １つのPlayerInputコンポーネントと併用
+/// </summary>
 public class InputManager : MonoBehaviour
 {
     private static InputManager instance_;
@@ -9,16 +12,16 @@ public class InputManager : MonoBehaviour
 
     private void Awake() => instance_ = this;
 
-    public event Action<InputAction.CallbackContext> onMove_;
-    public event Action<InputAction.CallbackContext> onSkill1_;
-    public event Action<InputAction.CallbackContext> onSkill2_;
-    public event Action<InputAction.CallbackContext> onSkill3_;
-    public event Action<InputAction.CallbackContext> onInteract_;
+    public event Action<InputValue> OnMove_;
+    public event Action<InputValue> OnSkill1_;
+    public event Action<InputValue> OnSkill2_;
+    public event Action<InputValue> OnSkill3_;
+    public event Action<InputValue> OnInteract_;
 
     //メモ：ネット対応させるとき、ここにIsMine入れるといいかも
-    public void OnMove(InputAction.CallbackContext context)     => onMove_?.Invoke(context);
-    public void OnSkill1(InputAction.CallbackContext context)   => onSkill1_?.Invoke(context);
-    public void OnSkill2(InputAction.CallbackContext context)   => onSkill2_?.Invoke(context);
-    public void OnSkill3(InputAction.CallbackContext context)   => onSkill3_?.Invoke(context);
-    public void OnInteract(InputAction.CallbackContext context) => onInteract_?.Invoke(context);
+    private void OnMove(InputValue value)     => instance_.OnMove_?.Invoke(value);
+    private void OnSkill1(InputValue value)   => instance_.OnSkill1_?.Invoke(value);
+    private void OnSkill2(InputValue value)   => instance_.OnSkill2_?.Invoke(value);
+    private void OnSkill3(InputValue value)   => instance_.OnSkill3_?.Invoke(value);
+    private void OnInteract(InputValue value) => instance_.OnInteract_?.Invoke(value);
 }

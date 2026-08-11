@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 /// <summary>
 /// “ü—Í
 /// </summary>
-public class Player : PlayerBase
+public class LegacyPlayer : PlayerBase
 {
     private void Update()
     {

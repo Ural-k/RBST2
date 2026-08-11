@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class DemoPlayerManager : MonoBehaviour
 {
-    [SerializeField] TestPlayerBase player_;
+    [SerializeField] Player player_;
     [SerializeField] EffectData effectData_;
     [SerializeField] Text debugUI_;
 
