@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 
 /// <summary>
@@ -17,8 +18,8 @@ public class Skill
     /// <returns>敵がいない場合xに第２引数を足した値を返す</returns>
     public static Vector2 GetNearEnemy(Vector2 from, float distance = 0)
     {
-        var pos = EnemyManager.GetAllEnemy().OrderBy(n => Vector2.Distance(from, n.transform.position)).FirstOrDefault().gameObject.transform.position;
-        return pos == null ? new Vector2(pos.x + distance, pos.y) : pos;
+        if (EnemyManager.GetAllEnemyListCount() == 0) return new Vector2(from.x + distance, from.y);
+        else return EnemyManager.GetAllEnemy().OrderBy(n => Vector2.Distance(from, n.transform.position)).FirstOrDefault().gameObject.transform.position;
     }
 
     /// <summary>
@@ -28,7 +29,7 @@ public class Skill
     /// <param name="damage">ダメージ</param>
     public static void TakeDamage(ITestTargetCircle[] target, int damage)
     {
-        foreach (var t in target) { t.TakeDamage(damage); }
+        if(target != null) foreach (var t in target) { t.TakeDamage(damage); }
     }
 
     /// <summary>
@@ -42,13 +43,16 @@ public class Skill
         {
             List<ITestTargetCircle> target = new List<ITestTargetCircle>();
             for (int i = 0; i < EnemyManager.GetAllEnemyListCount(); ++i) target.Add(EnemyManager.GetEnemy(i).GetComponent<ITestTargetCircle>());
-            ParticleManager.Instance.SpawnParticleCircle(center, radius, 500, 1);
             return target.Where(n => 
                 Mathf.Pow((n.GetPosition.x - center.x) / (radius.x + n.Radius), 2) +
                 Mathf.Pow((n.GetPosition.y - center.y) / (radius.y + n.Radius), 2) <= 1f
             ).ToArray();
         }
-        else return null;
+        else
+        {
+            ParticleManager.Instance.SpawnParticleCircle(center, radius, 500, 1);
+            return null;
+        }
     }
     /// <summary>
     /// 指定した範囲内の敵を取得する

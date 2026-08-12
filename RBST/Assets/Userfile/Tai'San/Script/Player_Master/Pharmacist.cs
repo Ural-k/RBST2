@@ -9,7 +9,15 @@ public class Pharmacist : Player
 {
     //UIはここ
     int amaunt_;//残量?
-    int potion_;
+    Potion potion_;
+    enum Potion
+    {
+        Water,
+        Attack,
+        Heal,
+        Nostrum,//秘薬
+        Count
+    }
     /* 0.水
      * [1~9は攻撃系]
      * 1.一発攻撃
@@ -38,37 +46,53 @@ public class Pharmacist : Player
 
     protected override async void Skill1(int s)
     {
-        int potion = potion_;
-        Vector2 pos = Skill.GetNearEnemy(transform.position, 3);
+        //Vector2 pos = Skill.GetNearEnemy(transform.position, Distance(3));
 
-        await Task.Delay(700);//0.7秒
-        
-        Skill.TakeDamage(Skill.GetHitEnemy(pos, 3), 30);
-        switch (potion)
-        {
-            case 0://水
+        //await Task.Delay(500);//0.5秒
 
-                break;
-        }
+        //Skill.TakeDamage(Skill.GetHitEnemy(pos, 3), 30);
     }
 
-
-
-
-
-
-
-
-    protected override void Skill2(int s)
+    /*
+     * 1.攻撃系のポーションをランダムに調合する。このスキルは他のコンボを中断しない
+     * 2.「残量」をすべて消費して大瓶を投擲する。ポーションの種類によって威力と効果が変わる
+     * 
+     */
+    protected override async void Skill2(int s)
     {
+        if (IsGCDCD(s)) return;
+        gcd_ = 3.0f;
         switch (nowCombo_[s])
         {
             case 0:
-                //potion_ = GetRandomEnum<Potion>();
+                if (potion_ == Potion.Water)
+                {
+                    potion_ = (Potion)Random.Range((int)Potion.Water + 1, (int)Potion.Count - 1);
+                    ++nowCombo_[s];
+                }
+                else
+                {
+                    //別のスキルに変換
+                }
+                break;
+            case 1:
+                switch (potion_)
+                {
+                    case Potion.Attack:
+                        var pos = Skill.GetNearEnemy(transform.position, 3);
+                        await Task.Delay(500);
+                        Skill.TakeDamage(Skill.GetHitEnemy(pos, 3), 1000);
+                        break;
+                    case Potion.Heal:
+                        break;
+                    case Potion.Nostrum:
+                        break;
+                }
                 break;
         }
     }
-    protected override void Skill3(int s)
+
+    protected override async void Skill3(int s)
     {
         
     }

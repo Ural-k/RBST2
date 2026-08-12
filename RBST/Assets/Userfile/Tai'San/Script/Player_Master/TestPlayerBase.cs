@@ -17,12 +17,16 @@ public abstract class Player : MonoBehaviour,ITestTargetCircle
     protected int IS_MOVING_HASH = Animator.StringToHash("IsMoving");
     protected int[] nowCombo_ = new int[2];
     protected float gcd_;
-    protected float[] cd_;
+    protected float[] cd_ = new float[3];
     private Vector2 moveAxis_;
+    private Vector2 lastAxis_;
 
     public TestParameter Parameter { get { return parameter_; } set { parameter_ = value; } }
     public Effect Effect { get; set; }
     public float Radius { get; set; } = 0.1f;
+    //‘½•ª‰¼‚Q‚Â(UI‚Å‚µ‚©g‚í‚È‚¢‰Â”\«‚ª‚ ‚é)«
+    public float GetGCD { get { return gcd_; } }
+    public float[] GetCD { get { return cd_; } }
 
     private void Start()
     {
@@ -36,25 +40,25 @@ public abstract class Player : MonoBehaviour,ITestTargetCircle
     }
 
     /* “ü—Í */
-    public void InputSkill1(InputValue value) { if (value.isPressed && gcd_ <= 0 && cd_[0] <= 0) Skill1(); }
-    public void InputSkill2(InputValue value) { if (value.isPressed && gcd_ <= 0 && cd_[1] <= 0) Skill2(); }
-    public void InputSkill3(InputValue value) { if (value.isPressed && gcd_ <= 0 && cd_[2] <= 0) Skill3(); }
-    public void Move(InputValue value)
-    {
-        moveAxis_ = value.Get<Vector2>();
-        moveAxis_ *= parameter_.spd_ * Time.deltaTime;
-    }
+    public void InputSkill1(InputValue value) { if (value.isPressed) Skill1(); }
+    public void InputSkill2(InputValue value) { if (value.isPressed) Skill2(); }
+    public void InputSkill3(InputValue value) { if (value.isPressed) Skill3(); }
+    public void Move(InputValue value) => moveAxis_ = value.Get<Vector2>();
 
     private void Update()
     {
         gcd_ = Mathf.Max(gcd_ - Time.deltaTime, 0);
-        for (int i = 0; i < cd_.Count(); ++i) 
-            cd_[i] = Mathf.Max(cd_[i] - Time.deltaTime, 0);
-        transform.position =
-        new Vector2(
-            Mathf.Clamp(transform.position.x + moveAxis_.x, -MOVE_SCREEN_X, MOVE_SCREEN_X),
-            Mathf.Clamp(transform.position.y + moveAxis_.y, -MOVE_SCREEN_Y, MOVE_SCREEN_Y)
-        );
+        for (int i = 0; i < cd_.Count(); ++i) cd_[i] = Mathf.Max(cd_[i] - Time.deltaTime, 0);
+        if(moveAxis_ != Vector2.zero)
+        {
+            var move = parameter_.spd_ * Time.deltaTime * moveAxis_;
+            lastAxis_ = moveAxis_;
+            transform.position =
+            new Vector2(
+                Mathf.Clamp(transform.position.x + move.x, -MOVE_SCREEN_X, MOVE_SCREEN_X),
+                Mathf.Clamp(transform.position.y + move.y, -MOVE_SCREEN_Y, MOVE_SCREEN_Y)
+            );
+        }
 
         Effect.TickEffect();
     }
@@ -62,6 +66,11 @@ public abstract class Player : MonoBehaviour,ITestTargetCircle
     protected abstract void Skill1(int s = 0);
     protected abstract void Skill2(int s = 1);
     protected abstract void Skill3(int s = 2);
+    protected float Distance(int d) { return Mathf.Sign(lastAxis_.x) * d; }
+    protected bool IsGCD() { return gcd_ > 0; }
+    protected bool IsCD(int s) { return cd_[s] > 0; }
+    protected bool IsGCDCD(int s) { return gcd_ > 0 && cd_[s] > 0; }
+    protected void ComboBreak(int s) { for (int i = 0; i < nowCombo_.Count(); ++i) if (i != s) nowCombo_[i] = 0; }
 
     Vector2 ITestTargetCircle.GetPosition => transform.position;
     void ITestTargetCircle.TakeDamage(int point) { parameter_.hp_ -= point; }
