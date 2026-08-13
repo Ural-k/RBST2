@@ -46,11 +46,14 @@ public class Pharmacist : Player
 
     protected override async void Skill1(int s)
     {
-        //Vector2 pos = Skill.GetNearEnemy(transform.position, Distance(3));
-
-        //await Task.Delay(500);//0.5ïb
-
-        //Skill.TakeDamage(Skill.GetHitEnemy(pos, 3), 30);
+        if (IsGCDCD(s)) return;
+        switch (potion_)
+        {
+            case Potion.Water:
+                gcd_ = 1.0f;
+                break;
+            default: Debug.Log("êÖà»äO"); break;
+        }
     }
 
     /*
@@ -61,13 +64,15 @@ public class Pharmacist : Player
     protected override async void Skill2(int s)
     {
         if (IsGCDCD(s)) return;
-        gcd_ = 3.0f;
         switch (nowCombo_[s])
         {
             case 0:
+                gcd_ = 3.0f;
+                cd_[s] = 5.0f;
                 if (potion_ == Potion.Water)
                 {
                     potion_ = (Potion)Random.Range((int)Potion.Water + 1, (int)Potion.Count - 1);
+                    Debug.Log("í≤çá");
                     ++nowCombo_[s];
                 }
                 else
@@ -76,18 +81,25 @@ public class Pharmacist : Player
                 }
                 break;
             case 1:
+                gcd_ = 1.0f;
+                cd_[s] = 3.0f;
                 switch (potion_)
                 {
                     case Potion.Attack:
                         var pos = Skill.GetNearEnemy(transform.position, 3);
                         await Task.Delay(500);
                         Skill.TakeDamage(Skill.GetHitEnemy(pos, 3), 1000);
+                        Debug.Log("P_Attack");
                         break;
                     case Potion.Heal:
+                        Debug.Log("P_Heal");
                         break;
                     case Potion.Nostrum:
+                        Debug.Log("P_Nostrum");
                         break;
                 }
+                potion_ = Potion.Water;
+                nowCombo_[s] = 0;
                 break;
         }
     }

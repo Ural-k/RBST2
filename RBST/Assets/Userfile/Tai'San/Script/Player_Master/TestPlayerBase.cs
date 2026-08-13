@@ -69,7 +69,7 @@ public abstract class Player : MonoBehaviour,ITestTargetCircle
     protected float Distance(int d) { return Mathf.Sign(lastAxis_.x) * d; }
     protected bool IsGCD() { return gcd_ > 0; }
     protected bool IsCD(int s) { return cd_[s] > 0; }
-    protected bool IsGCDCD(int s) { return gcd_ > 0 && cd_[s] > 0; }
+    protected bool IsGCDCD(int s) { return gcd_ > 0 || cd_[s] > 0; }
     protected void ComboBreak(int s) { for (int i = 0; i < nowCombo_.Count(); ++i) if (i != s) nowCombo_[i] = 0; }
 
     Vector2 ITestTargetCircle.GetPosition => transform.position;
