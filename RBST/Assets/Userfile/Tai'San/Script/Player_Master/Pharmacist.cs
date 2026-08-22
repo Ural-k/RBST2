@@ -51,8 +51,24 @@ public class Pharmacist : Player
         {
             case Potion.Water:
                 gcd_ = 1.0f;
+                var pos0 = Attack.GetNearEnemy(transform.position, 4);
+                await Task.Delay(500);
+                Attack.TakeDamage(Attack.GetHitEnemy(pos0, 1), 1);//DPS 1
                 break;
-            default: Debug.Log("水以外"); break;
+
+            case Potion.Attack:
+                gcd_ = 0.5f;
+                var pos1 = Attack.GetNearEnemy(transform.position, 4);
+                await Task.Delay(350);
+                Attack.TakeDamage(Attack.GetHitEnemy(pos1, 1), 130);//DPS 230
+                break;
+
+            case Potion.Heal:
+                gcd_ = 0.5f;
+                var pos2 = Attack.GetNearPlayer(transform.position);
+                await Task.Delay(350);
+                Attack.TakeHeal(Attack.GetHitPlayer(pos2, 1), 60);//+60
+                break;
         }
     }
 
@@ -66,37 +82,37 @@ public class Pharmacist : Player
         if (IsGCDCD(s)) return;
         switch (nowCombo_[s])
         {
-            case 0:
+            case 0://コンボ０
                 gcd_ = 3.0f;
                 cd_[s] = 5.0f;
                 if (potion_ == Potion.Water)
                 {
                     potion_ = (Potion)Random.Range((int)Potion.Water + 1, (int)Potion.Count - 1);
-                    Debug.Log("調合");
                     ++nowCombo_[s];
-                }
-                else
-                {
-                    //別のスキルに変換
+                    Debug.Log(potion_);
                 }
                 break;
-            case 1:
+
+            case 1://コンボ１
                 gcd_ = 1.0f;
                 cd_[s] = 3.0f;
                 switch (potion_)
                 {
                     case Potion.Attack:
-                        var pos = Skill.GetNearEnemy(transform.position, 3);
+                        var pos1 = Attack.GetNearEnemy(transform.position, 5);
                         await Task.Delay(500);
-                        Skill.TakeDamage(Skill.GetHitEnemy(pos, 3), 1000);
-                        Debug.Log("P_Attack");
+                        Attack.TakeDamage(Attack.GetHitEnemy(pos1, 4), 1000);
                         break;
+
                     case Potion.Heal:
-                        Debug.Log("P_Heal");
+                        var pos2 = (Vector2)transform.position;
+                        await Task.Delay(500);
+                        Attack.TakeHeal(Attack.GetHitPlayer(pos2, 4), 700);
                         break;
+
                     case Potion.Nostrum:
-                        Debug.Log("P_Nostrum");
                         break;
+
                 }
                 potion_ = Potion.Water;
                 nowCombo_[s] = 0;
@@ -106,6 +122,8 @@ public class Pharmacist : Player
 
     protected override async void Skill3(int s)
     {
+        if (IsGCDCD(s)) return;
+        var hit = Attack.GetHitPlayer(transform.position, 4);
         
     }
 }

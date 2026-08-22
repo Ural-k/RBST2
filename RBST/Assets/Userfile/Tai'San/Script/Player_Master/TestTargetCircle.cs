@@ -19,12 +19,14 @@ public interface ITestTargetCircle
     /// <summary>
     /// ダメージを与える
     /// </summary>
-    /// <param name="point">変動する値</param>
-    abstract void TakeDamage(int damage);
+    /// <param name="damage">攻撃する値</param>
+    /// <param name="from">与えた側</param>
+    abstract void TakeDamage(int damage, ITestTargetCircle from = null);
 
     /// <summary>
-    /// 回復を与える
+    /// 回復する
     /// </summary>
-    /// <param name="point"></param>
-    abstract void TakeHeal(int point);
+    /// <param name="heal">回復させる値</param>
+    /// <param name="from">与えた側</param>
+    abstract void TakeHeal(int heal, ITestTargetCircle from = null);
 }

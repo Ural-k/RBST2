@@ -21,11 +21,11 @@ MonoBehaviour:
   maxStack_: 5
   type_: 1
   effects_:
-  - rid: 3714922323457605737
+  - rid: 4406639537623138397
   references:
     version: 2
     RefIds:
-    - rid: 3714922323457605737
-      type: {class: DamageDeltaTime, ns: , asm: Assembly-CSharp}
+    - rid: 4406639537623138397
+      type: {class: TakeDamageDeltaTime, ns: , asm: Assembly-CSharp}
       data:
         damagePerTick_: 5

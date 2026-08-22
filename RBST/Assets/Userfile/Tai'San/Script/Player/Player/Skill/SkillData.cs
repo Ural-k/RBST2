@@ -21,7 +21,7 @@ public struct SkillData
     public bool         comboKeep_;
 
     [Header("ターゲット")]
-    public TargetType   targetType_;
+    public EntityType   targetType_;
     public SkillShape   shape_;
     public Vector2      offset_;
     public Vector2      scale_;

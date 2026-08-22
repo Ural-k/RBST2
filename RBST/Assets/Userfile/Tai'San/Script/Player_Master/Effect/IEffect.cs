@@ -18,8 +18,10 @@ public interface IEffect
     void OnRemove(EffectController instance);
 }
 
+//----------------------------------------------------------------------------------------------------------------------------------
+
 [Serializable]
-public class DamageDeltaTime : IEffect
+public class TakeDamageDeltaTime : IEffect
 {
     public float damagePerTick_ = 5f;
     public void OnApply(EffectController i) { }
@@ -28,10 +30,9 @@ public class DamageDeltaTime : IEffect
 }
 
 [Serializable]
-public class AttackUpEffect : IEffect
+public class TakeHealDeltaTime : IEffect
 {
-    public float multiplier_ = 1.2f;
-    public void OnApply(EffectController i) => i.target_.TakeDamage(5 * i.stackCount_);
-    public void OnTick(EffectController i) { }
-    public void OnRemove(EffectController i) => i.target_.TakeDamage(5 * i.stackCount_);
+    public void OnApply(EffectController i) { }
+    public void OnTick(EffectController i) => i.target_.TakeHeal(i.data_.initalPower_ + (i.stackCount_ - 1) * i.data_.stackPower_);
+    public void OnRemove(EffectController i) { }
 }

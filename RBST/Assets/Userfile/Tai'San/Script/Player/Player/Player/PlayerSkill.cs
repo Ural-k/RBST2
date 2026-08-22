@@ -154,20 +154,20 @@ public class PlayerSkill : PlayerVariable
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        List<Transform> GetTarget(TargetType type)
+        List<Transform> GetTarget(EntityType type)
         {
             List<Transform> list = new List<Transform>();
             switch (type)
             {
-                case TargetType.Enemy:
+                case EntityType.Enemy:
                     if(EnemyManager.GetAllEnemyListCount() != 0)
                         for (int i = 0; i < EnemyManager.GetAllEnemyListCount(); ++i) list.Add(EnemyManager.GetEnemy(i).gameObject.transform);
                     break;
-                case TargetType.Player:
+                case EntityType.Player:
                     if(PlayerManager.GetAllPlayerListCount() != 0) 
                         for (int i = 0; i < PlayerManager.GetAllPlayerListCount(); ++i) list.Add(PlayerManager.GetPlayer(i).gameObject.transform);
                     break;
-                case TargetType.Natural:
+                case EntityType.Natural:
                     if (EnemyManager.GetAllEnemyListCount() != 0) 
                         for (int i = 0; i < EnemyManager.GetAllEnemyListCount(); ++i) list.Add(EnemyManager.GetEnemy(i).gameObject.transform);
                     if (PlayerManager.GetAllPlayerListCount() != 0) 

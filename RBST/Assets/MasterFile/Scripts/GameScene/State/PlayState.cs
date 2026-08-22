@@ -77,7 +77,7 @@ public class PlayState : IGameState
         }
     }
 
-    public void Exit() 
+    public void Exit()
     {
         EnemyManager.AllDestroyEnemy();
         GameUIManager.Instance.Hide(UIType.Play);

@@ -34,7 +34,8 @@ public class GameObjectManager : MonoBehaviour
     }
     public void CreatePharmacist()
     {
-        Instantiate(pharmacist_).GetComponent<Player>();
+        Player ins = Instantiate(pharmacist_).GetComponent<Player>();
+        PlayerManager.AddPlayer(ins);
     }
     public void CreateSword()
     {

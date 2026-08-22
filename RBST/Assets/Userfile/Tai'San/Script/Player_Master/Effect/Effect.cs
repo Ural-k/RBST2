@@ -14,8 +14,8 @@ public class Effect : MonoBehaviour
     private float tickTimer_;
     private ITestTargetCircle target_;
 
-    public event Action<EffectController> OnBuffApplied;
-    public event Action<EffectController> OnBuffRemoved;
+    public event Action<EffectController> OnEffectAdd;
+    public event Action<EffectController> OnEffectRemove;
     public List<EffectController> GetActive { get { return active_; } }
 
     /// <summary>
@@ -36,7 +36,7 @@ public class Effect : MonoBehaviour
         var instance = new EffectController { data_ = data, timer_ = time, target_ = target_ };
         active_.Add(instance);
         foreach (var e in data.effects_) e.OnApply(instance);
-        OnBuffApplied?.Invoke(instance);
+        OnEffectAdd?.Invoke(instance);
     }
 
     /// <summary>
@@ -49,7 +49,7 @@ public class Effect : MonoBehaviour
         if (effect == null) { return; }
 
         foreach (var e in effect.data_.effects_) e.OnRemove(effect);
-        OnBuffRemoved?.Invoke(effect);
+        OnEffectRemove?.Invoke(effect);
         active_.Remove(effect);
     }
 
@@ -66,7 +66,7 @@ public class Effect : MonoBehaviour
 
             var effect = debuf?.OrderByDescending(n => n.timer_).First();                        //秒数の多い方から解除
             foreach (var e in effect.data_.effects_) e.OnRemove(effect);
-            OnBuffRemoved?.Invoke(effect);
+            OnEffectRemove?.Invoke(effect);
             active_.Remove(effect);
         }
     }
@@ -89,7 +89,7 @@ public class Effect : MonoBehaviour
             if (effect.timer_ <= 0)
             {
                 foreach (var e in effect.data_.effects_) e.OnRemove(effect);
-                OnBuffRemoved?.Invoke(effect);
+                OnEffectRemove?.Invoke(effect);
                 active_.RemoveAt(i);
             }
         }

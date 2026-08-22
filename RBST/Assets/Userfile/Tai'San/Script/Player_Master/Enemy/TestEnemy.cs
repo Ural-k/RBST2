@@ -9,12 +9,12 @@ public class TestEnemy : MonoBehaviour, ITestTargetCircle
     public float Radius { get; set; } = 1;
     public Effect Effect { get; set; }
 
-    void ITestTargetCircle.TakeDamage(int damage)
+    void ITestTargetCircle.TakeDamage(int damage, ITestTargetCircle from)
     {
         hp_ -= damage;
     }
 
-    void ITestTargetCircle.TakeHeal(int point)
+    void ITestTargetCircle.TakeHeal(int point, ITestTargetCircle from)
     {
         hp_ += point;
     }
@@ -22,6 +22,5 @@ public class TestEnemy : MonoBehaviour, ITestTargetCircle
     private void Start()
     {
         Effect = new(this);
-        
     }
 }

@@ -11,8 +11,8 @@ public abstract class Player : MonoBehaviour,ITestTargetCircle
     protected const float MOVE_SCREEN_X = 8.8f;
     protected const float MOVE_SCREEN_Y = 4.8f;
 
-    [SerializeField] protected TestParameter parameter_;
     [SerializeField] protected Animator animator_;
+    [SerializeField] protected TestParameter parameter_;
 
     protected int IS_MOVING_HASH = Animator.StringToHash("IsMoving");
     protected int[] nowCombo_ = new int[2];
@@ -73,6 +73,6 @@ public abstract class Player : MonoBehaviour,ITestTargetCircle
     protected void ComboBreak(int s) { for (int i = 0; i < nowCombo_.Count(); ++i) if (i != s) nowCombo_[i] = 0; }
 
     Vector2 ITestTargetCircle.GetPosition => transform.position;
-    void ITestTargetCircle.TakeDamage(int point) { parameter_.hp_ -= point; }
-    void ITestTargetCircle.TakeHeal(int point) { parameter_.hp_ += point; }
+    void ITestTargetCircle.TakeDamage(int point,ITestTargetCircle from) { parameter_.hp_ -= point; }
+    void ITestTargetCircle.TakeHeal(int point, ITestTargetCircle from) { parameter_.hp_ += point; }
 }

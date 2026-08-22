@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 /// <summary>
 /// １つのPlayerInputコンポーネントと併用
+/// 設定は Send Messages
 /// </summary>
 public class InputManager : MonoBehaviour
 {
