@@ -50,17 +50,6 @@ public class JobData : ScriptableObject
 }
 
 /*
- :  攻撃対象
- */
-public enum TargetType
-{
-    Enemy,
-    Player,
-    Natural,
-    Null
-}
-
-/*
  :  スキルタイプ
  */
 public enum SkillShape

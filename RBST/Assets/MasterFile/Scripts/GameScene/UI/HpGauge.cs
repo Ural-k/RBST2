@@ -69,7 +69,7 @@ public class HpGauge : MonoBehaviour
 
         
         SetVisible(true);
-        SetHp(player.GetInfo.parameter_.HP, player.GetInfo.parameter_.maxHp_);
+        SetHp(player.Parameter.hp_, player.Parameter.maxHp_);
     }
 
     private void SetHp(float hp, float maxHp)
@@ -90,6 +90,7 @@ public class HpGauge : MonoBehaviour
         if (!hideWhenTargetMissing_) return;
         if (hpSlider_ == null) return;
 
-        hpSlider_.gameObject.SetActive(visible);
+        if (!visible) hpSlider_.value = 0;
+        //hpSlider_.gameObject.SetActive(visible);
     }
 }

@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
+#if false
 
 public class PlayerDebugText : MonoBehaviour
 {
     private readonly int targetPleyer_ = 0;
     private Text text_;
     private Player player_;
-    
     private void Start() { TryGetComponent(out text_); }
     private void Update()
     {
@@ -32,3 +32,4 @@ public class PlayerDebugText : MonoBehaviour
         }
     }
 }
+#endif

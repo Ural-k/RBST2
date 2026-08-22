@@ -10,19 +10,18 @@ public struct PlayerInfo
 {
     [SerializeField] public Parameter parameter_;
 
-    [HideInInspector] public float          gcd_;
-    [HideInInspector] public InputSkillInfo skill1_;
-    [HideInInspector] public InputSkillInfo skill2_;
-    [HideInInspector] public InputSkillInfo skill3_;
-    [HideInInspector] public float          activeCombo_;
-    [HideInInspector] public JobData        jobData_;
-    [HideInInspector] public InputAction    inputAxis_;
-    [HideInInspector] public Vector2        lastFace_;
-    [HideInInspector] public int            filip_;
-    [HideInInspector] public float          downTime_;
-    [HideInInspector] public int            lastInput_;
-    [HideInInspector] public Effect         effect_;
-    [HideInInspector] public SpriteRenderer avatar_;
+    [HideInInspector] public float          gcd_;//o
+    [HideInInspector] public InputSkillInfo skill1_;//↓まとめる
+    [HideInInspector] public InputSkillInfo skill2_;//
+    [HideInInspector] public InputSkillInfo skill3_;//--------
+    [HideInInspector] public float          activeCombo_;//x
+    [HideInInspector] public JobData        jobData_;//要らない
+    [HideInInspector] public InputAction    inputAxis_;//o
+    [HideInInspector] public Vector2        lastFace_;//要らない
+    [HideInInspector] public int            filip_;//x
+    [HideInInspector] public float          downTime_;//x
+    [HideInInspector] public int            lastInput_;//要らない
+    [HideInInspector] public SpriteRenderer avatar_;//x
 
     /// <summary>
     /// 初期化

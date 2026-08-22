@@ -74,7 +74,7 @@ public class DemoTimer : MonoBehaviour
     {
         if (timerText_ != null)
         {
-            timerText_.text = $"êßå¿éûä‘{((int)currentTime_ / 60)}:{((int)currentTime_ % 60).ToString("00")}";
+            timerText_.text = $"Limit{((int)currentTime_ / 60)}:{((int)currentTime_ % 60).ToString("00")}";
         }
 
         if (timerSlider_ != null)

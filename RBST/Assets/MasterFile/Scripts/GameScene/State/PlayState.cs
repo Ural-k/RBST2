@@ -1,8 +1,11 @@
 using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayState : IGameState
 {
+    [SerializeField] Text text_;
     private EnemyControl enemyControl_;
     private IGameState nextState_;
     private int playerCount_;
@@ -10,7 +13,7 @@ public class PlayState : IGameState
     public void Enter()
     {
         playerCount_ = PlayerManager.GetAllPlayerListCount();
-        enemyControl_ = GameObjectManager.Instance.CreateEnemy();
+        enemyControl_ = GameObjectManager.Instance.CreateEnemy1();
         GameUIManager.Instance.Activate(UIType.Play);
         playUI_ = GameUIManager.Instance.GetPlayUI();
         nextState_ = new ResultState();
@@ -18,6 +21,7 @@ public class PlayState : IGameState
         DemoTimer.Instance.StartTimer();
     }
 
+    private int demoNowEnemy_ = 0;
     // Update is called once per frame
     public void Update()
     {
@@ -31,7 +35,35 @@ public class PlayState : IGameState
         //ï°êîêÌçÏê¨éûçƒí≤êÆ
         if (enemyControl_.HP <= 0)
         {
-            Clear();
+            DemoTimer.Instance.StopTimer();
+            EnemyManager.AllDestroyEnemy();
+            switch (demoNowEnemy_)
+            {
+                case 0:
+                    if (Input.GetKeyDown(KeyCode.Return))
+                    {
+                        ++demoNowEnemy_;
+                        enemyControl_ = GameObjectManager.Instance.CreateEnemy2();
+                        DemoTimer.Instance.ResetTimer();
+                        DemoTimer.Instance.StartTimer();
+                    }
+                    break;
+                case 1:
+                    if (Input.GetKeyDown(KeyCode.Return))
+                    {
+                        ++demoNowEnemy_;
+                        enemyControl_ = GameObjectManager.Instance.CreateEnemy3();
+                        DemoTimer.Instance.ResetTimer();
+                        DemoTimer.Instance.StartTimer();
+                    }
+                    break;
+                case 2:
+                    Clear();
+                    break;
+            }
+
+
+            //Clear();
         }
 
         //ëhê∂çÏê¨å„çƒí≤êÆ
@@ -45,7 +77,7 @@ public class PlayState : IGameState
         }
     }
 
-    public void Exit() 
+    public void Exit()
     {
         EnemyManager.AllDestroyEnemy();
         GameUIManager.Instance.Hide(UIType.Play);

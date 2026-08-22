@@ -1,0 +1,204 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63e646a36da3154498af4ceb5384ffad, type: 3}
+  m_Name: 1_Sword
+  m_EditorClassIdentifier: Assembly-CSharp::JobData
+  jobName_: "\u5263\u8853\u5E2B"
+  skill1_:
+  - name_: "\u30B4\u30A2\u30B9\u30E9\u30C3\u30B7\u30E5"
+    power_: 200
+    gcd_: 1
+    cd_: 0
+    comboKeep_: 0
+    targetType_: 0
+    shape_: 1
+    offset_: {x: 0, y: 0}
+    scale_: {x: 2, y: 2}
+    toTarget_: 0
+    subSkill_: {fileID: 0}
+    motion_:
+      time_: 0.5
+      speed_: 4
+      jumpOn_: 0
+      jumpOrbit_:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+  - name_: "\u30A2\u30B4\u30D6\u30EC\u30FC\u30C9"
+    power_: 300
+    gcd_: 1
+    cd_: 0
+    comboKeep_: 0
+    targetType_: 0
+    shape_: 1
+    offset_: {x: 0, y: 0}
+    scale_: {x: 3, y: 3}
+    toTarget_: 0
+    subSkill_: {fileID: 0}
+    motion_:
+      time_: 0.5
+      speed_: 4
+      jumpOn_: 0
+      jumpOrbit_:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+  skill2_:
+  - name_: "\u6CE2\u52D5\u5263"
+    power_: 50
+    gcd_: 0.5
+    cd_: 0
+    comboKeep_: 0
+    targetType_: 0
+    shape_: 1
+    offset_: {x: 0, y: 0}
+    scale_: {x: 1.5, y: 1.5}
+    toTarget_: 1
+    subSkill_: {fileID: 0}
+    motion_:
+      time_: 0
+      speed_: 0
+      jumpOn_: 0
+      jumpOrbit_:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+  - name_: "\u9023\u7D9A\u5263"
+    power_: 50
+    gcd_: 0.5
+    cd_: 0
+    comboKeep_: 0
+    targetType_: 0
+    shape_: 0
+    offset_: {x: 0, y: 0}
+    scale_: {x: 1, y: 1}
+    toTarget_: 1
+    subSkill_: {fileID: 0}
+    motion_:
+      time_: 0.5
+      speed_: 7
+      jumpOn_: 0
+      jumpOrbit_:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+  - name_: "\u9023\u7D9A\u5263\u30FB\u7D42"
+    power_: 50
+    gcd_: 0.5
+    cd_: 5
+    comboKeep_: 0
+    targetType_: 0
+    shape_: 1
+    offset_: {x: 0, y: 0}
+    scale_: {x: 2, y: 2}
+    toTarget_: 1
+    subSkill_: {fileID: 0}
+    motion_:
+      time_: 0.5
+      speed_: 7
+      jumpOn_: 0
+      jumpOrbit_:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+  skill3_:
+  - name_: "\u7A81\u9032"
+    power_: 100
+    gcd_: 0.5
+    cd_: 0
+    comboKeep_: 1
+    targetType_: 0
+    shape_: 1
+    offset_: {x: 0, y: 0}
+    scale_: {x: 2, y: 2}
+    toTarget_: 1
+    subSkill_: {fileID: 0}
+    motion_:
+      time_: 0.2
+      speed_: 0
+      jumpOn_: 1
+      jumpOrbit_:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+  - name_: "\u30E9\u30A4\u30D5\u30B9\u30C6\u30A3\u30FC\u30EB"
+    power_: 444
+    gcd_: 2
+    cd_: 0
+    comboKeep_: 0
+    targetType_: 0
+    shape_: 0
+    offset_: {x: 0, y: 0}
+    scale_: {x: 1, y: 1}
+    toTarget_: 1
+    subSkill_: {fileID: 0}
+    motion_:
+      time_: 2
+      speed_: 2
+      jumpOn_: 0
+      jumpOrbit_:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+  - name_: "\u30C6\u30E9\u30B9\u30E9\u30C3\u30B7\u30E5"
+    power_: 1100
+    gcd_: 0.5
+    cd_: 10
+    comboKeep_: 0
+    targetType_: 0
+    shape_: 1
+    offset_: {x: 0, y: 0}
+    scale_: {x: 10, y: 10}
+    toTarget_: 0
+    subSkill_: {fileID: 0}
+    motion_:
+      time_: 3
+      speed_: 1
+      jumpOn_: 0
+      jumpOrbit_:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0

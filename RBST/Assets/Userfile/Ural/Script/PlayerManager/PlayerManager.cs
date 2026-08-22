@@ -79,7 +79,7 @@ public class PlayerManager : MonoBehaviour
 
     public static float GetPlayerHP(int i)
     {
-        return playerList_[i].GetInfo.parameter_.HP;
+        return playerList_[i].Parameter.hp_;
     }
 
 }

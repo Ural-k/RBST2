@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1983ebb17656e6c4da66f024bcee892e, type: 3}
+  m_Name: Reverse_Poison
+  m_EditorClassIdentifier: Assembly-CSharp::EffectData
+  id_: 201
+  name_: "\u518D\u751F"
+  icon_: {fileID: 8029502296853247326, guid: 90aa238e23860cb4985227230e1290a0, type: 3}
+  arrow_: {fileID: -7272636834755460426, guid: 90aa238e23860cb4985227230e1290a0, type: 3}
+  initalPower_: 50
+  stackPower_: 20
+  maxStack_: 5
+  type_: 0
+  effects_:
+  - rid: 4406639537623138396
+  references:
+    version: 2
+    RefIds:
+    - rid: 4406639537623138396
+      type: {class: TakeHealDeltaTime, ns: , asm: Assembly-CSharp}
+      data: 

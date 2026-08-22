@@ -31,8 +31,12 @@ public class PlayerSkill : PlayerVariable
             info_.skill1_.nowCombo_ = 0;
             info_.skill2_.nowCombo_ = 0;
             info_.skill3_.nowCombo_ = 0;
+            playerIcon_.ActiveIconAllReset();
+            playerIcon_.SetText1(info_.jobData_.GetSkill1()[0].name_);
+            playerIcon_.SetText2(info_.jobData_.GetSkill2()[0].name_);
+            playerIcon_.SetText3(info_.jobData_.GetSkill3()[0].name_);
         }
-        info = OnSkill(insInfo, data);
+        info = OnSkill(insInfo, data, input);
     }
 
     /// <summary>
@@ -41,7 +45,7 @@ public class PlayerSkill : PlayerVariable
     /// <param name="inputInfo">発動したいスキル</param>
     /// <param name="target">ターゲットを指定</param>
     /// <returns>CD・コンボ情報</returns>
-    public InputSkillInfo OnSkill(InputSkillInfo inputInfo, SkillData[] skillDataArray/*, Transform target = null*/)
+    public InputSkillInfo OnSkill(InputSkillInfo inputInfo, SkillData[] skillDataArray, int input)
     {
         SkillData skillData;
         List<Transform> targetList;
@@ -49,27 +53,32 @@ public class PlayerSkill : PlayerVariable
         List<Transform> hitResult;
 
         /*
-         :  GCD・CDチェック
+         :  GCD・CDチェックx
          */
         if (GCDChecker() || inputInfo.cd_ != 0) return inputInfo;
 
+        animator_.SetTrigger(ATTACK_HASH);
+
+        info_.lastInput_ = input;
+
         /*
-         :  現在のコンボに応じたのスキル情報の取得
+         :  現在のコンボに応じたのスキル情報の取得x
          */
         skillData = skillDataArray[inputInfo.nowCombo_];
 
         /*
-         :  GCD更新
+         :  GCD更新x
          */
         info_.gcd_ = skillData.gcd_;
+        playerIcon_.SetGCD(skillData.gcd_);
 
         /*
-         :  攻撃対象になりえるオブジェクトを取得(ENEMY or PLAYER)
+         :  攻撃対象になりえるオブジェクトを取得(ENEMY or PLAYER)o
          */
         targetList = GetTarget(skillData.targetType_);
 
         /*
-         :  空振り
+         :  空振りo
          */
         if (targetList.Count == 0)
         {
@@ -79,35 +88,51 @@ public class PlayerSkill : PlayerVariable
         }
 
         /*
-         :  攻撃座標の取得
+         :  攻撃座標の取得x
          */
         targetPos = GetTargetPos(skillData, targetList);
 
         /*
-         :  ヒット結果(範囲内)
+         :  ヒット結果(範囲内)o
          */
         hitResult = GetHit(skillData, targetList, targetPos);
 
         /*
-         :  パーティクルの生成 (メモ:ここでビーム系攻撃か円形かなどで向きが変わるからenumとかで攻撃形状を把握できるようにする)
+         :  パーティクルの生成 (メモ:ここでビーム系攻撃か円形かなどで向きが変わるからenumとかで攻撃形状を把握できるようにする)x
          */
         ParticleManager.Instance.SpawnParticle(skillData, targetPos, transform.position, info_.filip_);
 
         /*
-         :  ターゲットサークルヘ結果を送る ※TargetCircle->EnemyControll
+         :  ターゲットサークルヘ結果を送る ※TargetCircle->EnemyControllx
          */
         foreach (Transform tf in hitResult) if (tf.GetComponent<TargetCircle>()) tf.GetComponent<IToEnemyDamageAble>().DamageAble(GetDamage(skillData));
 
         /*
-         :  モーション処理
+         :  モーション処理x
          */
         if (skillData.motion_.time_ != 0) StartCoroutine(MotionCoroutine(skillData.motion_, targetPos));
 
         /*
-         :  CD・コンボ情報の戻り値
+         :  CD・コンボ情報の戻り値x
          */
         info_.activeCombo_ = ACTIVE_COMBO_SECOND;
-        return new InputSkillInfo { cd_ = skillData.cd_, nowCombo_ = inputInfo.nowCombo_ + 1 >= skillDataArray.Count() ? 0 : inputInfo.nowCombo_ + 1 };
+        InputSkillInfo result = new InputSkillInfo { cd_ = skillData.cd_, nowCombo_ = inputInfo.nowCombo_ + 1 >= skillDataArray.Count() ? 0 : inputInfo.nowCombo_ + 1 };
+        switch (input)
+        {
+            case INPUT_SKILL_ONE: 
+                playerIcon_.ActiveIcon1(result.nowCombo_, result.cd_); 
+                playerIcon_.SetText1(info_.jobData_.GetSkill1()[result.nowCombo_].name_); 
+                break;
+            case INPUT_SKILL_TWO: 
+                playerIcon_.ActiveIcon2(result.nowCombo_, result.cd_); 
+                playerIcon_.SetText2(info_.jobData_.GetSkill2()[result.nowCombo_].name_); 
+                break;
+            case INPUT_SKILL_THREE: 
+                playerIcon_.ActiveIcon3(result.nowCombo_, result.cd_); 
+                playerIcon_.SetText3(info_.jobData_.GetSkill3()[result.nowCombo_].name_); 
+                break;
+        }
+        return result;
 
 
         /*
@@ -129,20 +154,20 @@ public class PlayerSkill : PlayerVariable
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        List<Transform> GetTarget(TargetType type)
+        List<Transform> GetTarget(EntityType type)
         {
             List<Transform> list = new List<Transform>();
             switch (type)
             {
-                case TargetType.Enemy:
+                case EntityType.Enemy:
                     if(EnemyManager.GetAllEnemyListCount() != 0)
                         for (int i = 0; i < EnemyManager.GetAllEnemyListCount(); ++i) list.Add(EnemyManager.GetEnemy(i).gameObject.transform);
                     break;
-                case TargetType.Player:
+                case EntityType.Player:
                     if(PlayerManager.GetAllPlayerListCount() != 0) 
                         for (int i = 0; i < PlayerManager.GetAllPlayerListCount(); ++i) list.Add(PlayerManager.GetPlayer(i).gameObject.transform);
                     break;
-                case TargetType.Natural:
+                case EntityType.Natural:
                     if (EnemyManager.GetAllEnemyListCount() != 0) 
                         for (int i = 0; i < EnemyManager.GetAllEnemyListCount(); ++i) list.Add(EnemyManager.GetEnemy(i).gameObject.transform);
                     if (PlayerManager.GetAllPlayerListCount() != 0) 

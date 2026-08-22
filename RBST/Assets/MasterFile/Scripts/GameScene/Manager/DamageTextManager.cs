@@ -19,16 +19,17 @@ public class DamageTextManager : MonoBehaviour
 
     private void Awake()
     {
+        Instance = this;
         //ƒVƒ“ƒOƒ‹ƒgƒ“
-        if (Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        else
-        {
-            Instance = this;
-        }
+        //if (Instance != this)
+        //{
+        //    Destroy(gameObject);
+        //    return;
+        //}
+        //else
+        //{
+        //    Instance = this;
+        //}
     }
 
     /// <summary>

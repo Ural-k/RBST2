@@ -247,7 +247,7 @@ PrefabInstance:
     - target: {fileID: 5338505943673103611, guid: 57441cc463afb1e409ad3915eb3977c9, type: 3}
       propertyPath: 'atackStatus_.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 557148efc8d905c408ff110e5cbcbcbd, type: 2}
+      objectReference: {fileID: 11400000, guid: 0826641e4fb8d6640ac61b6ddc94c0b2, type: 2}
     - target: {fileID: 5338505943673103611, guid: 57441cc463afb1e409ad3915eb3977c9, type: 3}
       propertyPath: moveBehaviours_.Array.size
       value: 1

@@ -1,16 +1,17 @@
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 /// <summary>
 /// “ü—Í
 /// </summary>
-public class Player : PlayerBase
+public class LegacyPlayer : PlayerBase
 {
     private void Update()
     {
         PlayerMove();
-#if UNITY_EDITOR
         info_.JobChange(debugJobChangeNumber_);//“r’†‚ÅƒWƒ‡ƒu‚ğ•Ï‚¦‚½‚Æ‚«‚ÌØ‚è‘Ö‚¦
-#endif
+//#if UNITY_EDITOR
+//#endif
     }
 
     public void InputAttack1(InputAction.CallbackContext context)

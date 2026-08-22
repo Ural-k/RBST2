@@ -8,13 +8,12 @@ public class PlayerBase : PlayerSkill, IDamageable, IToEnemyDamageAble//Avatar
 {
     void Awake()
     {
-        PlayerManager.AddPlayer((Player)this);
+        //PlayerManager.AddPlayer((Player)this);
         ParticleManager.InstanceLoad();
     }
 
     private void Start()
     {
-        info_.effect_.GetAllBuff();
         info_.Initialize();
         StartCoroutine(CoolTimeCoroutine());
     }
@@ -31,6 +30,16 @@ public class PlayerBase : PlayerSkill, IDamageable, IToEnemyDamageAble//Avatar
                 Mathf.Clamp(transform.position.x + move_value.x, -MOVE_SCREEN_X, MOVE_SCREEN_X),
                 Mathf.Clamp(transform.position.y + move_value.y, -MOVE_SCREEN_Y, MOVE_SCREEN_Y)
             );
+
+        if (transform.position != result)
+        {
+            animator_.SetTrigger(IS_MOVING_HASH);
+        }
+        else 
+        {
+            animator_.ResetTrigger(IS_MOVING_HASH);
+        }
+
         transform.position = result;
     }
 

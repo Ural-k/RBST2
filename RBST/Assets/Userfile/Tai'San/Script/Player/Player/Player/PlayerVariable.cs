@@ -15,10 +15,22 @@ public class PlayerVariable : NetworkBehaviour
     protected const float DOWN_TIME             = 5.0f;
     protected const float ACTIVE_COMBO_SECOND   = 3.0f;
 
-    [SerializeField] protected int debugJobChangeNumber_;//デバッグ用
+    [SerializeField] public int debugJobChangeNumber_;//デバッグ用
+    [SerializeField] protected BetaPlayerIcon playerIcon_;
     [SerializeField] protected PlayerInfo info_;
 
-    protected Animation animation_;
+    [Header("アニメーション")]
+    [SerializeField]
+    protected Animator animator_;
+
+    protected static readonly int IS_MOVING_HASH
+    = Animator.StringToHash("IsMoving");
+
+    protected static readonly int ATTACK_HASH
+        = Animator.StringToHash("Attack");
+
+    protected static readonly int IDLE_HASH
+        = Animator.StringToHash("Idle");
 
     public PlayerInfo GetInfo { get { return info_; } }
 }
