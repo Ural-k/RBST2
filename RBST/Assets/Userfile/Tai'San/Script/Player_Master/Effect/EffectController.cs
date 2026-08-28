@@ -4,5 +4,5 @@ public class EffectController
     public EffectData data_;
     public float timer_;
     public int stackCount_ = 1;
-    public ITestTargetCircle target_;
+    public ITargetCircle target_;
 }

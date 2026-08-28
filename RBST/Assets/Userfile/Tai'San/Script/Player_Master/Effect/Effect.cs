@@ -8,11 +8,11 @@ using UnityEngine;
 /// </summary>
 public class Effect : MonoBehaviour
 {
-    public Effect(ITestTargetCircle targetCircle) => target_ = targetCircle;
+    public Effect(ITargetCircle targetCircle) => target_ = targetCircle;
 
     private List<EffectController> active_ = new();
     private float tickTimer_;
-    private ITestTargetCircle target_;
+    private ITargetCircle target_;
 
     public event Action<EffectController> OnEffectAdd;
     public event Action<EffectController> OnEffectRemove;

@@ -5,14 +5,15 @@ using UnityEngine.InputSystem;
 /// <summary>
 /// マスター版に使用したいプレイヤーベース(ローカル)
 /// </summary>
-public abstract class Player : MonoBehaviour,ITestTargetCircle
+public abstract class Player : MonoBehaviour,ITargetCircle
 {
     /* 移動範囲 */
     protected const float MOVE_SCREEN_X = 8.8f;
     protected const float MOVE_SCREEN_Y = 4.8f;
 
+    [SerializeField] private Color color_;
     [SerializeField] protected Animator animator_;
-    [SerializeField] protected TestParameter parameter_;
+    [SerializeField] private Parameter parametor_;
 
     protected int IS_MOVING_HASH = Animator.StringToHash("IsMoving");
     protected int[] nowCombo_ = new int[2];
@@ -21,7 +22,7 @@ public abstract class Player : MonoBehaviour,ITestTargetCircle
     private Vector2 moveAxis_;
     private Vector2 lastAxis_;
 
-    public TestParameter Parameter { get { return parameter_; } set { parameter_ = value; } }
+    public Parameter Parameter => parametor_;
     public Effect Effect { get; set; }
     public float Radius { get; set; } = 0.1f;
     //多分仮２つ(UIでしか使わない可能性がある)↓
@@ -36,7 +37,6 @@ public abstract class Player : MonoBehaviour,ITestTargetCircle
         InputManager.Instance.OnSkill2_ += InputSkill2;
         InputManager.Instance.OnSkill3_ += InputSkill3;
         PlayerManager.AddPlayer(this);
-        ParticleManager.InstanceLoad();//超仮(範囲表示)
     }
 
     /* 入力 */
@@ -51,7 +51,7 @@ public abstract class Player : MonoBehaviour,ITestTargetCircle
         for (int i = 0; i < cd_.Count(); ++i) cd_[i] = Mathf.Max(cd_[i] - Time.deltaTime, 0);
         if(moveAxis_ != Vector2.zero)
         {
-            var move = parameter_.spd_ * Time.deltaTime * moveAxis_;
+            var move = (parametor_.spd_ * 0.05f) * Time.deltaTime * moveAxis_;
             lastAxis_ = moveAxis_;
             transform.position =
             new Vector2(
@@ -72,7 +72,7 @@ public abstract class Player : MonoBehaviour,ITestTargetCircle
     protected bool IsGCDCD(int s) { return gcd_ > 0 || cd_[s] > 0; }
     protected void ComboBreak(int s) { for (int i = 0; i < nowCombo_.Count(); ++i) if (i != s) nowCombo_[i] = 0; }
 
-    Vector2 ITestTargetCircle.GetPosition => transform.position;
-    void ITestTargetCircle.TakeDamage(int point,ITestTargetCircle from) { parameter_.hp_ -= point; }
-    void ITestTargetCircle.TakeHeal(int point, ITestTargetCircle from) { parameter_.hp_ += point; }
+    Vector2 ITargetCircle.GetPosition => transform.position;
+    void ITargetCircle.TakeDamage(int point,ITargetCircle from) { parametor_.hp_ -= point; }
+    void ITargetCircle.TakeHeal(int point, ITargetCircle from) { parametor_.hp_ += point; }
 }

@@ -1,22 +1,22 @@
 using UnityEngine;
 
-public class TestEnemy : MonoBehaviour, ITestTargetCircle
+public class TestEnemy : MonoBehaviour, ITargetCircle
 {
-    public int hp_;
 
-    Vector2 ITestTargetCircle.GetPosition => transform.position;
+    Vector2 ITargetCircle.GetPosition => transform.position;
 
+    public Parameter Parameter { get; }
     public float Radius { get; set; } = 1;
     public Effect Effect { get; set; }
 
-    void ITestTargetCircle.TakeDamage(int damage, ITestTargetCircle from)
+    void ITargetCircle.TakeDamage(int damage, ITargetCircle from)
     {
-        hp_ -= damage;
+        //Parameter.hp_ -= damage;
     }
 
-    void ITestTargetCircle.TakeHeal(int point, ITestTargetCircle from)
+    void ITargetCircle.TakeHeal(int point, ITargetCircle from)
     {
-        hp_ += point;
+        //hp_ += point;
     }
 
     private void Start()

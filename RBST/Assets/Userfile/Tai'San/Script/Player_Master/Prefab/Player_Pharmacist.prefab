@@ -174,9 +174,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pharmacist
   animator_: {fileID: 0}
-  parameter_:
+  parametor_:
     hp_: 1000
     maxHp_: 1000
     atk_: 100
     def_: 100
-    spd_: 5
+    spd_: 100

@@ -1,12 +1,17 @@
-using UnityEngine;
+using AttackFanction;
 using DG.Tweening;
 using System.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.UIElements;
 
 /// <summary>
 /// 薬師
 /// </summary>
 public class Pharmacist : Player
 {
+    
+    //[SerializeField]AttackRangeVisualizer visualizer;
+
     //UIはここ
     int amaunt_;//残量?
     Potion potion_;
@@ -122,8 +127,14 @@ public class Pharmacist : Player
 
     protected override async void Skill3(int s)
     {
-        if (IsGCDCD(s)) return;
-        var hit = Attack.GetHitPlayer(transform.position, 4);
-        
+        //// 判定計算(コライダーを使わない独自ロジック)
+        //CheckHits(attackRadius, attackAngle, aimDirection);
+
+        //// 一定時間後に消す場合
+        //Invoke(nameof(HideVisualizer), 0.2f);
+
+        //if (IsGCDCD(s)) return;
+        //var hit = Attack.GetHitPlayer(transform.position, 4);
+
     }
 }

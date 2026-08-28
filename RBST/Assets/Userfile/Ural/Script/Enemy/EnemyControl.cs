@@ -2,7 +2,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyControl : MonoBehaviour, IToEnemyDamageAble
+public class EnemyControl : MonoBehaviour
 {
     [SerializeField] private EnemyAtackObjectPool pool_;
     [Header("攻撃のステータス")]
