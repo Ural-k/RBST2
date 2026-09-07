@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PlayState : IGameState
 {
     [SerializeField] Text text_;
-    private EnemyControl enemyControl_;
+    private Enemy enemyControl_;
     private IGameState nextState_;
     private int playerCount_;
     private GetPlayUI playUI_;
@@ -33,7 +33,7 @@ public class PlayState : IGameState
         }
 
         //•¡”íì¬Ä’²®
-        if (enemyControl_.HP <= 0)
+        if (enemyControl_.Parameter.hp_ <= 0)
         {
             DemoTimer.Instance.StopTimer();
             EnemyManager.AllDestroyEnemy();

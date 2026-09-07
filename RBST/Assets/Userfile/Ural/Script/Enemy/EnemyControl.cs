@@ -59,7 +59,7 @@ public class EnemyControl : MonoBehaviour
     /// </summary>
     public void Died()
     {
-        GameObjectManager.Instance.DestroyEnemy(this);
+        //GameObjectManager.Instance.DestroyEnemy(this);
         Destroy(gameObject);
     }
 

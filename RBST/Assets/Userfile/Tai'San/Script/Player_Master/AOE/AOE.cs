@@ -1,4 +1,4 @@
-using System.Drawing;
+using System;
 using UnityEngine;
 
 public class AOE : MonoBehaviour
@@ -6,20 +6,71 @@ public class AOE : MonoBehaviour
     private Mesh mesh_;
     private MeshFilter meshFilter_;
 
-    public int segments = 32; // 円・扇の滑らかさ
+    public int segments_ = 32;
 
-    /// <summary>
-    /// 呼び出す瞬間のセットアップ
-    /// </summary>
+    [Header("Effect")]
+    public float telegraphDuration_ = 0.0f;
+    public float duration = 0.6f;
+    public float maxRadius = 1f;
+    public AnimationCurve alphaCurve = AnimationCurve.EaseInOut(0, 1, 1, 0);
+
+    Renderer rend;
+    MaterialPropertyBlock mpb;
+    float timer;
+    bool released_;
+
+    // Managerに「もう戻していいよ」と伝えるためのイベント
+    public event Action<AOE> OnReleaseRequested;
+
+    void Start()
+    {
+        rend = GetComponent<MeshRenderer>();
+        mpb = new MaterialPropertyBlock();
+    }
+
+    void Update()
+    {
+        if (telegraphDuration_ > 0)
+        {
+            telegraphDuration_ -= Time.deltaTime;
+            return;
+        }
+
+        if (released_) return; // 二重発火防止
+
+        timer += Time.deltaTime;
+        float t = Mathf.Clamp01(timer / duration);
+
+        rend.GetPropertyBlock(mpb);
+        mpb.SetFloat("_Radius", Mathf.Lerp(0, maxRadius, t));
+        mpb.SetFloat("_Alpha", alphaCurve.Evaluate(t));
+        rend.SetPropertyBlock(mpb);
+
+        if (t >= 1f)
+        {
+            released_ = true;
+            OnReleaseRequested?.Invoke(this); // ここでManagerに通知
+        }
+    }
+
     public AOE Initialize()
     {
         mesh_ = new Mesh();
         meshFilter_ = GetComponent<MeshFilter>();
         meshFilter_.mesh = mesh_;
-
         return this;
     }
 
+    /// <summary>
+    /// プールから取り出した直後に呼ぶ。タイマー類を初期化する。
+    /// </summary>
+    public void ResetState(float telegraphDuration, float effectDuration)
+    {
+        telegraphDuration_ = telegraphDuration;
+        duration = effectDuration;
+        timer = 0f;
+        released_ = false;
+    }
     //private void ActiveFalse()
 
     /// <summary>
@@ -30,7 +81,7 @@ public class AOE : MonoBehaviour
     /// <param name="radius">半径</param>
     public void BuildFan(Vector2 center, float angleDeg, Vector2 dir, float radius)
     {
-        int segCount = angleDeg >= 360f ? segments : Mathf.Max(2, (int)(segments * (angleDeg / 360f)));
+        int segCount = angleDeg >= 360f ? segments_ : Mathf.Max(2, (int)(segments_ * (angleDeg / 360f)));
         Vector3[] verts = new Vector3[segCount + 2];
         Vector2[] uvs = new Vector2[segCount + 2];
         int[] tris = new int[segCount * 3];
@@ -71,16 +122,16 @@ public class AOE : MonoBehaviour
 
     public void BuildCircle(Vector2 center, Vector2 radius)
     {
-        Vector3[] verts = new Vector3[segments + 1];
-        Vector2[] uvs = new Vector2[segments + 1];
-        int[] tris = new int[segments * 3];
+        Vector3[] verts = new Vector3[segments_ + 1];
+        Vector2[] uvs = new Vector2[segments_ + 1];
+        int[] tris = new int[segments_ * 3];
 
         verts[0] = center;
         uvs[0] = new Vector2(0.5f, 0.5f); // 中心のUV
 
-        for (int i = 0; i < segments; i++)
+        for (int i = 0; i < segments_; i++)
         {
-            float rad = 360f * i / segments * Mathf.Deg2Rad;
+            float rad = 360f * i / segments_ * Mathf.Deg2Rad;
             Vector3 offset = new Vector3(Mathf.Cos(rad) * radius.x, Mathf.Sin(rad) * radius.y, 0);
             verts[i + 1] = offset + (Vector3)center;
 
@@ -91,9 +142,9 @@ public class AOE : MonoBehaviour
             );
         }
 
-        for (int i = 0; i < segments; i++)
+        for (int i = 0; i < segments_; i++)
         {
-            int next = (i + 1) % segments + 1;
+            int next = (i + 1) % segments_ + 1;
             tris[i * 3] = 0;
             tris[i * 3 + 1] = i + 1;
             tris[i * 3 + 2] = next;
@@ -149,24 +200,24 @@ public class AOE : MonoBehaviour
     /// <param name="radius"></param>
     public void BuildDonut(Vector2 center, float innerRadius, float radius)
     {
-        Vector3[] verts = new Vector3[(segments + 1) * 2];
-        Vector2[] uvs = new Vector2[(segments + 1) * 2];
-        int[] tris = new int[segments * 6];
+        Vector3[] verts = new Vector3[(segments_ + 1) * 2];
+        Vector2[] uvs = new Vector2[(segments_ + 1) * 2];
+        int[] tris = new int[segments_ * 6];
 
-        for (int i = 0; i <= segments; i++)
+        for (int i = 0; i <= segments_; i++)
         {
-            float rad = (360f * i / segments) * Mathf.Deg2Rad;
+            float rad = (360f * i / segments_) * Mathf.Deg2Rad;
             Vector3 dir = new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0);
             verts[i * 2] = (Vector3)center + dir * innerRadius;
             verts[i * 2 + 1] = (Vector3)center + dir * radius;
 
             // 角度をU、内側/外側をVに割り当てる
-            float u = i / (float)segments;
+            float u = i / (float)segments_;
             uvs[i * 2] = new Vector2(u, 0f);     // 内側リング
             uvs[i * 2 + 1] = new Vector2(u, 1f); // 外側リング
         }
 
-        for (int i = 0; i < segments; i++)
+        for (int i = 0; i < segments_; i++)
         {
             int i0 = i * 2;
             int i1 = i * 2 + 1;

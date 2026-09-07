@@ -1,8 +1,5 @@
-using AttackFanction;
-using DG.Tweening;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 /// <summary>
 /// –òŽt
@@ -56,23 +53,23 @@ public class Pharmacist : Player
         {
             case Potion.Water:
                 gcd_ = 1.0f;
-                var pos0 = Attack.GetNearEnemy(transform.position, 4);
+                var pos0 = Attack.GetNearEnemyPos(transform.position, 4);
                 await Task.Delay(500);
-                Attack.TakeDamage(Attack.GetHitEnemy(pos0, 1), 1);//DPS 1
+                Attack.TakeDamage(Attack.GetHitCircle(Attack.GetAllEnemy() ,pos0, 1), 1);//DPS 1
                 break;
 
             case Potion.Attack:
                 gcd_ = 0.5f;
-                var pos1 = Attack.GetNearEnemy(transform.position, 4);
+                var pos1 = Attack.GetNearEnemyPos(transform.position, 4);
                 await Task.Delay(350);
-                Attack.TakeDamage(Attack.GetHitEnemy(pos1, 1), 130);//DPS 230
+                Attack.TakeDamage(Attack.GetHitCircle(Attack.GetAllEnemy(), pos1, 1), 130);//DPS 230
                 break;
 
             case Potion.Heal:
                 gcd_ = 0.5f;
-                var pos2 = Attack.GetNearPlayer(transform.position);
+                var pos2 = Attack.GetNearPlayerPos(transform.position);
                 await Task.Delay(350);
-                Attack.TakeHeal(Attack.GetHitPlayer(pos2, 1), 60);//+60
+                Attack.TakeHeal(Attack.GetHitCircle(Attack.GetAllPlayer(), pos2, 1), 60);//+60
                 break;
         }
     }
@@ -104,15 +101,15 @@ public class Pharmacist : Player
                 switch (potion_)
                 {
                     case Potion.Attack:
-                        var pos1 = Attack.GetNearEnemy(transform.position, 5);
+                        var pos1 = Attack.GetNearEnemyPos(transform.position, 5);
                         await Task.Delay(500);
-                        Attack.TakeDamage(Attack.GetHitEnemy(pos1, 4), 1000);
+                        Attack.TakeDamage(Attack.GetHitCircle(Attack.GetAllEnemy(), pos1, 4), 1000);
                         break;
 
                     case Potion.Heal:
                         var pos2 = (Vector2)transform.position;
                         await Task.Delay(500);
-                        Attack.TakeHeal(Attack.GetHitPlayer(pos2, 4), 700);
+                        Attack.TakeHeal(Attack.GetHitCircle(Attack.GetAllPlayer(), pos2, 4), 700);
                         break;
 
                     case Potion.Nostrum:

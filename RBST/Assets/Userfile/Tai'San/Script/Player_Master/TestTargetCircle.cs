@@ -14,7 +14,7 @@ public interface ITargetCircle
     /// <summary>
     /// 判定の大きさ(半径)
     /// </summary>
-    abstract float Radius { get; set; }
+    abstract float Radius { get; }
 
     /// <summary>
     /// バフ・デバフ関連

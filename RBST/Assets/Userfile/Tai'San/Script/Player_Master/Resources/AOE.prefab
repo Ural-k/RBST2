@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8872755990811862365}
-  - component: {fileID: 7634727993964696834}
   - component: {fileID: -6031440595239611202}
   - component: {fileID: -8434197601355469080}
   - component: {fileID: 1623042403167964051}
@@ -35,7 +34,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7634727993964696834
+--- !u!114 &-6031440595239611202
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,9 +43,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4616175360945890150}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98f812fc7e973a24684d3302506059de, type: 3}
+  m_Script: {fileID: 11500000, guid: 7ac455f7254cdf24591c9306be274007, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AOEWaveEffect
+  m_EditorClassIdentifier: Assembly-CSharp::AOE
+  segments_: 64
+  telegraphDuration_: 0
   duration: 0.6
   maxRadius: 1
   alphaCurve:
@@ -73,19 +74,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &-6031440595239611202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4616175360945890150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ac455f7254cdf24591c9306be274007, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AOE
-  segments: 32
 --- !u!33 &-8434197601355469080
 MeshFilter:
   m_ObjectHideFlags: 0

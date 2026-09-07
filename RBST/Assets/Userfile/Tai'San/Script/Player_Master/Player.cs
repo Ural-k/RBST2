@@ -7,11 +7,11 @@ using UnityEngine.InputSystem;
 /// </summary>
 public abstract class Player : MonoBehaviour,ITargetCircle
 {
-    /* 移動範囲 */
+    /* 移動範囲(仮かも) */
     protected const float MOVE_SCREEN_X = 8.8f;
     protected const float MOVE_SCREEN_Y = 4.8f;
 
-    [SerializeField] private Color color_;
+    [SerializeField] private Color color_;//イメージカラー
     [SerializeField] protected Animator animator_;
     [SerializeField] private Parameter parametor_;
 
@@ -19,6 +19,7 @@ public abstract class Player : MonoBehaviour,ITargetCircle
     protected int[] nowCombo_ = new int[2];
     protected float gcd_;
     protected float[] cd_ = new float[3];
+    private bool[] hold_ = new bool[3];
     private Vector2 moveAxis_;
     private Vector2 lastAxis_;
 
@@ -40,13 +41,17 @@ public abstract class Player : MonoBehaviour,ITargetCircle
     }
 
     /* 入力 */
-    public void InputSkill1(InputValue value) { if (value.isPressed) Skill1(); }
-    public void InputSkill2(InputValue value) { if (value.isPressed) Skill2(); }
-    public void InputSkill3(InputValue value) { if (value.isPressed) Skill3(); }
+    public void InputSkill1(InputValue value) => hold_[0] = !hold_[0];
+    public void InputSkill2(InputValue value) => hold_[1] = !hold_[1];
+    public void InputSkill3(InputValue value) => hold_[2] = !hold_[2];
     public void Move(InputValue value) => moveAxis_ = value.Get<Vector2>();
 
     private void Update()
     {
+        if (hold_[0]) Skill1();
+        else if (hold_[1]) Skill2();
+        else if (hold_[2]) Skill3();
+
         gcd_ = Mathf.Max(gcd_ - Time.deltaTime, 0);
         for (int i = 0; i < cd_.Count(); ++i) cd_[i] = Mathf.Max(cd_[i] - Time.deltaTime, 0);
         if(moveAxis_ != Vector2.zero)
@@ -72,7 +77,27 @@ public abstract class Player : MonoBehaviour,ITargetCircle
     protected bool IsGCDCD(int s) { return gcd_ > 0 || cd_[s] > 0; }
     protected void ComboBreak(int s) { for (int i = 0; i < nowCombo_.Count(); ++i) if (i != s) nowCombo_[i] = 0; }
 
+    //ターゲットサークル
     Vector2 ITargetCircle.GetPosition => transform.position;
-    void ITargetCircle.TakeDamage(int point,ITargetCircle from) { parametor_.hp_ -= point; }
-    void ITargetCircle.TakeHeal(int point, ITargetCircle from) { parametor_.hp_ += point; }
+    void ITargetCircle.TakeDamage(int point,ITargetCircle from)
+    {
+        ShowFloatingText(point, FloatingTextType.PlayerDamage);
+        parametor_.hp_ -= point;
+    }
+    void ITargetCircle.TakeHeal(int point, ITargetCircle from)
+    {
+        ShowFloatingText(point, FloatingTextType.Heal);
+        parametor_.hp_ += point;
+    }
+
+    /// <summary>
+    /// ダメージテキストの呼び出し
+    /// </summary>
+    private void ShowFloatingText(int value, FloatingTextType type)
+    {
+        if (DamageTextManager.Instance == null) return;
+
+        DamageTextManager.Instance.Show(transform.position, value, type);
+    }
+
 }

@@ -42,10 +42,10 @@ public class GameObjectManager : MonoBehaviour
         Instantiate(sword_).GetComponent<Player>();
     }
 
-    public EnemyControl CreateEnemy1()
+    public Enemy CreateEnemy1()
     {
         var temp = Instantiate(enemy1_,offset,Quaternion.identity);
-        EnemyControl enemy = temp.GetComponent<EnemyControl>();
+        Enemy enemy = temp.GetComponent<Enemy>();
         EnemyManager.AddEnemy(enemy);
         bossName_.text = "RED APPLE";
         bgmObject_.SetActive(true);
@@ -53,20 +53,20 @@ public class GameObjectManager : MonoBehaviour
         return enemy;
     }
 
-    public EnemyControl CreateEnemy2()
+    public Enemy CreateEnemy2()
     {
         var temp = Instantiate(enemy2_, offset, Quaternion.identity);
-        EnemyControl enemy = temp.GetComponent<EnemyControl>();
+        Enemy enemy = temp.GetComponent<Enemy>();
         EnemyManager.AddEnemy(enemy);
         bossName_.text = "GREEN APPLE";
 
         return enemy;
     }
 
-    public EnemyControl CreateEnemy3()
+    public Enemy CreateEnemy3()
     {
         var temp = Instantiate(enemy3_, offset, Quaternion.identity);
-        EnemyControl enemy = temp.GetComponent<EnemyControl>();
+        Enemy enemy = temp.GetComponent<Enemy>();
         EnemyManager.AddEnemy(enemy);
         bossName_.text = "WHITE APPLE";
         bgmObject_.SetActive(false);
@@ -75,7 +75,7 @@ public class GameObjectManager : MonoBehaviour
         return enemy;
     }
 
-    public void DestroyEnemy(EnemyControl enemyControl)
+    public void DestroyEnemy(Enemy enemyControl)
     {
         bossName_.text = "NEXT TO ENTER";
         EnemyManager.DeleteEnemy(enemyControl);

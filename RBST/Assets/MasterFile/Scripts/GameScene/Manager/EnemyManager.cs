@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    private static List<EnemyControl> enemyList_ = new List<EnemyControl>();
+    private static List<Enemy> enemyList_ = new List<Enemy>();
 
-    public static void AddEnemy(EnemyControl enemy)
+    public static void AddEnemy(Enemy enemy)
     {
         if (enemy == null || enemyList_.Contains(enemy)) return;
 
         enemyList_.Add(enemy);
     }
 
-    public static void DeleteEnemy(EnemyControl enemy)
+    public static void DeleteEnemy(Enemy enemy)
     {
         int index = enemyList_.IndexOf(enemy);
 
@@ -29,9 +29,9 @@ public class EnemyManager : MonoBehaviour
         enemyList_.Clear();
     }
 
-    public static EnemyControl GetEnemy(EnemyControl enemy)
+    public static Enemy GetEnemy(Enemy enemy)
     {
-        foreach (EnemyControl enemyControl in enemyList_)
+        foreach (Enemy enemyControl in enemyList_)
         {
             if (enemyControl == enemy)
             {
@@ -42,14 +42,14 @@ public class EnemyManager : MonoBehaviour
         return null;
     }
 
-    public static EnemyControl GetEnemy(int i)
+    public static Enemy GetEnemy(int i)
     {
         if (i < 0 || i >= enemyList_.Count) return null;
 
         return enemyList_[i];
     }
 
-    public static List<EnemyControl> GetAllEnemy()
+    public static List<Enemy> GetAllEnemy()
     {
         return enemyList_;
     }

@@ -20,6 +20,7 @@ public class InputManager : MonoBehaviour
     public event Action<InputValue> OnInteract_;
 
     //メモ：ネット対応させるとき、ここにIsMine入れるといいかも
+    //PlayerInputコンポーネントに対応する関数(Send Message)
     private void OnMove(InputValue value)     => instance_.OnMove_?.Invoke(value);
     private void OnSkill1(InputValue value)   => instance_.OnSkill1_?.Invoke(value);
     private void OnSkill2(InputValue value)   => instance_.OnSkill2_?.Invoke(value);
