@@ -8,6 +8,6 @@ public class EnemyAttackCircle : EnemyAttackBase
     public override void Execute(Vector3 originPosition, Transform enemyTransform)
     {
         var hit = Attack.GetHitCircle(Attack.GetAllPlayer(), originPosition, radius);
-        Attack.TakeDamage(hit, damage);
+        Attack.TakeDamage(hit, damage_);
     }
 }

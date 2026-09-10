@@ -9,6 +9,6 @@ public class EnemyAttackDonut : EnemyAttackBase
     public override void Execute(Vector3 originPosition, Transform enemyTransform)
     {
         var hit = Attack.GetHitDonut(Attack.GetAllPlayer(), originPosition, innerRadius, outerRadius);
-        Attack.TakeDamage(hit, damage);
+        Attack.TakeDamage(hit, damage_);
     }
 }
