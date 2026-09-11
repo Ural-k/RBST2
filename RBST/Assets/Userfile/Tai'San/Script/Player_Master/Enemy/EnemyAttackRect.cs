@@ -9,6 +9,6 @@ public class EnemyAttackRect : EnemyAttackBase
     public override void Execute(Vector3 originPosition, Transform enemyTransform)
     {
         var hit = Attack.GetHitRect(Attack.GetAllPlayer(), Attack.GetNearPlayerPos(originPosition), size_, deg_);
-        Attack.TakeDamage(hit, damage);
+        Attack.TakeDamage(hit, damage_);
     }
 }

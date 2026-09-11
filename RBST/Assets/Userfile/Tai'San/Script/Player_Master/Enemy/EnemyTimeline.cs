@@ -6,13 +6,13 @@ using UnityEngine;
 [System.Serializable]
 public class AttackTimelineEntry
 {
-    public float triggerTime;      // 開始からの経過秒数
-    public EnemyAttackBase attackData;
+    public float triggerTime_;      // 開始からの経過秒数
+    public EnemyAttackBase attackData_;
 }
 
 public class EnemyTimeline : MonoBehaviour
 {
-    [SerializeField] private List<AttackTimelineEntry> timeline = new();
+    [SerializeField] private List<AttackTimelineEntry> timeline_ = new();
 
     private void Start() => StartCoroutine(RunTimeline());
 
@@ -20,14 +20,14 @@ public class EnemyTimeline : MonoBehaviour
     {
         while (true)
         {
-            var sorted = timeline.OrderBy(e => e.triggerTime).ToList();
+            var sorted = timeline_.OrderBy(e => e.triggerTime_).ToList();
             float elapsed = 0f;
             foreach (var entry in sorted)
             {
-                float wait = entry.triggerTime - elapsed;
+                float wait = entry.triggerTime_ - elapsed;
                 if (wait > 0) yield return new WaitForSeconds(wait);
-                entry.attackData.Execute(transform.position, transform);
-                elapsed = entry.triggerTime;
+                entry.attackData_.Execute(transform.position, transform);
+                elapsed = entry.triggerTime_;
             }
             yield return null;
         }

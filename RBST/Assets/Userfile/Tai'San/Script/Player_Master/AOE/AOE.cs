@@ -12,39 +12,37 @@ public class AOE : MonoBehaviour
     public float telegraphDuration_ = 0.0f;
     public float duration = 0.6f;
     public float maxRadius = 1f;
-    public AnimationCurve alphaCurve = AnimationCurve.EaseInOut(0, 1, 1, 0);
+    public AnimationCurve alphaCurve_ = AnimationCurve.EaseInOut(0, 1, 1, 0);
 
-    Renderer rend;
-    MaterialPropertyBlock mpb;
-    float timer;
+    Renderer rend_;
+    MaterialPropertyBlock mpb_;
+    float timer_;
     bool released_;
 
-    // Managerに「もう戻していいよ」と伝えるためのイベント
     public event Action<AOE> OnReleaseRequested;
-
-    void Start()
-    {
-        rend = GetComponent<MeshRenderer>();
-        mpb = new MaterialPropertyBlock();
-    }
 
     void Update()
     {
         if (telegraphDuration_ > 0)
         {
             telegraphDuration_ -= Time.deltaTime;
+            rend_.GetPropertyBlock(mpb_);
+            mpb_.SetFloat("_Alpha", 1.0f);
+            rend_.SetPropertyBlock(mpb_);
+            telegraphDuration_ -= Time.deltaTime;
             return;
         }
 
         if (released_) return; // 二重発火防止
 
-        timer += Time.deltaTime;
-        float t = Mathf.Clamp01(timer / duration);
 
-        rend.GetPropertyBlock(mpb);
-        mpb.SetFloat("_Radius", Mathf.Lerp(0, maxRadius, t));
-        mpb.SetFloat("_Alpha", alphaCurve.Evaluate(t));
-        rend.SetPropertyBlock(mpb);
+        timer_ += Time.deltaTime;
+        float t = Mathf.Clamp01(timer_ / duration);
+
+        rend_.GetPropertyBlock(mpb_);
+        mpb_.SetFloat("_Radius", Mathf.Lerp(0, maxRadius, t));
+        mpb_.SetFloat("_Alpha", alphaCurve_.Evaluate(t));
+        rend_.SetPropertyBlock(mpb_);
 
         if (t >= 1f)
         {
@@ -55,6 +53,8 @@ public class AOE : MonoBehaviour
 
     public AOE Initialize()
     {
+        rend_ = GetComponent<MeshRenderer>();
+        mpb_ = new MaterialPropertyBlock();
         mesh_ = new Mesh();
         meshFilter_ = GetComponent<MeshFilter>();
         meshFilter_.mesh = mesh_;
@@ -66,12 +66,17 @@ public class AOE : MonoBehaviour
     /// </summary>
     public void ResetState(float telegraphDuration, float effectDuration)
     {
+        //mpb_.SetColor("_Color", new Color(1, 0.2f, 0.2f, 0.5f));
+        //rend_.GetPropertyBlock(mpb_);
+        //mpb_.SetColor("_Color", Color.red);
+        //rend_.SetPropertyBlock(mpb_);
         telegraphDuration_ = telegraphDuration;
         duration = effectDuration;
-        timer = 0f;
+        timer_ = 0f;
         released_ = false;
     }
-    //private void ActiveFalse()
+
+    //--メッシュ計算-------------------------------------------------------------------
 
     /// <summary>
     /// 円または扇のAOE

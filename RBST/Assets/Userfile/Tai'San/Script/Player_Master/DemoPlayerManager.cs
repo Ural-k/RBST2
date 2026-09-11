@@ -26,6 +26,10 @@ public class DemoPlayerManager : MonoBehaviour
         {
             player_.Effect.RemoveEffect(effectData_);
         }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            AOEManager.Instance.ShowCircle(Vector2.zero, new Vector2(3,3), 1, 0.2f);
+        }
 
         string debug = "";
         debug += $"[Parameter]";

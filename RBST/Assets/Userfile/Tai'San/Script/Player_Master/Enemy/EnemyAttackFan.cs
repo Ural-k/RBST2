@@ -10,6 +10,6 @@ public class EnemyAttackFan : EnemyAttackBase
     public override void Execute(Vector3 originPosition, Transform enemyTransform)
     {
         var hit = Attack.GetHitFan(Attack.GetAllPlayer(), originPosition, radius, Vector2.left, angledeg);
-        Attack.TakeDamage(hit, damage);
+        Attack.TakeDamage(hit, damage_);
     }
 }

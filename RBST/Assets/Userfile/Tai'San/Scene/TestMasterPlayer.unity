@@ -2141,6 +2141,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5333614990246439253, guid: adc3a8dca422af646ae571b15118a38a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5333614990246439253, guid: adc3a8dca422af646ae571b15118a38a, type: 3}
+      propertyPath: timeline.Array.data[1].triggerTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5333614990246439253, guid: adc3a8dca422af646ae571b15118a38a, type: 3}
+      propertyPath: timeline.Array.data[2].triggerTime
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5333614990246439253, guid: adc3a8dca422af646ae571b15118a38a, type: 3}
+      propertyPath: timeline.Array.data[3].triggerTime
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5333614990246439253, guid: adc3a8dca422af646ae571b15118a38a, type: 3}
+      propertyPath: timeline.Array.data[4].triggerTime
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7621040510822268760, guid: adc3a8dca422af646ae571b15118a38a, type: 3}
       propertyPath: m_Name
       value: TestEnemy
