@@ -23,19 +23,16 @@ public class EntryState : IGameState
     }
     public void Enter() 
     {
-<<<<<<< HEAD
         GameSceneManager.Instance.SetResultByServer(GameState.isPlaying);
         phase_ = EntryPhase.Phase2;
         nextState_ = GameSceneStateType.Play;
 
         networkEntryState_.BeginListenPlayerSpawned();
         networkEntryState_.ShowInitializeUI();
-=======
         GameSceneManager.Instance.State = GameState.isPlaying;
         phase = EntryPhase.Phase2;//一旦マッチングフェーズを飛ばす
         GameUIManager.Instance.Activate(UIType.CharacterSelect);
         nextState_ = new PlayState();
->>>>>>> develop
     }
 
     public void Update() 

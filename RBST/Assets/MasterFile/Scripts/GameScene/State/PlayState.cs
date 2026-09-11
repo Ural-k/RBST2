@@ -22,16 +22,13 @@ public class PlayState : IGameState
     public void Enter()
     {
         playerCount_ = PlayerManager.GetAllPlayerListCount();
-<<<<<<< HEAD
 
         if (NetworkManager.Singleton.IsServer)
         {
             enemyControl_ = GameObjectManager.Instance.CreateEnemy();
         }
 
-=======
         enemyControl_ = GameObjectManager.Instance.CreateEnemy1();
->>>>>>> develop
         GameUIManager.Instance.Activate(UIType.Play);
         playUI_ = GameUIManager.Instance.GetPlayUI();
         nextState_ = GameSceneStateType.Result;

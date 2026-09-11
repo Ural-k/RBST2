@@ -92,9 +92,8 @@ public class GameObjectManager : NetworkBehaviour
     }
     public void CreateMagic()
     {
-<<<<<<< HEAD
-        if (!IsServer) return null;
-=======
+
+        if (IsServer)
         Instantiate(magic_).GetComponent<Player>();
     }
     public void CreatePharmacist()
@@ -114,7 +113,6 @@ public class GameObjectManager : NetworkBehaviour
         EnemyManager.AddEnemy(enemy);
         bossName_.text = "RED APPLE";
         bgmObject_.SetActive(true);
->>>>>>> develop
 
         var temp = Instantiate(enemyPrefab_, offset_, Quaternion.identity);
 

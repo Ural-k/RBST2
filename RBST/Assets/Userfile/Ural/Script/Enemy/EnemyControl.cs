@@ -3,11 +3,7 @@ using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 
-<<<<<<< HEAD
-public class EnemyControl : NetworkBehaviour, IToEnemyDamageAble
-=======
-public class EnemyControl : MonoBehaviour
->>>>>>> develop
+public class EnemyControl : NetworkBehaviour
 {
     [SerializeField] private EnemyAtackObjectPool pool_;
     [Header("攻撃のステータス")]
