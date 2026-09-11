@@ -1,22 +1,16 @@
 using System;
-<<<<<<< HEAD
 using Unity.Netcode;
-=======
 using System.Collections;
->>>>>>> develop
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayState : IGameState
 {
-<<<<<<< HEAD
     private EnemyControl enemyControl_;
     private GameSceneStateType nextState_;
-=======
     [SerializeField] Text text_;
     private Enemy enemyControl_;
     private IGameState nextState_;
->>>>>>> develop
     private int playerCount_;
     private GetPlayUI playUI_;
     private NetworkPlayState playState_;
