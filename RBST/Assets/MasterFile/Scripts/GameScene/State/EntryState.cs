@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class EntryState : IGameState
 {
+    private readonly NetworkEntryState networkEntryState_;
     /// <summary>
     /// EntryStateのstate
     /// </summary>
@@ -13,19 +14,33 @@ public class EntryState : IGameState
         Phase3,  //ゲームスタートするのを待機するフェーズ
     }
 
-    private EntryPhase phase;
-    private IGameState nextState_;  //次のstateを設定しておく
+    private EntryPhase phase_;
+    private GameSceneStateType nextState_;  //次のstateを設定しておく
+
+    public EntryState(NetworkEntryState network)
+    {
+        networkEntryState_ = network;
+    }
     public void Enter() 
     {
+<<<<<<< HEAD
+        GameSceneManager.Instance.SetResultByServer(GameState.isPlaying);
+        phase_ = EntryPhase.Phase2;
+        nextState_ = GameSceneStateType.Play;
+
+        networkEntryState_.BeginListenPlayerSpawned();
+        networkEntryState_.ShowInitializeUI();
+=======
         GameSceneManager.Instance.State = GameState.isPlaying;
-        phase = EntryPhase.Phase2;
+        phase = EntryPhase.Phase2;//一旦マッチングフェーズを飛ばす
         GameUIManager.Instance.Activate(UIType.CharacterSelect);
         nextState_ = new PlayState();
+>>>>>>> develop
     }
 
     public void Update() 
     {
-        switch (phase)
+        switch (phase_)
         {
             case EntryPhase.Phase1:
                 //ネットが接続されているか
@@ -39,17 +54,16 @@ public class EntryState : IGameState
                 }
                 break;
             case EntryPhase.Phase2:
-                if (PlayerManager.GetAllPlayerListCount() > 0)
+
+                if (GameObjectManager.Instance.IsAllConnectedClientsSpawned())
                 {
-                    GameUIManager.Instance.Hide(UIType.CharacterSelect);
-                    GameUIManager.Instance.Activate(UIType.Ready);
-                    phase = EntryPhase.Phase3;
+                    phase_ = EntryPhase.Phase3;
                 }
                 break;
             case EntryPhase.Phase3:
                 if (Input.GetKeyDown(KeyCode.Return))
                 {
-                    GameSceneManager.Instance.ChangeState(nextState_);
+                    GameSceneManager.Instance.ChangeStateByServer(nextState_);
                 }
                 break;
         }
@@ -57,7 +71,10 @@ public class EntryState : IGameState
     }
     public void Exit() 
     {
-        GameUIManager.Instance.Hide(UIType.Ready);
+        networkEntryState_.EndListenPlayerSpawned();
+        networkEntryState_.HideAllUI();
     }
+
+    
     
 }

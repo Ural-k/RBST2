@@ -1,16 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPool<T>where T : Component
- {
+public class ObjectPool<T> where T : Component
+{
     private List<T> pool = new List<T>();
 
     private GameObject aoeObject_;
-    public ObjectPool(int initialSize,GameObject aoeObject)
+    public ObjectPool(int initialSize, GameObject aoeObject)
     {
         aoeObject_ = aoeObject;
         for (int i = 0; i < initialSize; i++)
-        { 
+        {
             CreateNew();
         }
     }

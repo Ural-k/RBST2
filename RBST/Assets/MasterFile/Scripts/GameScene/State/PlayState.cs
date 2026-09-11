@@ -1,22 +1,46 @@
 using System;
+<<<<<<< HEAD
+using Unity.Netcode;
+=======
 using System.Collections;
+>>>>>>> develop
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayState : IGameState
 {
-    [SerializeField] Text text_;
+<<<<<<< HEAD
     private EnemyControl enemyControl_;
+    private GameSceneStateType nextState_;
+=======
+    [SerializeField] Text text_;
+    private Enemy enemyControl_;
     private IGameState nextState_;
+>>>>>>> develop
     private int playerCount_;
     private GetPlayUI playUI_;
+    private NetworkPlayState playState_;
+
+    public PlayState(NetworkPlayState playState)
+    {
+        playState_ = playState;
+    }
     public void Enter()
     {
         playerCount_ = PlayerManager.GetAllPlayerListCount();
+<<<<<<< HEAD
+
+        if (NetworkManager.Singleton.IsServer)
+        {
+            enemyControl_ = GameObjectManager.Instance.CreateEnemy();
+        }
+
+=======
         enemyControl_ = GameObjectManager.Instance.CreateEnemy1();
+>>>>>>> develop
         GameUIManager.Instance.Activate(UIType.Play);
         playUI_ = GameUIManager.Instance.GetPlayUI();
-        nextState_ = new ResultState();
+        nextState_ = GameSceneStateType.Result;
         DemoTimer.Instance.ResetTimer();
         DemoTimer.Instance.StartTimer();
     }
@@ -25,7 +49,8 @@ public class PlayState : IGameState
     // Update is called once per frame
     public void Update()
     {
-        
+        if (!NetworkManager.Singleton.IsServer) return;
+
         //デバッグ用
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -33,7 +58,7 @@ public class PlayState : IGameState
         }
 
         //複数戦作成時再調整
-        if (enemyControl_.HP <= 0)
+        if (enemyControl_.Parameter.hp_ <= 0)
         {
             DemoTimer.Instance.StopTimer();
             EnemyManager.AllDestroyEnemy();
@@ -67,20 +92,43 @@ public class PlayState : IGameState
         }
 
         //蘇生作成後再調整
+
         for (int i = 0; i < playerCount_; i++)
         {
             playUI_.SetText(PlayerManager.GetPlayer(i));
-            if(PlayerManager.GetPlayerHP(i) <= 0 || DemoTimer.Instance.GetCurrentTime <= 0)
-            {
-                GameOver(i);
-            }
         }
+
+        if (IsAllPlayersDead() || DemoTimer.Instance.GetCurrentTime <= 0)
+        {
+            GameOver();
+        }
+
     }
 
-    public void Exit() 
+    public void Exit()
     {
-        EnemyManager.AllDestroyEnemy();
         GameUIManager.Instance.Hide(UIType.Play);
+    }
+
+    private bool IsAllPlayersDead()
+    {
+        int playerCount = PlayerManager.GetAllPlayerListCount();
+
+        if (playerCount <= 0) return false;
+
+        for (int i = 0; i < playerCount; i++)
+        {
+            Player player = PlayerManager.GetPlayer(i);
+
+            if (player == null) continue;
+
+            if (player.GetInfo.parameter_.HP > 0)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private void Clear()
@@ -90,16 +138,20 @@ public class PlayState : IGameState
             enemyControl_.Died();
         }
         DemoTimer.Instance.StopTimer();
-        GameSceneManager.Instance.State = GameState.GameClear;
-        GameSceneManager.Instance.ChangeState(nextState_);
+        GameSceneManager.Instance.SetResultByServer(GameState.GameClear);
+        GameSceneManager.Instance.ChangeStateByServer(nextState_);
     }
 
-    private void GameOver(int i)
+    private void GameOver()
     {
-        enemyControl_.StopAllCoroutines();
+        if (enemyControl_ != null)
+        {
+            enemyControl_.StopAllCoroutines();
+        }
+
         DemoTimer.Instance.StopTimer();
-        PlayerManager.DestroyPlayer(PlayerManager.GetPlayer(i));
-        GameSceneManager.Instance.State = GameState.GameOver;
-        GameSceneManager.Instance.ChangeState(nextState_);
+
+        GameSceneManager.Instance.SetResultByServer(GameState.GameOver);
+        GameSceneManager.Instance.ChangeStateByServer(nextState_);
     }
 }

@@ -45,7 +45,7 @@ public class HpGauge : MonoBehaviour
 
     private void UpdateEnemyHp()
     {
-        EnemyControl enemy = EnemyManager.GetEnemy(targetIndex_);
+        Enemy enemy = EnemyManager.GetEnemy(targetIndex_);
 
         if (enemy == null)
         {
@@ -54,7 +54,7 @@ public class HpGauge : MonoBehaviour
         }
 
         SetVisible(true);
-        SetHp(enemy.HP, enemy.MaxHP);
+        SetHp(enemy.Parameter.hp_, enemy.Parameter.maxHp_);
     }
 
     private void UpdatePlayerHp()
@@ -69,7 +69,7 @@ public class HpGauge : MonoBehaviour
 
         
         SetVisible(true);
-        SetHp(player.GetInfo.parameter_.HP, player.GetInfo.parameter_.maxHp_);
+        SetHp(player.Parameter.hp_, player.Parameter.maxHp_);
     }
 
     private void SetHp(float hp, float maxHp)

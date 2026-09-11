@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1983ebb17656e6c4da66f024bcee892e, type: 3}
+  m_Name: Poison
+  m_EditorClassIdentifier: Assembly-CSharp::EffectData
+  id_: 0
+  name_: 
+  icon_: {fileID: -3795490626108379049, guid: 7b56e4487a9853648ad05282daf64bdd, type: 3}
+  arrow_: {fileID: 4955718017575302763, guid: 7b56e4487a9853648ad05282daf64bdd, type: 3}
+  initalPower_: 0
+  stackPower_: 0
+  maxStack_: 1
+  tickTime_: 5
+  effects_:
+  - rid: 4406639358274961525
+  references:
+    version: 2
+    RefIds:
+    - rid: 4406639358274961525
+      type: {class: AttackDeltaTime, ns: , asm: Assembly-CSharp}
+      data:
+        damagePerTick_: 5

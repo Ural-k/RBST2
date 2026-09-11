@@ -27,13 +27,14 @@ public struct PlayerInfo
     /// <summary>
     /// 初期化
     /// </summary>
-    public void Initialize()
+    public void Initialize(Transform owner, PlayerInput playerInput)
     {
-        inputAxis_      = InputSystem.actions.FindAction("Move");
-        avatar_         = GameObject.Find("Avatar").GetComponent<SpriteRenderer>();
-        parameter_.HP   = parameter_.maxHp_;
-        lastFace_       = Vector2.right;
-        jobData_        = JobData.GetJobSkill(parameter_.jobNumber_);
+        inputAxis_ = playerInput.actions.FindAction("Move");
+
+        avatar_ = owner.GetComponentInChildren<SpriteRenderer>();
+        parameter_.HP = parameter_.maxHp_;
+        lastFace_ = Vector2.right;
+        jobData_ = JobData.GetJobSkill(parameter_.jobNumber_);
     }
 
     /// <summary>

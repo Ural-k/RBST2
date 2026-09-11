@@ -1,10 +1,8 @@
 using System.Collections;
-using Unity.VisualScripting;
-using UnityEditor;
+using Unity.Netcode;
 using UnityEngine;
-using static UnityEngine.Rendering.GPUSort;
 
-public class AOEControll : MonoBehaviour
+public class AOEControll : NetworkBehaviour
 {
     [SerializeField] private GameObject entity_;   //AOE‚ÌŽÀ‘Ì
     [SerializeField] private GameObject warning_;  //AOE‚Ì—\’›

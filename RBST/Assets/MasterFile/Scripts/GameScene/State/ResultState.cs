@@ -1,3 +1,4 @@
+using Unity.Netcode;
 using UnityEngine;
 
 public class ResultState : IGameState
@@ -6,24 +7,32 @@ public class ResultState : IGameState
     private UIType activeUI_;
     public void Enter()
     {
-        CheckResult(GameSceneManager.Instance.State);
+        CheckResult(GameSceneManager.Instance.ResultState);
         GameUIManager.Instance.Activate(activeUI_);
-        nextState_ = new EntryState();
+        //nextState_ = new EntryState();
     }
 
     public void Update()
     {
+        // ResultからEntryへ戻せるのはホストだけ
+        if (!NetworkManager.Singleton.IsServer) return;
+
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            GameUIManager.Instance.Hide(activeUI_);
-            Exit();
+            // 次のEntryでまたキャラ生成できるようにリセット
+            GameObjectManager.Instance.ResetPlayersForEntry();
+
+            // 全員をEntryStateへ戻す
+            GameSceneManager.Instance.ChangeStateByServer(GameSceneStateType.Entry);
         }
     }
 
     public void Exit() 
     {
         PlayerManager.AllDestroyPlayer();
-        GameStateManager.instance.LordTitle();
+        EnemyManager.AllDestroyEnemy();
+        // Result UIだけ消す
+        GameUIManager.Instance.Hide(activeUI_);
     }
     private void CheckResult(GameState state)
     {

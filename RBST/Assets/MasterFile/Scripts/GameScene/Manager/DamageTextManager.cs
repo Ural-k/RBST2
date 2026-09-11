@@ -1,3 +1,4 @@
+using Unity.Netcode;
 using UnityEngine;
 
 /// <summary>
@@ -10,7 +11,7 @@ public enum FloatingTextType
     Heal,
 }
 
-public class DamageTextManager : MonoBehaviour
+public class DamageTextManager : NetworkBehaviour
 {
     public static DamageTextManager Instance;
 

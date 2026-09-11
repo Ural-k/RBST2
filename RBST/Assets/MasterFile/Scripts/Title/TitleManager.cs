@@ -1,8 +1,14 @@
+using Unity.Netcode;
 using UnityEngine;
 
-public class TitleManager : MonoBehaviour
+public class TitleManager : NetworkBehaviour
 {
 
+    [SerializeField] NetworkObject gameStateManager;
+
+    private void Awake()
+    {
+    }
     void Start()
     {
 

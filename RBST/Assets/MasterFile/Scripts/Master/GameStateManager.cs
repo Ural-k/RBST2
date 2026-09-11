@@ -1,7 +1,8 @@
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameStateManager : MonoBehaviour
+public class GameStateManager : NetworkBehaviour
 {
 
     public static GameStateManager instance;
@@ -21,7 +22,7 @@ public class GameStateManager : MonoBehaviour
         if(instance == null)
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -45,7 +46,7 @@ public class GameStateManager : MonoBehaviour
     public void LordGame()
     {
         state = GameState.Game;
-        SceneManager.LoadScene("GameScene");
+        NetworkManager.Singleton.SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
     }
 
     /// <summary>

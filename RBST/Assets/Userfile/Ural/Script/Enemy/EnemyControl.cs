@@ -1,8 +1,13 @@
 using System.Collections;
+using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyControl : MonoBehaviour, IToEnemyDamageAble
+<<<<<<< HEAD
+public class EnemyControl : NetworkBehaviour, IToEnemyDamageAble
+=======
+public class EnemyControl : MonoBehaviour
+>>>>>>> develop
 {
     [SerializeField] private EnemyAtackObjectPool pool_;
     [Header("攻撃のステータス")]
@@ -33,6 +38,16 @@ public class EnemyControl : MonoBehaviour, IToEnemyDamageAble
         StartCoroutine(MoveCorutine());
     }
 
+    public override void OnNetworkSpawn()
+    {
+        EnemyManager.AddEnemy(this);
+    }
+
+    public override void OnNetworkDespawn()
+    {
+        EnemyManager.DeleteEnemy(this);
+    }
+
     void Start()
     {
         eaStruct_ = new EnemyAttackStract();
@@ -59,7 +74,7 @@ public class EnemyControl : MonoBehaviour, IToEnemyDamageAble
     /// </summary>
     public void Died()
     {
-        GameObjectManager.Instance.DestroyEnemy(this);
+        //GameObjectManager.Instance.DestroyEnemy(this);
         Destroy(gameObject);
     }
 

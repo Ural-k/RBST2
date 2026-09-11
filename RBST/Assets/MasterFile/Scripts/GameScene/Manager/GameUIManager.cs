@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Rendering;
 public enum UIType
@@ -9,7 +10,7 @@ public enum UIType
     GameClear,
     GameOver,
 }
-public class GameUIManager : MonoBehaviour
+public class GameUIManager : NetworkBehaviour
 {
     public static GameUIManager Instance;
 

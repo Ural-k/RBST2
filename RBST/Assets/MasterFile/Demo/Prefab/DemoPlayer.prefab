@@ -100,6 +100,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2260199998191885268}
+  - component: {fileID: 7987660042960450600}
   - component: {fileID: 8897333428413543082}
   - component: {fileID: 1275950505923919267}
   m_Layer: 0
@@ -125,6 +126,32 @@ Transform:
   - {fileID: 7811792502685510049}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7987660042960450600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5286647931934938871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
+  GlobalObjectIdHash: 4281583143
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  <InScenePlaced>k__BackingField: 0
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!114 &8897333428413543082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,28 +164,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f6af70f0379080478e1056345998df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  log_: 0
-  parameter_:
-    jobName_: 
-    playerName_: 
-    maxHp_: 10
-    hp_: 10
-    speed_: 5
-    attack_: 0
-    defense_: 0
-    critical_: 0
-    lv_: 0
-  gcd_: 0
-  skill1_:
-    cd_: 0
-    skillName_: 0
-  skill2_:
-    cd_: 0
-    skillName_: 0
-  skill3_:
-    cd_: 0
-    skillName_: 0
-  demoEnemyList_: []
+  ShowTopMostFoldoutHeaderGroup: 1
+  debugJobChangeNumber_: 0
+  info_:
+    parameter_:
+      jobNumber_: 0
+      playerName_: 
+      maxHp_: 0
+      speed_: 0
+      attack_: 0
+      defense_: 0
+      critical_: 0
+      lv_: 0
+    gcd_: 0
+    skill1_:
+      cd_: 0
+      nowCombo_: 0
+    skill2_:
+      cd_: 0
+      nowCombo_: 0
+    skill3_:
+      cd_: 0
+      nowCombo_: 0
+    activeCombo_: 0
+    jobData_: {fileID: 0}
+    inputAxis_:
+      m_Name: 
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: cc351e8d-2a85-4ec5-831c-10b4c51a9c64
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    lastFace_: {x: 0, y: 0}
+    filip_: 0
+    downTime_: 0
+    lastInput_: 0
+    avatar_: {fileID: 0}
 --- !u!58 &1275950505923919267
 CircleCollider2D:
   m_ObjectHideFlags: 0
