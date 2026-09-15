@@ -6,13 +6,10 @@ using UnityEngine;
 /// </summary>
 public class Pharmacist : Player
 {
-    
-    //[SerializeField]AttackRangeVisualizer visualizer;
-
     //UI‚Í‚±‚±
-    int amaunt_;//Žc—Ê?
-    Potion potion_;
-    enum Potion
+    private int amaunt_;//Žc—Ê?
+    private Potion potion_;
+    private enum Potion
     {
         Water,
         Attack,

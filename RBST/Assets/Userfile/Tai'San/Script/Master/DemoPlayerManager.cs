@@ -44,7 +44,7 @@ public class DemoPlayerManager : MonoBehaviour
         debug += $"\n[2] {player_.GetCD[1]:000.0}";
         debug += $"\n[3] {player_.GetCD[2]:000.0}";
         debug += "\n[効果一覧]";
-        foreach (var active in player_.Effect.GetActive) debug += $"\n{active.data_.name_} : {active.timer_} [{active.stackCount_}]";
+        //foreach (var active in player_.Effect.GetActive) debug += $"\n{active.data_.name_} : {active.timer_} [{active.stackCount_}]";
 
         debugUI_.text = debug;
     }

@@ -12,16 +12,17 @@ public abstract class Player : MonoBehaviour,ITargetCircle
     protected const float MOVE_SCREEN_Y = 4.8f;
 
     [SerializeField] private Color color_;//イメージカラー
-    [SerializeField] protected Animator animator_;
     [SerializeField] private Parameter parametor_;
+    [SerializeField] protected Animator animator_;
+
+    private bool[] hold_ = new bool[3];
+    private Vector2 moveAxis_;
+    private Vector2 lastAxis_;
 
     protected int IS_MOVING_HASH = Animator.StringToHash("IsMoving");
     protected int[] nowCombo_ = new int[2];
     protected float gcd_;
     protected float[] cd_ = new float[3];
-    private bool[] hold_ = new bool[3];
-    private Vector2 moveAxis_;
-    private Vector2 lastAxis_;
 
     public Parameter Parameter => parametor_;
     public Effect Effect { get; set; }
@@ -39,12 +40,6 @@ public abstract class Player : MonoBehaviour,ITargetCircle
         InputManager.Instance.OnSkill3_ += InputSkill3;
         PlayerManager.AddPlayer(this);
     }
-
-    /* 入力 */
-    public void InputSkill1(InputValue value) => hold_[0] = !hold_[0];
-    public void InputSkill2(InputValue value) => hold_[1] = !hold_[1];
-    public void InputSkill3(InputValue value) => hold_[2] = !hold_[2];
-    public void Move(InputValue value) => moveAxis_ = value.Get<Vector2>();
 
     private void Update()
     {
@@ -67,6 +62,12 @@ public abstract class Player : MonoBehaviour,ITargetCircle
 
         Effect.TickEffect();
     }
+
+    /* 入力 */
+    public void InputSkill1(InputValue value) => hold_[0] = !hold_[0];
+    public void InputSkill2(InputValue value) => hold_[1] = !hold_[1];
+    public void InputSkill3(InputValue value) => hold_[2] = !hold_[2];
+    public void Move(InputValue value) => moveAxis_ = value.Get<Vector2>();
 
     protected abstract void Skill1(int s = 0);
     protected abstract void Skill2(int s = 1);
