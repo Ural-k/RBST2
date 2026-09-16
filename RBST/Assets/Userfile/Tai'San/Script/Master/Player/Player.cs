@@ -67,9 +67,9 @@ public abstract class Player : MonoBehaviour,ITargetCircle
     }
 
     /* “ü—Í */
-    public void InputSkill1(InputValue value) => hold_[0] = !hold_[0];
-    public void InputSkill2(InputValue value) => hold_[1] = !hold_[1];
-    public void InputSkill3(InputValue value) => hold_[2] = !hold_[2];
+    public void InputSkill1(InputValue value) => Skill1();
+    public void InputSkill2(InputValue value) => Skill2();
+    public void InputSkill3(InputValue value) => Skill3();
     public void Move(InputValue value) => moveAxis_ = value.Get<Vector2>();
 
     protected abstract void Skill1(int s = 0);

@@ -18,4 +18,4 @@ MonoBehaviour:
   AOEColor: {r: 0, g: 1, b: 1, a: 0.6117647}
   radius: 15
   dir: {x: -1, y: 0}
-  angleDeg: 45
+  angleDeg: 270

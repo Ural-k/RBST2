@@ -2537,10 +2537,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameObjectManager
   playerPrefab_: {fileID: 1491049056136672111, guid: 7f1a6ce3e4573bd4aa83bd4cc0657fc5, type: 3}
-  magic_: {fileID: 1491049056136672111, guid: 7f1a6ce3e4573bd4aa83bd4cc0657fc5, type: 3}
+  magic_: {fileID: 7893842765605816362, guid: 4af719eae0532204696a1a0e8e1063ed, type: 3}
   pharmacist_: {fileID: 4408120803341017641, guid: a7fb1078ec2bf5248b3588570051881a, type: 3}
   sword_: {fileID: 211283658279584765, guid: c7731ffcdc9464a4d9fc1ce6b50b2091, type: 3}
-  enemy1_: {fileID: 7621040510822268760, guid: adc3a8dca422af646ae571b15118a38a, type: 3}
+  enemy1_: {fileID: 2646256966954700364, guid: adc3a8dca422af646ae571b15118a38a, type: 3}
   enemy2_: {fileID: 5023606967376310049, guid: ea69f346e6a78a844aff2148014a4f12, type: 3}
   enemy3_: {fileID: 8785667573313461392, guid: 85b0898c5e8eb014884d14636ad9c88d, type: 3}
   bossName_: {fileID: 90982508}

@@ -13,7 +13,7 @@ public class Magic : Player
         gcd_ = 1.0f;
         var pos0 = Attack.GetNearEnemyPos(transform.position, 4);
         await Task.Delay(500);
-        Attack.TakeDamage(Attack.GetHitCircle(Attack.GetAllEnemy(), pos0, 1), 120);
+        Attack.TakeDamage(Attack.GetHitCircle(Attack.GetAllEnemy(), pos0, 1, Color.white), 120);
         magicStack_ = 0;
     }
 
@@ -27,7 +27,7 @@ public class Magic : Player
             for (int i = 0; i < 3; ++i)
             {
                 await Task.Delay(200);
-                Attack.TakeDamage(Attack.GetHitCircle(Attack.GetAllEnemy(), pos0, 1), 50);
+                Attack.TakeDamage(Attack.GetHitCircle(Attack.GetAllEnemy(), pos0, 1, Color.white), 50);
             }
         }
         else if(magicStack_ >= 6 && magicStack_ < 20)
@@ -35,7 +35,7 @@ public class Magic : Player
             gcd_ = 1.5f;
             var pos1 = Attack.GetNearEnemyPos(transform.position, 4);
             await Task.Delay(1100);
-            Attack.TakeDamage(Attack.GetHitCircle(Attack.GetAllEnemy(), pos1, 1), 370);
+            Attack.TakeDamage(Attack.GetHitCircle(Attack.GetAllEnemy(), pos1, 1, Color.white), 370);
         }
     }
 

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5181698968637329707
+--- !u!1 &2646256966954700364
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,113 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8808747552380762089}
-  - component: {fileID: 7523100294785062005}
+  - component: {fileID: 346039564598508689}
+  - component: {fileID: 7056178573012888025}
+  - component: {fileID: 796116969698291374}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: TestEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8808747552380762089
+--- !u!4 &346039564598508689
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5181698968637329707}
+  m_GameObject: {fileID: 2646256966954700364}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5517031353116133995}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7056178573012888025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2646256966954700364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b20e82c2dd3668408ee0a2d3b7b5203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  parameter_:
+    hp_: 10000
+    maxHp_: 10000
+    atk_: 100
+    def_: 100
+    spd_: 100
+  targetRadiuse_: 1
+--- !u!114 &796116969698291374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2646256966954700364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b245e066836917418245f229e386519, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyTimeline
+  timeline_:
+  - triggerTime_: 1
+    burstTime_: 4
+    attackData_: {fileID: 11400000, guid: 01d7563eb079a4d46ac103a2a50a46ab, type: 2}
+  - triggerTime_: 2
+    burstTime_: 3
+    attackData_: {fileID: 11400000, guid: 86f054f824b837d4287ec95b89640118, type: 2}
+  - triggerTime_: 3
+    burstTime_: 2
+    attackData_: {fileID: 11400000, guid: 651965a2f73fbb9448a4565debfadcea, type: 2}
+--- !u!1 &9171299566215321421
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5517031353116133995}
+  - component: {fileID: 5092629976342974300}
+  m_Layer: 0
+  m_Name: Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5517031353116133995
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9171299566215321421}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 102317654981900430}
+  m_Father: {fileID: 346039564598508689}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &7523100294785062005
+--- !u!212 &5092629976342974300
 SpriteRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5181698968637329707}
+  m_GameObject: {fileID: 9171299566215321421}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -82,7 +157,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.08627451}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.101960786}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -91,93 +166,3 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!1 &7621040510822268760
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 102317654981900430}
-  - component: {fileID: 305591046676989008}
-  - component: {fileID: 5333614990246439253}
-  m_Layer: 0
-  m_Name: TestEnemy
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &102317654981900430
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7621040510822268760}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8808747552380762089}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &305591046676989008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7621040510822268760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b20e82c2dd3668408ee0a2d3b7b5203, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TestEnemy
-  parameter_:
-    hp_: 1000
-    maxHp_: 1000
-    atk_: 0
-    def_: 0
-    spd_: 0
-  targetRadiuse_: 0
---- !u!114 &5333614990246439253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7621040510822268760}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b245e066836917418245f229e386519, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TestEnemyTimeline
-  timeline_:
-  - triggerTime_: 1
-<<<<<<< HEAD:RBST/Assets/Userfile/Tai'San/Script/Master/Prefab/TestEnemy.prefab
-    attackData_: {fileID: 11400000, guid: b8d9012610f995c41870b045eab2be9e, type: 2}
-  - triggerTime_: 3
-    attackData_: {fileID: 11400000, guid: e44c2e681d9b19b42b8f23bd2deb2fd0, type: 2}
-  - triggerTime_: 5
-    attackData_: {fileID: 11400000, guid: 651965a2f73fbb9448a4565debfadcea, type: 2}
-  - triggerTime_: 7
-    attackData_: {fileID: 11400000, guid: 86f054f824b837d4287ec95b89640118, type: 2}
-  - triggerTime_: 9
-    attackData_: {fileID: 11400000, guid: 01d7563eb079a4d46ac103a2a50a46ab, type: 2}
-=======
-    burstTime_: 4
-    attackData_: {fileID: 11400000, guid: b8d9012610f995c41870b045eab2be9e, type: 2}
-  - triggerTime_: 3
-    burstTime_: 5
-    attackData_: {fileID: 11400000, guid: 86f054f824b837d4287ec95b89640118, type: 2}
-  - triggerTime_: 5
-    burstTime_: 3
-    attackData_: {fileID: 11400000, guid: 01d7563eb079a4d46ac103a2a50a46ab, type: 2}
-  - triggerTime_: 7
-    burstTime_: 1
-    attackData_: {fileID: 11400000, guid: 651965a2f73fbb9448a4565debfadcea, type: 2}
->>>>>>> develop:RBST/Assets/Userfile/Tai'San/Script/Player_Master/Prefab/TestEnemy.prefab
