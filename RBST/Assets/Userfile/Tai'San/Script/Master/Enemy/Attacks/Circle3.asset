@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89cf7da1e8e5cbe4d86792e6a8f8e41f, type: 3}
   m_Name: Circle3
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackCircle
-  telegraphDuration: 1
-  damage: 200
+  telegraphDuration_: 1
+  damage_: 0
+  telegraphColor: {r: 1, g: 0.39215687, b: 0, a: 0.6117647}
+  AOEColor: {r: 0, g: 1, b: 1, a: 0.6117647}
   radius: {x: 3, y: 3}

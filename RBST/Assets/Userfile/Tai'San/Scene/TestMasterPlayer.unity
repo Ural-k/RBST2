@@ -2147,7 +2147,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5333614990246439253, guid: adc3a8dca422af646ae571b15118a38a, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5333614990246439253, guid: adc3a8dca422af646ae571b15118a38a, type: 3}
+      propertyPath: timeline_.Array.size
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5333614990246439253, guid: adc3a8dca422af646ae571b15118a38a, type: 3}
       propertyPath: timeline.Array.data[1].triggerTime
@@ -2164,6 +2168,26 @@ PrefabInstance:
     - target: {fileID: 5333614990246439253, guid: adc3a8dca422af646ae571b15118a38a, type: 3}
       propertyPath: timeline.Array.data[4].triggerTime
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5333614990246439253, guid: adc3a8dca422af646ae571b15118a38a, type: 3}
+      propertyPath: timeline_.Array.data[0].attackData_
+      value: 
+      objectReference: {fileID: 11400000, guid: b8d9012610f995c41870b045eab2be9e, type: 2}
+    - target: {fileID: 5333614990246439253, guid: adc3a8dca422af646ae571b15118a38a, type: 3}
+      propertyPath: timeline_.Array.data[1].attackData_
+      value: 
+      objectReference: {fileID: 11400000, guid: 86f054f824b837d4287ec95b89640118, type: 2}
+    - target: {fileID: 5333614990246439253, guid: adc3a8dca422af646ae571b15118a38a, type: 3}
+      propertyPath: timeline_.Array.data[2].attackData_
+      value: 
+      objectReference: {fileID: 11400000, guid: 651965a2f73fbb9448a4565debfadcea, type: 2}
+    - target: {fileID: 5333614990246439253, guid: adc3a8dca422af646ae571b15118a38a, type: 3}
+      propertyPath: timeline_.Array.data[1].triggerTime_
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5333614990246439253, guid: adc3a8dca422af646ae571b15118a38a, type: 3}
+      propertyPath: timeline_.Array.data[2].triggerTime_
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7621040510822268760, guid: adc3a8dca422af646ae571b15118a38a, type: 3}
       propertyPath: m_Name
