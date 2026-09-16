@@ -156,14 +156,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b245e066836917418245f229e386519, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestEnemyTimeline
-  timeline:
-  - triggerTime: 1
-    attackData: {fileID: 11400000, guid: e44c2e681d9b19b42b8f23bd2deb2fd0, type: 2}
-  - triggerTime: 2
-    attackData: {fileID: 11400000, guid: b8d9012610f995c41870b045eab2be9e, type: 2}
-  - triggerTime: 3
-    attackData: {fileID: 11400000, guid: 651965a2f73fbb9448a4565debfadcea, type: 2}
-  - triggerTime: 4
-    attackData: {fileID: 11400000, guid: 86f054f824b837d4287ec95b89640118, type: 2}
-  - triggerTime: 5
-    attackData: {fileID: 11400000, guid: 01d7563eb079a4d46ac103a2a50a46ab, type: 2}
+  timeline_:
+  - triggerTime_: 1
+    burstTime_: 4
+    attackData_: {fileID: 11400000, guid: b8d9012610f995c41870b045eab2be9e, type: 2}
+  - triggerTime_: 3
+    burstTime_: 5
+    attackData_: {fileID: 11400000, guid: 86f054f824b837d4287ec95b89640118, type: 2}
+  - triggerTime_: 5
+    burstTime_: 3
+    attackData_: {fileID: 11400000, guid: 01d7563eb079a4d46ac103a2a50a46ab, type: 2}
+  - triggerTime_: 7
+    burstTime_: 1
+    attackData_: {fileID: 11400000, guid: 651965a2f73fbb9448a4565debfadcea, type: 2}

@@ -28,7 +28,7 @@ public class DemoPlayerManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
-            AOEManager.Instance.ShowCircle(Vector2.zero, new Vector2(3,3), 1, 0.2f);
+            AOEManager.Instance.ShowCircle(Vector2.zero, new Vector2(3,3), Color.aliceBlue, 0.2f);
         }
 
         string debug = "";

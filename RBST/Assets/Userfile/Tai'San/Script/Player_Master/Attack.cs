@@ -75,16 +75,16 @@ public static class Attack
     /// </summary>
     /// <param name="center">’†S</param>
     /// <param name="radius">”¼Œa</param>
-    public static ITargetCircle[] GetHitCircle(ITargetCircle[] target, Vector2 center, float radius) => GetHitCircle(target, center, new Vector2(radius, radius));
+    public static ITargetCircle[] GetHitCircle(ITargetCircle[] target, Vector2 center, float radius,Color color) => GetHitCircle(target, center, new Vector2(radius, radius),color);
 
     /// <summary>
     /// w’è‚µ‚½”ÍˆÍ“à‚Ì“G‚ğæ“¾‚·‚é
     /// </summary>
     /// <param name="center">’†S</param>
     /// <param name="radius">”¼Œa</param>
-    public static ITargetCircle[] GetHitCircle(ITargetCircle[] target, Vector2 center, Vector2 radius)
+    public static ITargetCircle[] GetHitCircle(ITargetCircle[] target, Vector2 center, Vector2 radius,Color color)
     {
-        AOEManager.Instance.ShowCircle(center, radius);
+        AOEManager.Instance.ShowCircle(center, radius,color);
         if (target == null) return null;
         return target.Where(n =>
             Mathf.Pow((n.GetPosition.x - center.x) / (radius.x + n.Radius), 2) +
@@ -98,9 +98,9 @@ public static class Attack
     /// <param name="center"></param>
     /// <param name="size"></param>
     /// <param name="rotationDeg"></param>
-    public static ITargetCircle[] GetHitRect(ITargetCircle[] target, Vector2 center, Vector2 size, float rotationDeg = 0)
+    public static ITargetCircle[] GetHitRect(ITargetCircle[] target, Vector2 center, Vector2 size, Color color,float rotationDeg = 0)
     {
-        AOEManager.Instance.ShowRectangle(center, size, rotationDeg);
+        AOEManager.Instance.ShowRectangle(center, size, rotationDeg,color);
         if (target == null) return null;
         float rotationRad = -rotationDeg * Mathf.Deg2Rad;
         float cos = Mathf.Cos(rotationRad);
@@ -127,9 +127,9 @@ public static class Attack
     /// <param name="innerRadius"></param>
     /// <param name="outerRadius"></param>
     /// <returns></returns>
-    public static ITargetCircle[] GetHitDonut(ITargetCircle[] target, Vector2 center, float innerRadius, float outerRadius)
+    public static ITargetCircle[] GetHitDonut(ITargetCircle[] target, Vector2 center, float innerRadius, float outerRadius, Color color)
     {
-        AOEManager.Instance.ShowDonut(center, innerRadius, outerRadius);
+        AOEManager.Instance.ShowDonut(center, innerRadius, outerRadius, color);
         if (target == null) return null;
         return target.Where(n =>
         {
@@ -147,9 +147,9 @@ public static class Attack
     /// <param name="dir"></param>
     /// <param name="angleDeg"></param>
     /// <returns></returns>
-    public static ITargetCircle[] GetHitFan(ITargetCircle[] target, Vector2 center, float radius, Vector2 dir, float angleDeg)
+    public static ITargetCircle[] GetHitFan(ITargetCircle[] target, Vector2 center, float radius, Vector2 dir, float angleDeg, Color color)
     {
-        AOEManager.Instance.ShowFan(center, angleDeg, dir, radius);
+        AOEManager.Instance.ShowFan(center, angleDeg, dir, radius, color);
         if (target == null) return null;
 
         float baseAngleDeg = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;

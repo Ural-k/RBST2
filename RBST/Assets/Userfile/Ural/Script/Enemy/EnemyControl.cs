@@ -2,8 +2,17 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyControl : MonoBehaviour
+public class EnemyControl : MonoBehaviour , ITargetCircle
 {
+
+    [SerializeField] private Parameter parameter_;
+    [SerializeField] private float targetRadiuse_;
+
+    //ターゲットサークル
+    Vector2 ITargetCircle.GetPosition => transform.position;
+    public Parameter Parameter => parameter_;
+    public float Radius => targetRadiuse_;
+    public Effect Effect { get; set; }
     [SerializeField] private EnemyAtackObjectPool pool_;
     [Header("攻撃のステータス")]
     [SerializeField] private EnemyAttackStatus[] atackStatus_;
@@ -47,7 +56,7 @@ public class EnemyControl : MonoBehaviour
     public void DamageAble(int damage)
     {
         hp_ = Mathf.Max(hp_ - damage, 0);
-        ShowFloatingText(damage, FloatingTextType.EnemyDamage);
+        //ShowFloatingText(damage, FloatingTextType.EnemyDamage);
         if (hp_ == 0)
         {
             Died();
@@ -60,7 +69,7 @@ public class EnemyControl : MonoBehaviour
     public void Died()
     {
         //GameObjectManager.Instance.DestroyEnemy(this);
-        Destroy(gameObject);
+        Destroy(this);
     }
 
     /// <summary>
@@ -69,7 +78,7 @@ public class EnemyControl : MonoBehaviour
     public void Heal(int heal)
     {
         hp_ = Mathf.Min(hp_ + heal, maxHp_);
-        ShowFloatingText(heal, FloatingTextType.Heal);
+        //ShowFloatingText(heal, FloatingTextType.Heal);
     }
 
     /// <summary>
@@ -176,6 +185,37 @@ public class EnemyControl : MonoBehaviour
             movePhase_++;
         }
     }
+
+
+
+    void ITargetCircle.TakeDamage(int damage, ITargetCircle from)
+    {
+        //ShowFloatingText(damage, FloatingTextType.EnemyDamage);
+        parameter_.hp_ -= damage;
+    }
+
+    void ITargetCircle.TakeHeal(int point, ITargetCircle from)
+    {
+        //ShowFloatingText(point, FloatingTextType.Heal);
+        parameter_.hp_ += point;
+    }
+
+    /// <summary>
+    /// ダメージテキストの呼び出し
+    /// </summary>
+    //private void ShowFloatingText(int value, FloatingTextType type)
+//    {
+//        if (DamageTextManager.Instance == null) return;
+
+//        DamageTextManager.Instance.Show(transform.position, value, type);
+//    }
+
+
+//    //private void Start()
+//    {
+//        //Effect = new(this);
+//        //EnemyManager.AddEnemy(this);
+//    }
 
 }
 

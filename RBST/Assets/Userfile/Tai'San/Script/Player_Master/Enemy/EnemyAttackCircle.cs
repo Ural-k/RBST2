@@ -5,9 +5,14 @@ public class EnemyAttackCircle : EnemyAttackBase
 {
     public Vector2 radius = new Vector2(2, 2);
 
+    public override void TelegraphDuration(Vector3 pos, Transform enemyTransform)
+    {
+        AOEManager.Instance.ShowCircle(pos, radius, telegraphColor,telegraphDuration_);
+    }
+
     public override void Execute(Vector3 originPosition, Transform enemyTransform)
     {
-        var hit = Attack.GetHitCircle(Attack.GetAllPlayer(), originPosition, radius);
+        var hit = Attack.GetHitCircle(Attack.GetAllPlayer(), originPosition, radius, AOEColor);
         Attack.TakeDamage(hit, damage_);
     }
 }

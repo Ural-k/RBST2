@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc6391c62e8b43645bde2c34ed2b46de, type: 3}
   m_Name: Donut2-4
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackDonut
-  telegraphDuration: 0.5
-  damage: 200
+  telegraphDuration_: 1
+  damage_: 0
+  telegraphColor: {r: 1, g: 0.39215687, b: 0, a: 0.6117647}
+  AOEColor: {r: 0, g: 1, b: 1, a: 0.6117647}
   innerRadius: 2
   outerRadius: 15
