@@ -16,6 +16,7 @@ public abstract class Player : MonoBehaviour,ITargetCircle
     [SerializeField] protected Animator animator_;
 
     private bool[] hold_ = new bool[3];
+    private InputValue[] iv_ = new InputValue[3];
     private Vector2 moveAxis_;
     private Vector2 lastAxis_;
 
@@ -43,6 +44,8 @@ public abstract class Player : MonoBehaviour,ITargetCircle
 
     private void Update()
     {
+        //Debug.Log(iv_[0]?.isPressed);
+
         if (hold_[0]) Skill1();
         else if (hold_[1]) Skill2();
         else if (hold_[2]) Skill3();
