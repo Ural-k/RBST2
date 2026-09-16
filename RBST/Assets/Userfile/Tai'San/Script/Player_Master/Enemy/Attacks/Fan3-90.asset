@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9363778e2c964b74f92fe1fee29e230b, type: 3}
   m_Name: Fan3-90
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackFan
-  telegraphDuration: 0.5
-  damage: 200
+  telegraphDuration_: 1
+  damage_: 0
+  telegraphColor: {r: 1, g: 0.39215687, b: 0, a: 0.6117647}
+  AOEColor: {r: 0, g: 1, b: 1, a: 0.6117647}
   radius: 15
   dir: {x: -1, y: 0}
-  angledeg: 270
+  angleDeg: 45

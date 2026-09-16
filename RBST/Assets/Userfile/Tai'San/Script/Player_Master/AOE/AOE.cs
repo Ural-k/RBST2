@@ -64,12 +64,13 @@ public class AOE : MonoBehaviour
     /// <summary>
     /// プールから取り出した直後に呼ぶ。タイマー類を初期化する。
     /// </summary>
-    public void ResetState(float telegraphDuration, float effectDuration)
+    public void ResetState(float telegraphDuration, float effectDuration, Color color)
     {
-        //mpb_.SetColor("_Color", new Color(1, 0.2f, 0.2f, 0.5f));
-        //rend_.GetPropertyBlock(mpb_);
+        
+        rend_.GetPropertyBlock(mpb_);
+        mpb_.SetColor("_Color", color);
         //mpb_.SetColor("_Color", Color.red);
-        //rend_.SetPropertyBlock(mpb_);
+        rend_.SetPropertyBlock(mpb_);
         telegraphDuration_ = telegraphDuration;
         duration = effectDuration;
         timer_ = 0f;
