@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class Skill : ScriptableObject
 {
     [SerializeField] private List<SkillData> data_;

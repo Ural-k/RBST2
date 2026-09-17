@@ -2,11 +2,19 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// (ÉçÅ[ÉJÉã)
+/// </summary>
 public class PlayerUI : MonoBehaviour
 {
     [SerializeField] private Player player_;
     [SerializeField] private EffectIcon effectImageTemple_;
     [SerializeField] private Transform buffParent_, debuffParent_;
+
+    [SerializeField] private List<Sprite> icon1_;
+    [SerializeField] private List<Sprite> icon2_;
+    [SerializeField] private List<Sprite> icon3_;
+
     private List<EffectIcon> buffImage_ = new List<EffectIcon>();
     private List<EffectIcon> debuffImage_ = new List<EffectIcon>();
     private List<EffectController> effects_ = new List<EffectController>();
