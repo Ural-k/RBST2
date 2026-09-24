@@ -1042,7 +1042,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6361323789868842411}
   m_Layer: 0
-  m_Name: DeBuff
+  m_Name: DeBuffs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1076,7 +1076,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6313847818248796021}
-  - component: {fileID: 9015296308535605803}
+  - component: {fileID: 1933026468633495999}
+  - component: {fileID: 4487439303543549826}
   - component: {fileID: 1318473592385209884}
   m_Layer: 0
   m_Name: Player_Magic
@@ -1102,7 +1103,7 @@ Transform:
   - {fileID: 4752886810883845651}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9015296308535605803
+--- !u!114 &1933026468633495999
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1111,17 +1112,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 7893842765605816362}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8f5b4bb37d77c64aa0d11b984aee5a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c7fb9dae9d674648b9d79c5e191f17d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Magic
-  color_: {r: 0.78113204, g: 0.417095, b: 0.77385134, a: 1}
+  m_EditorClassIdentifier: Assembly-CSharp::Player
   parametor_:
     hp_: 1000
     maxHp_: 1000
     atk_: 100
     def_: 100
-    spd_: 100
+    spd_: 5
   animator_: {fileID: 0}
+--- !u!114 &4487439303543549826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7893842765605816362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4b6d948215a3748a18a68dd16ddf48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Job
+  jobName_: "\u9B54\u5C0E\u58EB"
+  skill1_: {fileID: 11400000, guid: faaeb245158f50f49aacbc677ea9b799, type: 2}
+  skill2_: {fileID: 0}
+  skill3_: {fileID: 0}
 --- !u!114 &1318473592385209884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1134,7 +1150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab80ca4a9a796ad43a481b34fb0dc258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerUI
-  player_: {fileID: 9015296308535605803}
   effectImageTemple_: {fileID: 3849050171620536853, guid: 717015d9b394eae41985a692e374eb1b, type: 3}
   buffParent_: {fileID: 5079246106523390983}
   debuffParent_: {fileID: 6361323789868842411}
@@ -1302,7 +1317,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5079246106523390983}
   m_Layer: 0
-  m_Name: Buff
+  m_Name: Buffs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

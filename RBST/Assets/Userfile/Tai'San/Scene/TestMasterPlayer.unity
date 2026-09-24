@@ -840,6 +840,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4487439303543549826, guid: 4af719eae0532204696a1a0e8e1063ed, type: 3}
+      propertyPath: skill1_
+      value: 
+      objectReference: {fileID: 11400000, guid: faaeb245158f50f49aacbc677ea9b799, type: 2}
     - target: {fileID: 6313847818248796021, guid: 4af719eae0532204696a1a0e8e1063ed, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1316,13 +1320,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab80ca4a9a796ad43a481b34fb0dc258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerUI
-  player_: {fileID: 1199561296}
   effectImageTemple_: {fileID: 3849050171620536853, guid: 717015d9b394eae41985a692e374eb1b, type: 3}
   buffParent_: {fileID: 1774499040}
   debuffParent_: {fileID: 1864496275}
-  icon1_: []
-  icon2_: []
-  icon3_: []
 --- !u!1 &1231410355
 GameObject:
   m_ObjectHideFlags: 0
@@ -2379,6 +2379,10 @@ PrefabInstance:
     - target: {fileID: 4816567772332436456, guid: a9f04d51988bbb04d9f69036b65a2824, type: 3}
       propertyPath: m_FillAmount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5014122069875608414, guid: a9f04d51988bbb04d9f69036b65a2824, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6107082792704281940, guid: a9f04d51988bbb04d9f69036b65a2824, type: 3}
       propertyPath: m_AnchoredPosition.x

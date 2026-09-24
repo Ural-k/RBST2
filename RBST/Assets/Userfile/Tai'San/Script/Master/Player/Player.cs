@@ -5,18 +5,16 @@ using UnityEngine.InputSystem;
 /// <summary>
 /// マスター版に使用したいプレイヤーベース(ローカル)
 /// </summary>
-public abstract class Player : MonoBehaviour,ITargetCircle
+public class Player : MonoBehaviour,ITargetCircle
 {
     /* 移動範囲(仮かも) */
     protected const float MOVE_SCREEN_X = 8.8f;
     protected const float MOVE_SCREEN_Y = 4.8f;
 
-    [SerializeField] private Color color_;//イメージカラー
     [SerializeField] private Parameter parametor_;
     [SerializeField] protected Animator animator_;
 
     private bool[] hold_ = new bool[3];
-    private InputValue[] iv_ = new InputValue[3];
     private Vector2 moveAxis_;
     private Vector2 lastAxis_;
 
@@ -25,6 +23,7 @@ public abstract class Player : MonoBehaviour,ITargetCircle
     protected float gcd_;
     protected float[] cd_ = new float[3];
 
+    //ターゲットサークル
     public Parameter Parameter => parametor_;
     public Effect Effect { get; set; }
     public float Radius { get; set; } = 0.1f;
@@ -44,12 +43,6 @@ public abstract class Player : MonoBehaviour,ITargetCircle
 
     private void Update()
     {
-        //Debug.Log(iv_[0]?.isPressed);
-
-        if (hold_[0]) Skill1();
-        else if (hold_[1]) Skill2();
-        else if (hold_[2]) Skill3();
-
         gcd_ = Mathf.Max(gcd_ - Time.deltaTime, 0);
         for (int i = 0; i < cd_.Count(); ++i) cd_[i] = Mathf.Max(cd_[i] - Time.deltaTime, 0);
         if(moveAxis_ != Vector2.zero)
@@ -67,14 +60,11 @@ public abstract class Player : MonoBehaviour,ITargetCircle
     }
 
     /* 入力 */
-    public void InputSkill1(InputValue value) => Skill1();
-    public void InputSkill2(InputValue value) => Skill2();
-    public void InputSkill3(InputValue value) => Skill3();
+    public void InputSkill1(InputValue value) { }
+    public void InputSkill2(InputValue value) { }
+    public void InputSkill3(InputValue value) { }
     public void Move(InputValue value) => moveAxis_ = value.Get<Vector2>();
 
-    protected abstract void Skill1(int s = 0);
-    protected abstract void Skill2(int s = 1);
-    protected abstract void Skill3(int s = 2);
     protected float Distance(int d) { return Mathf.Sign(lastAxis_.x) * d; }
     protected bool IsGCD() { return gcd_ > 0; }
     protected bool IsCD(int s) { return cd_[s] > 0; }

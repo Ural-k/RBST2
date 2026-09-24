@@ -7,13 +7,10 @@ using UnityEngine;
 /// </summary>
 public class PlayerUI : MonoBehaviour
 {
-    [SerializeField] private Player player_;
+    const float EFFECT_SPACE = 30;
+
     [SerializeField] private EffectIcon effectImageTemple_;
     [SerializeField] private Transform buffParent_, debuffParent_;
-
-    [SerializeField] private List<Sprite> icon1_;
-    [SerializeField] private List<Sprite> icon2_;
-    [SerializeField] private List<Sprite> icon3_;
 
     private List<EffectIcon> buffImage_ = new List<EffectIcon>();
     private List<EffectIcon> debuffImage_ = new List<EffectIcon>();
@@ -22,8 +19,11 @@ public class PlayerUI : MonoBehaviour
 
     private void Start()
     {
-        player_.Effect.OnEffectAdd += AddEffect;
-        player_.Effect.OnEffectRemove += RemoveEffect;
+        if(TryGetComponent(out Player player))
+        {
+            player.Effect.OnEffectAdd += AddEffect;
+            player.Effect.OnEffectRemove += RemoveEffect;
+        }
     }
 
     private void AddEffect(EffectController effect)
@@ -42,29 +42,6 @@ public class PlayerUI : MonoBehaviour
             }
         }
 
-        /*
-         * やりたいこと
-         * 
-         * 付与時
-         * 　リストを整える
-         * 　　1.引数(呼び出し時に追加されたバフ)を現在のDictionaryにAdd()。:EffectIconを基準にすると、追加した順に左から数えれる
-         * 　for文で順番に表示
-         * 　　1.テンプレが置いてない(iの位置にDictionaryがない)場合、Instantiate()で呼び出す
-         * 　　2.テンプレが置いてある(iの位置にDictionaryがある)場合、Active()でsprite変更+スタック表示
-         * 
-         * 剥奪時
-         * 　引数のEffectIconのα値を0にしてからリムーヴ
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         * 
-         */
-
-
-
         effects_.Add(effect);
 
         int buffnum = 0;
@@ -76,7 +53,7 @@ public class PlayerUI : MonoBehaviour
                 if (buffnum >= buffImage_.Count)//生成してない場合
                 {
                     var ins = Instantiate(effectImageTemple_, buffParent_);
-                    ins.transform.localPosition = new Vector2(30 * buffnum, 0);
+                    ins.transform.localPosition = new Vector2(EFFECT_SPACE * buffnum, 0);
                     buffImage_.Add(ins);
                 }
                 buffImage_[buffnum].Active(e);
@@ -87,7 +64,7 @@ public class PlayerUI : MonoBehaviour
                 if (debuffnum >= debuffImage_.Count)
                 {
                     var ins = Instantiate(effectImageTemple_, debuffParent_);
-                    ins.transform.localPosition = new Vector2(30 * debuffnum, 0);
+                    ins.transform.localPosition = new Vector2(EFFECT_SPACE * debuffnum, 0);
                     debuffImage_.Add(ins);
                 }
                 debuffImage_[debuffnum].Active(e);
