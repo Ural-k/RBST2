@@ -17,5 +17,5 @@ public class SkillData : ScriptableObject
     public SkillData nextSkill_;
 
     [Header("UŒ‚")]
-    
+    public List<PlayerAttackBase> attacks_;
 }
