@@ -19,7 +19,7 @@ public static class Attack
             ITargetCircle[] result = new ITargetCircle[EnemyManager.GetAllEnemyListCount()];
             foreach (var e in EnemyManager.GetAllEnemy())
             {
-                result[i] = (ITargetCircle)e;
+                result[i] = e;
                 ++i;
             }
             return result;
@@ -38,7 +38,7 @@ public static class Attack
             ITargetCircle[] result = new ITargetCircle[PlayerManager.GetAllPlayerListCount()];
             foreach (var p in PlayerManager.GetAllPlayer())
             {
-                result[i] = (ITargetCircle)p;
+                result[i] = p;
                 ++i;
             }
             return result;
@@ -47,14 +47,15 @@ public static class Attack
     }
 
     /// <summary>
-    /// ‹ß‚­‚Ì“G‚ÌÀ•W‚ğæ“¾‚·‚é
+    /// ‹ß‚¢‘ÎÛ‚ğæ“¾‚·‚é
     /// </summary>
+    /// <param name="target">‘ÎÛ</param>
     /// <param name="from">Œ³‚Æ‚È‚éÀ•W</param>
-    /// <param name="distance">“G‚ª‚¢‚È‚¢ê‡x‚É‘æ‚Qˆø”‚ğ‘«‚µ‚½’l‚ğ•Ô‚·</param>
-    public static Vector2 GetNearEnemyPos(Vector2 from, float distance = 0)
+    /// <param name="num">‰½‘Ìæ“¾‚·‚é‚©</param>
+    public static ITargetCircle GetNear(ITargetCircle[] target, Vector2 from, int num = 1)
     {
-        if (EnemyManager.GetAllEnemyListCount() == 0) return new Vector2(from.x + distance, from.y);
-        else return EnemyManager.GetAllEnemy().OrderBy(n => Vector2.Distance(from, n.transform.position)).FirstOrDefault().gameObject.transform.position;
+        if (target.Count() == 0) return null;
+        else return target.OrderBy(n => Vector2.Distance(from, n.GetPosition)).FirstOrDefault();
     }
 
     /// <summary>

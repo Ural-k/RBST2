@@ -2,10 +2,10 @@ using UnityEngine;
 
 public abstract class PlayerAttackBase : ScriptableObject
 {
-    [SerializeField] protected float power_;
-    [SerializeField] protected TargetType pivotType_;
+    [SerializeField] protected int power_;
+    [SerializeField] protected TargetType targetType_;
     [SerializeField] protected PivotSet pivotSet_;
-    [SerializeField, Range(1, 4)] protected float targetNum_;
+    [SerializeField, Range(1, 4)] protected int targetNum_;
 
     public enum TargetType
     {
@@ -18,8 +18,7 @@ public abstract class PlayerAttackBase : ScriptableObject
         Near,
         Far,
         Random,
-        All
     }
 
-    public abstract void Execute(Vector2 originPosition);
+    public abstract void Execute(ITargetCircle from);
 }
