@@ -52,10 +52,24 @@ public static class Attack
     /// <param name="target">‘ÎÛ</param>
     /// <param name="from">Œ³‚Æ‚È‚éÀ•W</param>
     /// <param name="num">‰½‘Ìæ“¾‚·‚é‚©</param>
-    public static ITargetCircle GetNear(ITargetCircle[] target, Vector2 from, int num = 1)
+    public static ITargetCircle[] GetNear(ITargetCircle[] target, Vector2 from, int num = 1)
     {
-        if (target.Count() == 0) return null;
-        else return target.OrderBy(n => Vector2.Distance(from, n.GetPosition)).FirstOrDefault();
+        ITargetCircle[] result = null;
+        for(int i = 0; i < num; ++i)
+        {
+            if(target.Count() != 0)
+            {
+                break;
+            }
+            else
+            {
+
+            }
+            if (target.Count() == 0) return null;
+            else return target.OrderBy(n => Vector2.Distance(from, n.GetPosition)).FirstOrDefault();
+
+        }
+
     }
 
     /// <summary>
