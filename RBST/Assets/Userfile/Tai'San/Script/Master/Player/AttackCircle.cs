@@ -1,34 +1,42 @@
 using System.Linq;
 using UnityEngine;
 
-public class AttackCircle : PlayerAttackBase
+[CreateAssetMenu(menuName = "ScriptableObjects/Attacks/Circle")]
+public class AttackCircle : AttackBase
 {
     [SerializeField] private Vector2 radius_ = new Vector2(2, 2);
 
     public override async void Execute(ITargetCircle from)
     {
-        ITargetCircle[] type = targetType_ switch
+        //UŒ‚‚³‚ê‚¤‚é‘ÎÛÒ
+        ITargetCircle[] attackable = targetType_ switch
         {
             TargetType.Enemy => Attack.GetAllEnemy(),
             TargetType.Player => Attack.GetAllPlayer(),
             _ => null
         };
 
-        int num = Mathf.Min(targetNum_, type.Length + 1);
+        //ƒ^[ƒQƒbƒg‚Å‚«‚é”
+        int num = Mathf.Min(targetNum_, attackable.Length + 1);
 
-        for (int i = 0; i < num; ++i)
+        //UŒ‚‚ğ‚·‚é‘ÎÛ
+        ITargetCircle[] target = pivotSet_ switch
         {
-            ITargetCircle target = pivotSet_ switch
-            {
-                PivotSet.Me => from,
-                PivotSet.Near => Vector2.zero,//hit‚Ì’†‚©‚ç‹ß‚¢ƒ^[ƒQƒbƒg‚ğæ“¾‚Å‚«‚é‚æ‚¤‚É‚·‚é
-                PivotSet.Far => Vector2.zero,//À‘•‚·‚é
-                PivotSet.Random => Vector2.zero, //À‘•‚·‚é
-                _ => from,
-            };
+            PivotSet.Me => new ITargetCircle[] { from },
+            PivotSet.Near => Attack.GetNear(attackable, from.GetPosition, num),
+            PivotSet.Far => Attack.GetFar(attackable, from.GetPosition, num),
+            PivotSet.Random => Attack.GetRandom(attackable, num),
+            _ => null,
+        };
 
-            var hit = Attack.GetHitCircle(type, from.GetPosition, radius_, Color.white);
-            Attack.TakeDamage(hit, power_);
+        //UŒ‚
+        foreach (var t in target)
+        {
+            if (t != null)
+            {
+                var hit = Attack.GetHitCircle(attackable, t.GetPosition, radius_, Color.white);
+                Attack.TakeDamage(hit, power_);
+            }
         }
     }
 }

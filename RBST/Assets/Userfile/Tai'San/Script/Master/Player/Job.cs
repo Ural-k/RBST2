@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public interface InputSkill
+public interface IInputSkill
 {
     void Skill1();
     void Skill2();
     void Skill3();
 }
 
-public class Job : MonoBehaviour, InputSkill
+public class Job : MonoBehaviour, IInputSkill
 {
     [SerializeField] private string jobName_;
 
@@ -15,18 +15,27 @@ public class Job : MonoBehaviour, InputSkill
     [SerializeField] private SkillData skill2_;
     [SerializeField] private SkillData skill3_;
 
+    private ITargetCircle me_;
     private float gcd_;
 
-    void InputSkill.Skill1()
+    private void Start()
     {
-        
+        me_ = GetComponent<Player>().GetComponent<ITargetCircle>();
     }
 
-    void InputSkill.Skill2()
+    void IInputSkill.Skill1()
+    {
+        foreach(var a in skill1_.attacks_)
+        {
+            a.Execute(me_);
+        }
+    }
+
+    void IInputSkill.Skill2()
     {
     }
 
-    void InputSkill.Skill3()
+    void IInputSkill.Skill3()
     {
     }
 }

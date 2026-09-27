@@ -836,6 +836,10 @@ PrefabInstance:
       propertyPath: icon1_.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1933026468633495999, guid: 4af719eae0532204696a1a0e8e1063ed, type: 3}
+      propertyPath: parametor_.spd_
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 2990534248165485032, guid: 4af719eae0532204696a1a0e8e1063ed, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1204,6 +1208,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb1a479d180c0e04ba4cb402b206bf9a, type: 3}
+--- !u!114 &1153926614 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7056178573012888025, guid: adc3a8dca422af646ae571b15118a38a, type: 3}
+  m_PrefabInstance: {fileID: 4340174509378342267}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b20e82c2dd3668408ee0a2d3b7b5203, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
 --- !u!1001 &1199561295
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1361,6 +1376,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 125}
   m_SizeDelta: {x: 300, y: 75}
   m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &1265188474 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1933026468633495999, guid: 4af719eae0532204696a1a0e8e1063ed, type: 3}
+  m_PrefabInstance: {fileID: 598533850}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c7fb9dae9d674648b9d79c5e191f17d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player
 --- !u!1 &1322580909
 GameObject:
   m_ObjectHideFlags: 0
@@ -1486,10 +1512,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8ce03871e33ff243a7c5d3b56329e5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DemoPlayerManager
-  player_: {fileID: 1199561296}
+  player_: {fileID: 1265188474}
   effectData_: {fileID: 11400000, guid: 2048fe796724f8846a8986077905cf74, type: 2}
   effectData2_: {fileID: 11400000, guid: 619a6cfd6bb276e4593ae2f9c4af2646, type: 2}
   debugUI_: {fileID: 169238819}
+  enemy_:
+  - {fileID: 1153926614}
 --- !u!1 &1556598960
 GameObject:
   m_ObjectHideFlags: 0

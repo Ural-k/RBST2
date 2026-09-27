@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306a06d6c55715142a414049d358aab9, type: 3}
+  m_Name: Fire2
+  m_EditorClassIdentifier: Assembly-CSharp::SkillData
+  skillName_: "\u30D5\u30A1\u30A4\u30A22"
+  icon_: {fileID: -2761673434527092231, guid: 902ee4f0bb74cd2499051fbcd4555a5d, type: 3}
+  help_: 
+  power_: 300
+  gcd_: 1
+  cd_: 0
+  delay_: 0
+  nextSkill_: {fileID: 11400000, guid: faaeb245158f50f49aacbc677ea9b799, type: 2}
+  attacks_:
+  - {fileID: 11400000, guid: b3ed8e935aecc004ea79261f7eec7f8c, type: 2}

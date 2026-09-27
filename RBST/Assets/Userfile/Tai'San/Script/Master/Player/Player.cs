@@ -11,10 +11,15 @@ public class Player : MonoBehaviour,ITargetCircle
     protected const float MOVE_SCREEN_X = 8.8f;
     protected const float MOVE_SCREEN_Y = 4.8f;
 
-    [SerializeField] private Parameter parametor_;
+    [SerializeField] private string jobName_;
     [SerializeField] protected Animator animator_;
+    [SerializeField] private Parameter parametor_;
 
-    private bool[] hold_ = new bool[3];
+    [SerializeField] private SkillData skill1_;
+    [SerializeField] private SkillData skill2_;
+    [SerializeField] private SkillData skill3_;
+
+    private ITargetCircle myTargetCircle_;
     private Vector2 moveAxis_;
     private Vector2 lastAxis_;
 
@@ -22,6 +27,10 @@ public class Player : MonoBehaviour,ITargetCircle
     protected int[] nowCombo_ = new int[2];
     protected float gcd_;
     protected float[] cd_ = new float[3];
+
+    public SkillData GetSkill1 { get { return skill1_; } }
+    public SkillData GetSkill2 { get { return skill2_; } }
+    public SkillData GetSkill3 { get { return skill3_; } }
 
     //ターゲットサークル
     public Parameter Parameter => parametor_;
@@ -34,6 +43,7 @@ public class Player : MonoBehaviour,ITargetCircle
     private void Start()
     {
         Effect = new(this);
+        myTargetCircle_ = GetComponent<ITargetCircle>();
         InputManager.Instance.OnMove_ += Move;
         InputManager.Instance.OnSkill1_ += InputSkill1;
         InputManager.Instance.OnSkill2_ += InputSkill2;
@@ -60,9 +70,14 @@ public class Player : MonoBehaviour,ITargetCircle
     }
 
     /* 入力 */
-    public void InputSkill1(InputValue value) { }
-    public void InputSkill2(InputValue value) { }
-    public void InputSkill3(InputValue value) { }
+    public void InputSkill1(InputValue value)
+    {
+
+        foreach (var a in skill1_.attacks_) { a.Execute(myTargetCircle_); }
+        skill1_ = skill1_.nextSkill_;//次のスキルへ
+    }
+    public void InputSkill2(InputValue value) { foreach (var a in skill2_.attacks_) { a.Execute(myTargetCircle_); } }
+    public void InputSkill3(InputValue value) { foreach (var a in skill3_.attacks_) { a.Execute(myTargetCircle_); } }
     public void Move(InputValue value) => moveAxis_ = value.Get<Vector2>();
 
     protected float Distance(int d) { return Mathf.Sign(lastAxis_.x) * d; }

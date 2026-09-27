@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// (ÉçÅ[ÉJÉã)
@@ -17,13 +18,25 @@ public class PlayerUI : MonoBehaviour
     private List<EffectController> effects_ = new List<EffectController>();
     private Dictionary<EffectController, EffectIcon> effects2 = new Dictionary<EffectController, EffectIcon>();
 
+    [SerializeField, Header("Skill")] private List<Image> skillIcon_;
+
+    private Player player_;
+
     private void Start()
     {
+        player_ = GetComponent<Player>();
         if(TryGetComponent(out Player player))
         {
-            player.Effect.OnEffectAdd += AddEffect;
-            player.Effect.OnEffectRemove += RemoveEffect;
+            //player.Effect.OnEffectAdd += AddEffect;
+            //player.Effect.OnEffectRemove += RemoveEffect;
         }
+    }
+
+    private void Update()
+    {
+        skillIcon_[0].sprite = player_.GetSkill1.icon_;
+        skillIcon_[1].sprite = player_.GetSkill2.icon_;
+        skillIcon_[2].sprite = player_.GetSkill3.icon_;
     }
 
     private void AddEffect(EffectController effect)

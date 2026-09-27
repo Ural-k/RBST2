@@ -19,4 +19,6 @@ MonoBehaviour:
   gcd_: 1
   cd_: 0
   delay_: 0.1
-  nextSkill_: {fileID: 11400000}
+  nextSkill_: {fileID: 11400000, guid: 481e2d16a14a2044fbce797cc91bd985, type: 2}
+  attacks_:
+  - {fileID: 11400000, guid: b3ed8e935aecc004ea79261f7eec7f8c, type: 2}

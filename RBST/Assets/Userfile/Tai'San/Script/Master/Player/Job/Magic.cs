@@ -20,7 +20,7 @@ using UnityEngine.UI;
 //    protected override async void Skill2(int s = 1)
 //    {
 //        if (IsGCDCD(s)) return;
-//        if(magicStack_ >= 1 && magicStack_ < 6)//サンダー3回 + 3連魔
+//        if (magicStack_ >= 1 && magicStack_ < 6)//サンダー3回 + 3連魔
 //        {
 //            gcd_ = 1.0f;
 //            var pos0 = Attack.GetNearEnemyPos(transform.position, 4);
@@ -30,7 +30,7 @@ using UnityEngine.UI;
 //                Attack.TakeDamage(Attack.GetHitCircle(Attack.GetAllEnemy(), pos0, 1, Color.white), 50);
 //            }
 //        }
-//        else if(magicStack_ >= 6 && magicStack_ < 20)
+//        else if (magicStack_ >= 6 && magicStack_ < 20)
 //        {
 //            gcd_ = 1.5f;
 //            var pos1 = Attack.GetNearEnemyPos(transform.position, 4);

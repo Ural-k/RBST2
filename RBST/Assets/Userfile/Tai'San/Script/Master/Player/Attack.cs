@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System;
 using System.Linq;
 using UnityEngine;
 
@@ -54,22 +56,49 @@ public static class Attack
     /// <param name="num">‰½‘Ìæ“¾‚·‚é‚©</param>
     public static ITargetCircle[] GetNear(ITargetCircle[] target, Vector2 from, int num = 1)
     {
-        ITargetCircle[] result = null;
+        List<ITargetCircle> temp1 = target.ToList();
+        ITargetCircle[] result = new ITargetCircle[num];
         for(int i = 0; i < num; ++i)
         {
-            if(target.Count() != 0)
-            {
-                break;
-            }
+            if (temp1.Count == 0) break;
+            var temp2 = temp1.OrderBy(n => Vector2.Distance(from, n.GetPosition)).FirstOrDefault();
+            result[i] = temp2;
+            temp1.Remove(temp2);
+        }
+        return result;
+    }
+
+    /// <summary>
+    /// ‰“‚¢‘ÎÛ‚ğæ“¾‚·‚é
+    /// </summary>
+    /// <param name="target">‘ÎÛ</param>
+    /// <param name="from">Œ³‚Æ‚È‚éÀ•W</param>
+    /// <param name="num">‰½‘Ìæ“¾‚·‚é‚©</param>
+    public static ITargetCircle[] GetFar(ITargetCircle[] target, Vector2 from, int num = 1)
+    {
+        List<ITargetCircle> temp1 = target.ToList();
+        ITargetCircle[] result = new ITargetCircle[num];
+        for (int i = 0; i < num; ++i)
+        {
+            if (target.Count() != 0) break;
             else
             {
-
+                var temp2 = temp1.OrderByDescending(n => Vector2.Distance(from, n.GetPosition)).FirstOrDefault();
+                result[i] = temp2;
+                temp1.Remove(temp2);
             }
-            if (target.Count() == 0) return null;
-            else return target.OrderBy(n => Vector2.Distance(from, n.GetPosition)).FirstOrDefault();
-
         }
+        return result;
+    }
 
+    /// <summary>
+    /// ‘ÎÛ‚ğƒ‰ƒ“ƒ_ƒ€‚Éæ“¾‚·‚é
+    /// </summary>
+    /// <param name="target">‘ÎÛ</param>
+    /// <param name="num">‰½‘Ìæ“¾‚·‚é‚©</param>
+    public static ITargetCircle[] GetRandom(ITargetCircle[] target, int num = 1)
+    {
+        return target.OrderBy(n => Guid.NewGuid()).Take(num).ToArray();
     }
 
     /// <summary>

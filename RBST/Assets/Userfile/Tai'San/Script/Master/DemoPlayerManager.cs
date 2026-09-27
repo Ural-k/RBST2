@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +8,16 @@ public class DemoPlayerManager : MonoBehaviour
     [SerializeField] EffectData effectData_;
     [SerializeField] EffectData effectData2_;
     [SerializeField] Text debugUI_;
+    [SerializeField] List<Enemy> enemy_;
+
+    private void Start()
+    {
+        foreach (Enemy enemy in enemy_)
+        {
+            EnemyManager.AddEnemy(enemy);
+        }
+        PlayerManager.AddPlayer(player_);
+    }
 
     private void Update()
     {
