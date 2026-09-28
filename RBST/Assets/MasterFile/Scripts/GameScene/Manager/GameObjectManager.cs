@@ -16,7 +16,7 @@ public class GameObjectManager : MonoBehaviour
     public static GameObjectManager Instance;
 
     //デバッグ用
-    private Vector2 offset = new Vector2(5, 0);
+    private Vector2 offset = new Vector2(15, 0);
 
 
     private void Awake()

@@ -15,7 +15,7 @@ public class EnemyAttackFan : EnemyAttackBase
 
     public override void Execute(Vector3 originPosition, Transform enemyTransform)
     {
-        var hit = Attack.GetHitFan(Attack.GetAllPlayer(), originPosition, radius, Vector2.left, angleDeg,AOEColor);
+        var hit = Attack.GetHitFan(Attack.GetAllPlayer(), originPosition, radius, dir, angleDeg,AOEColor);
         Attack.TakeDamage(hit, damage_);
     }
 }
