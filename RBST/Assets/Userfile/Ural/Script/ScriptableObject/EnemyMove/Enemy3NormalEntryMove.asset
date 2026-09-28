@@ -17,4 +17,5 @@ MonoBehaviour:
     pos: {x: 6, y: 0}
     moveTime: 2
     waitTime: 0
-    nextMoveTime: 5
+    nextMoveTime: 4
+    fadeTime: 0

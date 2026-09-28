@@ -23,7 +23,7 @@ MonoBehaviour:
     pos: {x: 5, y: 0}
     moveTime: 2
     waitTime: 0
-    nextMoveTime: 5
+    nextMoveTime: 3
     fadeTime: 1
   - moveCollect: 1
     pos: {x: 0, y: 0}
