@@ -10,24 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c0bc8d8ba05c1b24a90e0ed0fd3ea145, type: 3}
-  m_Name: Enemy1TeleportMove
+  m_Name: Enemy3NormalMove
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMoveAsset
   status:
-  - moveCollect: 1
-    pos: {x: -5, y: 0}
+  - moveCollect: 0
+    pos: {x: 0, y: -3}
     moveTime: 2
     waitTime: 0
-    nextMoveTime: 4
-    fadeTime: 1
-  - moveCollect: 1
-    pos: {x: 5, y: 0}
+    nextMoveTime: 3.5
+    fadeTime: 0
+  - moveCollect: 0
+    pos: {x: -6, y: 0}
+    moveTime: 0.5
+    waitTime: 0
+    nextMoveTime: 6
+    fadeTime: 0
+  - moveCollect: 0
+    pos: {x: 0, y: 3}
+    moveTime: 0.5
+    waitTime: 0
+    nextMoveTime: 3.5
+    fadeTime: 0
+  - moveCollect: 0
+    pos: {x: 6, y: 0}
     moveTime: 2
     waitTime: 0
-    nextMoveTime: 4
-    fadeTime: 1
-  - moveCollect: 1
-    pos: {x: 0, y: 0}
-    moveTime: 2
-    waitTime: 0
-    nextMoveTime: 4
-    fadeTime: 1
+    nextMoveTime: 7
+    fadeTime: 0
