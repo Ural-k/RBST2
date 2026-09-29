@@ -15,10 +15,25 @@ public class EnemyTimeline : MonoBehaviour
 {
     [SerializeField] private List<AttackTimelineEntry> timeline_ = new();
 
-    private void Start() => StartCoroutine(RunTimeline());
+    [Header("移動のステータス(最初の一つ目は入場)")]
+    [SerializeField] private EnemyMoveAsset[] moveStatus_;
+
+    private EnemyMoveWrapper moveWrapper_;
+    private IEnemyMove moves_;
+    private int movePhase_ = 1;
+    private bool entryFlag_;
+    private int waitTime_ = 5;
+
+    private void Awake()
+    {
+        entryFlag_ = false;
+        moveWrapper_ = new EnemyMoveWrapper();
+    }
+    private void Start()=>StartCoroutine(MoveCorutine());
+
 
     private IEnumerator RunTimeline()
-    {
+    { 
         float elapsed = 0f;
         var waitTime = new WaitForSeconds(0);
         var sorted = timeline_.OrderBy(e => e.triggerTime_).ToList();
@@ -44,5 +59,62 @@ public class EnemyTimeline : MonoBehaviour
     {
         yield return new WaitForSeconds(entry.burstTime_);
         entry.attackData_.Execute(position, transform);
+    }
+
+    public IEnumerator MoveCorutine()
+    {
+        //移動待機時間の初期化
+        var moveWait = new WaitForSeconds(waitTime_);
+        while (true)
+        {
+            //入場演出
+            if (entryFlag_ == false)
+            {
+                var entryData = moveStatus_[0];
+                EnemyMoveStract moveData = entryData.status[0];
+
+                IEnemyMove move = moveWrapper_.MoveSet(moveData.moveCollect);
+
+                if (move != null)
+                {
+                    yield return StartCoroutine(move.EnemyMoveColutine(transform, moveData));
+                }
+                moveWait = new WaitForSeconds(moveData.nextMoveTime);
+                StartCoroutine(RunTimeline());
+                yield return moveWait;
+                entryFlag_ = true;
+                
+            }
+
+            //中身がなかったらブレイク
+            if (moveStatus_ == null) { yield break; }
+
+            //最後の移動が終わったら繰り返す
+            if (moveStatus_.Length <= movePhase_)
+            {
+                movePhase_ = 1;
+            }
+
+            //移動データの取得
+            var data = moveStatus_[movePhase_];
+
+            //設定された移動処理を順次行う
+            for (int i = 0; i < data.status.Length; i++)
+            {
+                EnemyMoveStract moveData = data.status[i];
+
+                IEnemyMove move = moveWrapper_.MoveSet(moveData.moveCollect);
+
+                if (move != null)
+                {
+                    yield return StartCoroutine(move.EnemyMoveColutine(transform, moveData));
+                }
+
+                yield return new WaitForSeconds(moveData.nextMoveTime);
+            }
+
+            //次の移動へ
+            movePhase_++;
+        }
     }
 }
