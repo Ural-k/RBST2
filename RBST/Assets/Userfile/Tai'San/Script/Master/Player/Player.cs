@@ -32,13 +32,13 @@ public class Player : MonoBehaviour,ITargetCircle
     public SkillData GetSkill2 { get { return skill2_; } }
     public SkillData GetSkill3 { get { return skill3_; } }
 
+    //プロパティ
+    public float GetGCD { get { return gcd_; } }
+    public float[] GetCD { get { return cd_; } }
     //ターゲットサークル
     public Parameter Parameter => parametor_;
     public Effect Effect { get; set; }
     public float Radius { get; set; } = 0.1f;
-    //多分仮２つ(UIでしか使わない可能性がある)↓
-    public float GetGCD { get { return gcd_; } }
-    public float[] GetCD { get { return cd_; } }
 
     private void Start()
     {
@@ -72,18 +72,31 @@ public class Player : MonoBehaviour,ITargetCircle
     /* 入力 */
     public void InputSkill1(InputValue value)
     {
-
+        if (gcd_ > 0 || cd_[0] > 0) return;
+        gcd_ = skill1_.gcd_;
+        cd_[0] = skill1_.cd_;
         foreach (var a in skill1_.attacks_) { a.Execute(myTargetCircle_); }
         skill1_ = skill1_.nextSkill_;//次のスキルへ
     }
-    public void InputSkill2(InputValue value) { foreach (var a in skill2_.attacks_) { a.Execute(myTargetCircle_); } }
-    public void InputSkill3(InputValue value) { foreach (var a in skill3_.attacks_) { a.Execute(myTargetCircle_); } }
+    public void InputSkill2(InputValue value)
+    {
+        if (gcd_ > 0 || cd_[1] > 0) return;
+        gcd_ = skill2_.gcd_;
+        cd_[1] = skill2_.cd_;
+        foreach (var a in skill2_.attacks_) { a.Execute(myTargetCircle_); }
+        skill1_ = skill2_.nextSkill_;
+    }
+    public void InputSkill3(InputValue value)
+    {
+        if (gcd_ > 0 || cd_[2] > 0) return;
+        gcd_ = skill3_.gcd_;
+        cd_[2] = skill3_.cd_;
+        foreach (var a in skill3_.attacks_) { a.Execute(myTargetCircle_); }
+        skill1_ = skill3_.nextSkill_;
+    }
     public void Move(InputValue value) => moveAxis_ = value.Get<Vector2>();
 
     protected float Distance(int d) { return Mathf.Sign(lastAxis_.x) * d; }
-    protected bool IsGCD() { return gcd_ > 0; }
-    protected bool IsCD(int s) { return cd_[s] > 0; }
-    protected bool IsGCDCD(int s) { return gcd_ > 0 || cd_[s] > 0; }
     protected void ComboBreak(int s) { for (int i = 0; i < nowCombo_.Count(); ++i) if (i != s) nowCombo_[i] = 0; }
 
     //ターゲットサークル

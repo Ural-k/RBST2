@@ -21,4 +21,4 @@ MonoBehaviour:
   delay_: 0
   nextSkill_: {fileID: 11400000, guid: faaeb245158f50f49aacbc677ea9b799, type: 2}
   attacks_:
-  - {fileID: 11400000, guid: b3ed8e935aecc004ea79261f7eec7f8c, type: 2}
+  - {fileID: 11400000, guid: 793284b8a80cb54449b1fb5481ec8feb, type: 2}
