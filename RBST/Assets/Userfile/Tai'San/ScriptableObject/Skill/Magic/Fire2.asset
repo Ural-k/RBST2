@@ -16,8 +16,8 @@ MonoBehaviour:
   icon_: {fileID: -2761673434527092231, guid: 902ee4f0bb74cd2499051fbcd4555a5d, type: 3}
   help_: 
   power_: 300
-  gcd_: 1
-  cd_: 0
+  gcd_: 4
+  cd_: 1
   delay_: 0
   nextSkill_: {fileID: 11400000, guid: faaeb245158f50f49aacbc677ea9b799, type: 2}
   attacks_:

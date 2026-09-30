@@ -18,7 +18,8 @@ public class PlayerUI : MonoBehaviour
     private List<EffectController> effects_ = new List<EffectController>();
     private Dictionary<EffectController, EffectIcon> effects2 = new Dictionary<EffectController, EffectIcon>();
 
-    [SerializeField, Header("Skill")] private List<Image> skillIcon_;
+    [Header("Skill")]
+    [SerializeField] private SkillIcon skillIcon_;
 
     private Player player_;
 
@@ -34,9 +35,8 @@ public class PlayerUI : MonoBehaviour
 
     private void Update()
     {
-        skillIcon_[0].sprite = player_.GetSkill1.icon_;
-        skillIcon_[1].sprite = player_.GetSkill2.icon_;
-        skillIcon_[2].sprite = player_.GetSkill3.icon_;
+        skillIcon_.SkillIconUpdate(player_.GetSkill1, player_.GetSkill2, player_.GetSkill3);
+        skillIcon_.IconCoolDown(player_.GetCD, player_.GetGCD);
     }
 
     private void AddEffect(EffectController effect)
