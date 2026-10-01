@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b5f874cbc067bd4094cb73bc0c9542d, type: 3}
-  m_Name: Circle3
+  m_Name: Fire
   m_EditorClassIdentifier: Assembly-CSharp::AttackCircle
   power_: 300
+  delay_: 1
   targetType_: 0
   pivotSet_: 1
   targetNum_: 1
-  radius_: {x: 3, y: 3}
+  radius_: {x: 2, y: 2}

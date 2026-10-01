@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +9,7 @@ public class SkillIcon : MonoBehaviour
     [SerializeField] private Image[] coolTimeIcon_ = new Image[3];
 
     private Sprite[] initalIcon_ = new Sprite[3];
-    private float[] memoryCoolDown_ = new float[3];
+    [SerializeField] private float[] memoryCoolDown_ = new float[3];
 
     private void Start()
     {
@@ -21,19 +22,16 @@ public class SkillIcon : MonoBehaviour
     /// <summary>
     /// アイコンのSpriteを更新する
     /// </summary>
-    /// <param name="sprite"></param>
-    public void SkillIconUpdate(SkillData skill1, SkillData skill2, SkillData skill3)
+    public void SkillIconUpdate(int num, SkillData skill)
     {
-        icon_[0].sprite = skill1.icon_;
-        icon_[1].sprite = skill2.icon_;
-        icon_[2].sprite = skill3.icon_;
-        coolTimeIcon_[0].sprite = skill1.icon_;
-        coolTimeIcon_[1].sprite = skill2.icon_;
-        coolTimeIcon_[2].sprite = skill3.icon_;
-        float maxGcd = Mathf.Max(skill1.gcd_, skill2.gcd_, skill3.gcd_);
-        memoryCoolDown_[0] = Mathf.Max(skill1.cd_, maxGcd);
-        memoryCoolDown_[1] = Mathf.Max(skill2.cd_, maxGcd);
-        memoryCoolDown_[2] = Mathf.Max(skill3.cd_, maxGcd);
+        icon_[num].sprite = skill.nextSkill_.icon_;
+        coolTimeIcon_[num].sprite = skill.nextSkill_.icon_;
+        for (int i = 0; i < memoryCoolDown_.Count(); ++i) memoryCoolDown_[i] = 0;
+        for (int i = 0; i < 3; ++i)
+        {
+            if(i == num) memoryCoolDown_[i] = Mathf.Max(skill.cd_, skill.gcd_);
+            else memoryCoolDown_[i] = skill.gcd_;
+        }
     }
 
     public void ResetIcon()

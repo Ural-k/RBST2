@@ -1,10 +1,11 @@
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScriptableObjects/Attacks/Circle")]
 public class AttackCircle : AttackBase
 {
-    [SerializeField] private Vector2 radius_ = new Vector2(2, 2);
+    [SerializeField] private Vector2 radius_ = new(2, 2);
 
     public override async void Execute(ITargetCircle from)
     {
@@ -18,6 +19,9 @@ public class AttackCircle : AttackBase
 
         //ƒ^[ƒQƒbƒg‚Å‚«‚é”
         int num = Mathf.Min(targetNum_, attackable.Length + 1);
+
+        //’x‰„
+        await Task.Delay((int)(delay_ * 1000));
 
         //UŒ‚‚ğ‚·‚é‘ÎÛ
         ITargetCircle[] target = pivotSet_ switch

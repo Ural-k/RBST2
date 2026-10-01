@@ -3,6 +3,7 @@ using UnityEngine;
 public abstract class AttackBase : ScriptableObject
 {
     [SerializeField] protected int power_;
+    [SerializeField] protected float delay_;
     [SerializeField] protected TargetType targetType_;
     [SerializeField] protected PivotSet pivotSet_;
     [SerializeField] protected int targetNum_;

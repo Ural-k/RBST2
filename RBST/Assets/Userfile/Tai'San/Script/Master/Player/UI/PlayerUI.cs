@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
 /// <summary>
 /// (ÉçÅ[ÉJÉã)
@@ -26,6 +25,7 @@ public class PlayerUI : MonoBehaviour
     private void Start()
     {
         player_ = GetComponent<Player>();
+        player_.IsSkill1_ += SkillIconUpdate1;
         if(TryGetComponent(out Player player))
         {
             //player.Effect.OnEffectAdd += AddEffect;
@@ -35,9 +35,12 @@ public class PlayerUI : MonoBehaviour
 
     private void Update()
     {
-        skillIcon_.SkillIconUpdate(player_.GetSkill1, player_.GetSkill2, player_.GetSkill3);
         skillIcon_.IconCoolDown(player_.GetCD, player_.GetGCD);
     }
+
+    public void SkillIconUpdate1(SkillData skillData) => skillIcon_.SkillIconUpdate(0, skillData);
+    public void SkillIconUpdate2(SkillData skillData) => skillIcon_.SkillIconUpdate(1, skillData);
+    public void SkillIconUpdate3(SkillData skillData) => skillIcon_.SkillIconUpdate(2, skillData);
 
     private void AddEffect(EffectController effect)
     {

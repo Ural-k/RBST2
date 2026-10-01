@@ -14,11 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
   skillName_: "\u30D5\u30A1\u30A4\u30A2"
   icon_: {fileID: -3341311261713339290, guid: 0aa5d2a770d4e0f4492ea85ddfdea612, type: 3}
-  help_: 
-  power_: 200
+  power_: 300
+  help_: "\u8FD1\u3044\u6575\u306B\u708E\u9B54\u6CD5\u3092\u653E\u3064\u3002"
   gcd_: 1
-  cd_: 0
-  delay_: 0.1
+  cd_: 1
   nextSkill_: {fileID: 11400000, guid: 481e2d16a14a2044fbce797cc91bd985, type: 2}
   attacks_:
   - {fileID: 11400000, guid: b3ed8e935aecc004ea79261f7eec7f8c, type: 2}
