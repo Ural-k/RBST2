@@ -7,7 +7,6 @@ public class SkillData : ScriptableObject
     [Header("•\Ž¦")]
     public string skillName_;
     public Sprite icon_;
-    public int power_;
     [TextArea(3, 10), Multiline(5)]
     public string help_;
 

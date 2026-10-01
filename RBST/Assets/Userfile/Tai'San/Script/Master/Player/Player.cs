@@ -13,7 +13,7 @@ public class Player : MonoBehaviour,ITargetCircle
     protected const float MOVE_SCREEN_Y = 4.8f;
 
     [SerializeField] private string jobName_;
-    [SerializeField] protected Animator animator_;
+    [SerializeField] protected GameObject avatar_;
     [SerializeField] private Parameter parametor_;
 
     [SerializeField] private SkillData skill1_;
@@ -22,6 +22,8 @@ public class Player : MonoBehaviour,ITargetCircle
 
     [SerializeField] private int jobGage_;
 
+    private Animator animator_;
+    private SpriteRenderer spriteRenderer_;
     private ITargetCircle myTargetCircle_;
     private Vector2 moveAxis_;
     private Vector2 lastAxis_;
@@ -35,6 +37,10 @@ public class Player : MonoBehaviour,ITargetCircle
     public event Action<SkillData> IsSkill2_;
     public event Action<SkillData> IsSkill3_;
 
+    public SkillData GetSkill1 { get { return skill1_; } }
+    public SkillData GetSkill2 { get { return skill2_; } }
+    public SkillData GetSkill3 { get { return skill3_; } }
+
     //プロパティ
     public float GetGCD { get { return gcd_; } }
     public float[] GetCD { get { return cd_; } }
@@ -46,6 +52,8 @@ public class Player : MonoBehaviour,ITargetCircle
     private void Start()
     {
         Effect = new(this);
+        animator_ = avatar_.GetComponent<Animator>();
+        spriteRenderer_ = avatar_.GetComponent<SpriteRenderer>();
         myTargetCircle_ = GetComponent<ITargetCircle>();
         InputManager.Instance.OnMove_ += Move;
         InputManager.Instance.OnSkill1_ += InputSkill1;
@@ -74,10 +82,15 @@ public class Player : MonoBehaviour,ITargetCircle
             moveAxis_ != Vector2.zero
         );
 
+        spriteRenderer_.flipX = !(lastAxis_.x < 0);
+
         Effect.TickEffect();
     }
 
     /* 入力 */
+    public void OnInputSkillButton1() { InputSkill1(null); }
+    public void OnInputSkillButton2() { InputSkill2(null); }
+    public void OnInputSkillButton3() { InputSkill3(null); }
     public void InputSkill1(InputValue value)
     {
         if (gcd_ > 0 || cd_[0] > 0) return;
@@ -96,7 +109,7 @@ public class Player : MonoBehaviour,ITargetCircle
         cd_[1] = skill2_.cd_;
         foreach (var a in skill2_.attacks_) { a.Execute(myTargetCircle_); }
         IsSkill2_.Invoke(skill2_);
-        skill1_ = skill2_.nextSkill_;
+        skill2_ = skill2_.nextSkill_;
     }
     public void InputSkill3(InputValue value)
     {
@@ -106,7 +119,7 @@ public class Player : MonoBehaviour,ITargetCircle
         cd_[2] = skill3_.cd_;
         foreach (var a in skill3_.attacks_) { a.Execute(myTargetCircle_); }
         IsSkill3_.Invoke(skill3_);
-        skill1_ = skill3_.nextSkill_;
+        skill3_ = skill3_.nextSkill_;
     }
     public void Move(InputValue value) => moveAxis_ = value.Get<Vector2>();
 

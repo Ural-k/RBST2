@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b5f874cbc067bd4094cb73bc0c9542d, type: 3}
   m_Name: Fire
   m_EditorClassIdentifier: Assembly-CSharp::AttackCircle
-  power_: 300
+  power_: 200
   delay_: 1
   targetType_: 0
   pivotSet_: 1

@@ -8,11 +8,9 @@ public abstract class AttackBase : ScriptableObject
     [SerializeField] protected PivotSet pivotSet_;
     [SerializeField] protected int targetNum_;
 
-    public enum TargetType
-    {
-        Enemy,
-        Player,
-    }
+    public int GetPower { get { return power_; } }
+    public TargetType GetTargetType { get { return targetType_; } }
+
     public enum PivotSet
     {
         Me,
@@ -22,4 +20,10 @@ public abstract class AttackBase : ScriptableObject
     }
 
     public abstract void Execute(ITargetCircle from);
+}
+
+public enum TargetType
+{
+    Enemy,
+    Player,
 }

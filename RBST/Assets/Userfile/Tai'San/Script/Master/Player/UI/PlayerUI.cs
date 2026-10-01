@@ -26,6 +26,8 @@ public class PlayerUI : MonoBehaviour
     {
         player_ = GetComponent<Player>();
         player_.IsSkill1_ += SkillIconUpdate1;
+        player_.IsSkill2_ += SkillIconUpdate2;
+        player_.IsSkill3_ += SkillIconUpdate3;
         if(TryGetComponent(out Player player))
         {
             //player.Effect.OnEffectAdd += AddEffect;
