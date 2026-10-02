@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour, ITargetCircle
     public void Died()
     {
         GameObjectManager.Instance.DestroyEnemy(this);
-        Destroy(this);
+        Destroy(gameObject);
     }
 
     void ITargetCircle.TakeDamage(int damage, ITargetCircle from)
@@ -47,5 +47,13 @@ public class Enemy : MonoBehaviour, ITargetCircle
     {
         Effect = new(this);
         //EnemyManager.AddEnemy(this);
+    }
+
+    private void Update()
+    {
+        if(Parameter.hp_ <= 0)
+        {
+            Died();
+        }
     }
 }

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 306a06d6c55715142a414049d358aab9, type: 3}
-  m_Name: Fire
+  m_Name: Meteor
   m_EditorClassIdentifier: Assembly-CSharp::SkillData
-  skillName_: "\u30D5\u30A1\u30A4\u30A2"
-  icon_: {fileID: -3341311261713339290, guid: 0aa5d2a770d4e0f4492ea85ddfdea612, type: 3}
-  help_: "\u8FD1\u3044\u6575\u306B\u708E\u9B54\u6CD5\u3092\u653E\u3064\u3002"
-  gcd_: 1
-  cd_: 1
-  nextSkill_: {fileID: 11400000}
+  skillName_: "\u30E1\u30C6\u30AA"
+  icon_: {fileID: -672695787142416771, guid: 1e6a9c0863ce64c48a5b060e6f1c925b, type: 3}
+  help_: "\u6700\u5927\u65756\u4F53\u306B\u9695\u77F3\u3092\u843D\u3068\u3059\u3002"
+  gcd_: 1.2
+  cd_: 0
+  nextSkill_: {fileID: 11400000, guid: 96dd21355f5e3364281693e43f5be1b0, type: 2}
   attacks_:
-  - {fileID: 11400000, guid: b3ed8e935aecc004ea79261f7eec7f8c, type: 2}
+  - {fileID: 11400000, guid: 8a7136a766975a44a9ee80344c859ce1, type: 2}

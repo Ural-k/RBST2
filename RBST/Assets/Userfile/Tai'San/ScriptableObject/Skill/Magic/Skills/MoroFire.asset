@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306a06d6c55715142a414049d358aab9, type: 3}
+  m_Name: MoroFire
+  m_EditorClassIdentifier: Assembly-CSharp::SkillData
+  skillName_: "\u30E2\u30ED\u30D5\u30A1\u30A4\u30A2"
+  icon_: {fileID: -2761673434527092231, guid: 902ee4f0bb74cd2499051fbcd4555a5d, type: 3}
+  help_: "\u81EA\u5206\u3092\u4E2D\u5FC3\u306B\u5DE8\u5927\u5186\u7BC4\u56F2\u708E\u9B54\u6CD5\u3092\u653E\u3064\u3002\n\u6575\u5473\u65B9\u95A2\u4FC2\u306A\u304F\u71C3\u3084\u3059\u3002"
+  gcd_: 4
+  cd_: 15
+  nextSkill_: {fileID: 11400000, guid: 936f9734811adad46be8240fbc4cc89b, type: 2}
+  attacks_:
+  - {fileID: 11400000, guid: ba1697a96f9f224479d9e83f7e3fc72c, type: 2}
+  - {fileID: 11400000, guid: dcb38506e0be15843baaefcfe9fac476, type: 2}

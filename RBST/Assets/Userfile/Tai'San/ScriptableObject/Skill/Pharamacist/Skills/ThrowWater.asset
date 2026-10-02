@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306a06d6c55715142a414049d358aab9, type: 3}
+  m_Name: ThrowWater
+  m_EditorClassIdentifier: Assembly-CSharp::SkillData
+  skillName_: "\u6295\u3052\u308B"
+  icon_: {fileID: -6820745987359068363, guid: 5476b7b750a50cf48aed5580c19b55d9, type: 3}
+  help_: "\u6C34\u5165\u308A\u306E\u74F6\u3092\u6295\u3052\u308B\u3002\n\u3053\u306E\u30B9\u30AD\u30EB\u306F\u8ABF\u5408\u3057\u305F\u6642\u3001\u4F5C\u6210\u3057\u305F\u85AC\u306B\u5FDC\u3058\u3066\u30B9\u30AD\u30EB\u304C\u5909\u308F\u308B\u3002\n[\u85AC\u3054\u3068\u306E\u52B9\u679C]\n\u525B\u529B\u306E\u85AC:
+    \u8FD1\u3044\u6575\u306B\u5186\u7BC4\u56F2\u653B\u6483\n\u6CBB\u7652\u306E\u85AC:
+    \u81EA\u5206\u3092\u4E2D\u5FC3\u306B\u56DE\u5FA9\u3092\u653E\u3064\n\u731B\u6BD2\u306E\u85AC:
+    \u8FD1\u3044\u6575\u306B\u5186\u7BC4\u56F2\u653B\u6483\u3001\u6BD2\u3092\u4ED8\u4E0E\u3059\u308B"
+  gcd_: 1.2
+  cd_: 0
+  nextSkill_: {fileID: 11400000}
+  attacks_:
+  - {fileID: 11400000, guid: 93741d8f27b09244a965e6e29d07b196, type: 2}

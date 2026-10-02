@@ -1459,8 +1459,8 @@ MonoBehaviour:
     def_: 100
     spd_: 100
   skill1_: {fileID: 11400000, guid: faaeb245158f50f49aacbc677ea9b799, type: 2}
-  skill2_: {fileID: 11400000, guid: faaeb245158f50f49aacbc677ea9b799, type: 2}
-  skill3_: {fileID: 11400000, guid: 481e2d16a14a2044fbce797cc91bd985, type: 2}
+  skill2_: {fileID: 11400000, guid: a9b299d90a001be46934e44a72fd1b21, type: 2}
+  skill3_: {fileID: 11400000, guid: 936f9734811adad46be8240fbc4cc89b, type: 2}
   jobGage_: 0
 --- !u!114 &1318473592385209884
 MonoBehaviour:

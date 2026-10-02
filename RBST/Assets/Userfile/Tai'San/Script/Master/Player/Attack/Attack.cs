@@ -48,6 +48,28 @@ public static class Attack
         else return null;
     }
 
+    public static ITargetCircle[] GetAllEntity()
+    {
+        List<ITargetCircle> result = new List<ITargetCircle>();
+        if (PlayerManager.GetAllPlayerListCount() != 0)
+        {
+            foreach (var p in PlayerManager.GetAllPlayer())
+            {
+                result.Add(p);
+            }
+
+        }
+        if (EnemyManager.GetAllEnemyListCount() != 0)
+        {
+            foreach (var e in EnemyManager.GetAllEnemy())
+            {
+                result.Add(e);
+            }
+        }
+        return result.ToArray();
+    }
+
+
     /// <summary>
     /// ‹ß‚¢‘ÎÛ‚ğæ“¾‚·‚é
     /// </summary>

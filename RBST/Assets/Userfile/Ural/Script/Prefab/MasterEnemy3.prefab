@@ -138,8 +138,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TestEnemy
   parameter_:
-    hp_: 1000
-    maxHp_: 1000
+    hp_: 10000
+    maxHp_: 10000
     atk_: 100
     def_: 0
     spd_: 0

@@ -37,9 +37,9 @@ public class Player : MonoBehaviour,ITargetCircle
     public event Action<SkillData> IsSkill2_;
     public event Action<SkillData> IsSkill3_;
 
-    public SkillData GetSkill1 { get { return skill1_; } }
-    public SkillData GetSkill2 { get { return skill2_; } }
-    public SkillData GetSkill3 { get { return skill3_; } }
+    public SkillData GetSkill1 { get { return skill1_; } set { skill1_ = value; } }
+    public SkillData GetSkill2 { get { return skill2_; } set { skill2_ = value; } }
+    public SkillData GetSkill3 { get { return skill3_; } set { skill3_ = value; } }
 
     //プロパティ
     public float GetGCD { get { return gcd_; } }
@@ -97,7 +97,7 @@ public class Player : MonoBehaviour,ITargetCircle
         animator_.SetTrigger(ATTACK_HASH);
         gcd_ = skill1_.gcd_;
         cd_[0] = skill1_.cd_;
-        foreach (var a in skill1_.attacks_) { a.Execute(myTargetCircle_); }
+        foreach (var a in skill1_.attacks_) { a.Execute(myTargetCircle_, this); }
         IsSkill1_.Invoke(skill1_);
         skill1_ = skill1_.nextSkill_;//次のスキルへ
     }
@@ -107,7 +107,7 @@ public class Player : MonoBehaviour,ITargetCircle
         animator_.SetTrigger(ATTACK_HASH);
         gcd_ = skill2_.gcd_;
         cd_[1] = skill2_.cd_;
-        foreach (var a in skill2_.attacks_) { a.Execute(myTargetCircle_); }
+        foreach (var a in skill2_.attacks_) { a.Execute(myTargetCircle_, this); }
         IsSkill2_.Invoke(skill2_);
         skill2_ = skill2_.nextSkill_;
     }
@@ -117,7 +117,7 @@ public class Player : MonoBehaviour,ITargetCircle
         animator_.SetTrigger(ATTACK_HASH);
         gcd_ = skill3_.gcd_;
         cd_[2] = skill3_.cd_;
-        foreach (var a in skill3_.attacks_) { a.Execute(myTargetCircle_); }
+        foreach (var a in skill3_.attacks_) { a.Execute(myTargetCircle_, this); }
         IsSkill3_.Invoke(skill3_);
         skill3_ = skill3_.nextSkill_;
     }
@@ -136,6 +136,11 @@ public class Player : MonoBehaviour,ITargetCircle
     {
         ShowFloatingText(point, FloatingTextType.Heal);
         parametor_.hp_ += point;
+    }
+
+    private void Died()
+    {
+
     }
 
     /// <summary>

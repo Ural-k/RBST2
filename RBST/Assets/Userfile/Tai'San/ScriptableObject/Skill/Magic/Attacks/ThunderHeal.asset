@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cde1758ecf38bdc43a77121779d4d96a, type: 3}
+  m_Name: ThunderHeal
+  m_EditorClassIdentifier: Assembly-CSharp::HealOne
+  power_: 200
+  delay_: 0.1
+  targetType_: 1
+  pivotSet_: 0
+  targetNum_: 1

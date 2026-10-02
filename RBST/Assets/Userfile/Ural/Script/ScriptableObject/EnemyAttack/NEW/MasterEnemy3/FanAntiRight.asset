@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FanAntiRight
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackFan
   telegraphDuration_: 1
-  damage_: 0
+  damage_: 150
   telegraphColor: {r: 1, g: 0.39215687, b: 0, a: 0.6117647}
   AOEColor: {r: 0, g: 1, b: 1, a: 0.6117647}
   radius: 15

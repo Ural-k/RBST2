@@ -19,11 +19,12 @@ public abstract class AttackBase : ScriptableObject
         Random,
     }
 
-    public abstract void Execute(ITargetCircle from);
+    public abstract void Execute(ITargetCircle from, Player player);
 }
 
 public enum TargetType
 {
     Enemy,
     Player,
+    All
 }
